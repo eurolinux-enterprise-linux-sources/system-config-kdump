@@ -3,7 +3,7 @@
 Summary: A graphical interface for configuring kernel crash dumping
 Name: system-config-kdump
 Version: 2.0.5
-Release: 11%{?dist}
+Release: 15%{?dist}
 URL: http://fedorahosted.org/system-config-kdump/
 License: GPLv2+
 Group: System Environment/Base
@@ -69,6 +69,19 @@ Patch18: system-config-kdump-2.0.5-typo2.patch
 Patch19: system-config-kdump-2.0.5-translations1.patch
 Patch20: system-config-kdump-2.0.5-translations2.patch
 
+# 811104, zipl on s390x stores full kernel path and not relative
+Patch21: system-config-kdump-2.0.5-s390x_kernel_path.patch
+
+# 829386, Use last value and don't traceback on auto value
+Patch22: system-config-kdump-2.0.5-multiple_values.patch
+
+# 852766, firmware assisted dump
+Patch23: system-config-kdump-2.0.5-fadump.patch
+
+# 858280, timeout on dbus calls
+# and don't (re)start service when setting auto option
+Patch24: system-config-kdump-2.0.5-timeout.patch
+
 %description
 system-config-kdump is a graphical tool for configuring kernel crash
 dumping via kdump and kexec.
@@ -95,6 +108,10 @@ dumping via kdump and kexec.
 %patch18 -p1 -b .typo2
 %patch19 -p1 -b .translations1
 %patch20 -p1 -b .translations2
+%patch21 -p1 -b .s390x_kernel_path
+%patch22 -p1 -b .multiple_values
+%patch23 -p1 -b .fadump
+%patch24 -p1 -b .timeout
 
 %build
 make
@@ -154,6 +171,24 @@ fi
 %doc %{_datadir}/omf/system-config-kdump
 
 %changelog
+* Thu Sep 20 2012 Roman Rakus <rrakus@redhat.com> - 2.0.5-15
+- Set timout for dbus calls to 5 minutes
+- Don't (re)start service when setting auto option
+  Resolves: #858280
+
+* Wed Sep 12 2012 Roman Rakus <rrakus@redhat.com> - 2.0.5-14
+- support firmware assisted dump
+  Resolves: #852766
+
+* Wed Aug 22 2012 Roman Rakus <rrakus@redhat.com> - 2.0.5-13
+- Use last value when multiple values are mentioned
+- Don't traceback when value is auto
+  Resolves: #829386
+
+* Wed Aug 22 2012 Roman Rakus <rrakus@redhat.com> - 2.0.5-12
+- zipl on s390x machines stores full path of kernel
+  Resolves: #811104.patch
+
 * Tue May 29 2012 Roman Rakus <rrakus@redhat.com> - 2.0.5-11
 - Translations
   Resolves: #819814

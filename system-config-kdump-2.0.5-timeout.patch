@@ -1,0 +1,102 @@
+diff --git a/src/sckdump/dbus_proxy.py b/src/sckdump/dbus_proxy.py
+index 356e182..47b186d 100644
+--- a/src/sckdump/dbus_proxy.py
++++ b/src/sckdump/dbus_proxy.py
+@@ -9,6 +9,9 @@ gtk.glade.bindtextdomain(DOMAIN)
+ _ = lambda x: gettext.ldgettext(DOMAIN, x)
+ N_ = lambda x: x
+ 
++# set timeout of dbus calls to 5 minutes
++TIMEOUT=300
++
+ # progress window
+ from sckdump.progress import ProgressWindow
+ 
+@@ -81,7 +84,7 @@ class DBusProxy (gobject.GObject):
+         self.dbus_object.getdefaultkernel(
+             dbus_interface = "org.fedoraproject.systemconfig.kdump.mechanism",
+             reply_handler = self.handle_reply,
+-            error_handler = self.handle_error)
++            error_handler = self.handle_error, timeout=TIMEOUT)
+         self.loop.run()
+         return self.cmd, self.retcode, self.std, self.err
+ 
+@@ -96,7 +99,7 @@ class DBusProxy (gobject.GObject):
+             kernel,
+             dbus_interface = "org.fedoraproject.systemconfig.kdump.mechanism",
+             reply_handler = self.handle_reply,
+-            error_handler = self.handle_error)
++            error_handler = self.handle_error, timeout=TIMEOUT)
+         self.loop.run()
+         return self.cmd, self.retcode, self.std, self.err
+ 
+@@ -111,7 +114,7 @@ class DBusProxy (gobject.GObject):
+             kernel,
+             dbus_interface = "org.fedoraproject.systemconfig.kdump.mechanism",
+             reply_handler = self.handle_reply,
+-            error_handler = self.handle_error)
++            error_handler = self.handle_error, timeout=TIMEOUT)
+         self.loop.run()
+         return self.cmd, self.retcode, self.std, self.err
+ 
+@@ -126,7 +129,7 @@ class DBusProxy (gobject.GObject):
+         self.dbus_object.getallkernels(
+             dbus_interface = "org.fedoraproject.systemconfig.kdump.mechanism",
+             reply_handler = self.handle_reply,
+-            error_handler = self.handle_error)
++            error_handler = self.handle_error, timeout=TIMEOUT)
+         self.loop.run()
+         return self.cmd, self.retcode, self.std, self.err
+ 
+@@ -143,7 +146,7 @@ class DBusProxy (gobject.GObject):
+             config_string,
+             dbus_interface = "org.fedoraproject.systemconfig.kdump.mechanism",
+             reply_handler = self.handle_reply_config,
+-            error_handler = self.handle_error)
++            error_handler = self.handle_error, timeout=TIMEOUT)
+         self.loop.run()
+         return self.retcode, self.err
+ 
+@@ -159,7 +162,7 @@ class DBusProxy (gobject.GObject):
+             config_string,
+             dbus_interface = "org.fedoraproject.systemconfig.kdump.mechanism",
+             reply_handler = self.handle_reply,
+-            error_handler = self.handle_error)
++            error_handler = self.handle_error, timeout=TIMEOUT)
+         self.loop.run()
+         return self.cmd, self.retcode, self.std, self.err
+ 
+@@ -175,7 +178,7 @@ class DBusProxy (gobject.GObject):
+             (chkconfig_status, service_op),
+             dbus_interface = "org.fedoraproject.systemconfig.kdump.mechanism",
+             reply_handler = self.handle_reply,
+-            error_handler = self.handle_error)
++            error_handler = self.handle_error, timeout=TIMEOUT)
+         self.loop.run()
+         return self.cmd, self.retcode, self.std, self.err
+ 
+@@ -190,7 +193,7 @@ class DBusProxy (gobject.GObject):
+         self.dbus_object.getservicestatus(
+             dbus_interface = "org.fedoraproject.systemconfig.kdump.mechanism",
+             reply_handler = self.handle_reply,
+-            error_handler = self.handle_error)
++            error_handler = self.handle_error, timeout=TIMEOUT)
+         self.loop.run()
+         return self.cmd, self.retcode, self.std, self.err
+ 
+diff --git a/src/system-config-kdump.py b/src/system-config-kdump.py
+index 8ef2d59..5f4c256 100755
+--- a/src/system-config-kdump.py
++++ b/src/system-config-kdump.py
+@@ -1921,6 +1921,11 @@ class MainWindow:
+                 else:
+                     service_op = ""
+ 
++            # If we use auto option, don't do anything with current service
++            # don't stop neither start it
++            if self.my_settings.use_auto:
++                service_op = ""
++
+             cmd, status, std, err = self.dbus_object.handlekdumpservice(
+                 chkconfig_status, service_op)
+             if status:
