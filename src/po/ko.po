@@ -1,0 +1,686 @@
+# translation of sck2.po to Korean
+# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
+#
+# Eunju Kim <eukim@redhat.com>, 2006, 2007.
+# Hyunsok Oh <hoh@redhat.com>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: sck2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-07-21 16:44+0200\n"
+"PO-Revision-Date: 2010-08-03 15:41+1000\n"
+"Last-Translator: \n"
+"Language-Team: Korean <en@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: ../src/system-config-kdump.py:65
+msgid "mount rootfs and run /sbin/init"
+msgstr "rootfs를 마운트하고 /sbin/init 실행"
+
+#: ../src/system-config-kdump.py:70
+msgid "(c)"
+msgstr "(c)"
+
+#: ../src/system-config-kdump.py:71
+msgid "(d)"
+msgstr "(d)"
+
+#: ../src/system-config-kdump.py:95
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with "
+"this program; if not, write to the Free Software Foundation, Inc., 675 Mass "
+"Ave, Cambridge, MA 02139, USA."
+msgstr ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with "
+"this program; if not, write to the Free Software Foundation, Inc., 675 Mass "
+"Ave, Cambridge, MA 02139, USA."
+
+#: ../src/system-config-kdump.py:123
+msgid ""
+"Kdump is a new kernel crash dumping mechanism. In the event of a system "
+"crash, a core file can be captured using kdump, which runs in the context of "
+"a freshly booted kernel, making it far more reliable than methods capturing "
+"within the context of the crashed kernel. Being able to capture a core file "
+"can be invaluable in helping determine the root cause of a system crash. "
+"Note that kdump does require reserving a portion of system memory that will "
+"be unavailable for other uses."
+msgstr ""
+"Kdump는 새 커널 크래시 덤프 메카니즘입니다. 시스템이 크래시되었을 때, 주요 파"
+"일은 새로 부팅된 커널의 문맥에서 실행되는 Kdump를 가지고 캡쳐될 수 있으며, 이"
+"는 크래시된 커널의 문맥안에서 캡쳐하는 방법 보다 신뢰성있는 방법을 제공합니"
+"다. 주요 파일을 캡쳐할 수 있게 되는 것은 시스템 크래시로 인한 root를 결정하"
+"는 데에 유용합니다. kdump에서 사용하기 위해서 일부 시스템 메모리를 다른 용도"
+"로 사용하지 못하고 보존해 두어야 함에 유의하십시오."
+
+#: ../src/system-config-kdump.py:133
+msgid ""
+"Kdump will attempt to place the vmcore at the specified location. In the "
+"event that it fails to place the vmcore at location, the default action "
+"(specified below) will be executed."
+msgstr ""
+"Kdump는 특정 장소에 vmcore를 위치시키려 합니다. 이러한 작업이 실패할 경우, 기"
+"본 동작이(아래에 명시됨) 실행됩니다."
+
+#: ../src/system-config-kdump.py:627
+msgid "Don't know how to configure your boot loader."
+msgstr "부트 로더를 설정하는 방법을 모릅니다."
+
+#: ../src/system-config-kdump.py:628
+msgid "system-config-kdump: no default kernel"
+msgstr "system-config-kdump: 디폴트 커널이 없음"
+
+#: ../src/system-config-kdump.py:633
+msgid "Sorry, this architecture does not currently support kdump"
+msgstr "죄송합니다, 현재 아키텍쳐가 kdump를 지원하지 않습니다"
+
+#: ../src/system-config-kdump.py:635 ../src/system-config-kdump.py:657
+msgid "system-config-kdump: kdump not supported"
+msgstr "system-config-kdump: kdump를 지원하지 않음"
+
+#: ../src/system-config-kdump.py:647
+msgid "Failed to detect total system memory"
+msgstr "전체 시스템 메모리 용량 검색 실패"
+
+#: ../src/system-config-kdump.py:647
+msgid "system-config-kdump: Memory error"
+msgstr "system-config-kdump: 메모리 오류"
+
+#: ../src/system-config-kdump.py:656
+msgid "Sorry, ia64 xen kernels do not support kdump at this time."
+msgstr "죄송합니다, ia64 Xen 커널은 현재 kdump를 지원하지 않습니다."
+
+#: ../src/system-config-kdump.py:746
+msgid "This system does not have enough memory for kdump to be viable"
+msgstr "이 시스템에는 kdump를 실행할 수 있는 메모리가 충분하지 않습니다"
+
+#: ../src/system-config-kdump.py:747
+msgid "system-config-kdump: Not enough memory"
+msgstr "system-config-kdump: 메모리 부족"
+
+#: ../src/system-config-kdump.py:810
+#, python-format
+msgid "Path cannot be empty for '%s' locations. "
+msgstr "'%s' 위치의 경로를 비울 수 없습니다."
+
+#: ../src/system-config-kdump.py:811
+#, python-format
+msgid "Reset path to default ('%s')?."
+msgstr "경로를 디폴트 ('%s')로 재설정하겠습니까?"
+
+#: ../src/system-config-kdump.py:812
+msgid "system-config-kdump: Empty path"
+msgstr "system-config-kdump: 빈 경로"
+
+#: ../src/system-config-kdump.py:819
+msgid "You must specify server. "
+msgstr "서버를 설정해야 합니다."
+
+#: ../src/system-config-kdump.py:819
+msgid "system-config-kdump: Server name not set"
+msgstr "system-config-kdump: 서버 이름 설정되지 않음"
+
+#: ../src/system-config-kdump.py:823
+msgid "You must specify user name. "
+msgstr "사용자 이름을 설정해야 합니다."
+
+#: ../src/system-config-kdump.py:823
+msgid "system-config-kdump: User name not set"
+msgstr "system-config-kdump: 사용자 이름 설정되지 않음"
+
+#: ../src/system-config-kdump.py:828
+msgid "You must select one of the raw devices"
+msgstr "로우 장치(raw device) 중 하나를 선택해야만 합니다"
+
+#: ../src/system-config-kdump.py:828 ../src/system-config-kdump.py:1579
+msgid "system-config-kdump: Raw device error"
+msgstr "system-config-kdump: 로우 장치(raw device) 오류"
+
+#: ../src/system-config-kdump.py:833
+msgid "You must select one of the partitions"
+msgstr "파티션을 선택해야만 합니다"
+
+#: ../src/system-config-kdump.py:833 ../src/system-config-kdump.py:1598
+msgid "system-config-kdump: Local partition error"
+msgstr "system-config-kdump: 로컬 파티션 오류"
+
+#: ../src/system-config-kdump.py:840
+#, python-format
+msgid ""
+"\n"
+"\n"
+"Note that the %s architecture does not feature a relocatable kernel at this "
+"time, and thus requires a separate kernel-kdump package to be installed for "
+"kdump to function. This can be installed via 'yum install kernel-kdump' at "
+"your convenience.\n"
+"\n"
+msgstr ""
+"\n"
+"\n"
+"현재 %s 아키텍쳐는 재배치가능 커널을 처리할 수 있는 기능이 없으므로 kdump가 "
+"동작하게 하려면 별도로 커널-kdump 패키지를 설치해야 합니다. 원하시는 때에 "
+"'yum install kernel-kdump'를 통해 설치할 수도 있습니다.\n"
+"\n"
+
+#: ../src/system-config-kdump.py:849
+#, python-format
+msgid ""
+"WARNING: xen kdump support requires a non-xen %s RPM to perform actual crash "
+"dump capture."
+msgstr ""
+"경고: xen kdump 지원에서 실제 크래시 덤프를 캡쳐하려면 비-xen %s RPM이 필요합"
+"니다."
+
+#: ../src/system-config-kdump.py:852
+#, python-format
+msgid ""
+"Please be sure you have the non-xen %s RPM of the same version as your xen "
+"kernel installed."
+msgstr "설치된 xen 커널과 같은 버전의 비-xen %s RPM이 있는 지를 확인하십시오."
+
+#: ../src/system-config-kdump.py:855
+msgid "system-config-kdump: Need non-xen kernel"
+msgstr "system-config-kdump: 비-xen 커널 필요함"
+
+#: ../src/system-config-kdump.py:858
+#, python-format
+msgid ""
+"Changing Kdump settings requires rebooting the system to reallocate memory "
+"accordingly. %sYou will have to reboot the system for the new settings to "
+"take effect."
+msgstr ""
+"Kdump 설정을 변경한 다음에는 그에 따라 메모리를 재배치하기 위해 시스템을 재부"
+"팅해야 합니다. %s 새로운 설정 사항을 적용하시려면 시스템을 재부팅해야 합니다."
+
+#: ../src/system-config-kdump.py:862
+msgid "system-config-kdump: Need reboot"
+msgstr "system-config-kdump: 재부팅 필요함"
+
+#: ../src/system-config-kdump.py:875
+msgid "Error writing kdump configuration"
+msgstr "kdump 설정을 기록하는 데 실패했습니다"
+
+#: ../src/system-config-kdump.py:875
+msgid "system-config-kdump: Error write kdump configuration"
+msgstr "system-config-kdump: kdump 설정 기록 실패"
+
+#: ../src/system-config-kdump.py:885
+msgid "Error writing bootloader configuration"
+msgstr "부트로더 설정을 기록하는 데 실패했습니다."
+
+#: ../src/system-config-kdump.py:885
+msgid "system-config-kdump: Error write bootloader configuration"
+msgstr "system-config-kdump: 부트로더 설정 기록 실패"
+
+#: ../src/system-config-kdump.py:895
+msgid "Error handling kdump services"
+msgstr "kdump 서비스를 처리하는 데 실패했습니다"
+
+#: ../src/system-config-kdump.py:895
+msgid "system-config-kdump: Error handle services"
+msgstr "system-config-kdump: 서비스 처리 실패"
+
+#: ../src/system-config-kdump.py:900
+msgid "Configurations sucessfully saved"
+msgstr "설정이 성공적으로 저장되었습니다"
+
+#: ../src/system-config-kdump.py:900
+msgid "system-config-kdump: Configuration saved"
+msgstr "system-config-kdump: 설정 저장됨"
+
+#: ../src/system-config-kdump.py:958
+#, python-format
+msgid "Error reading kdump configuration: %s"
+msgstr "kdump 설정 읽는 중 오류가 발생했습니다: %s"
+
+#: ../src/system-config-kdump.py:958
+msgid "system-config-kdump: kdump configuration file error"
+msgstr "system-config-kdump: kdump 설정 파일 오류"
+
+#: ../src/system-config-kdump.py:1059 ../src/system-config-kdump.py:1103
+#: ../src/system-config-kdump.py:1122 ../src/system-config-kdump.py:1139
+#: ../src/system-config-kdump.py:1844
+msgid "system-config-kdump: DBus error"
+msgstr "system-config-kdump: DBus 오류"
+
+#: ../src/system-config-kdump.py:1066
+#, python-format
+msgid "Error writing kdump configuration: %s"
+msgstr "kdump 설정을 기록하는 중 오류가 발생했습니다: %s"
+
+#: ../src/system-config-kdump.py:1066
+msgid "system-config-kdump: write kdump configuration file error"
+msgstr "system-config-kdump: kdump 설정 파일 기록 오류"
+
+#: ../src/system-config-kdump.py:1173
+msgid ""
+"You have to select target type other than local file:/// if you want to use "
+"default action"
+msgstr "디폴트 동작을 사용하려면 로컬 file:/// 이 아닌 다른 타겟을 지정해야만 합니다."
+
+#: ../src/system-config-kdump.py:1174
+msgid "Invalid target"
+msgstr "잘못된 타겟"
+
+#: ../src/system-config-kdump.py:1224
+msgid "Core collector must begin with 'makedumpfile'"
+msgstr "핵심 콜렉터(collector)는 'makedumpfile'로 시작해야 합니다"
+
+#: ../src/system-config-kdump.py:1225
+msgid "system-config-kdump: Bad core collector"
+msgstr "system-config-kdump: 잘못된 핵심 콜렉터(collector)"
+
+#: ../src/system-config-kdump.py:1579
+#, python-format
+msgid "Raw device %s wasn't found on this machine"
+msgstr "로우(raw) 장치 %s를 이 기계에서 찾을 수 없습니다"
+
+#: ../src/system-config-kdump.py:1597
+#, python-format
+msgid "Local file system partition with name %s"
+msgstr "이름이 %s인 로컬 파일 시스템 파티션 "
+
+#: ../src/system-config-kdump.py:1597
+#, python-format
+msgid " and type %s wasn't found"
+msgstr "-타입은 %s-를 찾을 수 없습니다"
+
+#: ../src/system-config-kdump.py:1813
+msgid ""
+"The help viewer could not be found. To be able to view help, the 'yelp' "
+"package needs to be installed."
+msgstr ""
+"도움말 뷰어를 찾을 수 없습니다. 도움말을 보려면 'yelp' 패키지를 설치해야 합니"
+"다."
+
+#: ../src/system-config-kdump.py:1841
+#, python-format
+msgid ""
+"Unable to handle kdump services:\n"
+"%s\n"
+"%s"
+msgstr ""
+"kdump 서비스를 처리하는 데 실패했습니다:\n"
+"%s\n"
+"%s"
+
+#: ../src/system-config-kdump.py:1841
+msgid "system-config-kdump: Error handling kdump services"
+msgstr "system-config-kdump: kdump 서비스 처리 실패"
+
+#: ../src/system-config-kdump.py:1887
+msgid "Error executing system-config-kdump"
+msgstr "system-config-kdump 실행중 오류가 발생했습니다."
+
+#: ../src/system-config-kdump.glade:6
+msgid "Kernel Dump Configuration"
+msgstr "커널 덤프 설정"
+
+#: ../src/system-config-kdump.glade:18
+msgid "_File"
+msgstr "파일(_F)"
+
+#: ../src/system-config-kdump.glade:27 ../src/system-config-kdump.glade:135
+msgid "Apply changes, save booloader config file and save kexec/kdump config file"
+msgstr "변경 사항을 적용하고, 부트로더 설장 파일과 kexec/kdump 설정 파일 저장합니다"
+
+#: ../src/system-config-kdump.glade:37 ../src/system-config-kdump.glade:147
+msgid "Reload original settings from config files"
+msgstr "원래 설정을 설정 파일에서 다시 읽어들입니다"
+
+#: ../src/system-config-kdump.glade:52
+msgid "Exit and discard not saved changes"
+msgstr "변경 사항을 저장하지 않고, 종료합니다"
+
+#: ../src/system-config-kdump.glade:65
+msgid "_Options"
+msgstr "선택사항(_O)"
+
+#: ../src/system-config-kdump.glade:72 ../src/system-config-kdump.glade:167
+msgid "Enable kdump"
+msgstr "kdump 활성화"
+
+#: ../src/system-config-kdump.glade:80 ../src/system-config-kdump.glade:179
+msgid "Disable kdump"
+msgstr "kdump 비활성화"
+
+#: ../src/system-config-kdump.glade:93
+msgid "_Help"
+msgstr "도움말(_H)"
+
+#: ../src/system-config-kdump.glade:136
+msgid "Apply"
+msgstr "적용"
+
+#: ../src/system-config-kdump.glade:148
+msgid "Reload"
+msgstr "다시읽기"
+
+#: ../src/system-config-kdump.glade:168
+msgid "Enable"
+msgstr "활성화"
+
+#: ../src/system-config-kdump.glade:180
+msgid "Disable"
+msgstr "비활성화"
+
+#: ../src/system-config-kdump.glade:258
+msgid "Automated kdump memory settings"
+msgstr "자동 kdump 메모리 설정"
+
+#: ../src/system-config-kdump.glade:278
+msgid "Manual kdump memory settings"
+msgstr "수동 kdump 메모리 설정"
+
+#: ../src/system-config-kdump.glade:306
+msgid "Total System Memory:"
+msgstr "총 시스템 메모리:"
+
+#: ../src/system-config-kdump.glade:316
+msgid "Current kdump Memory:"
+msgstr "현재 kdump 메모리:"
+
+#: ../src/system-config-kdump.glade:328
+msgid "New kdump Memory:"
+msgstr "새 kdump 메모리:"
+
+#: ../src/system-config-kdump.glade:340
+msgid "Usable Memory:"
+msgstr "사용 가능한 메모리:"
+
+#: ../src/system-config-kdump.glade:352 ../src/system-config-kdump.glade:364
+#: ../src/system-config-kdump.glade:397 ../src/system-config-kdump.glade:934
+msgid "N/A"
+msgstr "N/A"
+
+#: ../src/system-config-kdump.glade:411
+msgid "(MB)"
+msgstr "(MB)"
+
+#: ../src/system-config-kdump.glade:448
+msgid "Basic Settings"
+msgstr "기본 설정"
+
+#: ../src/system-config-kdump.glade:483
+msgid "Local filesystem"
+msgstr "로컬 파일시스템"
+
+#: ../src/system-config-kdump.glade:487
+msgid "Save kdump file in local filesystem"
+msgstr "로컬 파일시스템에 kdump파일을 저장합니다"
+
+#: ../src/system-config-kdump.glade:506
+msgid "Choose partition where you want to save your kdump"
+msgstr "kdump를 저장할 파티션을 선택하십시오"
+
+#: ../src/system-config-kdump.glade:520
+msgid "Partition:"
+msgstr "파티션:"
+
+#: ../src/system-config-kdump.glade:530
+msgid "Choose local filesystem target directory"
+msgstr "로컬 파일시스템의 대상 딜렉토리를 선택하십시오"
+
+#: ../src/system-config-kdump.glade:533
+msgid "Select A Local Filesystem Directory"
+msgstr "로컬 파일시스템 디렉토리를 선택하십시오"
+
+#: ../src/system-config-kdump.glade:544
+msgid "Path:"
+msgstr "경로:"
+
+#: ../src/system-config-kdump.glade:551
+msgid "Target directory on local file system"
+msgstr "로컬 파일시스템의 목적 디렉토리"
+
+#: ../src/system-config-kdump.glade:586
+msgid "Raw device"
+msgstr "로(raw) 장치"
+
+#: ../src/system-config-kdump.glade:590
+msgid "Save kdump file in raw device"
+msgstr "kdump파일을 로(raw) 장치에 저장하기"
+
+#: ../src/system-config-kdump.glade:605
+msgid "Select raw device"
+msgstr "로(raw) 장치를 선택하십시오"
+
+#: ../src/system-config-kdump.glade:635
+msgid "Network"
+msgstr "네트워크"
+
+#: ../src/system-config-kdump.glade:639
+msgid "Save kdump file via network"
+msgstr "kdump를 네트워크를 통해 저장하기"
+
+#: ../src/system-config-kdump.glade:656
+msgid "NFS"
+msgstr "NFS"
+
+#: ../src/system-config-kdump.glade:660
+msgid "Save kdump file via NFS"
+msgstr "kdump 파일을 NFS를 통해 저장하기"
+
+#: ../src/system-config-kdump.glade:671
+msgid "SSH"
+msgstr "SSH"
+
+#: ../src/system-config-kdump.glade:675
+msgid "Save kdump file via SSH"
+msgstr "kdump 파일을 SSH를 통해 저장하기"
+
+#: ../src/system-config-kdump.glade:702
+msgid "User must have necessary write permissions on the server"
+msgstr "서버에서 적절한 쓰기 권한을 가지고 있어야만 합니다."
+
+#: ../src/system-config-kdump.glade:715
+msgid "Path to directory to save kdump file on server"
+msgstr "서버에 kdump 파일을 저장할 디렉토리 경로"
+
+#: ../src/system-config-kdump.glade:728
+msgid "Network server name"
+msgstr "네트워크 서버 이름"
+
+#: ../src/system-config-kdump.glade:740
+msgid "User name:"
+msgstr "사용자명:"
+
+#: ../src/system-config-kdump.glade:754
+msgid "Path to direcotory:"
+msgstr "디렉토리 경로:"
+
+#: ../src/system-config-kdump.glade:767
+msgid "Server name:"
+msgstr "서버 이름:"
+
+#: ../src/system-config-kdump.glade:801
+msgid "Target settings"
+msgstr "목적 설정"
+
+#: ../src/system-config-kdump.glade:846
+msgid "zero page"
+msgstr "영(zero) 페이지"
+
+#: ../src/system-config-kdump.glade:850
+msgid "Exclude zero page"
+msgstr "영(zero) 페이지 제외"
+
+#: ../src/system-config-kdump.glade:860
+msgid "cache page"
+msgstr "캐시 페이지"
+
+#: ../src/system-config-kdump.glade:864
+msgid "Exclude cache page"
+msgstr "캐시 페이지 제외"
+
+#: ../src/system-config-kdump.glade:874
+msgid "cache private"
+msgstr "개인정보 캐시"
+
+#: ../src/system-config-kdump.glade:878
+msgid "Exclude cache private"
+msgstr "개인정보 캐시 제외"
+
+#: ../src/system-config-kdump.glade:888
+msgid "user data"
+msgstr "사용자 데이터"
+
+#: ../src/system-config-kdump.glade:892
+msgid "Exclude user data"
+msgstr "사용자 데이터 제외"
+
+#: ../src/system-config-kdump.glade:902
+msgid "free page"
+msgstr "미사용 페이지"
+
+#: ../src/system-config-kdump.glade:906
+msgid "Exclude free page"
+msgstr "미사용 페이지 제외"
+
+#: ../src/system-config-kdump.glade:922
+msgid "Actual filter level:"
+msgstr "실제 필터 수준:"
+
+#: ../src/system-config-kdump.glade:955
+msgid "<b>Filtering level </b>"
+msgstr "<b>필터링 수준</b>"
+
+#: ../src/system-config-kdump.glade:986
+msgid "ELF file format"
+msgstr "ELF 파일 형식"
+
+#: ../src/system-config-kdump.glade:1000
+msgid "diskdump file format"
+msgstr "diskdump 파일 형식"
+
+#: ../src/system-config-kdump.glade:1021
+msgid "<b>Output file format</b>"
+msgstr "<b>출력 파일 형식</b>"
+
+#: ../src/system-config-kdump.glade:1049
+msgid "Filtering settings"
+msgstr "필터 설정"
+
+#: ../src/system-config-kdump.glade:1096
+msgid "Default initrd"
+msgstr "기본 initd"
+
+#: ../src/system-config-kdump.glade:1100
+msgid "Use default initrd"
+msgstr "기본 initrd 사용"
+
+#: ../src/system-config-kdump.glade:1112
+msgid "Custom initrd"
+msgstr "사용자 설정 initrd"
+
+#: ../src/system-config-kdump.glade:1116
+msgid "Use custom initrd"
+msgstr "사용자 설정 initrd 사용"
+
+#: ../src/system-config-kdump.glade:1131
+msgid "Choose custom initrd file"
+msgstr "사용자 설정 initrd 파일을 선택하십시오"
+
+#: ../src/system-config-kdump.glade:1132
+msgid "Select An initrd File"
+msgstr "initrd 파일을 선택하십시오"
+
+#: ../src/system-config-kdump.glade:1149
+msgid "<b>initrd selection</b>"
+msgstr "<b>initrd선택</b>"
+
+#: ../src/system-config-kdump.glade:1179
+msgid "Default kernel"
+msgstr "기본 커널"
+
+#: ../src/system-config-kdump.glade:1183
+msgid "Use default kernel image"
+msgstr "디본 커널 이미지를 사용합니다"
+
+#: ../src/system-config-kdump.glade:1195
+msgid "Custom kernel"
+msgstr "사용자 설정 커널"
+
+#: ../src/system-config-kdump.glade:1199
+msgid "Use custom kernel image"
+msgstr "사용자 설정 커널 이미지를 사용합니다"
+
+#: ../src/system-config-kdump.glade:1214
+msgid "Choose your custom kernel"
+msgstr "사용자 설정 커널을 선택하십시오"
+
+#: ../src/system-config-kdump.glade:1231
+msgid "<b>Capture kernel selection</b>"
+msgstr "<b>캡쳐 커널 선택</b>"
+
+#: ../src/system-config-kdump.glade:1281
+msgid "Kernel command line options"
+msgstr "커널 명령행 옵션"
+
+#: ../src/system-config-kdump.glade:1297
+msgid "Original kernel command line options"
+msgstr "원래의 커널 명령행 옵션들"
+
+#: ../src/system-config-kdump.glade:1313
+msgid "Original:"
+msgstr "원래:"
+
+#: ../src/system-config-kdump.glade:1325
+msgid "Edited:"
+msgstr "변경됨:"
+
+#: ../src/system-config-kdump.glade:1342
+msgid "<b>Command line options</b>"
+msgstr "<b>명령행 옵션</b>"
+
+#: ../src/system-config-kdump.glade:1372
+msgid "Choose default action"
+msgstr "기본 동작을 선택하십시오"
+
+#: ../src/system-config-kdump.glade:1388
+msgid "<b>Default action</b>"
+msgstr "<b>기본 동작</b>"
+
+#: ../src/system-config-kdump.glade:1434
+msgid "<b>Core collector</b>"
+msgstr "<b>핵심 콜렉터</b>"
+
+#: ../src/system-config-kdump.glade:1461
+msgid "Expert settings"
+msgstr "전문가 설정"
+
+#: ../src/system-config-kdump.glade:1479
+msgid "About system-config-kdump"
+msgstr "system-config-kdump에 대한 설명"
+
+#: ../system-config-kdump.desktop.in.h:1
+msgid "Configure kernel crash dumps"
+msgstr "커널 충돌 덤프 설정"
+
+#: ../system-config-kdump.desktop.in.h:2
+msgid "Kernel crash dumps"
+msgstr "커널 충돌 덤프"
+

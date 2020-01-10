@@ -1,0 +1,673 @@
+# translation of system-config-kdump.po to Traditional Chinese
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Terry Chuang <tchuang@redhat.com>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: system-config-kdump\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-07-21 16:44+0200\n"
+"PO-Revision-Date: 2010-08-03 15:55+1000\n"
+"Last-Translator: Terry Chuang <tchuang@redhat.com>\n"
+"Language-Team: Traditional Chinese <zh_TW@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: ../src/system-config-kdump.py:65
+msgid "mount rootfs and run /sbin/init"
+msgstr "掛載 rootfs 並執行 /sbin/init"
+
+#: ../src/system-config-kdump.py:70
+msgid "(c)"
+msgstr "(c)"
+
+#: ../src/system-config-kdump.py:71
+msgid "(d)"
+msgstr "(d)"
+
+#: ../src/system-config-kdump.py:95
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with "
+"this program; if not, write to the Free Software Foundation, Inc., 675 Mass "
+"Ave, Cambridge, MA 02139, USA."
+msgstr ""
+"本文件為自由軟體文件，您可在不違反自由軟體基金會所發行的 GNU General Public Licence（第二版或任何〔任選〕後續版本）的情況下，重新發佈與/或修改它。\n"
+"\n"
+"本程式的發行，是為了能夠提供有用的幫助，但並不附帶任何的保證。對於任何商業行為皆不含任何保證，對任何特定用途亦不保證絕對符合。相關細節請查看 GNU General Public Licence。\n"
+"\n"
+"您應取得了本程式所附的 GNU General Public License；若未取得的話，請聯絡自由軟體協會，地址：Free Software Foundation, Inc., 675 Mass "
+"Ave, Cambridge, MA 02139, USA."
+
+#: ../src/system-config-kdump.py:123
+msgid ""
+"Kdump is a new kernel crash dumping mechanism. In the event of a system "
+"crash, a core file can be captured using kdump, which runs in the context of "
+"a freshly booted kernel, making it far more reliable than methods capturing "
+"within the context of the crashed kernel. Being able to capture a core file "
+"can be invaluable in helping determine the root cause of a system crash. "
+"Note that kdump does require reserving a portion of system memory that will "
+"be unavailable for other uses."
+msgstr ""
+"Kdump 是新的核心當機傾印機制。當系統當機時，kdump 會在完整無缺的啟動核心環境"
+"中，擷取核心檔案，這會比在當機的核心環境中擷取要更為可靠。擷取核心檔案能幫助"
+"您找出系統當機的根源。請注意，kdump 並不需要保留一部分的系統記憶體，導致這部"
+"份記憶體無法使用。"
+
+#: ../src/system-config-kdump.py:133
+msgid ""
+"Kdump will attempt to place the vmcore at the specified location. In the "
+"event that it fails to place the vmcore at location, the default action "
+"(specified below) will be executed."
+msgstr ""
+"Kdump 會試著在特別的地方，置入 vmcore。當無法置入 vmcore 時，會執行預設動作"
+"（如下所述）。"
+
+#: ../src/system-config-kdump.py:627
+msgid "Don't know how to configure your boot loader."
+msgstr "不知如何配置您的開機載入程式。"
+
+#: ../src/system-config-kdump.py:628
+msgid "system-config-kdump: no default kernel"
+msgstr "system-config-kdump：沒有預設的 kernel"
+
+#: ../src/system-config-kdump.py:633
+msgid "Sorry, this architecture does not currently support kdump"
+msgstr "對不起，這主機架構目前並不支援 kdump"
+
+#: ../src/system-config-kdump.py:635 ../src/system-config-kdump.py:657
+msgid "system-config-kdump: kdump not supported"
+msgstr "system-config-kdump：不支援 kdump"
+
+#: ../src/system-config-kdump.py:647
+msgid "Failed to detect total system memory"
+msgstr "無法偵測系統記憶體的總數"
+
+#: ../src/system-config-kdump.py:647
+msgid "system-config-kdump: Memory error"
+msgstr "system-config-kdump：記憶體錯誤"
+
+#: ../src/system-config-kdump.py:656
+msgid "Sorry, ia64 xen kernels do not support kdump at this time."
+msgstr "很抱歉，目前 ia64 xen 核心尚不支援 kdump。"
+
+#: ../src/system-config-kdump.py:746
+msgid "This system does not have enough memory for kdump to be viable"
+msgstr "本系統沒有足夠的記憶體，好讓 kdump 執行"
+
+#: ../src/system-config-kdump.py:747
+msgid "system-config-kdump: Not enough memory"
+msgstr "system-config-kdump：記憶體不足"
+
+#: ../src/system-config-kdump.py:810
+#, python-format
+msgid "Path cannot be empty for '%s' locations. "
+msgstr "「%s」位置的路徑不能是空白的。"
+
+#: ../src/system-config-kdump.py:811
+#, python-format
+msgid "Reset path to default ('%s')?."
+msgstr "是否要將路徑設為預設值（'%s'）？"
+
+#: ../src/system-config-kdump.py:812
+msgid "system-config-kdump: Empty path"
+msgstr "system-config-kdump：空白路徑"
+
+#: ../src/system-config-kdump.py:819
+msgid "You must specify server. "
+msgstr "您必須指定伺服器。"
+
+#: ../src/system-config-kdump.py:819
+msgid "system-config-kdump: Server name not set"
+msgstr "system-config-kdump：未設置伺服器名稱"
+
+#: ../src/system-config-kdump.py:823
+msgid "You must specify user name. "
+msgstr "您必須指定使用者名稱。"
+
+#: ../src/system-config-kdump.py:823
+msgid "system-config-kdump: User name not set"
+msgstr "system-config-kdump：未設置使用者名稱"
+
+#: ../src/system-config-kdump.py:828
+msgid "You must select one of the raw devices"
+msgstr "您必須選擇一個原生裝置"
+
+#: ../src/system-config-kdump.py:828 ../src/system-config-kdump.py:1579
+msgid "system-config-kdump: Raw device error"
+msgstr "system-config-kdump：原生裝置錯誤"
+
+#: ../src/system-config-kdump.py:833
+msgid "You must select one of the partitions"
+msgstr "您必須選擇一個分割區"
+
+#: ../src/system-config-kdump.py:833 ../src/system-config-kdump.py:1598
+msgid "system-config-kdump: Local partition error"
+msgstr "system-config-kdump：本機分割區錯誤"
+
+#: ../src/system-config-kdump.py:840
+#, python-format
+msgid ""
+"\n"
+"\n"
+"Note that the %s architecture does not feature a relocatable kernel at this "
+"time, and thus requires a separate kernel-kdump package to be installed for "
+"kdump to function. This can be installed via 'yum install kernel-kdump' at "
+"your convenience.\n"
+"\n"
+msgstr ""
+"\n"
+"\n"
+"請注意，%s 主機架構目前並沒有移動核心的功能，因此需要安裝獨立的核心傾印套件"
+"（kernel-kdump），如此 kdump 才能運作。您可以使用「yum install kernel-kdump」"
+"指令來安裝。\n"
+"\n"
+
+#: ../src/system-config-kdump.py:849
+#, python-format
+msgid ""
+"WARNING: xen kdump support requires a non-xen %s RPM to perform actual crash "
+"dump capture."
+msgstr "警告：xen kdump 支援需要一個非 xen %s 的 RPM 才可執行實際的 crash dump 擷取。"
+
+#: ../src/system-config-kdump.py:852
+#, python-format
+msgid ""
+"Please be sure you have the non-xen %s RPM of the same version as your xen "
+"kernel installed."
+msgstr "請確認您的 RPM 是和您所安裝的 xen kernel 版本相同的非 xen %s RPM。"
+
+#: ../src/system-config-kdump.py:855
+msgid "system-config-kdump: Need non-xen kernel"
+msgstr "system-config-kdump：需要非 xen 的 kernel"
+
+#: ../src/system-config-kdump.py:858
+#, python-format
+msgid ""
+"Changing Kdump settings requires rebooting the system to reallocate memory "
+"accordingly. %sYou will have to reboot the system for the new settings to "
+"take effect."
+msgstr ""
+"要改變 Kdump 的設定，使用者必須重新開機，才能重新分配記憶體。%s 要讓新的設定"
+"生效，請重新啟動系統。"
+
+#: ../src/system-config-kdump.py:862
+msgid "system-config-kdump: Need reboot"
+msgstr "system-config-kdump：需要重新啟動"
+
+#: ../src/system-config-kdump.py:875
+msgid "Error writing kdump configuration"
+msgstr "寫入 kdump 配置時發生了錯誤"
+
+#: ../src/system-config-kdump.py:875
+msgid "system-config-kdump: Error write kdump configuration"
+msgstr "system-config-kdump：寫入 kdump 配置時發生了錯誤"
+
+#: ../src/system-config-kdump.py:885
+msgid "Error writing bootloader configuration"
+msgstr "寫入開機載入程式配置時發生了錯誤"
+
+#: ../src/system-config-kdump.py:885
+msgid "system-config-kdump: Error write bootloader configuration"
+msgstr "system-config-kdump：寫入開機載入程式配置時發生了錯誤"
+
+#: ../src/system-config-kdump.py:895
+msgid "Error handling kdump services"
+msgstr "處理 kdump 服務時發生了錯誤"
+
+#: ../src/system-config-kdump.py:895
+msgid "system-config-kdump: Error handle services"
+msgstr "system-config-kdump：處理服務時發生了錯誤"
+
+#: ../src/system-config-kdump.py:900
+msgid "Configurations sucessfully saved"
+msgstr "配置已成功儲存"
+
+#: ../src/system-config-kdump.py:900
+msgid "system-config-kdump: Configuration saved"
+msgstr "system-config-kdump：配置已儲存"
+
+#: ../src/system-config-kdump.py:958
+#, python-format
+msgid "Error reading kdump configuration: %s"
+msgstr "讀取 kdump 配置時發生了錯誤：%s"
+
+#: ../src/system-config-kdump.py:958
+msgid "system-config-kdump: kdump configuration file error"
+msgstr "system-config-kdump：kdump 配置檔案發生了錯誤"
+
+#: ../src/system-config-kdump.py:1059 ../src/system-config-kdump.py:1103
+#: ../src/system-config-kdump.py:1122 ../src/system-config-kdump.py:1139
+#: ../src/system-config-kdump.py:1844
+msgid "system-config-kdump: DBus error"
+msgstr "system-config-kdump：DBus 錯誤"
+
+#: ../src/system-config-kdump.py:1066
+#, python-format
+msgid "Error writing kdump configuration: %s"
+msgstr "寫入 kdump 配置時發生了錯誤：%s"
+
+#: ../src/system-config-kdump.py:1066
+msgid "system-config-kdump: write kdump configuration file error"
+msgstr "system-config-kdump：寫入 kdump 配置檔案時發生了錯誤"
+
+#: ../src/system-config-kdump.py:1173
+msgid ""
+"You have to select target type other than local file:/// if you want to use "
+"default action"
+msgstr "若您希望使用預設動作的話，您必須選擇目標類型，而不是本機檔案 :///"
+
+#: ../src/system-config-kdump.py:1174
+msgid "Invalid target"
+msgstr "目標不明"
+
+#: ../src/system-config-kdump.py:1224
+msgid "Core collector must begin with 'makedumpfile'"
+msgstr "核心蒐集程式必須以「makedumpfile」作為起始"
+
+#: ../src/system-config-kdump.py:1225
+msgid "system-config-kdump: Bad core collector"
+msgstr "system-config-kdump：核心蒐集程式錯誤"
+
+#: ../src/system-config-kdump.py:1579
+#, python-format
+msgid "Raw device %s wasn't found on this machine"
+msgstr "在這部機器上找不到原生裝置 %s"
+
+#: ../src/system-config-kdump.py:1597
+#, python-format
+msgid "Local file system partition with name %s"
+msgstr "名稱為 %s 的本機檔案系統分割區"
+
+#: ../src/system-config-kdump.py:1597
+#, python-format
+msgid " and type %s wasn't found"
+msgstr " 找不到 %s 類型"
+
+#: ../src/system-config-kdump.py:1813
+msgid ""
+"The help viewer could not be found. To be able to view help, the 'yelp' "
+"package needs to be installed."
+msgstr "找不到說明檢視器。若要檢視說明，您需要安裝「yelp」套件。"
+
+#: ../src/system-config-kdump.py:1841
+#, python-format
+msgid ""
+"Unable to handle kdump services:\n"
+"%s\n"
+"%s"
+msgstr ""
+"無法處理 kdump 服務：\n"
+"%s\n"
+"%s"
+
+#: ../src/system-config-kdump.py:1841
+msgid "system-config-kdump: Error handling kdump services"
+msgstr "system-config-kdump: 處理 kdump 服務時發生了錯誤"
+
+#: ../src/system-config-kdump.py:1887
+msgid "Error executing system-config-kdump"
+msgstr "執行 system-config-kdump 時發生了錯誤"
+
+#: ../src/system-config-kdump.glade:6
+msgid "Kernel Dump Configuration"
+msgstr "核心傾印設定"
+
+#: ../src/system-config-kdump.glade:18
+msgid "_File"
+msgstr "檔案(_F)"
+
+#: ../src/system-config-kdump.glade:27 ../src/system-config-kdump.glade:135
+msgid "Apply changes, save booloader config file and save kexec/kdump config file"
+msgstr "套用變更，儲存開機載入程式配置檔，然後儲存 kexec/kdump 配置檔"
+
+#: ../src/system-config-kdump.glade:37 ../src/system-config-kdump.glade:147
+msgid "Reload original settings from config files"
+msgstr "由配置檔案載入原有的設定"
+
+#: ../src/system-config-kdump.glade:52
+msgid "Exit and discard not saved changes"
+msgstr "退出並放棄未儲存的變更"
+
+#: ../src/system-config-kdump.glade:65
+msgid "_Options"
+msgstr "選項(_O)"
+
+#: ../src/system-config-kdump.glade:72 ../src/system-config-kdump.glade:167
+msgid "Enable kdump"
+msgstr "啟用 kdump"
+
+#: ../src/system-config-kdump.glade:80 ../src/system-config-kdump.glade:179
+msgid "Disable kdump"
+msgstr "停用 kdump"
+
+#: ../src/system-config-kdump.glade:93
+msgid "_Help"
+msgstr "說明(_H)"
+
+#: ../src/system-config-kdump.glade:136
+msgid "Apply"
+msgstr "套用"
+
+#: ../src/system-config-kdump.glade:148
+msgid "Reload"
+msgstr "重新載入"
+
+#: ../src/system-config-kdump.glade:168
+msgid "Enable"
+msgstr "啟用"
+
+#: ../src/system-config-kdump.glade:180
+msgid "Disable"
+msgstr "停用"
+
+#: ../src/system-config-kdump.glade:258
+msgid "Automated kdump memory settings"
+msgstr "自動化的 kdump 記憶體設定"
+
+#: ../src/system-config-kdump.glade:278
+msgid "Manual kdump memory settings"
+msgstr "手動式的 kdump 記憶體設定"
+
+#: ../src/system-config-kdump.glade:306
+msgid "Total System Memory:"
+msgstr "系統總記憶體："
+
+#: ../src/system-config-kdump.glade:316
+msgid "Current kdump Memory:"
+msgstr "目前的 kdump 記憶體："
+
+#: ../src/system-config-kdump.glade:328
+msgid "New kdump Memory:"
+msgstr "新的 kdump 記憶體："
+
+#: ../src/system-config-kdump.glade:340
+msgid "Usable Memory:"
+msgstr "可用記憶體："
+
+#: ../src/system-config-kdump.glade:352 ../src/system-config-kdump.glade:364
+#: ../src/system-config-kdump.glade:397 ../src/system-config-kdump.glade:934
+msgid "N/A"
+msgstr "N/A"
+
+#: ../src/system-config-kdump.glade:411
+msgid "(MB)"
+msgstr "(MB)"
+
+#: ../src/system-config-kdump.glade:448
+msgid "Basic Settings"
+msgstr "基本設定"
+
+#: ../src/system-config-kdump.glade:483
+msgid "Local filesystem"
+msgstr "本機檔案系統"
+
+#: ../src/system-config-kdump.glade:487
+msgid "Save kdump file in local filesystem"
+msgstr "將 kdump 檔案儲存在本機檔案系統中"
+
+#: ../src/system-config-kdump.glade:506
+msgid "Choose partition where you want to save your kdump"
+msgstr "選擇您要將您的 kdump 儲存在哪個分割區中"
+
+#: ../src/system-config-kdump.glade:520
+msgid "Partition:"
+msgstr "分割區："
+
+#: ../src/system-config-kdump.glade:530
+msgid "Choose local filesystem target directory"
+msgstr "選擇本機檔案系統目標目錄"
+
+#: ../src/system-config-kdump.glade:533
+msgid "Select A Local Filesystem Directory"
+msgstr "選擇一個本機檔案系統目錄"
+
+#: ../src/system-config-kdump.glade:544
+msgid "Path:"
+msgstr "路徑："
+
+#: ../src/system-config-kdump.glade:551
+msgid "Target directory on local file system"
+msgstr "本機檔案系統上的目標目錄"
+
+#: ../src/system-config-kdump.glade:586
+msgid "Raw device"
+msgstr "原生裝置"
+
+#: ../src/system-config-kdump.glade:590
+msgid "Save kdump file in raw device"
+msgstr "將 kdump 儲存在原生裝置中"
+
+#: ../src/system-config-kdump.glade:605
+msgid "Select raw device"
+msgstr "選擇原生裝置"
+
+#: ../src/system-config-kdump.glade:635
+msgid "Network"
+msgstr "網路"
+
+#: ../src/system-config-kdump.glade:639
+msgid "Save kdump file via network"
+msgstr "透過網路儲存 kdump 檔案"
+
+#: ../src/system-config-kdump.glade:656
+msgid "NFS"
+msgstr "NFS"
+
+#: ../src/system-config-kdump.glade:660
+msgid "Save kdump file via NFS"
+msgstr "透過 NFS 儲存 kdump 檔案"
+
+#: ../src/system-config-kdump.glade:671
+msgid "SSH"
+msgstr "SSH"
+
+#: ../src/system-config-kdump.glade:675
+msgid "Save kdump file via SSH"
+msgstr "透過 SSH 儲存 kdump 檔案"
+
+#: ../src/system-config-kdump.glade:702
+msgid "User must have necessary write permissions on the server"
+msgstr "使用者必須擁有伺服器上的必要寫入權限"
+
+#: ../src/system-config-kdump.glade:715
+msgid "Path to directory to save kdump file on server"
+msgstr "在伺服器上儲存 kdump 檔案的目錄路徑"
+
+#: ../src/system-config-kdump.glade:728
+msgid "Network server name"
+msgstr "網路伺服器名稱"
+
+#: ../src/system-config-kdump.glade:740
+msgid "User name:"
+msgstr "使用者名稱："
+
+#: ../src/system-config-kdump.glade:754
+msgid "Path to direcotory:"
+msgstr "目錄路徑："
+
+#: ../src/system-config-kdump.glade:767
+msgid "Server name:"
+msgstr "伺服器名稱："
+
+#: ../src/system-config-kdump.glade:801
+msgid "Target settings"
+msgstr "目標設定"
+
+#: ../src/system-config-kdump.glade:846
+msgid "zero page"
+msgstr "zero page"
+
+#: ../src/system-config-kdump.glade:850
+msgid "Exclude zero page"
+msgstr "排除 zero page"
+
+#: ../src/system-config-kdump.glade:860
+msgid "cache page"
+msgstr "cache page"
+
+#: ../src/system-config-kdump.glade:864
+msgid "Exclude cache page"
+msgstr "排除 cache page"
+
+#: ../src/system-config-kdump.glade:874
+msgid "cache private"
+msgstr "cache private"
+
+#: ../src/system-config-kdump.glade:878
+msgid "Exclude cache private"
+msgstr "排除 cache private"
+
+#: ../src/system-config-kdump.glade:888
+msgid "user data"
+msgstr "使用者資料"
+
+#: ../src/system-config-kdump.glade:892
+msgid "Exclude user data"
+msgstr "排除使用者資料"
+
+#: ../src/system-config-kdump.glade:902
+msgid "free page"
+msgstr "free page"
+
+#: ../src/system-config-kdump.glade:906
+msgid "Exclude free page"
+msgstr "排除 free page"
+
+#: ../src/system-config-kdump.glade:922
+msgid "Actual filter level:"
+msgstr "實際過濾層級："
+
+#: ../src/system-config-kdump.glade:955
+msgid "<b>Filtering level </b>"
+msgstr "<b>過濾層級</b>"
+
+#: ../src/system-config-kdump.glade:986
+msgid "ELF file format"
+msgstr "ELF 檔案格式"
+
+#: ../src/system-config-kdump.glade:1000
+msgid "diskdump file format"
+msgstr "diskdump 檔案格式"
+
+#: ../src/system-config-kdump.glade:1021
+msgid "<b>Output file format</b>"
+msgstr "<b>輸出檔案格式</b>"
+
+#: ../src/system-config-kdump.glade:1049
+msgid "Filtering settings"
+msgstr "過濾設定"
+
+#: ../src/system-config-kdump.glade:1096
+msgid "Default initrd"
+msgstr "預設 initrd"
+
+#: ../src/system-config-kdump.glade:1100
+msgid "Use default initrd"
+msgstr "使用者預設 initrd"
+
+#: ../src/system-config-kdump.glade:1112
+msgid "Custom initrd"
+msgstr "自訂 initrd"
+
+#: ../src/system-config-kdump.glade:1116
+msgid "Use custom initrd"
+msgstr "使用自訂 initrd"
+
+#: ../src/system-config-kdump.glade:1131
+msgid "Choose custom initrd file"
+msgstr "選擇自訂的 initrd 檔案"
+
+#: ../src/system-config-kdump.glade:1132
+msgid "Select An initrd File"
+msgstr "選擇一個 initrd 檔案"
+
+#: ../src/system-config-kdump.glade:1149
+msgid "<b>initrd selection</b>"
+msgstr "<b>選擇 initrd</b>"
+
+#: ../src/system-config-kdump.glade:1179
+msgid "Default kernel"
+msgstr "預設 kernel"
+
+#: ../src/system-config-kdump.glade:1183
+msgid "Use default kernel image"
+msgstr "使用預設的 kernel 映像檔"
+
+#: ../src/system-config-kdump.glade:1195
+msgid "Custom kernel"
+msgstr "自訂的 kernel"
+
+#: ../src/system-config-kdump.glade:1199
+msgid "Use custom kernel image"
+msgstr "使用自訂的 kernel 映像檔"
+
+#: ../src/system-config-kdump.glade:1214
+msgid "Choose your custom kernel"
+msgstr "選擇您的自訂 kernel"
+
+#: ../src/system-config-kdump.glade:1231
+msgid "<b>Capture kernel selection</b>"
+msgstr "<b>擷取 kernel 選項</b>"
+
+#: ../src/system-config-kdump.glade:1281
+msgid "Kernel command line options"
+msgstr "Kernel 指令列選項"
+
+#: ../src/system-config-kdump.glade:1297
+msgid "Original kernel command line options"
+msgstr "原始的 kernel 指令列選項"
+
+#: ../src/system-config-kdump.glade:1313
+msgid "Original:"
+msgstr "原始："
+
+#: ../src/system-config-kdump.glade:1325
+msgid "Edited:"
+msgstr "已編輯："
+
+#: ../src/system-config-kdump.glade:1342
+msgid "<b>Command line options</b>"
+msgstr "<b>指令列選項</b>"
+
+#: ../src/system-config-kdump.glade:1372
+msgid "Choose default action"
+msgstr "選擇預設動作"
+
+#: ../src/system-config-kdump.glade:1388
+msgid "<b>Default action</b>"
+msgstr "<b>預設動作</b>"
+
+#: ../src/system-config-kdump.glade:1434
+msgid "<b>Core collector</b>"
+msgstr "<b>核心蒐集程式</b>"
+
+#: ../src/system-config-kdump.glade:1461
+msgid "Expert settings"
+msgstr "進階設定"
+
+#: ../src/system-config-kdump.glade:1479
+msgid "About system-config-kdump"
+msgstr "有關於 system-config-kdump"
+
+#: ../system-config-kdump.desktop.in.h:1
+msgid "Configure kernel crash dumps"
+msgstr "配置 kernel 當機傾印"
+
+#: ../system-config-kdump.desktop.in.h:2
+msgid "Kernel crash dumps"
+msgstr "Kernel 當機傾印"
+
