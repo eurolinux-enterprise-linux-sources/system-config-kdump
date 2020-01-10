@@ -1,0 +1,35 @@
+From 28d6e04ec1b62eeafe76a773b78ee755345b76bd Mon Sep 17 00:00:00 2001
+From: Roman Rakus <rrakus@redhat.com>
+Date: Fri, 10 Feb 2012 16:09:16 +0100
+Subject: [PATCH 3/9] Remove filechooser button
+
+Signed-off-by: Roman Rakus <rrakus@redhat.com>
+---
+ src/system-config-kdump.py |    4 +---
+ 1 files changed, 1 insertions(+), 3 deletions(-)
+
+diff --git a/src/system-config-kdump.py b/src/system-config-kdump.py
+index 6b6f39d..c985822 100755
+--- a/src/system-config-kdump.py
++++ b/src/system-config-kdump.py
+@@ -506,7 +506,7 @@ class MainWindow:
+         self.device_combobox.connect("changed", self.changed_raw_device)
+         self.location_entry.connect("focus-out-event", self.location_changed)
+         self.location_entry.connect("key-press-event", self.catch_enter, self.location_changed)
+-        self.local_filechooser_button.connect("selection-changed", self.location_changed)
++        self.local_filechooser_button.hide()
+         self.path_entry.connect("focus-out-event", self.path_changed)
+         self.path_entry.connect("key-press-event", self.catch_enter, self.path_changed)
+         self.servername_entry.connect("focus-out-event", self.servername_changed)
+@@ -1158,8 +1158,6 @@ class MainWindow:
+         if (self.location_entry.get_text() != path):
+             self.location_entry.set_text(path)
+ 
+-        if (self.local_filechooser_button.get_filename() != path):
+-            self.local_filechooser_button.set_current_folder(path)
+         self.my_settings.path = path
+         self.update_local_hint_label(self.my_settings.local_partition, path)
+         self.check_settings()
+-- 
+1.7.7.6
+

@@ -1,0 +1,33 @@
+From 1e1f4a1ee3397c8fae21eff0547cc316ca2c2df8 Mon Sep 17 00:00:00 2001
+From: Roman Rakus <rrakus@redhat.com>
+Date: Mon, 15 Nov 2010 16:32:17 +0100
+Subject: [PATCH 2/9] Check the core_collector in kdump.conf
+
+When core_collector entry in kdump.conf did not begin with makedumpfile
+s-c-kdump ended in endless loop. Now there is only one error message
+and core collector is set to default value.
+
+Signed-off-by: Roman Rakus <rrakus@redhat.com>
+---
+ src/system-config-kdump.py |    5 ++++-
+ 1 files changed, 4 insertions(+), 1 deletions(-)
+
+diff --git a/src/system-config-kdump.py b/src/system-config-kdump.py
+index 280bff5..6b6f39d 100755
+--- a/src/system-config-kdump.py
++++ b/src/system-config-kdump.py
+@@ -1174,7 +1174,10 @@ class MainWindow:
+                 _("Core collector must begin with 'makedumpfile'"),
+                 _("system-config-kdump: Bad core collector"),
+                 parent = self.toplevel)
+-            self.set_core_collector(self.orig_settings.core_collector)
++            if not self.orig_settings.core_collector.startswith("makedumpfile"):
++                self.set_core_collector(CORE_COLLECTOR_DEFAULT)
++            else:
++                self.set_core_collector(self.orig_settings.core_collector)
+             return False
+ 
+         if DEBUG:
+-- 
+1.7.7.6
+

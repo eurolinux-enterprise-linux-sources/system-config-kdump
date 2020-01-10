@@ -1,0 +1,57 @@
+From 1040c3fb6e33c79cba45285f2b031daffc56b170 Mon Sep 17 00:00:00 2001
+From: Roman Rakus <rrakus@redhat.com>
+Date: Wed, 16 May 2012 13:17:55 +0200
+Subject: [PATCH] Fixed another typo and use dialogs module
+
+When fixing typo in previous commit I added another typo, so fixing it.
+Also, tool was trying to call methods from self, but should call
+them from dialogs.
+
+Signed-off-by: Roman Rakus <rrakus@redhat.com>
+---
+ src/system-config-kdump.py |    8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/src/system-config-kdump.py b/src/system-config-kdump.py
+index e90e263..0c13b8e 100755
+--- a/src/system-config-kdump.py
++++ b/src/system-config-kdump.py
+@@ -537,7 +537,7 @@ class MainWindow:
+ 
+         # maybe we're running from live media with syslinux?
+         if self.default_kernel == '':
+-            self.show_error_message(_("Don't know how to configure your boot loader."),
++            dialogs.show_error_message(_("Don't know how to configure your boot loader."),
+                                     _("system-config-kdump: no default kernel"))
+             sys.exit(1)
+ 
+@@ -838,7 +838,7 @@ class MainWindow:
+                 print correct, cmd, stdout, error
+             if not correct and cmd is not None:
+                 #error write bootloader
+-                dialogs.show__call_error_message(
++                dialogs.show_call_error_message(
+                     _("Error writing bootloader configuration"),
+                     _("system-config-kdump: Error write bootloader "
+                     "configuration"),
+@@ -1147,7 +1147,7 @@ class MainWindow:
+             idx = self.default_action_combobox.get_active()
+             if self.my_settings.target_type == TYPE_LOCAL and \
+                self.my_settings.local_partition == "" and idx > 0:
+-                self.show_error_message(
++                dialogs.show_error_message(
+                   _("You have to select target type other than local file:///"
+                     " if you want to use default action"), _("Invalid target"))
+                 self.default_action_combobox.set_active(0)
+@@ -1496,7 +1496,7 @@ class MainWindow:
+                     self.kdump_mem_spin_button.set_value(float(size))
+                     self.update_usable_mem(self.kdump_mem_spin_button)
+                 except ValueError, reason:
+-                    self.show_error_message(_("Invalid crashkernel value: %s."
++                    dialogs.show_error_message(_("Invalid crashkernel value: %s."
+                         "\nPossible values are:\n\tauto\n\tX\n\tX@Y\n\n%s")
+                         %(value,reason),
+                         _("Bad crashkernel value"))
+-- 
+1.7.10.1
+

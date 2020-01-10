@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-21 16:44+0200\n"
+"POT-Creation-Date: 2010-09-14 14:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -76,77 +76,79 @@ msgstr ""
 msgid "Sorry, this architecture does not currently support kdump"
 msgstr ""
 
-#: ../src/system-config-kdump.py:635 ../src/system-config-kdump.py:657
+#: ../src/system-config-kdump.py:635 ../src/system-config-kdump.py:662
 msgid "system-config-kdump: kdump not supported"
 msgstr ""
 
-#: ../src/system-config-kdump.py:647
-msgid "Failed to detect total system memory"
+#: ../src/system-config-kdump.py:648
+msgid ""
+"Failed to detect total system memory from /proc/iomem. Total system memory "
+"will not be accurate."
 msgstr ""
 
-#: ../src/system-config-kdump.py:647
+#: ../src/system-config-kdump.py:650
 msgid "system-config-kdump: Memory error"
 msgstr ""
 
-#: ../src/system-config-kdump.py:656
+#: ../src/system-config-kdump.py:661
 msgid "Sorry, ia64 xen kernels do not support kdump at this time."
 msgstr ""
 
-#: ../src/system-config-kdump.py:746
+#: ../src/system-config-kdump.py:753
 msgid "This system does not have enough memory for kdump to be viable"
 msgstr ""
 
-#: ../src/system-config-kdump.py:747
+#: ../src/system-config-kdump.py:754
 msgid "system-config-kdump: Not enough memory"
 msgstr ""
 
-#: ../src/system-config-kdump.py:810
+#: ../src/system-config-kdump.py:817
 #, python-format
 msgid "Path cannot be empty for '%s' locations. "
 msgstr ""
 
-#: ../src/system-config-kdump.py:811
+#: ../src/system-config-kdump.py:818
 #, python-format
 msgid "Reset path to default ('%s')?."
 msgstr ""
 
-#: ../src/system-config-kdump.py:812
+#: ../src/system-config-kdump.py:819
 msgid "system-config-kdump: Empty path"
 msgstr ""
 
-#: ../src/system-config-kdump.py:819
+#: ../src/system-config-kdump.py:826
 msgid "You must specify server. "
 msgstr ""
 
-#: ../src/system-config-kdump.py:819
+#: ../src/system-config-kdump.py:826
 msgid "system-config-kdump: Server name not set"
 msgstr ""
 
-#: ../src/system-config-kdump.py:823
+#: ../src/system-config-kdump.py:830
 msgid "You must specify user name. "
 msgstr ""
 
-#: ../src/system-config-kdump.py:823
+#: ../src/system-config-kdump.py:830
 msgid "system-config-kdump: User name not set"
 msgstr ""
 
-#: ../src/system-config-kdump.py:828
+#: ../src/system-config-kdump.py:835
 msgid "You must select one of the raw devices"
 msgstr ""
 
-#: ../src/system-config-kdump.py:828 ../src/system-config-kdump.py:1579
+#: ../src/system-config-kdump.py:835 ../src/system-config-kdump.py:1586
 msgid "system-config-kdump: Raw device error"
 msgstr ""
 
-#: ../src/system-config-kdump.py:833
+#: ../src/system-config-kdump.py:840
 msgid "You must select one of the partitions"
 msgstr ""
 
-#: ../src/system-config-kdump.py:833 ../src/system-config-kdump.py:1598
+#: ../src/system-config-kdump.py:840 ../src/system-config-kdump.py:1605
 msgid "system-config-kdump: Local partition error"
 msgstr ""
 
-#: ../src/system-config-kdump.py:840
+#: ../src/system-config-kdump.py:847
 #, python-format
 msgid ""
 "\n"
@@ -158,25 +160,25 @@ msgid ""
 "\n"
 msgstr ""
 
-#: ../src/system-config-kdump.py:849
+#: ../src/system-config-kdump.py:856
 #, python-format
 msgid ""
 "WARNING: xen kdump support requires a non-xen %s RPM to perform actual crash "
 "dump capture."
 msgstr ""
 
-#: ../src/system-config-kdump.py:852
+#: ../src/system-config-kdump.py:859
 #, python-format
 msgid ""
 "Please be sure you have the non-xen %s RPM of the same version as your xen "
 "kernel installed."
 msgstr ""
 
-#: ../src/system-config-kdump.py:855
+#: ../src/system-config-kdump.py:862
 msgid "system-config-kdump: Need non-xen kernel"
 msgstr ""
 
-#: ../src/system-config-kdump.py:858
+#: ../src/system-config-kdump.py:865
 #, python-format
 msgid ""
 "Changing Kdump settings requires rebooting the system to reallocate memory "
@@ -184,106 +186,138 @@ msgid ""
 "take effect."
 msgstr ""
 
-#: ../src/system-config-kdump.py:862
+#: ../src/system-config-kdump.py:869
 msgid "system-config-kdump: Need reboot"
 msgstr ""
 
-#: ../src/system-config-kdump.py:875
+#: ../src/system-config-kdump.py:872
+msgid "Applying configuration"
+msgstr ""
+
+#: ../src/system-config-kdump.py:882
 msgid "Error writing kdump configuration"
 msgstr ""
 
-#: ../src/system-config-kdump.py:875
+#: ../src/system-config-kdump.py:882
 msgid "system-config-kdump: Error write kdump configuration"
 msgstr ""
 
-#: ../src/system-config-kdump.py:885
+#: ../src/system-config-kdump.py:892
 msgid "Error writing bootloader configuration"
 msgstr ""
 
-#: ../src/system-config-kdump.py:885
+#: ../src/system-config-kdump.py:892
 msgid "system-config-kdump: Error write bootloader configuration"
 msgstr ""
 
-#: ../src/system-config-kdump.py:895
+#: ../src/system-config-kdump.py:902
 msgid "Error handling kdump services"
 msgstr ""
 
-#: ../src/system-config-kdump.py:895
+#: ../src/system-config-kdump.py:902
 msgid "system-config-kdump: Error handle services"
 msgstr ""
 
-#: ../src/system-config-kdump.py:900
+#: ../src/system-config-kdump.py:907
 msgid "Configurations sucessfully saved"
 msgstr ""
 
-#: ../src/system-config-kdump.py:900
+#: ../src/system-config-kdump.py:907
 msgid "system-config-kdump: Configuration saved"
 msgstr ""
 
-#: ../src/system-config-kdump.py:958
+#: ../src/system-config-kdump.py:965
 #, python-format
 msgid "Error reading kdump configuration: %s"
 msgstr ""
 
-#: ../src/system-config-kdump.py:958
+#: ../src/system-config-kdump.py:965
 msgid "system-config-kdump: kdump configuration file error"
 msgstr ""
 
-#: ../src/system-config-kdump.py:1059 ../src/system-config-kdump.py:1103
-#: ../src/system-config-kdump.py:1122 ../src/system-config-kdump.py:1139
-#: ../src/system-config-kdump.py:1844
+#: ../src/system-config-kdump.py:1016
+msgid "Saving settings to kdump.conf"
+msgstr ""
+
+#: ../src/system-config-kdump.py:1066 ../src/system-config-kdump.py:1110
+#: ../src/system-config-kdump.py:1129 ../src/system-config-kdump.py:1146
+#: ../src/system-config-kdump.py:1851
 msgid "system-config-kdump: DBus error"
 msgstr ""
 
-#: ../src/system-config-kdump.py:1066
+#: ../src/system-config-kdump.py:1073
 #, python-format
 msgid "Error writing kdump configuration: %s"
 msgstr ""
 
-#: ../src/system-config-kdump.py:1066
+#: ../src/system-config-kdump.py:1073
 msgid "system-config-kdump: write kdump configuration file error"
 msgstr ""
 
-#: ../src/system-config-kdump.py:1173
+#: ../src/system-config-kdump.py:1082
+msgid "Writing settings to bootloader configuration file"
+msgstr ""
+
+#: ../src/system-config-kdump.py:1180
 msgid ""
 "You have to select target type other than local file:/// if you want to use "
 "default action"
 msgstr ""
 
-#: ../src/system-config-kdump.py:1174
+#: ../src/system-config-kdump.py:1181
 msgid "Invalid target"
 msgstr ""
 
-#: ../src/system-config-kdump.py:1224
+#: ../src/system-config-kdump.py:1231
 msgid "Core collector must begin with 'makedumpfile'"
 msgstr ""
 
-#: ../src/system-config-kdump.py:1225
+#: ../src/system-config-kdump.py:1232
 msgid "system-config-kdump: Bad core collector"
 msgstr ""
 
-#: ../src/system-config-kdump.py:1579
+#: ../src/system-config-kdump.py:1555
+#, python-format
+msgid ""
+"Invalid craskernel value: %s.\n"
+"Possible values are:\n"
+"\tauto\n"
+"\tX\n"
+"\tX@Y\n"
+"\n"
+"%s"
+msgstr ""
+
+#: ../src/system-config-kdump.py:1558
+msgid "Bad crashkernel value"
+msgstr ""
+
+#: ../src/system-config-kdump.py:1586
 #, python-format
 msgid "Raw device %s wasn't found on this machine"
 msgstr ""
 
-#: ../src/system-config-kdump.py:1597
+#: ../src/system-config-kdump.py:1604
 #, python-format
 msgid "Local file system partition with name %s"
 msgstr ""
 
-#: ../src/system-config-kdump.py:1597
+#: ../src/system-config-kdump.py:1604
 #, python-format
 msgid " and type %s wasn't found"
 msgstr ""
 
-#: ../src/system-config-kdump.py:1813
+#: ../src/system-config-kdump.py:1820
 msgid ""
 "The help viewer could not be found. To be able to view help, the 'yelp' "
 "package needs to be installed."
 msgstr ""
 
-#: ../src/system-config-kdump.py:1841
+#: ../src/system-config-kdump.py:1834
+msgid "Handling services"
+msgstr ""
+
+#: ../src/system-config-kdump.py:1848
 #, python-format
 msgid ""
 "Unable to handle kdump services:\n"
@@ -291,11 +325,11 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../src/system-config-kdump.py:1841
+#: ../src/system-config-kdump.py:1848
 msgid "system-config-kdump: Error handling kdump services"
 msgstr ""
 
-#: ../src/system-config-kdump.py:1887
+#: ../src/system-config-kdump.py:1894
 msgid "Error executing system-config-kdump"
 msgstr ""
 

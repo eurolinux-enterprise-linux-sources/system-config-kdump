@@ -1,3 +1,435 @@
+commit f8e76dbdde98fcfaad174a3484ed83365ae7dc72
+Merge: 83e6e04 5d0fd3e
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Feb 9 18:29:23 2012 +0100
+
+    Merge commit 'system-config-kdump-2_0_5' into rhel6-bugfixes
+    
+    Conflicts:
+    	po/Makefile
+    	po/af.po
+    	po/am.po
+    	po/ar.po
+    	po/as.po
+    	po/ast.po
+    	po/be.po
+    	po/bg.po
+    	po/bn.po
+    	po/bn_IN.po
+    	po/bs.po
+    	po/ca.po
+    	po/cs.po
+    	po/cy.po
+    	po/da.po
+    	po/de.po
+    	po/el.po
+    	po/en_GB.po
+    	po/es.po
+    	po/et.po
+    	po/eu_ES.po
+    	po/fa.po
+    	po/fi.po
+    	po/fr.po
+    	po/gl.po
+    	po/gu.po
+    	po/he.po
+    	po/hi.po
+    	po/hr.po
+    	po/hu.po
+    	po/hy.po
+    	po/id.po
+    	po/is.po
+    	po/it.po
+    	po/ja.po
+    	po/ka.po
+    	po/kn.po
+    	po/ko.po
+    	po/ku.po
+    	po/lo.po
+    	po/lt.po
+    	po/lv.po
+    	po/mai.po
+    	po/mk.po
+    	po/ml.po
+    	po/mr.po
+    	po/ms.po
+    	po/my.po
+    	po/nb.po
+    	po/nl.po
+    	po/nn.po
+    	po/nso.po
+    	po/or.po
+    	po/pa.po
+    	po/pl.po
+    	po/pt.po
+    	po/pt_BR.po
+    	po/ro.po
+    	po/ru.po
+    	po/si.po
+    	po/sk.po
+    	po/sl.po
+    	po/sq.po
+    	po/sr.po
+    	po/sr@latin.po
+    	po/sv.po
+    	po/system-config-kdump.pot
+    	po/ta.po
+    	po/te.po
+    	po/th.po
+    	po/tr.po
+    	po/uk.po
+    	po/ur.po
+    	po/vi.po
+    	po/zh_CN.po
+    	po/zh_TW.po
+    	po/zu.po
+    	src/system-config-kdump-backend.py
+    	src/system-config-kdump.py
+    	system-config-kdump.spec
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 83e6e04f6f74cd9bf571ac1624b8105896355607
+Author: ypoyarko <ypoyarko@fedoraproject.org>
+Date:   Tue Feb 15 00:43:37 2011 +0000
+
+    l10n: Updates to Russian (ru) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 33299aefa7f3806983b696973f5610f09ba11a95
+Author: ypoyarko <ypoyarko@fedoraproject.org>
+Date:   Mon Feb 14 01:46:12 2011 +0000
+
+    l10n: Updates to Russian (ru) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 3eac6a48ef3a35fb65b05fea2fec9d9857c2debc
+Author: htaira <htaira@fedoraproject.org>
+Date:   Wed Feb 9 07:39:24 2011 +0000
+
+    l10n: Updates to Japanese (ja) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 9410ba418b3ea3382fe64ab863b3d82e6347b542
+Author: htaira <htaira@fedoraproject.org>
+Date:   Wed Feb 9 06:44:07 2011 +0000
+
+    l10n: Updates to Japanese (ja) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 6b3b608e8cb7e7ed6e44e19456d8a24cf1bfd507
+Author: chiachen <chiachen@fedoraproject.org>
+Date:   Thu Dec 16 05:55:13 2010 +0000
+
+    l10n: Updates to Chinese (China) (zh_CN) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit f0bcd18b085e4cc5cc9aa861185a9714b2e462d6
+Author: tombo <tombo@fedoraproject.org>
+Date:   Sun Nov 14 19:31:49 2010 +0000
+
+    l10n: Updates to Italian (it) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit ce9b415b377833277a6f448f27f926ba327f17d5
+Author: pcarrier <pcarrier@fedoraproject.org>
+Date:   Sun Nov 14 02:17:52 2010 +0000
+
+    l10n: Updates to French (fr) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 98834aaf16d0af4691126034fe13d328a3ae392c
+Author: raven <raven@fedoraproject.org>
+Date:   Wed Nov 3 00:57:11 2010 +0000
+
+    l10n: Updates to Polish (pl) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 2cb055321e1080dbd0a8228a57ed411492985527
+Author: jassy <jassy@fedoraproject.org>
+Date:   Fri Oct 15 06:35:28 2010 +0000
+
+    l10n: Updates to Panjabi (Punjabi) (pa) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 5d0fd3e47415fd0b12509fb64dc9abb4a48346f7
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Sep 30 15:56:53 2010 +0200
+
+    Release 2.0.5
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit a841aaedd8d8363fcdd3fb35750850e1965d4231
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Sep 30 15:48:57 2010 +0200
+
+    Improved clean rules
+    
+    Remove generated config file. Also remove pyc files in sckdump subdir.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit a73cfe122057a0ab69d8c3161372e28cd9393fc6
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Sep 30 14:50:08 2010 +0200
+
+    Display correct version in About dialog
+    
+    Generate version in new module sckdump.config and use it
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit f16c5dc898496479a1bfa31de9872781535481cd
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Sep 29 18:51:33 2010 +0200
+
+    Fix an issue when the command name is not known
+    
+    When the command is unknown we try to show failed command, the s-c-kdump
+    crashes. Instead of None use "" (empty string) and
+    in show_call_error_message() check whether all tree view fields are empty.
+    If they are, call only show_error_message() - without tree views.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 20e1c7d4e9bf0a1e733e76d41a02e7f2b43b10d1
+Author: rbuj <rbuj@fedoraproject.org>
+Date:   Mon Sep 27 14:08:35 2010 +0000
+
+    l10n: Updates to Catalan (Valencian) (ca) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 94a2c416c26e709b02ec25fe3a4b213a31fe53c2
+Author: rbuj <rbuj@fedoraproject.org>
+Date:   Mon Sep 27 13:16:13 2010 +0000
+
+    l10n: Updates to Catalan (Valencian) (ca) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit a12d55cfc68b45439457f510fec4679daff5090d
+Author: rbuj <rbuj@fedoraproject.org>
+Date:   Mon Sep 27 12:53:52 2010 +0000
+
+    l10n: Updates to Catalan (Valencian) (ca) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 496b889a51fc171f4f3a09943f949c64548219e0
+Author: bluebat <bluebat@fedoraproject.org>
+Date:   Sun Sep 26 15:45:14 2010 +0000
+
+    l10n: Updates to Chinese (Taiwan) (zh_TW) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit ba5d5d281c57c3b9f0766383b5b1334d9d70b95a
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Sep 16 17:00:40 2010 +0200
+
+    Install glade files properly
+    
+    There is added other glade file. Makefile changed to install all glade
+    files from src/ directory.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 3dd456052a660b4d90bd62c673dfa46ca057e920
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Sep 16 15:50:55 2010 +0200
+
+    Catch exceptions
+    
+    When trying to communicate with backend, some exception can be raised.
+    Handle them. Not authorized exception from polkit is only passed.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 4f5ca310c38e2b1cac9e3f83e8a3201da150e875
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Tue Sep 14 16:02:27 2010 +0200
+
+    Rebuild pot file
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 79445ec5d9207c9be387b926efd1f1291f646765
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Tue Sep 14 15:59:12 2010 +0200
+
+    Mark texts for translation
+    
+    Add missing texts for translation
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 3b20e05f4c61024e43722913376163a8455b86ec
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Tue Sep 14 14:56:07 2010 +0200
+
+    Mark texts for translation
+    
+    Added missing texts for translation
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit f778febf3e18d745edcf734f0c2804dd4f333151
+Author: taylon <taylon@fedoraproject.org>
+Date:   Wed Sep 8 12:39:14 2010 +0000
+
+    l10n: Updates to Portuguese (Brazilian) (pt_BR) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit f620d65b25d987e882c08011e7c296e9f8aab624
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Aug 25 17:14:28 2010 +0200
+
+    New dialog for call errors
+    
+    When some call of system command failed, show dialog with more information.
+    Such as called command, stdout returned, stderr returned.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit e56ffb7ec8eb09850ed07f871dd2c98f3d228580
+Author: mrtom <mrtom@fedoraproject.org>
+Date:   Wed Aug 25 15:13:43 2010 +0000
+
+    l10n: Updates to French (fr) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit d10f64e0dc2ee7db294494954c744549e16391e7
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Tue Aug 24 13:27:32 2010 +0200
+
+    Correct return values
+    
+    When handling kdump services it was possible to fall in error, but
+    the gui shows succesfull note. Now it shows only error and then nothing.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 371d8b33ff51bad7b3a177ba935443f6d70195a5
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Tue Aug 24 10:52:41 2010 +0200
+
+    Keep progress window visible
+    
+    Call deiconify on every progress update, so the user will see progress bar
+    everytime.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit aed6a4f1c08d26b560b83a50955e49aec8ad7bb2
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Aug 18 16:37:05 2010 +0200
+
+    dbus exceptions handling
+    
+    Catch dbus exceptions and show appropriate message
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 5e13f7ee1edf6023a714202fdc2aad4562176ca5
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Mon Aug 16 16:28:51 2010 +0200
+
+    Async dbus calls
+    
+    Do dbus calls async, during call show progress bar
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit dde27e84f0dc73afdc56258c2cafcfd66fa81865
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Mon Aug 16 13:45:20 2010 +0200
+
+    dbus proxy in separate module
+    
+    DBusProxy class moved to sckdump/dbus_proxy module
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit efa081a69e66424c50e805c368342f49a6045968
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Mon Aug 16 12:32:45 2010 +0200
+
+    Add fallback from getting mem from /proc/iomem to /proc/meminfo
+    
+    There is some bug that there is empty /proc/iomem on some machines -
+    especially ppc64. Adding fallback to previous method of getting
+    total system memory. If we don't get total mem from /proc/iomem,
+    inform the user about that and read total mem from /proc/iomem.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit b514b0ea8a2ba8d8ef0fc7b0baee85cb5f6eb6fd
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Mon Aug 16 12:23:05 2010 +0200
+
+    Check the current kdump service status
+    
+    Check the status, turn on when needed, turn off when needed. Also, ist is
+    necessary to restart service if it is already running.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 06c631f631f7c3982ed3bbe7e96c4eff093abb89
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Aug 12 15:39:27 2010 +0200
+
+    Corrected service handling
+    
+    It was possible to do "nothing" with service. For example backend tried
+    to call `chkconfig kdump ', what leads into printing usage of chkconfig.
+    Now we will say chkconfig to `on' or `off' the kdump service.
+    And `service' command now is called with start or stop.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 9d15c0ea2e5eb87e44175d401cba5b7d06525f77
+Author: raven <raven@fedoraproject.org>
+Date:   Tue Aug 10 19:38:42 2010 +0000
+
+    l10n: Updates to Polish (pl) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 701100ea8b0994aacd4ac612d4e004d483ac177a
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Tue Aug 10 19:18:38 2010 +0200
+
+    Updated pot file translations
+    
+    Updated with one minor change.
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 32cc7a36e35e62c4c780bd561811b5ed8c8f0d40
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Tue Aug 10 19:03:35 2010 +0200
+
+    Add fallback from getting mem from /proc/iomem to /proc/meminfo
+    
+    There is some bug that there is empty /proc/iomem on some machines -
+    especially ppc64. Adding fallback to previous method of getting
+    total system memory. If we don't get total mem from /proc/iomem,
+    inform the user about that and read total mem from /proc/iomem.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
 commit dce06740863d8baa1af0a582a73e4be486594eac
 Author: Roman Rakus <rrakus@redhat.com>
 Date:   Tue Aug 10 17:30:00 2010 +0200
@@ -5,6 +437,19 @@ Date:   Tue Aug 10 17:30:00 2010 +0200
     New version with new translations
     
     Added new translations, version bumped
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit dcc50b4fb9c57d4c926db400e17ad9612803156c
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Tue Aug 10 16:48:53 2010 +0200
+
+    Fixed issue when removing free kernel options
+    
+    If there is not any kernel option s-c-kdump tried to remove them,
+    what ended in grubby error. Remove kernel options only if there are any.
+    
+    Moreover, removed unused EXCEPTION_MARK
     
     Signed-off-by: Roman Rakus <rrakus@redhat.com>
 
@@ -71,6 +516,86 @@ Date:   Fri Jul 30 00:38:31 2010 +0000
     l10n: Updates to Chinese (Taiwan) (zh_TW) translation
     
     Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 43379aa998010abb79ffc711f290d2ed3a70a2ec
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Jul 29 16:57:37 2010 +0200
+
+    Use / as default INSTROOT
+    
+    If not set INSTROOT use default /
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 4a7b3ad9490860688bab4d8b387938f47b4817a2
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Jul 29 16:49:54 2010 +0200
+
+    Second part of better dbus signatures
+    
+    Dbus signatures changed from simple strings (for example) to tuples where
+    applicable.
+    
+    Show error messages when return code is not 0.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 527d58b8e5e567e89ef7be6efa2775c7692a0f20
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Fri Jul 2 14:16:56 2010 +0200
+
+    Handle return code of subprocess calls and better dbus signatures
+    
+    Handle subprocess calls. All return codes are checked. Send from backaned
+    return code and data (or stdout and stderr).
+    So far done only in backend
+    
+    Dbus signatures changed from simple strings (for example) to tuples where
+    applicable.
+    So far done only in backend
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 9b2e6c4718c63a708248e0f45983a21d7e96f933
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Jul 1 16:57:52 2010 +0200
+
+    Cleanup
+    
+    cleanup in backend; removed comments
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 6bb40dbb156d3fa82eb25b7154d7b54737f309aa
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Jul 1 16:55:16 2010 +0200
+
+    ext4 support
+    
+    Added support for etx4 filesystem type. As it is read from /etc/fstab as the others (ext2, ext3)
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 18416d47f91236925cb12b607dee5311c3c9cdc3
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Jul 1 16:53:45 2010 +0200
+
+    poweroff support
+    
+    Support poweroff as other default action.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 5cccc645672385af1008b9c71eb306c5567dbe6c
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Mon Jun 7 15:43:30 2010 +0200
+
+    Calculation of total memory
+    
+    Do not read the total memory from /proc/meminfo, but rather read
+    the /proc/iomem. Count all lines containing RAM or MMCONFIG.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
 
 commit a9cde85288bbf7d3b9a82302e12777335c1ab71a
 Author: sandeeps <sandeeps@fedoraproject.org>
@@ -210,6 +735,22 @@ Date:   Thu Jul 22 13:01:45 2010 +0200
     
     Signed-off-by: Roman Rakus <rrakus@redhat.com>
 
+commit dfcb2eabae45c294d521dabdadeb5e9c03e12972
+Author: munzirtaha <munzirtaha@fedoraproject.org>
+Date:   Mon Jul 12 06:26:56 2010 +0000
+
+    l10n: Updates to Arabic (ar) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit c1d12db5f8bdfba6f68ddc9fb4d92e7a73c2598a
+Author: warrink <warrink@fedoraproject.org>
+Date:   Wed Jul 7 19:57:15 2010 +0000
+
+    l10n: Updates to Dutch (Flemish) (nl) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
 commit b1703262744ff24314207c00f0700ce4382d022b
 Author: Roman Rakus <rrakus@redhat.com>
 Date:   Wed Jun 30 16:11:40 2010 +0200
@@ -263,6 +804,14 @@ Date:   Mon Jun 28 13:55:45 2010 +0000
     
     Transmitted-via: Transifex (translate.fedoraproject.org)
 
+commit 3e25193f98ad0e48cf929f8b9446d8c0368bca7e
+Author: goeran <goeran@fedoraproject.org>
+Date:   Mon Jun 28 13:40:26 2010 +0000
+
+    l10n: Updates to Swedish (sv) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
 commit 9cd2911006ccbe166c8a2313281f306969caaf3a
 Author: Roman Rakus <rrakus@redhat.com>
 Date:   Mon Jun 7 15:24:42 2010 +0200
@@ -273,6 +822,27 @@ Date:   Mon Jun 7 15:24:42 2010 +0200
     the /proc/iomem. Count all lines containing RAM or MMCONFIG.
     
     Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 6787b17386d3300cd9cb40df7757aba7359ecc8a
+Author: Lubomir Rintel <lkundrak@v3.sk>
+Date:   Sun May 9 11:56:12 2010 -0400
+
+    Properly deal with unsupported bootloader
+    
+    Backend would crash in case it couldn't determine the boot loader type,
+    which is the case for the live media with syslinux (due to use of
+    uninitialized value). This adds an assignent of None to it.
+    
+    In case backend would not crash, frontend would happily attempt to
+    cofigure the boot loader, despite the fact that there's none (and in
+    turn, backend would call grubby with incorrect command line). This patch
+    adds check for it (well, if we don't have a default kernel, we can be
+    positive that attempt to modify its command line would not succeed).
+    
+    Furthermore, one unused variable is removed.
+    
+    Also, this adds a new untranslated string, PO files need to be updated
+    accordingly.
 
 commit 6d0032d5d7617ef04b500f17b7128c671dc16011
 Author: Lubomir Rintel <lkundrak@v3.sk>
@@ -311,6 +881,24 @@ Date:   Tue May 25 15:48:42 2010 +0200
     
     Signed-off-by: Roman Rakus <rrakus@redhat.com>
 
+commit 69b2d3c8836abc978b44d9a1f1a97e1e23e61c0f
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed May 19 19:54:23 2010 +0200
+
+    Additional checks for valid crashkernel value
+    
+    Do the check for valid value (X, X@Y) and print the error message if not valid.
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 016d9ee73720ea005008b00c082ba6a0fc9138a3
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed May 19 19:44:51 2010 +0200
+
+    Show help in the right category
+    
+    Show the help in the 'System' category instead of the 'Settings'
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
 commit 38a457ad7dfff8001c4baec218e5b1e0a9bee674
 Author: Roman Rakus <rrakus@redhat.com>
 Date:   Wed May 19 19:44:51 2010 +0200
@@ -338,6 +926,22 @@ Date:   Wed May 5 11:14:27 2010 +0000
     
     Transmitted-via: Transifex (translate.fedoraproject.org)
 
+commit fd08ff2ab50225352ef22009716d19ee738e6c49
+Author: amitakhya <amitakhya@fedoraproject.org>
+Date:   Wed Apr 28 06:42:06 2010 +0000
+
+    l10n: Updates to Assamese (as) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 454db40e716b4cb57e4b745bd1ca1e87c63a835b
+Author: leahliu <leahliu@fedoraproject.org>
+Date:   Tue Apr 27 23:52:13 2010 +0000
+
+    l10n: Updates to Chinese (China) (zh_CN) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
 commit 9ba8a72d341e7780a4cf0dc20785effc63ebcd08
 Author: Roman Rakus <rrakus@redhat.com>
 Date:   Mon Apr 26 15:39:29 2010 +0200
@@ -355,6 +959,22 @@ Date:   Fri Apr 23 09:29:21 2010 +0000
     
     Transmitted-via: Transifex (translate.fedoraproject.org)
 
+commit 7760686c43872466460f2074589366badac8d2f9
+Author: shanky <shanky@fedoraproject.org>
+Date:   Fri Apr 23 09:26:40 2010 +0000
+
+    l10n: Updates to Kannada (kn) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 065b168b2a93a14389b82c5ebccc59f167d8d8ca
+Author: khasida <khasida@fedoraproject.org>
+Date:   Fri Apr 23 08:43:59 2010 +0000
+
+    l10n: Updates to Japanese (ja) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
 commit d2389af1e105234c6dea5883a1c8c39b57e3b8e5
 Author: khasida <khasida@fedoraproject.org>
 Date:   Fri Apr 23 08:38:20 2010 +0000
@@ -362,6 +982,16 @@ Date:   Fri Apr 23 08:38:20 2010 +0000
     l10n: Updates to Japanese (ja) translation
     
     Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 3a19c458496305d4b79c64acc25a3364599a7cd4
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Apr 22 15:22:01 2010 +0200
+
+    Better policy
+    
+    Do better policy for policykit. There were sometime not authorized exceptions
+    due to bad policy.
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
 
 commit 472196252569ad04306feafd77672cdc81640404
 Author: Roman Rakus <rrakus@redhat.com>
@@ -390,6 +1020,14 @@ Date:   Fri Apr 16 11:07:38 2010 +0000
     
     Transmitted-via: Transifex (translate.fedoraproject.org)
 
+commit dfae099c8cee0670c82873d8edf04108925a6c3d
+Author: runab <runab@fedoraproject.org>
+Date:   Fri Apr 16 11:04:49 2010 +0000
+
+    l10n: Updates to Bengali (India) (bn_IN) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
 commit e22af4e03d1d70dfd451b1c6e966e11dbfe483f3
 Author: kkrothap <kkrothap@fedoraproject.org>
 Date:   Fri Apr 16 08:50:29 2010 +0000
@@ -397,6 +1035,24 @@ Date:   Fri Apr 16 08:50:29 2010 +0000
     l10n: Updates to Telugu (te) translation
     
     Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit e17f408ba296a17d742dcd948df59b9234fdf45b
+Author: kkrothap <kkrothap@fedoraproject.org>
+Date:   Fri Apr 16 08:46:54 2010 +0000
+
+    l10n: Updates to Telugu (te) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit dd724523d407f8953096a30b4a0cfa7a5dd47ae7
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Apr 15 18:01:25 2010 +0200
+
+    Remove deprecated text
+    
+    There's no more any arch with no relocatable kernel. Therefor removed
+    deprecated text.
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
 
 commit d5ee78ebad1f9ec8825d2dfe213edb57c9a3d1d2
 Author: Roman Rakus <rrakus@redhat.com>
@@ -406,6 +1062,16 @@ Date:   Thu Apr 15 17:51:51 2010 +0200
     
     The ppc64 kernel is relocatable now and text in need reboot window
     is deprecated.
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit f642e59ba001575101503331bd5360fb3a949e5c
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Apr 15 13:16:47 2010 +0200
+
+    Do not depend on font package
+    
+    Removed dependency on bitmap-fonts package. This is ugly hack.
+    People should install @fonts comps.
     Signed-off-by: Roman Rakus <rrakus@redhat.com>
 
 commit 1b7554df2bc934c4b582261fc389d2a6810aa429
@@ -421,6 +1087,14 @@ Date:   Thu Apr 15 13:09:39 2010 +0200
 commit 5151dad252f0c91b08d8fd76758c7254345e9e7c
 Author: mvdz <mvdz@fedoraproject.org>
 Date:   Tue Apr 13 13:34:12 2010 +0000
+
+    l10n: Updates to Ukrainian (uk) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 4191385b3f01a9c4837012b701ef15fcb32a66f9
+Author: mvdz <mvdz@fedoraproject.org>
+Date:   Sun Apr 11 22:37:44 2010 +0000
 
     l10n: Updates to Ukrainian (uk) translation
     
@@ -452,6 +1126,15 @@ Date:   Wed Apr 7 14:28:00 2010 +0200
     Use `Kernel crash dumps' in Gnome menu.
     Signed-off-by: Roman Rakus <rrakus@redhat.com>
 
+commit 1c32b3da83a864cd75539b0368746ca6d5ec895a
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Apr 7 14:11:24 2010 +0200
+
+    Better name in gnome menu
+    
+    Use `Kernel crash dumps' in Gnome menu.
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
 commit 9e97795bc8da5bdbf1931806aff365c3969274a9
 Author: gcintra <gcintra@fedoraproject.org>
 Date:   Wed Apr 7 03:50:27 2010 +0000
@@ -476,6 +1159,14 @@ Date:   Tue Apr 6 05:10:23 2010 +0000
     
     Transmitted-via: Transifex (translate.fedoraproject.org)
 
+commit 5fdb4ac13d7aff0c32a92372783f5cca60d21abe
+Author: ttrinks <ttrinks@fedoraproject.org>
+Date:   Mon Apr 5 23:41:05 2010 +0000
+
+    l10n: Updates to German (de) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
 commit 4429a287705dc7f7fa6c1820ffe22f6839df6721
 Author: mgiri <mgiri@fedoraproject.org>
 Date:   Mon Apr 5 10:38:32 2010 +0000
@@ -493,6 +1184,14 @@ Date:   Fri Apr 2 14:49:12 2010 +0200
     In main menu->Options items hadn't set translatable tag, so they weren't translated
     Signed-off-by: Roman Rakus <rrakus@redhat.com>
 
+commit 9d0649b6764a5248c7962ac6fb7e67059b571dc1
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Fri Apr 2 13:15:43 2010 +0200
+
+    Use python sitelib macro in spec file
+    
+    Using python_sitelib macro in spec file as suggested in fedora guideline
+
 commit a8fd3601e6614dae7a4bdc75c44081fd6432c387
 Author: ttrinks <ttrinks@fedoraproject.org>
 Date:   Wed Mar 31 03:25:53 2010 +0000
@@ -501,9 +1200,25 @@ Date:   Wed Mar 31 03:25:53 2010 +0000
     
     Transmitted-via: Transifex (translate.fedoraproject.org)
 
+commit 2081989736d155750f0a63db7e4b85b73f4095d3
+Author: kkrothap <kkrothap@fedoraproject.org>
+Date:   Tue Mar 30 11:44:53 2010 +0000
+
+    l10n: Updates to Telugu (te) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
 commit 9a89bc7e6263ad3db8c4119abb88468eb557815e
 Author: kkrothap <kkrothap@fedoraproject.org>
 Date:   Tue Mar 30 11:44:21 2010 +0000
+
+    l10n: Updates to Telugu (te) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 8d3c92b7b2f96505d2193ee89e51db936229785f
+Author: kkrothap <kkrothap@fedoraproject.org>
+Date:   Tue Mar 30 11:32:07 2010 +0000
 
     l10n: Updates to Telugu (te) translation
     
@@ -517,11 +1232,35 @@ Date:   Tue Mar 30 11:31:28 2010 +0000
     
     Transmitted-via: Transifex (translate.fedoraproject.org)
 
+commit 850f08c5f0a47ab477428aef2c3a3ccd60932ddd
+Author: kkrothap <kkrothap@fedoraproject.org>
+Date:   Tue Mar 30 11:23:03 2010 +0000
+
+    l10n: Updates to Telugu (te) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
 commit 2071975f5235dfa8d4e5b3832c6741ad26537e9d
 Author: kkrothap <kkrothap@fedoraproject.org>
 Date:   Tue Mar 30 11:19:27 2010 +0000
 
     l10n: Updates to Telugu (te) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 5790915aa0befaa7f1fec89b845ef1f9dd89a903
+Author: snicore <snicore@fedoraproject.org>
+Date:   Mon Mar 29 19:40:32 2010 +0000
+
+    l10n: updates to hungarian translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit beb1490f604efc166f8b7cb8df39f590e123396e
+Author: gkoenig <gkoenig@fedoraproject.org>
+Date:   Mon Mar 29 13:10:57 2010 +0000
+
+    l10n: Updates to German (de) translation
     
     Transmitted-via: Transifex (translate.fedoraproject.org)
 
@@ -540,6 +1279,42 @@ Date:   Sun Mar 28 22:59:37 2010 +0000
     l10n: Updates to German (de) translation
     
     Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit f63ad4cc30d7593a75dd5dfe0f4454d2a97cb5d7
+Author: ruigo <ruigo@fedoraproject.org>
+Date:   Sun Mar 28 03:25:15 2010 +0000
+
+    l10n: Updates to Portuguese (pt) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 73e48c26127a905b54f60265d20fa0ece6c00de1
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Fri Mar 26 12:14:52 2010 +0100
+
+    Spec file cleanup for release
+    
+    Few spec file cleanup. Don't ship conf files as noreplace.
+    Ship s-c-kdump.py with execution bit.
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 0fff861dc5bd47413aefd6c5e333649caaa3f4f3
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Tue Mar 23 18:20:42 2010 +0100
+
+    Better building and installing
+    
+    Build py modules in non-root env. Allow install of py modules in other root
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 3f21e5b65bacd49a49864c3368f6a8544e739305
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Tue Mar 23 18:16:56 2010 +0100
+
+    Import modules from the right place
+    
+    Previous change made importing modules non working. Added missing sckdump.
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
 
 commit ef63307b70d7a690543152962f3584eddacbe7d1
 Author: leahliu <leahliu@fedoraproject.org>
@@ -573,9 +1348,49 @@ Date:   Fri Mar 26 05:47:53 2010 +0000
     
     Transmitted-via: Transifex (translate.fedoraproject.org)
 
+commit c2ba580a8f998be83026d42af55cd92307d00e7a
+Author: snicore <snicore@fedoraproject.org>
+Date:   Thu Mar 25 13:05:35 2010 +0000
+
+    l10n: updates to Hungarian translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit be917fb0f41fcd79573e0f1d4f5c820e812b110a
+Author: elsupergomez <elsupergomez@fedoraproject.org>
+Date:   Thu Mar 25 12:15:14 2010 +0000
+
+    l10n: Updates to Spanish (Castilian) (es) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
 commit a2707b1d0c80f33fe4133d607617ea548d5df0b2
 Author: runab <runab@fedoraproject.org>
 Date:   Thu Mar 25 11:51:30 2010 +0000
+
+    l10n: Updates to Bengali (India) (bn_IN) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit e995844a469dc525ab576bbffa8640cb9203d69f
+Author: jassy <jassy@fedoraproject.org>
+Date:   Thu Mar 25 07:39:53 2010 +0000
+
+    l10n: Updates to Panjabi (Punjabi) (pa) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 4967c473819234add764b0d9d1d3d97c4b5c7e32
+Author: vpv <vpv@fedoraproject.org>
+Date:   Wed Mar 24 15:25:02 2010 +0000
+
+    l10n: Updates to Finnish (fi) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 1da76a7570288c4818031867214e185c3e8ef422
+Author: runab <runab@fedoraproject.org>
+Date:   Wed Mar 24 11:43:23 2010 +0000
 
     l10n: Updates to Bengali (India) (bn_IN) translation
     
@@ -589,11 +1404,44 @@ Date:   Wed Mar 24 02:13:39 2010 +0000
     
     Transmitted-via: Transifex (translate.fedoraproject.org)
 
+commit 48a464b135be323b5d7d33e4b0cef8f879f38d18
+Author: ypoyarko <ypoyarko@fedoraproject.org>
+Date:   Wed Mar 24 02:11:21 2010 +0000
+
+    l10n: Updates to Russian (ru) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit bc823fe046d14efe05c8368a3334aec75aed2d0e
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Tue Mar 23 17:51:52 2010 +0100
+
+    Properly handle modules
+    
+    From now we will use distutils from python for installing modules
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit c0c2d17384b40d934a7d7b2a7ca3d396859bc709
+Author: sandeeps <sandeeps@fedoraproject.org>
+Date:   Tue Mar 23 10:10:12 2010 +0000
+
+    l10n: Updates to Marathi (mr) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
 commit 7bfda8f298f8b83c654528db869be2528584e2bc
 Author: sandeeps <sandeeps@fedoraproject.org>
 Date:   Tue Mar 23 10:03:59 2010 +0000
 
     l10n: Updates to Marathi (mr) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit b81a7a38502f670a3304ce122da20692bc167363
+Author: mgiri <mgiri@fedoraproject.org>
+Date:   Tue Mar 23 09:19:01 2010 +0000
+
+    l10n: Updates to Oriya (or) translation
     
     Transmitted-via: Transifex (translate.fedoraproject.org)
 
@@ -605,11 +1453,35 @@ Date:   Tue Mar 23 06:28:15 2010 +0000
     
     Transmitted-via: Transifex (translate.fedoraproject.org)
 
+commit 57ddb3a4c93dda2465edd1c5b7df9b8c7cf65c3e
+Author: anipeter <anipeter@fedoraproject.org>
+Date:   Tue Mar 23 06:20:07 2010 +0000
+
+    l10n: Updates to Malayalam (ml) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 359f2b3ed8b0fa99beb6227cd9d96f801bb80625
+Author: swkothar <swkothar@fedoraproject.org>
+Date:   Tue Mar 23 05:46:18 2010 +0000
+
+    l10n: Updates to Gujarati (gu) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
 commit 411e46ccef328f5f6e448090a134bfe3aba63305
 Author: swkothar <swkothar@fedoraproject.org>
 Date:   Tue Mar 23 05:42:20 2010 +0000
 
     l10n: Updates to Gujarati (gu) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 9b1b2c2b82d864ae65292ae288a733e129b57e0b
+Author: ypoyarko <ypoyarko@fedoraproject.org>
+Date:   Tue Mar 23 02:02:29 2010 +0000
+
+    l10n: Updates to Russian (ru) translation
     
     Transmitted-via: Transifex (translate.fedoraproject.org)
 
@@ -620,6 +1492,82 @@ Date:   Tue Mar 23 02:01:21 2010 +0000
     l10n: Updates to Russian (ru) translation
     
     Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 009c0f505b11110f46bd8b4509e02ef85fbfc2f2
+Author: ypoyarko <ypoyarko@fedoraproject.org>
+Date:   Tue Mar 23 01:54:39 2010 +0000
+
+    l10n: Updates to Russian (ru) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 7030c77a7c7757fab1ec0bb79a783c0dd988e338
+Author: logan <logan@fedoraproject.org>
+Date:   Mon Mar 22 17:30:57 2010 +0000
+
+    l10n: Updates to Spanish (Castilian) (es) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit b5fc8e2183f343376e5df32fb0324079275441e1
+Author: beckerde <beckerde@fedoraproject.org>
+Date:   Mon Mar 22 15:46:50 2010 +0000
+
+    l10n: Updates to Spanish (Castilian) (es) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 52f1492edc902883343d629f8b3f3302c922ba49
+Author: ypoyarko <ypoyarko@fedoraproject.org>
+Date:   Sun Mar 21 23:08:13 2010 +0000
+
+    l10n: Updates to Russian (ru) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 59cb752aa7ffe734a5d78c34f75363a8caea156f
+Author: ypoyarko <ypoyarko@fedoraproject.org>
+Date:   Sun Mar 21 22:42:22 2010 +0000
+
+    l10n: Updates to Russian (ru) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 0302278993fb79d44529e682c8d17a6c32b8e7f6
+Author: ypoyarko <ypoyarko@fedoraproject.org>
+Date:   Sun Mar 21 21:40:36 2010 +0000
+
+    l10n: Updates to Russian (ru) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 047b5a056342abd9e70cc779135bc763674bd2c9
+Author: warrink <warrink@fedoraproject.org>
+Date:   Sun Mar 21 19:54:54 2010 +0000
+
+    l10n: Updates to Dutch (Flemish) (nl) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit ec8db60a7f42f503ea2618b30c2718b919ee2c44
+Author: raven <raven@fedoraproject.org>
+Date:   Fri Mar 19 16:01:49 2010 +0000
+
+    l10n: Updates to Polish (pl) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit e665bfec084aa54b1bb084601e18ff5a7269d3b3
+Author: Roman Rakus <rrakus@dhcp-lab-184.englab.brq.redhat.com>
+Date:   Fri Mar 19 10:35:06 2010 +0100
+
+    Update translations
+    
+    po/Makefile now takes care of all src/*.glade files
+    po/$name.pot regenerated
+    po/*po regenerated
+    
+    Signed-off-by: Roman Rakus <rrakus@dhcp-lab-184.englab.brq.redhat.com>
 
 commit f2525671c66335107ba66c0073b43f7cd2453107
 Author: raven <raven@fedoraproject.org>
@@ -649,6 +1597,68 @@ Date:   Thu Mar 18 14:07:51 2010 +0100
     Added system-config-kdump-rhpl.patch
     and system-config-kdump-auto.patch
     Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit b4a40b88e0ad30994cb5326c31cf4b8076d1e734
+Merge: d71c03b 51339dc
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Mar 17 18:42:37 2010 +0100
+
+    Merging with new
+    
+    Merge branch 'new'
+
+commit 51339dca797ee4c9b0a57257c1bd340fa846b0a5
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Mon Mar 1 12:54:59 2010 +0100
+
+    Name of the fonts rpm changed; use bitmap-fixed-fonts
+    
+    There is no more bitmap-fonts in Fedora. Use bitmap-fixed-fonts. However;
+    is fonts really necessary?
+
+commit 175a2bd2175a9cf8c4175998c4e34984c0ccbd79
+Author: bruce89 <bruce89@fedoraproject.org>
+Date:   Sun Feb 28 19:06:02 2010 +0000
+
+    Sending translation for British English
+
+commit dbd4361d6dfea46c15de53ad73912c28dd646cda
+Author: jobo <jobo@fedoraproject.org>
+Date:   Mon Feb 22 19:39:19 2010 +0000
+
+    Sending translation for Greek
+
+commit 5c91c7c161f81a0d78079de689011d041b80278b
+Author: Roman Rakus <rrakus@dhcp-lab-184.englab.brq.redhat.com>
+Date:   Wed Dec 16 16:00:41 2009 +0100
+
+    Cleaned dialogs separation. Progress window separated.
+    
+    In dialogs.py corrected `self' arguments. Call dialogs with named argument. Progress window is now in progress.py.
+
+commit 58cc62cf6950a542d3774990c8a399b2f84d0aa3
+Author: Roman Rakus <rrakus@dhcp-lab-184.englab.brq.redhat.com>
+Date:   Wed Dec 16 15:37:47 2009 +0100
+
+    Moved dialogs to new dialogs.py file
+    
+    Dialogs are now accessable from dialogs module. Also changed all dialogs calling as necessary.
+
+commit b1a23668f30cdda69a200675bb424bc2bdf12d91
+Author: Roman Rakus <rrakus@dhcp-lab-184.englab.brq.redhat.com>
+Date:   Tue Dec 15 16:06:56 2009 +0100
+
+    No more import obsolete rhpl
+    
+    Die rhpl! Die die die!
+
+commit 9a5b16d5915fa662b62c7049756559ae2aece580
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Dec 9 16:14:23 2009 +0100
+
+    Fixed typo in help. Removed generated help files.
+    
+    There was one minor typo. To have generated files in git is nonsense
 
 commit 2a408df631234b40ae0ab8ebc0ff35ec411657cf
 Author: Roman Rakus <rrakus@redhat.com>
@@ -691,9 +1701,21 @@ Date:   Mon Sep 28 22:25:02 2009 +0000
 
     Sending translation for Danish
 
+commit d71c03bd4cf5963526619d638def6b96076cb00f
+Author: raven <raven@fedoraproject.org>
+Date:   Tue Sep 22 21:18:10 2009 +0000
+
+    Sending translation for Polish
+
 commit 005c3d6c506d7aeb88cb2a0351dca7f54e63efc5
 Author: raven <raven@fedoraproject.org>
 Date:   Tue Sep 22 21:17:46 2009 +0000
+
+    Sending translation for Polish
+
+commit 5d7533d8d97a11fee08efe063c6cea2bb2aef495
+Author: raven <raven@fedoraproject.org>
+Date:   Tue Sep 22 21:17:17 2009 +0000
 
     Sending translation for Polish
 

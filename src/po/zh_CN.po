@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: system-config-kdump.rhel6.system-config-kdump\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-21 16:44+0200\n"
-"PO-Revision-Date: 2010-07-23 10:04+1000\n"
-"Last-Translator: Leah Liu <lliu@redhat.com>\n"
+"POT-Creation-Date: 2010-09-14 14:54+0200\n"
+"PO-Revision-Date: 2010-12-16 13:55+0800\n"
+"Last-Translator: chiachen <luojiazhen@gmail.com>\n"
 "Language-Team: Wei Liu\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../src/system-config-kdump.py:65
@@ -31,19 +31,11 @@ msgstr "(d)"
 
 #: ../src/system-config-kdump.py:95
 msgid ""
-"This program is free software; you can redistribute it and/or modify it "
-"under the terms of the GNU General Public License as published by the Free "
-"Software Foundation; either version 2 of the License, or (at your option) "
-"any later version.\n"
+"This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
 "\n"
-"This program is distributed in the hope that it will be useful, but WITHOUT "
-"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
-"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
-"more details.\n"
+"This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
 "\n"
-"You should have received a copy of the GNU General Public License along with "
-"this program; if not, write to the Free Software Foundation, Inc., 675 Mass "
-"Ave, Cambridge, MA 02139, USA."
+"You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA."
 msgstr ""
 "这个程序是免费软件。您可以根据自由软件基金\n"
 "发布的 GNU 通用公共许可证版本 2 或者之后的版本\n"
@@ -60,21 +52,11 @@ msgstr ""
 "地址 675 Mass Ave, Cambridge, MA 02139, USA."
 
 #: ../src/system-config-kdump.py:123
-msgid ""
-"Kdump is a new kernel crash dumping mechanism. In the event of a system "
-"crash, a core file can be captured using kdump, which runs in the context of "
-"a freshly booted kernel, making it far more reliable than methods capturing "
-"within the context of the crashed kernel. Being able to capture a core file "
-"can be invaluable in helping determine the root cause of a system crash. "
-"Note that kdump does require reserving a portion of system memory that will "
-"be unavailable for other uses."
+msgid "Kdump is a new kernel crash dumping mechanism. In the event of a system crash, a core file can be captured using kdump, which runs in the context of a freshly booted kernel, making it far more reliable than methods capturing within the context of the crashed kernel. Being able to capture a core file can be invaluable in helping determine the root cause of a system crash. Note that kdump does require reserving a portion of system memory that will be unavailable for other uses."
 msgstr "Kdump 是一个新的内核崩溃转储机制。在系统崩溃事件中，使用 kdump 可捕获核文件，该文件在全新引导的内核中运行，比在崩溃的内核中捕获文件的方法要可靠得多。能够捕获核文件在帮助确定系统崩溃的根本原因有很高价值。请注意 kdump 要求预留一部分系统内存，这部分内存对于其他用户是不可用的。"
 
 #: ../src/system-config-kdump.py:133
-msgid ""
-"Kdump will attempt to place the vmcore at the specified location. In the "
-"event that it fails to place the vmcore at location, the default action "
-"(specified below) will be executed."
+msgid "Kdump will attempt to place the vmcore at the specified location. In the event that it fails to place the vmcore at location, the default action (specified below) will be executed."
 msgstr "Kdump 将试图把 vmcore 存放在指定的位置。如果在某些事件中无法将 vmcore 放到位，则会执行默认的动作（按如下指定）。"
 
 #: ../src/system-config-kdump.py:627
@@ -89,219 +71,248 @@ msgstr "system-config-kdump：无默认内核"
 msgid "Sorry, this architecture does not currently support kdump"
 msgstr "对不起，这个架构目前不支持 kdump"
 
-#: ../src/system-config-kdump.py:635 ../src/system-config-kdump.py:657
+#: ../src/system-config-kdump.py:635
+#: ../src/system-config-kdump.py:662
 msgid "system-config-kdump: kdump not supported"
 msgstr "system-config-kdump：不支持 kdump"
 
-#: ../src/system-config-kdump.py:647
-msgid "Failed to detect total system memory"
-msgstr "检测系统内存的总数失败"
+#: ../src/system-config-kdump.py:648
+msgid "Failed to detect total system memory from /proc/iomem. Total system memory will not be accurate."
+msgstr "从/proc/iomem获取系统总内存大小失败。系统总内存大小未知。"
 
-#: ../src/system-config-kdump.py:647
+#: ../src/system-config-kdump.py:650
 msgid "system-config-kdump: Memory error"
 msgstr "system-config-kdump：内存错误"
 
-#: ../src/system-config-kdump.py:656
+#: ../src/system-config-kdump.py:661
 msgid "Sorry, ia64 xen kernels do not support kdump at this time."
 msgstr "对不起，ia64 xen 内核目前尚不支持 kdump。"
 
-#: ../src/system-config-kdump.py:746
+#: ../src/system-config-kdump.py:753
 msgid "This system does not have enough memory for kdump to be viable"
 msgstr "系统没有足够的内存来正常运行 kdump"
 
-#: ../src/system-config-kdump.py:747
+#: ../src/system-config-kdump.py:754
 msgid "system-config-kdump: Not enough memory"
 msgstr "system-config-kdump：没有足够内存"
 
-#: ../src/system-config-kdump.py:810
+#: ../src/system-config-kdump.py:817
 #, python-format
 msgid "Path cannot be empty for '%s' locations. "
 msgstr "对于 '%s'位置，路径不能为空。"
 
-#: ../src/system-config-kdump.py:811
+#: ../src/system-config-kdump.py:818
 #, python-format
 msgid "Reset path to default ('%s')?."
 msgstr "将路径重新设定为默认（'%s'）？"
 
-#: ../src/system-config-kdump.py:812
+#: ../src/system-config-kdump.py:819
 msgid "system-config-kdump: Empty path"
 msgstr "system-config-kdump：空路径"
 
-#: ../src/system-config-kdump.py:819
+#: ../src/system-config-kdump.py:826
 msgid "You must specify server. "
 msgstr "您必须指定服务器。"
 
-#: ../src/system-config-kdump.py:819
+#: ../src/system-config-kdump.py:826
 msgid "system-config-kdump: Server name not set"
 msgstr "system-config-kdump：没有设定服务器名称"
 
-#: ../src/system-config-kdump.py:823
+#: ../src/system-config-kdump.py:830
 msgid "You must specify user name. "
 msgstr "您必须指定用户名。"
 
-#: ../src/system-config-kdump.py:823
+#: ../src/system-config-kdump.py:830
 msgid "system-config-kdump: User name not set"
 msgstr "system-config-kdump：没有设定用户名"
 
-#: ../src/system-config-kdump.py:828
+#: ../src/system-config-kdump.py:835
 msgid "You must select one of the raw devices"
 msgstr "您必须选择一个裸设备"
 
-#: ../src/system-config-kdump.py:828 ../src/system-config-kdump.py:1579
+#: ../src/system-config-kdump.py:835
+#: ../src/system-config-kdump.py:1586
 msgid "system-config-kdump: Raw device error"
 msgstr "system-config-kdump：裸设备错误"
 
-#: ../src/system-config-kdump.py:833
+#: ../src/system-config-kdump.py:840
 msgid "You must select one of the partitions"
 msgstr "您必须选择一个分区"
 
-#: ../src/system-config-kdump.py:833 ../src/system-config-kdump.py:1598
+#: ../src/system-config-kdump.py:840
+#: ../src/system-config-kdump.py:1605
 msgid "system-config-kdump: Local partition error"
 msgstr "system-config-kdump：本地分区错误"
 
-#: ../src/system-config-kdump.py:840
+#: ../src/system-config-kdump.py:847
 #, python-format
 msgid ""
 "\n"
 "\n"
-"Note that the %s architecture does not feature a relocatable kernel at this "
-"time, and thus requires a separate kernel-kdump package to be installed for "
-"kdump to function. This can be installed via 'yum install kernel-kdump' at "
-"your convenience.\n"
+"Note that the %s architecture does not feature a relocatable kernel at this time, and thus requires a separate kernel-kdump package to be installed for kdump to function. This can be installed via 'yum install kernel-kdump' at your convenience.\n"
 "\n"
 msgstr ""
 "\n"
 "\n"
-"请注意，%s 架构目前没有可重定位（relocatable）的内核，因此要求安装单独的 "
-"kernel-kdump 软件包方可使用 kdump。您可以用“yum install kernel-kdump”安装这个软件包。\n"
+"请注意，%s 架构目前没有可重定位（relocatable）的内核，因此要求安装单独的 kernel-kdump 软件包方可使用 kdump。您可以用“yum install kernel-kdump”安装这个软件包。\n"
 "\n"
 
-#: ../src/system-config-kdump.py:849
+#: ../src/system-config-kdump.py:856
 #, python-format
-msgid ""
-"WARNING: xen kdump support requires a non-xen %s RPM to perform actual crash "
-"dump capture."
+msgid "WARNING: xen kdump support requires a non-xen %s RPM to perform actual crash dump capture."
 msgstr "警告：xen kdump 支持需要一个非 xen %s RPM 执行实际的崩溃转储捕获。"
 
-#: ../src/system-config-kdump.py:852
+#: ../src/system-config-kdump.py:859
 #, python-format
-msgid ""
-"Please be sure you have the non-xen %s RPM of the same version as your xen "
-"kernel installed."
+msgid "Please be sure you have the non-xen %s RPM of the same version as your xen kernel installed."
 msgstr "请确定您有与安装的 xen 内核相同版本的非 xen %s RPM。"
 
-#: ../src/system-config-kdump.py:855
+#: ../src/system-config-kdump.py:862
 msgid "system-config-kdump: Need non-xen kernel"
 msgstr "system-config-kdump：需要非 xen 内核"
 
-#: ../src/system-config-kdump.py:858
+#: ../src/system-config-kdump.py:865
 #, python-format
-msgid ""
-"Changing Kdump settings requires rebooting the system to reallocate memory "
-"accordingly. %sYou will have to reboot the system for the new settings to "
-"take effect."
+msgid "Changing Kdump settings requires rebooting the system to reallocate memory accordingly. %sYou will have to reboot the system for the new settings to take effect."
 msgstr "更改 Kdump 设置要求重新启动系统方可相应重新分配内存。%s 您必须重启系统方可使新设置生效。"
 
-#: ../src/system-config-kdump.py:862
+#: ../src/system-config-kdump.py:869
 msgid "system-config-kdump: Need reboot"
 msgstr "system-config-kdump：需要重启"
 
-#: ../src/system-config-kdump.py:875
+#: ../src/system-config-kdump.py:872
+msgid "Applying configuration"
+msgstr "应用"
+
+#: ../src/system-config-kdump.py:882
 msgid "Error writing kdump configuration"
 msgstr "写入 kdump 配置出错"
 
-#: ../src/system-config-kdump.py:875
+#: ../src/system-config-kdump.py:882
 msgid "system-config-kdump: Error write kdump configuration"
 msgstr "system-config-kdump：写入 kdump 配置时出错"
 
-#: ../src/system-config-kdump.py:885
+#: ../src/system-config-kdump.py:892
 msgid "Error writing bootloader configuration"
 msgstr "写入引导装载程序配置出错"
 
-#: ../src/system-config-kdump.py:885
+#: ../src/system-config-kdump.py:892
 msgid "system-config-kdump: Error write bootloader configuration"
 msgstr "system-config-kdump：写入引导装载程序配置出错"
 
-#: ../src/system-config-kdump.py:895
+#: ../src/system-config-kdump.py:902
 msgid "Error handling kdump services"
 msgstr "处理 kdump 服务出错"
 
-#: ../src/system-config-kdump.py:895
+#: ../src/system-config-kdump.py:902
 msgid "system-config-kdump: Error handle services"
 msgstr "system-config-kdump：处理 kdump 服务出错"
 
-#: ../src/system-config-kdump.py:900
+#: ../src/system-config-kdump.py:907
 msgid "Configurations sucessfully saved"
 msgstr "成功保存配置"
 
-#: ../src/system-config-kdump.py:900
+#: ../src/system-config-kdump.py:907
 msgid "system-config-kdump: Configuration saved"
 msgstr "处理 kdump 服务出错：保存配置"
 
-#: ../src/system-config-kdump.py:958
+#: ../src/system-config-kdump.py:965
 #, python-format
 msgid "Error reading kdump configuration: %s"
 msgstr "读取 kdump 配置出错：%s"
 
-#: ../src/system-config-kdump.py:958
+#: ../src/system-config-kdump.py:965
 msgid "system-config-kdump: kdump configuration file error"
 msgstr "system-config-kdump：kdump 配置文件错误"
 
-#: ../src/system-config-kdump.py:1059 ../src/system-config-kdump.py:1103
-#: ../src/system-config-kdump.py:1122 ../src/system-config-kdump.py:1139
-#: ../src/system-config-kdump.py:1844
+#: ../src/system-config-kdump.py:1016
+msgid "Saving settings to kdump.conf"
+msgstr "保存设置到kdump.conf"
+
+#: ../src/system-config-kdump.py:1066
+#: ../src/system-config-kdump.py:1110
+#: ../src/system-config-kdump.py:1129
+#: ../src/system-config-kdump.py:1146
+#: ../src/system-config-kdump.py:1851
 msgid "system-config-kdump: DBus error"
 msgstr "system-config-kdump：DBus 错误"
 
-#: ../src/system-config-kdump.py:1066
+#: ../src/system-config-kdump.py:1073
 #, python-format
 msgid "Error writing kdump configuration: %s"
 msgstr "写入 kdump 配置出错：%s"
 
-#: ../src/system-config-kdump.py:1066
+#: ../src/system-config-kdump.py:1073
 msgid "system-config-kdump: write kdump configuration file error"
 msgstr "system-config-kdump：写入 kdump 配置文件出错"
 
-#: ../src/system-config-kdump.py:1173
-msgid ""
-"You have to select target type other than local file:/// if you want to use "
-"default action"
+#: ../src/system-config-kdump.py:1082
+msgid "Writing settings to bootloader configuration file"
+msgstr "将设置保存到引导装载程序配置文件"
+
+#: ../src/system-config-kdump.py:1180
+msgid "You have to select target type other than local file:/// if you want to use default action"
 msgstr "如果您要使用默认动作，则必须选择不同于本地 file:/// 的目标类型"
 
-#: ../src/system-config-kdump.py:1174
+#: ../src/system-config-kdump.py:1181
 msgid "Invalid target"
 msgstr "无效目标"
 
-#: ../src/system-config-kdump.py:1224
+#: ../src/system-config-kdump.py:1231
 msgid "Core collector must begin with 'makedumpfile'"
 msgstr "核收集器必须以 'makedumpfile' 开始"
 
-#: ../src/system-config-kdump.py:1225
+#: ../src/system-config-kdump.py:1232
 msgid "system-config-kdump: Bad core collector"
 msgstr "system-config-kdump：错误核收集器"
 
-#: ../src/system-config-kdump.py:1579
+#: ../src/system-config-kdump.py:1555
+#, python-format
+msgid ""
+"Invalid craskernel value: %s.\n"
+"Possible values are:\n"
+"\tauto\n"
+"\tX\n"
+"\tX@Y\n"
+"\n"
+"%s"
+msgstr ""
+"无效的craskernel值：%s。\n"
+"可能的有效值为：\n"
+"\tauto\n"
+"\tX\n"
+"\tX@Y\n"
+"\n"
+"%s\""
+
+#: ../src/system-config-kdump.py:1558
+msgid "Bad crashkernel value"
+msgstr "crashkernel值为无效"
+
+#: ../src/system-config-kdump.py:1586
 #, python-format
 msgid "Raw device %s wasn't found on this machine"
 msgstr "在这台机器中没有找到裸设备 %s"
 
-#: ../src/system-config-kdump.py:1597
+#: ../src/system-config-kdump.py:1604
 #, python-format
 msgid "Local file system partition with name %s"
 msgstr "名为 %s 的本地文件系统分区"
 
-#: ../src/system-config-kdump.py:1597
+#: ../src/system-config-kdump.py:1604
 #, python-format
 msgid " and type %s wasn't found"
 msgstr "和类型 %s 没有找到"
 
-#: ../src/system-config-kdump.py:1813
-msgid ""
-"The help viewer could not be found. To be able to view help, the 'yelp' "
-"package needs to be installed."
+#: ../src/system-config-kdump.py:1820
+msgid "The help viewer could not be found. To be able to view help, the 'yelp' package needs to be installed."
 msgstr "无法找到帮助查看程序。要可以查看帮助，必须安装 'yelp' 软件包。"
 
-#: ../src/system-config-kdump.py:1841
+#: ../src/system-config-kdump.py:1834
+msgid "Handling services"
+msgstr "处理服务"
+
+#: ../src/system-config-kdump.py:1848
 #, python-format
 msgid ""
 "Unable to handle kdump services:\n"
@@ -312,11 +323,11 @@ msgstr ""
 "%s\n"
 "%s"
 
-#: ../src/system-config-kdump.py:1841
+#: ../src/system-config-kdump.py:1848
 msgid "system-config-kdump: Error handling kdump services"
 msgstr "system-config-kdump：处理 kdump 服务出错"
 
-#: ../src/system-config-kdump.py:1887
+#: ../src/system-config-kdump.py:1894
 msgid "Error executing system-config-kdump"
 msgstr "执行 system-config-kdump 出错"
 
@@ -328,11 +339,13 @@ msgstr "内核转储配置"
 msgid "_File"
 msgstr "文件（_F）"
 
-#: ../src/system-config-kdump.glade:27 ../src/system-config-kdump.glade:135
+#: ../src/system-config-kdump.glade:27
+#: ../src/system-config-kdump.glade:135
 msgid "Apply changes, save booloader config file and save kexec/kdump config file"
 msgstr "应用更改，保存引导装载程序配置文件并保存 kexec/kdump 配置文件。"
 
-#: ../src/system-config-kdump.glade:37 ../src/system-config-kdump.glade:147
+#: ../src/system-config-kdump.glade:37
+#: ../src/system-config-kdump.glade:147
 msgid "Reload original settings from config files"
 msgstr "从配置文件中重新载入原始设置"
 
@@ -344,11 +357,13 @@ msgstr "退出并忽略对更改的保存"
 msgid "_Options"
 msgstr "选项（_O）"
 
-#: ../src/system-config-kdump.glade:72 ../src/system-config-kdump.glade:167
+#: ../src/system-config-kdump.glade:72
+#: ../src/system-config-kdump.glade:167
 msgid "Enable kdump"
 msgstr "启用 kdump"
 
-#: ../src/system-config-kdump.glade:80 ../src/system-config-kdump.glade:179
+#: ../src/system-config-kdump.glade:80
+#: ../src/system-config-kdump.glade:179
 msgid "Disable kdump"
 msgstr "禁用 kdump"
 
@@ -396,8 +411,10 @@ msgstr "新 kdump 内存："
 msgid "Usable Memory:"
 msgstr "可用内存："
 
-#: ../src/system-config-kdump.glade:352 ../src/system-config-kdump.glade:364
-#: ../src/system-config-kdump.glade:397 ../src/system-config-kdump.glade:934
+#: ../src/system-config-kdump.glade:352
+#: ../src/system-config-kdump.glade:364
+#: ../src/system-config-kdump.glade:397
+#: ../src/system-config-kdump.glade:934
 msgid "N/A"
 msgstr "N/A"
 
@@ -668,4 +685,7 @@ msgstr "配置内核崩溃转储"
 #: ../system-config-kdump.desktop.in.h:2
 msgid "Kernel crash dumps"
 msgstr "内核崩溃转储"
+
+#~ msgid "Failed to detect total system memory"
+#~ msgstr "检测系统内存的总数失败"
 

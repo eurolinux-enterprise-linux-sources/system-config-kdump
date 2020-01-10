@@ -1,0 +1,28 @@
+From 975781d9cf27fe55bd608089d74fc6ff9e0c112b Mon Sep 17 00:00:00 2001
+From: Roman Rakus <rrakus@redhat.com>
+Date: Wed, 2 May 2012 15:07:27 +0200
+Subject: [PATCH 2/2] Call zipl binary when configuring zipl.
+
+Signed-off-by: Roman Rakus <rrakus@redhat.com>
+---
+ src/system-config-kdump-backend.py |    4 ++++
+ 1 files changed, 4 insertions(+), 0 deletions(-)
+
+diff --git a/src/system-config-kdump-backend.py b/src/system-config-kdump-backend.py
+index 87527af..2d7c098 100755
+--- a/src/system-config-kdump-backend.py
++++ b/src/system-config-kdump-backend.py
+@@ -135,6 +135,10 @@ class SystemConfigKdumpObject(slip.dbus.service.Object):
+             if status > 0:
+                 return (cmd, status, std, err)
+ 
++        if self.bootloader == 'zipl':
++            (cmd, status, std, err) = self.gtkcall('/sbin/zipl')
++            if status > 0:
++                return (cmd, status, std, err)
+         return (cmd, status, std, err)
+ 
+     @slip.dbus.polkit.require_auth ("org.fedoraproject.systemconfig.kdump.handledumpservice")
+-- 
+1.7.7.6
+

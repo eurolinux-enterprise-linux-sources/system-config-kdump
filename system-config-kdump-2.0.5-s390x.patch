@@ -1,0 +1,12 @@
+diff -up system-config-kdump-2.0.5/src/system-config-kdump.py.s390 system-config-kdump-2.0.5/src/system-config-kdump.py
+--- system-config-kdump-2.0.5/src/system-config-kdump.py.s390	2012-02-24 11:25:16.497179946 +0100
++++ system-config-kdump-2.0.5/src/system-config-kdump.py	2012-02-24 11:25:55.768222824 +0100
+@@ -124,7 +124,7 @@ DEFAULTACTIONS = [ACTION_DEFAULT, ACTION
+ 
+ SUPPORTEDFSTYPES = ("ext2", "ext3", "ext4")
+ 
+-UNSUPPORTED_ARCHES = ("ppc", "s390", "s390x", "i386", "i586")
++UNSUPPORTED_ARCHES = ("ppc", "s390", "i386", "i586")
+ DEBUG = 0 
+ TESTING = 0
+ 

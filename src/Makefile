@@ -30,7 +30,7 @@ POLICY_DATA = org.fedoraproject.systemconfig.kdump.policy
 LIBEXEC_DIR     = ${PKGDATADIR}
 LIBEXEC_SCRIPTS = system-config-kdump-backend.py
 
-GLADE_DATA = system-config-kdump.glade
+GLADE_DATA = *.glade
 GLADE_DIR  = ${PKGDATADIR}
 
 MAKEFILE        := $(lastword $(MAKEFILE_LIST))
@@ -43,12 +43,12 @@ DOC_ENTITIES    = distro-specifics.ent system-config-kdump-distro-specifics.ent 
 
 DESTDIR = $(INSTROOT)
 
-default: subdirs
+default: subdirs py-build
 
 subdirs: doc-all
 	for d in $(SUBDIRS); do make -C $$d; [ $$? = 0 ] || exit 1; done
 
-install: subdirs ${PKGNAME}.desktop doc-install
+install: subdirs ${PKGNAME}.desktop doc-install py-install
 	mkdir -p $(INSTROOT)/usr/bin
 	mkdir -p $(INSTROOT)$(PKGDATADIR)
 	mkdir -p $(INSTROOT)/usr/sbin
@@ -62,7 +62,7 @@ install: subdirs ${PKGNAME}.desktop doc-install
 	mkdir -p ${INSTROOT}${POLICY_DIR}
 	mkdir -p ${INSTROOT}${LIBEXEC_DIR}
 	mkdir -p ${INSTROOT}${GLADE_DIR}
-	install -m644 src/${PKGNAME}.py $(INSTROOT)$(PKGDATADIR)
+	install -m0755 src/${PKGNAME}.py $(INSTROOT)$(PKGDATADIR)
 	install src/${PKGNAME} $(INSTROOT)/usr/bin
 	install -m644 src/${GLADE_DATA} $(INSTROOT)$(GLADE_DIR)
 	install -m644 pixmaps/*.png $(INSTROOT)$(PKGDATADIR)/pixmaps
@@ -111,12 +111,14 @@ local: clean
 	@rm -rf /tmp/${PKGNAME}-$(VERSION)	
 	@echo "The archive is in ${PKGNAME}-$(VERSION).tar.bz2"
 
-clean: doc-clean
+clean: doc-clean py-clean
 	@rm -fv *~
 	@rm -fv src/*.pyc
+	@rm -fv src/sckdump/*.pyc
 	@rm -fv po/*mo po/*~ po/.depend
 	@rm -fv ${PKGNAME}.desktop
 	@rm -fv ChangeLog
+	@rm -fv ${PKGNAME}*.tar.bz2
 
 srpm:
 	@echo Creating src.rpm
@@ -130,3 +132,4 @@ srpm:
 	@intltool-merge -d -u po/ $< $@
 
 include doc_rules.mk
+include py_rules.mk

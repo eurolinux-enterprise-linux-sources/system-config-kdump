@@ -1,0 +1,65 @@
+From 3e4305ea78d56f30ef63adb371e69017c4a0f796 Mon Sep 17 00:00:00 2001
+From: Roman Rakus <rrakus@roman-desktop.(none)>
+Date: Mon, 13 Feb 2012 18:05:31 +0100
+Subject: [PATCH 6/9] Fix some typos
+
+bug #653450
+
+Signed-off-by: Roman Rakus <rrakus@roman-desktop.(none)>
+---
+ src/dialog_call_error.glade   |    2 +-
+ src/system-config-kdump.glade |    2 +-
+ src/system-config-kdump.py    |    4 ++--
+ 3 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/src/dialog_call_error.glade b/src/dialog_call_error.glade
+index a964643..3f2ee26 100644
+--- a/src/dialog_call_error.glade
++++ b/src/dialog_call_error.glade
+@@ -104,7 +104,7 @@
+                     <child>
+                       <widget class="GtkLabel" id="label3">
+                         <property name="visible">True</property>
+-                        <property name="label" translatable="yes">Stdandard output</property>
++                        <property name="label" translatable="yes">Standard output</property>
+                       </widget>
+                       <packing>
+                         <property name="type">label_item</property>
+diff --git a/src/system-config-kdump.glade b/src/system-config-kdump.glade
+index f5c0a03..a91f84d 100644
+--- a/src/system-config-kdump.glade
++++ b/src/system-config-kdump.glade
+@@ -769,7 +769,7 @@
+                                         <property name="visible">True</property>
+                                         <property name="xalign">0</property>
+                                         <property name="yalign">0</property>
+-                                        <property name="label" translatable="yes">Path to direcotory:</property>
++                                        <property name="label" translatable="yes">Path to directory:</property>
+                                         <property name="single_line_mode">True</property>
+                                       </widget>
+                                       <packing>
+diff --git a/src/system-config-kdump.py b/src/system-config-kdump.py
+index 651c771..7b2f872 100755
+--- a/src/system-config-kdump.py
++++ b/src/system-config-kdump.py
+@@ -846,7 +846,7 @@ class MainWindow:
+                 return
+ 
+             elif correct:
+-                dialogs.show_message(_("Configurations sucessfully saved"),
++                dialogs.show_message(_("Configurations successfully saved"),
+                     _("system-config-kdump: Configuration saved"),
+                     parent = self.toplevel)
+             else:
+@@ -1475,7 +1475,7 @@ class MainWindow:
+                     self.kdump_mem_spin_button.set_value(float(size))
+                     self.update_usable_mem(self.kdump_mem_spin_button)
+                 except ValueError, reason:
+-                    self.show_error_message(_("Invalid craskernel value: %s."
++                    self.show_error_message(_("Invalid crashkernel value: %s."
+                         "\nPossible values are:\n\tauto\n\tX\n\tX@Y\n\n%s")
+                         %(value,reason),
+                         _("Bad crashkernel value"))
+-- 
+1.7.7.6
+

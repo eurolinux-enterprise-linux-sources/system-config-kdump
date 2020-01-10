@@ -21,7 +21,6 @@
 
 import resource
 import gtk
-import gobject
 import gtk.glade
 from gtk.gdk import keyval_name
 
@@ -29,12 +28,25 @@ import sys, traceback
 import os
 # import stat
 
+# message, error and yes no dialogs
+import sckdump.dialogs as dialogs
+
+# dbus proxy
+from sckdump.dbus_proxy import DBusProxy
+
+# progress window
+from sckdump.progress import ProgressWindow
+
 ##
 ## dbus and polkit
 ##
 import dbus
 import slip.dbus.service
-from slip.dbus import polkit
+from slip.dbus.polkit import NotAuthorizedException
+from slip.dbus.polkit import AUTH_EXC_PREFIX
+
+## config
+from sckdump.config import VERSION
 
 ##
 ## I18N
@@ -83,8 +95,6 @@ CORE_COLLECTOR_DEFAULT = "makedumpfile -d 17 -c"
 
 ENTER_CODES = ["KP_Enter", "Return"]
 
-VERSION = "1.0.0"
-
 AUTHORS = [
     "Dave Lehman <dlehman@redhat.com>",
     "Jarod Wilson <jwilson@redhat.com>",
@@ -108,15 +118,12 @@ LICENSE = _(
 
 COPYRIGHT = '(C) 2006 - 2009 Red Hat, Inc.'
 
-EXCEPTION_MARK = "EXCEPTION" # this is used to catch exceptions raised in backend
-
 
 DEFAULTACTIONS = [ACTION_DEFAULT, ACTION_REBOOT, ACTION_SHELL, ACTION_HALT, ACTION_POWEROFF]
 
 SUPPORTEDFSTYPES = ("ext2", "ext3", "ext4")
 
 UNSUPPORTED_ARCHES = ("ppc", "s390", "s390x", "i386", "i586")
-KERNEL_KDUMP_ARCHES = ("") # Remove in next release
 DEBUG = 0 
 TESTING = 0
 
@@ -135,6 +142,10 @@ LOCATION_BLURB = _("Kdump will attempt to place the vmcore at the specified "
                    "at location, the default action (specified below) will "
                    "be executed.")
 
+# kdump service status as returned by `service kdump status'
+SERVICE_STATUS_ON    = [ 0 ]
+SERVICE_STATUS_OFF   = [ 1, 2, 3, 4 ]
+
 """
     TODO:
 tab 2 target setup
@@ -142,112 +153,6 @@ tab 3 initrd selection
 localizations
 XEN support - need change in grubby
 """
-
-class ProgressWindow(gtk.Window):
-    def __init__(self, title, label):
-        gtk.Window.__init__(self, gtk.WINDOW_TOPLEVEL)
-        self.set_deletable(False)
-        self.set_resizable(False)
-        self.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
-        self.set_modal(True)
-
-        self.set_title(title)
-        self.progress = gtk.ProgressBar()
-        self.progress.show()
-
-        self.label = gtk.Label(label)
-        self.label.show()
-
-        vbox = gtk.VBox()
-        vbox.set_spacing(10)
-        vbox.set_border_width(10)
-        vbox.show()
-
-        vbox.pack_start(self.label)
-        vbox.pack_start(self.progress)
-
-        self.add(vbox)
-
-    def set_label(self, label):
-        self.label.set_text(label)
-
-    def start(self):
-        self.timer = gobject.timeout_add(100, lambda progress:
-            progress.pulse() or True, self.progress)
-
-    def stop(self):
-        if self.timer:
-            gobject.source_remove(self.timer)
-            self.timer = None
-
-    def show(self):
-        self.start()
-        gtk.Window.show(self)
-
-    def hide(self):
-        self.stop()
-        gtk.Window.hide(self)
-
-
-# all needed for Python-slip, PoilcyKit and dbus
-class DBusProxy (object):
-    """
-    Class used for communication with/via dbus
-    """
-
-    def __init__ (self):
-        self.bus = dbus.SystemBus ()
-        self.dbus_object = self.bus.get_object ("org.fedoraproject.systemconfig.kdump.mechanism", "/org/fedoraproject/systemconfig/kdump/object")
-
-    @polkit.enable_proxy
-    def getdefaultkernel (self):
-        """
-        Return name of default kernel set in bootloader configuration string
-        """
-        return self.dbus_object.getdefaultkernel (dbus_interface = "org.fedoraproject.systemconfig.kdump.mechanism")
-
-    @polkit.enable_proxy
-    def getcmdline (self, kernel):
-        """
-        Return command line arguments for specific kernel
-        """
-        return self.dbus_object.getcmdline (kernel, dbus_interface = "org.fedoraproject.systemconfig.kdump.mechanism")
-
-    @polkit.enable_proxy
-    def getxencmdline (self, kernel):
-        """
-        Return command line arguments for specific xen kernel
-        """
-        return self.dbus_object.getxencmdline (kernel, dbus_interface = "org.fedoraproject.systemconfig.kdump.mechanism")
-
-    @polkit.enable_proxy
-    def getallkernels (self):
-        """
-        Return name of all kernels in bootloader configuration files separated by newline (\n)
-        """
-        return self.dbus_object.getallkernels (dbus_interface = "org.fedoraproject.systemconfig.kdump.mechanism")
-
-    @polkit.enable_proxy
-    def writedumpconfig (self, config_string):
-        """
-        Write config_string string to kdump.conf file and returns same string if no errors
-        """
-        return self.dbus_object.writedumpconfig (config_string, dbus_interface = "org.fedoraproject.systemconfig.kdump.mechanism")
-
-    @polkit.enable_proxy
-    def writebootconfig (self, config_string):
-        """
-        Update bootloader configuration. config_string is grubby arguments. Return error messages, if any.
-        """
-        return self.dbus_object.writebootconfig (config_string, dbus_interface = "org.fedoraproject.systemconfig.kdump.mechanism")
-
-    @polkit.enable_proxy
-    def handlekdumpservice(self, chkconfig_status, service_op):
-        """
-        Start or stop kdump service, turn on or off init script
-        """
-        return self.dbus_object.handledumpservice ((chkconfig_status, service_op), dbus_interface = "org.fedoraproject.systemconfig.kdump.mechanism")
-
 
 # This class contains every settings
 class Settings(object):
@@ -444,7 +349,6 @@ class MainWindow:
             self.xml = gtk.glade.XML ("/usr/share/system-config-kdump/system-config-kdump.glade", domain=DOMAIN)
 
 
-        self.dbus_object = DBusProxy()
         self.orig_settings = Settings()
         self.my_settings = Settings()
 
@@ -468,13 +372,19 @@ class MainWindow:
         self.usable_mem = 0
         self.kernel_prefix = "/"
 
-        self.default_kernel = self.default_kernel_name()[:-1]
         self.running_kernel = os.popen("/bin/uname -r").read().strip()
 
         self.arch = os.popen("/bin/uname -m").read().strip()
 
         # load widgets from glade file
         self.toplevel = self.xml.get_widget("mainWindow")
+        self.toplevel.show()
+        progress_window = ProgressWindow(_("system-config-kdump"), "")
+        self.dbus_object = DBusProxy(progress_window)
+        self.dbus_object.connect("proxy-error", self.handle_proxy_error)
+
+        self.default_kernel = self.default_kernel_name()[:-1]
+        progress_window.set_transient_for(self.toplevel)
         self.about_dialog = self.xml.get_widget("aboutdialog")
         main_icon = "../pixmaps/system-config-kdump.png"
         if not os.access(main_icon, os.F_OK):
@@ -545,6 +455,7 @@ class MainWindow:
         self.clear_cmdline_button        = self.xml.get_widget("clearCmdlineButton")
         self.default_action_combobox     = self.xml.get_widget("defaultActionCombo")
         self.core_collector_entry        = self.xml.get_widget("coreCollectorEntry")
+
 
 
 
@@ -630,9 +541,10 @@ class MainWindow:
 
         # check architecture
         if self.arch in UNSUPPORTED_ARCHES:
-            self.show_error_message(_("Sorry, this architecture does not "
-                                    "currently support kdump"),
-                                    _("system-config-kdump: kdump not supported"))
+            dialogs.show_error_message(_("Sorry, this architecture does not "
+                "currently support kdump"),
+                _("system-config-kdump: kdump not supported"),
+                parent = self.toplevel)
             sys.exit(1)
 
         # get total memory of system
@@ -642,19 +554,26 @@ class MainWindow:
                 hex_ck_start = line.strip().split("-")[0]
                 hex_ck_end = line.strip().split("-")[1].split(":")[0].strip()
                 total_mem += self.hex2mb_float(hex_ck_end) - self.hex2mb_float(hex_ck_start)
-        total_mem = int(total_mem + 0.999999)
+        total_mem = int(total_mem + 0.99999999)
         if total_mem == 0:
-            self.show_error_message(_("Failed to detect total system memory"), _("system-config-kdump: Memory error"))
-            sys.exit(1)
-
+            dialogs.show_error_message(
+                _("Failed to detect total system memory from /proc/iomem. "
+                    "Total system memory will not be accurate."),
+                _("system-config-kdump: Memory error"),
+                parent = self.toplevel)
+            for line in open("/proc/meminfo").readlines():
+                if line.startswith("MemTotal:"):
+                    total_mem = int(line.split()[1]) / 1024
 
         # Check for a xen kernel, we do things a bit different w/xen
         if os.access("/proc/xen", os.R_OK):
             self.xen_kernel = True
 
         if self.xen_kernel and self.arch == 'ia64':
-            self.show_error_message(_("Sorry, ia64 xen kernels do not support kdump "
-                                    "at this time."), _("system-config-kdump: kdump not supported"))
+            dialogs.show_error_message(
+                _("Sorry, ia64 xen kernels do not support kdump at this time."),
+                _("system-config-kdump: kdump not supported"),
+                parent = self.toplevel)
             sys.exit(1)
 
         # Check to see if kdump memory is already reserved
@@ -702,6 +621,8 @@ class MainWindow:
         step = 64
         auto_thresh = 4096
 
+        total_mem += kdump_mem
+
         if resource.getpagesize() > 4096:
             auto_thresh = auto_thresh * 2
 
@@ -743,8 +664,10 @@ class MainWindow:
         upper_bound = (total_mem - min_usable) - (total_mem % step) 
 
         if upper_bound < lower_bound:
-            self.show_error_message(_("This system does not have enough "
-                                    "memory for kdump to be viable"), _("system-config-kdump: Not enough memory"))
+            dialogs.show_error_message(_("This system does not have "
+                "enough memory for kdump to be viable"),
+                _("system-config-kdump: Not enough memory"),
+                parent = self.toplevel)
             sys.exit(1)
 
         # Set spinner to lower_bound unless already set on kernel command line
@@ -807,98 +730,122 @@ class MainWindow:
         When user clicked apply. Do checks. Save settings.
         """
         if self.my_settings.target_type not in (TYPE_RAW, TYPE_LOCAL) and not self.my_settings.path:
-            retc = self.yes_no_dialog(_("Path cannot be empty for '%s' locations. ") % self.my_settings.target_type
-                                    +_("Reset path to default ('%s')?.") %  PATH_DEFAULT,
-                                   _("system-config-kdump: Empty path"))
+            retc = dialogs.yes_no_dialog(_("Path cannot be empty for '%s'"
+                " locations. ") % self.my_settings.target_type
+                +_("Reset path to default ('%s')?.") %  PATH_DEFAULT,
+                _("system-config-kdump: Empty path"),
+                parent = self.toplevel)
             if retc == True:
                 self.set_path(PATH_DEFAULT)
             else:
                 return
 
         if self.my_settings.target_type in (TYPE_NFS, TYPE_SSH) and not self.my_settings.server_name:
-            self.show_error_message(_("You must specify server. "), _("system-config-kdump: Server name not set"))
+            dialogs.show_error_message(_("You must specify server. "),
+                _("system-config-kdump: Server name not set"),
+                parent = self.toplevel)
             return
 
         if self.my_settings.target_type in (TYPE_SSH) and not self.my_settings.user_name:
-            self.show_error_message(_("You must specify user name. "), _("system-config-kdump: User name not set"))
+            dialogs.show_error_message(_("You must specify user name. "),
+                _("system-config-kdump: User name not set"),
+                parent = self.toplevel)
             return
 
         if (self.my_settings.target_type == TYPE_RAW) and\
         (self.device_combobox.get_active() < 0):
-            self.show_error_message(_("You must select one of the raw devices"), _("system-config-kdump: Raw device error"))
+            dialogs.show_error_message(
+                _("You must select one of the raw devices"),
+                _("system-config-kdump: Raw device error"),
+                parent = self.toplevel)
             return
 
         if (self.my_settings.target_type == TYPE_LOCAL) and\
         (self.partition_combobox.get_active() < 0):
-            self.show_error_message(_("You must select one of the partitions"), _("system-config-kdump: Local partition error"))
+            dialogs.show_error_message(
+                _("You must select one of the partitions"),
+                _("system-config-kdump: Local partition error"),
+                parent = self.toplevel)
             return
 
 
 
         kernel_kdump_note = ""
-        if self.arch in KERNEL_KDUMP_ARCHES:
-            kernel_kdump_note = _("\n\nNote that the %s architecture does not "
-                                "feature a relocatable kernel at this time, "
-                                "and thus requires a separate kernel-kdump "
-                                "package to be installed for kdump to "
-                                "function. This can be installed via 'yum "
-                                "install kernel-kdump' at your convenience."
-                                "\n\n") % self.arch
 
         if self.xen_kernel and self.my_settings.kdump_enabled:
-            self.show_message(_("WARNING: xen kdump support requires a "
-                               "non-xen %s RPM to perform actual crash "
-                               "dump capture.") % self.xen_kdump_kernel
-                               +_("Please be sure you have "
-                               "the non-xen %s RPM of the same version "
-                               "as your xen kernel installed.") % self.xen_kdump_kernel,
-                               _("system-config-kdump: Need non-xen kernel"))
+            dialogs.show_message(_("WARNING: xen kdump support requires a "
+                "non-xen %s RPM to perform actual crash dump capture.")
+                % self.xen_kdump_kernel
+                +_("Please be sure you have the non-xen %s RPM of the "
+                "same version as your xen kernel installed.")
+                % self.xen_kdump_kernel,
+                _("system-config-kdump: Need non-xen kernel"),
+                parent = self.toplevel)
 
         if self.my_settings.kdump_enabled and self.my_settings.kdump_mem != self.orig_settings.kdump_mem:
-            self.show_message(_("Changing Kdump settings requires rebooting "
-                               "the system to reallocate memory accordingly. "
-                               "%sYou will have to reboot the system for the "
-                               "new settings to take effect.")
-                               % kernel_kdump_note, _("system-config-kdump: Need reboot"))
+            dialogs.show_message(_("Changing Kdump settings requires rebooting "
+                "the system to reallocate memory accordingly. %sYou will have "
+                "to reboot the system for the new settings to take effect.")
+                % kernel_kdump_note,
+                _("system-config-kdump: Need reboot"),
+                parent = self.toplevel)
 
         if not TESTING:
-            window = ProgressWindow("Applying configuration","")
-            window.set_transient_for(self.toplevel)
-            window.show()
             if DEBUG:
                 print "writing kdump config"
 
-            if not self.write_dump_config(window):
-                window.stop()
+            correct, error = self.write_dump_config()
+            if not correct:
                 #error writing dump config
-                window.hide()
-                self.show_error_message(_("Error writing kdump configuration"), _("system-config-kdump: Error write kdump configuration"))
+                dialogs.show_error_message(
+                    _("Error writing kdump configuration:\n%s") % error,
+                    _("system-config-kdump: Error write kdump configuration"),
+                    parent = self.toplevel)
                 return
 
             if DEBUG:
                 print "writing bootloader config"
 
-            if not self.write_bootloader_config(window):
-                window.stop()
+            correct, cmd, stdout, error = self.write_bootloader_config()
+            if DEBUG:
+                print "Write bootloader config returned:"
+                print correct, cmd, stdout, error
+            if not correct and cmd is not None:
                 #error write bootloader
-                window.hide()
-                self.show_error_message(_("Error writing bootloader configuration"), _("system-config-kdump: Error write bootloader configuration"))
+                dialogs.show_call_call_error_message(
+                    _("Error writing bootloader configuration"),
+                    _("system-config-kdump: Error write bootloader "
+                    "configuration"),
+                    cmd, stdout, error,
+                    parent = self.toplevel)
                 return
+            elif not correct:
+                dialogs.show_error_message(
+                    _("Error writing bootloader configuration:\n%s") %error,
+                    _("system-config-kdump: Error write bootloader "
+                    "configuration"),
+                    parent = self.toplevel)
+                return
+
 
             if DEBUG:
                 print "Handling kdump service"
 
-            if not self.handle_kdump_service(window):
-                window.stop()
+            correct, error = self.handle_kdump_service()
+            if not correct and error:
                 #error write kdump service
-                window.hide()
-                self.show_error_message(_("Error handling kdump services"), _("system-config-kdump: Error handle services"))
+                dialogs.show_error_message(
+                    _("Error handling kdump services\n%s") %error,
+                    _("system-config-kdump: Error handle services"),
+                    parent = self.toplevel)
                 return
 
+            elif correct:
+                dialogs.show_message(_("Configurations sucessfully saved"),
+                    _("system-config-kdump: Configuration saved"),
+                    parent = self.toplevel)
             else:
-                window.stop()
-                self.show_message(_("Configurations sucessfully saved"), _("system-config-kdump: Configuration saved"))
-                window.hide()
+                return
                 
         else:
             print "would have called write_dump_config"
@@ -955,7 +902,10 @@ class MainWindow:
         try:
             lines = open(KDUMP_CONFIG_FILE).readlines()
         except IOError, reason:
-            self.show_error_message(_("Error reading kdump configuration: %s" % reason), _("system-config-kdump: kdump configuration file error"))
+            dialogs.show_error_message(
+                _("Error reading kdump configuration: %s" % reason),
+                _("system-config-kdump: kdump configuration file error"),
+                parent = self.toplevel)
             return
 
         for line in [l.strip() for l in lines]:
@@ -1002,13 +952,12 @@ class MainWindow:
         self.orig_settings.commandline = self.get_cmdline(self.default_kernel)
         self.orig_settings.orig_commandline = self.orig_settings.commandline
 
-    def write_dump_config(self, window):
+    def write_dump_config(self):
         """
         Write settings to /etc/kdump.conf
         """
-        window.set_label("Saving settings to kdump.conf")
         if TESTING or not self.my_settings.kdump_enabled:
-            return 1
+            return True, None
 
         # start point
         config_string = ""
@@ -1053,28 +1002,26 @@ class MainWindow:
         if self.my_settings.default_action is not ACTION_DEFAULT:
             config_string += "default %s\n" % self.my_settings.default_action
 
+        retcode, written = 0, ""
         try:
-            written = self.dbus_object.writedumpconfig(config_string)
+            retcode, written = self.dbus_object.writedumpconfig(config_string)
         except dbus.exceptions.DBusException, reason:
-            self.show_error_message("%s" %reason, _("system-config-kdump: DBus error"))
-            return 0
+            return False, reason
 
         if DEBUG:
             print "written kdump config:"
             print written
-        if (config_string != written):
-            self.show_error_message(_("Error writing kdump configuration: %s" % written), _("system-config-kdump: write kdump configuration file error"))
-            return 0
-        return 1
+        if retcode:
+            return False, written
+        return True, None
 
-    def write_bootloader_config(self, window):
+    def write_bootloader_config(self):
         """
         Write settings to bootloader config file.
         Return True on succes.
         """
-        window.set_label("Writing settings to bootloader configuration file")
         if TESTING:
-            return True
+            return True, None, None, None
 
         # config string will have arguments for command grubby.
         # Each one argument will be divided by `;'
@@ -1083,25 +1030,28 @@ class MainWindow:
             print "Write bootloader conf:"
         
         # kernel name to change
-        config_string += "--update-kernel=" + self.my_settings.kernel + ";"
         if DEBUG:
             print "  Updating kernel '%s'" % (self.my_settings.kernel)
 
         # arguments
         if self.my_settings.kdump_enabled:
         # at first remove original kernel cmd line
-            config_string += "--remove-args=" + self.my_settings.orig_commandline
-            if DEBUG:
-                print "  Removing original args '%s'" % (self.my_settings.orig_commandline)
-            try:
-                check = self.dbus_object.writebootconfig(config_string)
+        # but only if there is any
+            if not self.my_settings.orig_commandline == "":
+                config_string += "--update-kernel=" + \
+                    self.my_settings.kernel + ";"
+                config_string += "--remove-args=" + \
+                    self.my_settings.orig_commandline
                 if DEBUG:
-                    print "  check: " + check
-                if check.startswith(EXCEPTION_MARK):
-                    return False
-            except dbus.exceptions.DBusException, reason:
-                self.show_error_message("%s" %reason, _("system-config-kdump: DBus error"))
-                return False
+                    print "  Removing original args '%s'" \
+                        % (self.my_settings.orig_commandline)
+                try:
+                    cmd, retcode, output, error = \
+                        self.dbus_object.writebootconfig(config_string)
+                    if retcode:
+                        return False, cmd, output, error
+                except dbus.exceptions.DBusException, error:
+                    return False, None, None, error
 
         # and now set new kernel cmd line
             config_string = "--update-kernel=" + self.my_settings.kernel +";"
@@ -1113,33 +1063,30 @@ class MainWindow:
                 print "  Setting args to '%s'" % (self.my_settings.commandline)
 
             try:
-                check = self.dbus_object.writebootconfig(config_string)
-                if DEBUG:
-                    print "  check: " + check
-                if check.startswith(EXCEPTION_MARK):
-                    return False
-            except dbus.exceptions.DBusException, reason:
-                self.show_error_message("%s" %reason, _("system-config-kdump: DBus error"))
-                return False
+                cmd, retcode, output, error = \
+                    self.dbus_object.writebootconfig(config_string)
+                if retcode:
+                    return False, cmd, output, error
+            except dbus.exceptions.DBusException, error:
+                return False, None, None, error
 
 
         else:
         # kdump is desabled, so only remove crashkernel
+            config_string += "--update-kernel=" + self.my_settings.kernel + ";"
             config_string += "--remove-args=crashkernel=%s" % (self.my_settings.kdump_mem)
             if DEBUG:
                 print "  Removing crashkernel=%s" % (self.my_settings.kdump_mem)
 
             try:
-                check = self.dbus_object.writebootconfig(config_string)
-                if DEBUG:
-                    print "  check: " + check
-                if check.startswith(EXCEPTION_MARK):
-                    return False
-            except dbus.exceptions.DBusException, reason:
-                self.show_error_message("%s" %reason, _("system-config-kdump: DBus error"))
-                return False
+                cmd, retcode, output, error = \
+                    self.dbus_object.writebootconfig(config_string)
+                if retcode:
+                    return False, cmd, output, error
+            except dbus.exceptions.DBusException, error:
+                return False, None, None, error
 
-        return True
+        return True, None, None, None
 
     def update_usable_mem(self, spin_button, *args):
         """
@@ -1221,8 +1168,10 @@ class MainWindow:
         Set core collector with all arguments. Core collector must be makedumpfile.
         """
         if collector and not collector.startswith("makedumpfile"):
-            self.show_error_message(_("Core collector must begin with "
-                                    "'makedumpfile'"), _("system-config-kdump: Bad core collector"))
+            dialogs.show_error_message(
+                _("Core collector must begin with 'makedumpfile'"),
+                _("system-config-kdump: Bad core collector"),
+                parent = self.toplevel)
             self.set_core_collector(self.orig_settings.core_collector)
             return False
 
@@ -1261,62 +1210,6 @@ class MainWindow:
             self.disable_button.set_sensitive(False)
             self.menu_disable.set_sensitive(False)
         self.check_settings()
-
-    def show_error_message(self, text, title):
-        """
-        Show up gtk window with error message.
-        Text is message text.
-        Title is window title.
-        """
-        dlg = gtk.MessageDialog(None, 0, gtk.MESSAGE_ERROR, 
-                                gtk.BUTTONS_OK, text)
-        dlg.set_transient_for(self.toplevel)
-        dlg.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
-        dlg.set_modal(True)
-        dlg.set_title(title)
-        dlg.run()
-        dlg.destroy()
-        return False
-
-    def show_message(self, text, title, msgtype=None):
-        """
-        Show up gtk information message.
-        Text is message text.
-        Title is window title.
-        With msgtype you can override type of gtk MessageDialog
-        """
-        if msgtype is None:
-            msgtype = gtk.MESSAGE_INFO
-
-        dlg = gtk.MessageDialog(None, 0, msgtype, gtk.BUTTONS_OK, text)
-        dlg.set_transient_for(self.toplevel)
-        dlg.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
-        dlg.set_modal(True)
-        dlg.set_title(title)
-        dlg.run()
-        dlg.destroy()
-           
-    def yes_no_dialog(self, text, title):
-        """
-        Show up gtk message with yes and no buttons.
-        Text is message text.
-        Title is window title.
-        Returns True for Yes clicked, False for No.
-        """
-        dlg = gtk.MessageDialog(None, 0, gtk.MESSAGE_QUESTION, 
-                                gtk.BUTTONS_YES_NO, text)
-        dlg.set_transient_for(self.toplevel)
-        dlg.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
-        dlg.set_modal(True)
-        dlg.set_title(title)
-        ret = dlg.run()
-        dlg.destroy()
-        if ret == gtk.RESPONSE_YES:
-            retc = True
-        else:
-            retc = False
-
-        return retc
 
     def target_type_changed(self, button):
         """
@@ -1434,42 +1327,67 @@ class MainWindow:
         """
         Read command line argument for kernel and return them.
         """
+        (retcode, cmdline, error) = (0, "", "")
         if (kernel.find("/boot/xen.")) is not -1:
-            cmdline = self.dbus_object.getxencmdline(kernel)
+            cmd, retcode, cmdline, error = self.dbus_object.getxencmdline(kernel)
         else:
-            cmdline = self.dbus_object.getcmdline(kernel)
-        self.my_settings.kdump_mem = self.get_crashkernel(cmdline)
-        return cmdline
+            cmd, retcode, cmdline, error = self.dbus_object.getcmdline(kernel)
+        if retcode:
+            dialogs.show_call_error_message(
+                _("Unable to get command line arguments for %s") %(kernel),
+                _("system-config-kdump: grubby error"),
+                cmd, cmdline, error,
+                parent = self.toplevel)
+            return ""
+        else:
+            self.my_settings.kdump_mem = self.get_crashkernel(cmdline)
+            return cmdline
 
     def default_kernel_name(self):
         """
         Read default kernel name from bootloader config and return it.
         Also set up kernel prefix.
         """
-        default_kernel = self.dbus_object.getdefaultkernel()
-        self.kernel_prefix = default_kernel.rsplit("/", 1)[0]
-        if DEBUG:
-            print "Default kernel = " + default_kernel
-            print "Kernel prefix = " + self.kernel_prefix
-        return default_kernel
+        cmd, retcode, kernel, error = self.dbus_object.getdefaultkernel()
+        if retcode:
+            dialogs.show_call_error_message(
+                _("Unable to get default kernel"),
+                _("system-config-kdump: grubby error"),
+                cmd, kernel, error,
+                parent = self.toplevel)
+        else:
+            self.kernel_prefix = kernel.rsplit("/", 1)[0]
+            if DEBUG:
+                print "Default kernel = " + kernel
+                print "Kernel prefix = " + self.kernel_prefix
+        return kernel
 
     def setup_custom_kernel_combobox(self, combobox):
         """
         Fill custom kernel combobox with all kernels found in bootloader config.
         """
-        lines = self.dbus_object.getallkernels().split("\n")
-        for line in lines[:-1]:
-            if line.startswith("kernel="):
-                (name, value) = line.strip().split("=", 1)
-                text = value.strip('"')
-                if self.default_kernel.find(text) is not -1:
-                    text = text + " " + TAG_DEFAULT
-                if text.find(self.running_kernel) is not -1:
-                    text = text + " " + TAG_CURRENT
-                combobox.append_text(self.kernel_prefix + text)
-                if DEBUG:
-                    print "Appended kernel:\"" + self.kernel_prefix + text + "\""
-        combobox.set_active(0)
+        cmd, retcode, lines, error = self.dbus_object.getallkernels()
+        if retcode:
+            dialogs.show_call_error_message(
+                _("Unable to get all kernel names"),
+                _("system-config-kdump: grubby error"),
+                cmd, lines, error,
+                parent = self.toplevel)
+
+        else:
+            for line in lines.split("\n")[:-1]:
+                if line.startswith("kernel="):
+                    (name, value) = line.strip().split("=", 1)
+                    text = value.strip('"')
+                    if self.default_kernel.find(text) is not -1:
+                        text = text + " " + TAG_DEFAULT
+                    if text.find(self.running_kernel) is not -1:
+                        text = text + " " + TAG_CURRENT
+                    combobox.append_text(self.kernel_prefix + text)
+                    if DEBUG:
+                        print "Appended kernel:\"" + self.kernel_prefix +\
+                            text + "\""
+            combobox.set_active(0)
         return
 
     def update_cmdline(self, combobox):
@@ -1545,10 +1463,10 @@ class MainWindow:
                     self.kdump_mem_spin_button.set_value(float(size))
                     self.update_usable_mem(self.kdump_mem_spin_button)
                 except ValueError, reason:
-                    self.show_error_message("Invalid craskernel value: %s."
-                        "\nPossible values are:\n\tauto\n\tX\n\tX@Y\n\n%s"
+                    self.show_error_message(_("Invalid craskernel value: %s."
+                        "\nPossible values are:\n\tauto\n\tX\n\tX@Y\n\n%s")
                         %(value,reason),
-                        "Bad crashkernel value")
+                        _("Bad crashkernel value"))
                     return False
                 self.radio_manual.set_active(True)
                 self.kdump_auto_toggled(self.radio_manual)
@@ -1576,7 +1494,10 @@ class MainWindow:
             self.check_settings()
             return True
         else:
-            self.show_error_message(_("Raw device %s wasn't found on this machine" % device_name), _("system-config-kdump: Raw device error"))
+            dialogs.show_error_message(
+                _("Raw device %s wasn't found on this machine" % device_name),
+                _("system-config-kdump: Raw device error"),
+                parent = self.toplevel)
             self.device_combobox.set_active(-1)
             self.my_settings.raw_device = None
             self.check_settings()
@@ -1594,8 +1515,11 @@ class MainWindow:
             self.check_settings()
             return True
         else:
-            self.show_error_message(_("Local file system partition with name %s") % part_name + _(" and type %s wasn't found") %part_type,
-                                      _("system-config-kdump: Local partition error"))
+            dialogs.show_error_message(
+                _("Local file system partition with name %s") % part_name +
+                _(" and type %s wasn't found") %part_type,
+                _("system-config-kdump: Local partition error"),
+                parent = self.toplevel)
             self.partition_combobox.set_active(-1)
             self.my_settings.local_partition = None
             self.check_settings()
@@ -1820,33 +1744,65 @@ class MainWindow:
         if pid == 0:
             os.execv (path, (path, help_page))
 
-    def handle_kdump_service(self, window):
+    def handle_kdump_service(self):
         """
         Start or stop kdump service. Enable or disable it.
         """
-        window.set_label("Handling services")
+        # at first, get the current status of the kdump service
         try:
-            service_op = ""
+            cmd, service_status, std, err = self.dbus_object.getservicestatus()
+            if service_status not in SERVICE_STATUS_ON + SERVICE_STATUS_OFF:
+                dialogs.show_call_error_message(
+                _("Unable to get kdump service status"),
+                _("system-config-kdump: Handling services error"),
+                cmd, std, err,
+                parent = self.toplevel)
+                return False, None
+
             if self.my_settings.kdump_enabled:
                 chkconfig_status = "on"
-                if self.kdump_mem_current_label.get_text().split()[0] > "0":
+                if service_status in SERVICE_STATUS_ON:
                     service_op = "restart"
+                else:
+                    service_op = "start"
             else:
                 chkconfig_status = "off"
-                if self.kdump_mem_current_label.get_text().split()[0] > "0":
+                if service_status in SERVICE_STATUS_ON:
                     service_op = "stop"
+                else:
+                    service_op = ""
 
-            (retcode, outlog, errlog) = self.dbus_object.handlekdumpservice(chkconfig_status, service_op)
-            if retcode:
-                self.show_error_message(_("Unable to handle kdump services:\n%s\n%s") %(outlog, errlog), _("system-config-kdump: Error handling kdump services"))
-                return False
-        except dbus.exceptions.DBusException, reason:
-            self.show_error_message("%s" %reason, _("system-config-kdump: DBus error"))
-            return False
+            cmd, status, std, err = self.dbus_object.handlekdumpservice(
+                chkconfig_status, service_op)
+            if status:
+                dialogs.show_call_error_message(
+                _("Unable to handle kdump services"),
+                _("system-config-kdump: Handling services error"),
+                cmd, std, err,
+                parent = self.toplevel)
+                return False, None
+
+        except dbus.exceptions.DBusException, error:
+            return False, error
         while gtk.events_pending():
             gtk.main_iteration(False)
-        return True
+        return True, None
         
+    def handle_proxy_error (self, object, exception):
+        try:
+            if exception.get_dbus_name().startswith(AUTH_EXC_PREFIX):
+                raise NotAuthorizedException(exception.get_dbus_name())
+            else:
+                raise exception
+
+        except NotAuthorizedException, reason:
+            pass
+
+        except dbus.exceptions.DBusException, reason:
+            dialogs.show_error_message(
+                _("Unable to communicate with backend.\n%s") %reason,
+                _("System config kdump: dbus error"),
+                parent = self.toplevel)
 
     def kdump_auto_toggled(self, button):
         is_auto = self.radio_auto.get_active()

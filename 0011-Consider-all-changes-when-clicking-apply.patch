@@ -1,0 +1,49 @@
+From ca09ec743a85f050a4735957af4f995a2f9d0aff Mon Sep 17 00:00:00 2001
+From: Roman Rakus <rrakus@redhat.com>
+Date: Fri, 16 Mar 2012 16:30:36 +0100
+Subject: [PATCH 11/11] Consider all changes when clicking apply
+
+focus-out-event isn't fired when we click on apply button,
+so call appropriate handlers in apply handler.
+Also few entries can easily catch changed event.
+
+Signed-off-by: Roman Rakus <rrakus@redhat.com>
+---
+ src/system-config-kdump.py |   12 ++++++------
+ 1 files changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/src/system-config-kdump.py b/src/system-config-kdump.py
+index ebb974e..ce755be 100755
+--- a/src/system-config-kdump.py
++++ b/src/system-config-kdump.py
+@@ -509,14 +509,10 @@ class MainWindow:
+         self.partition_combobox.connect("changed", self.changed_partition)
+         self.setup_raw_devices(self.device_combobox)
+         self.device_combobox.connect("changed", self.changed_raw_device)
+-        self.location_entry.connect("focus-out-event", self.location_changed)
+-        self.location_entry.connect("key-press-event", self.catch_enter, self.location_changed)
++        self.location_entry.connect("changed", self.location_changed)
+         self.local_filechooser_button.hide()
+-        self.path_entry.connect("focus-out-event", self.path_changed)
+-        self.path_entry.connect("key-press-event", self.catch_enter, self.path_changed)
+-        self.servername_entry.connect("focus-out-event", self.servername_changed)
++        self.path_entry.connect("changed", self.path_changed)
+         self.servername_entry.connect("changed", self.servername_changed)
+-        self.username_entry.connect("focus-out-event", self.username_changed)
+         self.username_entry.connect("changed", self.username_changed)
+ 
+         # tab 2
+@@ -755,6 +751,10 @@ class MainWindow:
+         """
+         When user clicked apply. Do checks. Save settings.
+         """
++        # For some entry widgets we need to make sure all settings are applied
++        self.cmdline_changed(self.command_line_entry)
++        self.collector_entry_changed(self.core_collector_entry)
++
+         if self.my_settings.target_type not in (TYPE_RAW, TYPE_LOCAL) and not self.my_settings.path:
+             retc = dialogs.yes_no_dialog(_("Path cannot be empty for '%s'"
+                 " locations. ") % self.my_settings.target_type
+-- 
+1.7.7.6
+

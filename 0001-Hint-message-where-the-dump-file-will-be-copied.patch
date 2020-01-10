@@ -1,0 +1,97 @@
+From 31a868b8258f01c301b72c7aeb68c43ec0eb020a Mon Sep 17 00:00:00 2001
+From: Roman Rakus <rrakus@redhat.com>
+Date: Fri, 26 Aug 2011 16:12:03 +0200
+Subject: [PATCH 1/9] Hint message where the dump file will be copied
+
+Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+Conflicts:
+
+	src/system-config-kdump.py
+
+Signed-off-by: Roman Rakus <rrakus@redhat.com>
+---
+ src/system-config-kdump.glade |   20 +++++++++++++++++++-
+ src/system-config-kdump.py    |   12 ++++++++++++
+ 2 files changed, 31 insertions(+), 1 deletions(-)
+
+diff --git a/src/system-config-kdump.glade b/src/system-config-kdump.glade
+index 80057a0..f5c0a03 100644
+--- a/src/system-config-kdump.glade
++++ b/src/system-config-kdump.glade
+@@ -497,7 +497,7 @@
+                                 <child>
+                                   <widget class="GtkTable" id="tableLocalfs">
+                                     <property name="visible">True</property>
+-                                    <property name="n_rows">2</property>
++                                    <property name="n_rows">3</property>
+                                     <property name="n_columns">3</property>
+                                     <property name="column_spacing">6</property>
+                                     <child>
+@@ -555,6 +555,24 @@
+                                         <property name="right_attach">2</property>
+                                       </packing>
+                                     </child>
++                                    <child>
++                                      <placeholder/>
++                                    </child>
++                                    <child>
++                                      <placeholder/>
++                                    </child>
++                                    <child>
++                                      <widget class="GtkLabel" id="localDumpHintLabel">
++                                        <property name="visible">True</property>
++                                        <property name="label" translatable="yes">localDumpHintLabel</property>
++                                      </widget>
++                                      <packing>
++                                        <property name="left_attach">0</property>
++                                        <property name="right_attach">3</property>
++                                        <property name="top_attach">2</property>
++                                        <property name="bottom_attach">3</property>
++                                      </packing>
++                                    </child>
+                                   </widget>
+                                   <packing>
+                                     <property name="expand">False</property>
+diff --git a/src/system-config-kdump.py b/src/system-config-kdump.py
+index f7cd178..280bff5 100755
+--- a/src/system-config-kdump.py
++++ b/src/system-config-kdump.py
+@@ -424,6 +424,7 @@ class MainWindow:
+         self.location_entry           = self.xml.get_widget("locationEntry")
+         self.table_localfs            = self.xml.get_widget("tableLocalfs")
+         self.local_filechooser_button = self.xml.get_widget("localFilechooserbutton")
++        self.local_hint_label         = self.xml.get_widget("localDumpHintLabel")
+         self.raw_device_radiobutton   = self.xml.get_widget("rawDeviceRadiobutton")
+         self.device_combobox          = self.xml.get_widget("deviceCombobox")
+         self.network_radiobutton      = self.xml.get_widget("networkRadiobutton")
+@@ -1160,6 +1161,7 @@ class MainWindow:
+         if (self.local_filechooser_button.get_filename() != path):
+             self.local_filechooser_button.set_current_folder(path)
+         self.my_settings.path = path
++        self.update_local_hint_label(self.my_settings.local_partition, path)
+         self.check_settings()
+         return True
+ 
+@@ -1666,8 +1668,18 @@ class MainWindow:
+         else:
+             self.my_settings.local_partition = ""
+         self.set_default_action("")
++        self.update_local_hint_label(self.my_settings.local_partition, self.location_entry.get_text())
+         self.check_settings()
+ 
++    def update_local_hint_label(self, partition, path):
++        """
++        Update local_hint_label text with set partition and path
++        """
++        if partition == "":
++            self.local_hint_label.set_text(_("Will mount / as usual and copy core to /%s/%%DATE") %(path))
++        else:
++            self.local_hint_label.set_text(_("Will mount %s on /mnt and copy core to /mnt/%s/%%DATE") %(partition, path))
++
+     def changed_raw_device(self, raw_dev_box, *args):
+         """
+         Called when you change raw device in combobox and will save active one into settings
+-- 
+1.7.7.6
+

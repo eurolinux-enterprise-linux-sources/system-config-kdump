@@ -1,6 +1,8 @@
+%{!?python_sitelib: %global python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")}
+
 Summary: A graphical interface for configuring kernel crash dumping
 Name: system-config-kdump
-Version: 2.0.2.2
+Version: 2.0.5
 Release: 1%{?dist}
 URL: http://fedorahosted.org/system-config-kdump/
 License: GPL2+
@@ -63,13 +65,15 @@ fi
 %{_bindir}/system-config-kdump
 %{_datadir}/system-config-kdump
 %{_datadir}/applications/*
-%config(noreplace) %{_sysconfdir}/security/console.apps/system-config-kdump
-%config(noreplace) %{_sysconfdir}/pam.d/system-config-kdump
+%{python_sitelib}/*egg*
+%{python_sitelib}/sckdump/
 
-%{_sysconfdir}/dbus-1/system.d/org.fedoraproject.systemconfig.kdump.mechanism.conf
+%config %{_sysconfdir}/security/console.apps/system-config-kdump
+%config %{_sysconfdir}/pam.d/system-config-kdump
+%config %{_sysconfdir}/dbus-1/system.d/org.fedoraproject.systemconfig.kdump.mechanism.conf
+
 %{_datadir}/dbus-1/system-services/org.fedoraproject.systemconfig.kdump.mechanism.service
 %{_datadir}/polkit-1/actions/org.fedoraproject.systemconfig.kdump.policy
-
 %{_datadir}/icons/hicolor/48x48/apps/system-config-kdump.png
 
 %doc ChangeLog COPYING
@@ -78,6 +82,9 @@ fi
 
 
 %changelog
+* Thu Feb 09 2012 Roman Rakus <rrakus@redhat.com> - 2.0.5-1
+- Merge with veriosn 2.0.5
+
 * Tue Aug 10 2010 Roman Rakus <rrakus@redhat.com> - 2.0.2.2-1
 - Other round of new translations
 

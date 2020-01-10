@@ -1,0 +1,63 @@
+From 7ef94d04a7788ede89232060da7af5d3aefb4e60 Mon Sep 17 00:00:00 2001
+From: Roman Rakus <rrakus@roman-desktop.(none)>
+Date: Mon, 13 Feb 2012 17:22:43 +0100
+Subject: [PATCH 5/9] Correctly set nfs target
+
+bug #754059
+
+Signed-off-by: Roman Rakus <rrakus@roman-desktop.(none)>
+---
+ src/system-config-kdump.py |   23 ++++++++++++++++-------
+ 1 files changed, 16 insertions(+), 7 deletions(-)
+
+diff --git a/src/system-config-kdump.py b/src/system-config-kdump.py
+index 029ae8d..651c771 100755
+--- a/src/system-config-kdump.py
++++ b/src/system-config-kdump.py
+@@ -195,8 +195,12 @@ class Settings(object):
+                 self.target_type = TYPE_SSH
+             else:
+                 # NFS
+-                self.server_name = path
+-                self.target_type = TYPE_NFS
++                try:
++                    self.server_name = path.split(":")[0]
++                    self.target_type = TYPE_NFS
++                    self.path = path.split(":")[1]
++                except IndexError:
++                    pass
+ 
+         # RAW
+         elif location_type == TYPE_RAW:
+@@ -877,9 +881,14 @@ class MainWindow:
+                 self.username_entry.set_text(user_name)
+             else:
+                 # NFS
+-                self.nfs_radiobutton.set_active(True)
+-                self.my_settings.server_name = path
+-                self.servername_entry.set_text(path)
++                try:
++                    self.nfs_radiobutton.set_active(True)
++                    self.my_settings.server_name = path.split(":")[0]
++                    self.my_settings.path = path.split(":")[1]
++                    self.servername_entry.set_text(path.split(":")[0])
++                    self.path_entry.set_text(path.split(":")[1])
++                except IndexError:
++                    pass
+             self.nfs_radiobutton.toggled()
+ 
+         # RAW
+@@ -979,8 +988,8 @@ class MainWindow:
+ 
+         #   nfs
+         elif self.my_settings.target_type == TYPE_NFS:
+-            config_string += "net %s\n" % self.my_settings.server_name
+-            config_string += "path %s\n" % self.my_settings.path
++            config_string += "net %s:%s\n" % (self.my_settings.server_name,
++                self.my_settings.path)
+ 
+         #   scp
+         elif self.my_settings.target_type == TYPE_SSH:
+-- 
+1.7.7.6
+

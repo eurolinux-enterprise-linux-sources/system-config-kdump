@@ -1,14 +1,15 @@
+%{!?python_sitelib: %global python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")}
+
 Summary: A graphical interface for configuring kernel crash dumping
 Name: system-config-kdump
-Version: 2.0.2.2
-Release: 2%{?dist}
+Version: 2.0.5
+Release: 11%{?dist}
 URL: http://fedorahosted.org/system-config-kdump/
 License: GPLv2+
 Group: System Environment/Base
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch: noarch
-Source0: http://fedorahosted.org/released/system-config-kdump/%{name}-%{version}.tar.bz2
-ExcludeArch: s390 s390x
+Source0: http://fedorahosted.org/released/system-config-kdump/%{name}-%{version}-rhel6.tar.bz2
 BuildRequires: desktop-file-utils
 BuildRequires: intltool, gettext, gnome-doc-utils, docbook-dtds, rarian-compat, scrollkeeper
 Requires: pygtk2 >= 2.8.6
@@ -20,8 +21,53 @@ Requires: python-slip-dbus
 Requires(pre): gtk2 >= 2.8.20
 Requires(pre): hicolor-icon-theme
 
-# 622868, add fallback to getting total mem from /proc/meminfo
-Patch1: system-config-kdump-2.0.2.2-memory.patch
+# 626787
+Patch1: 0001-Hint-message-where-the-dump-file-will-be-copied.patch
+Patch3: 0003-Remove-filechooser-button.patch
+
+# 642751
+Patch2: 0002-Check-the-core_collector-in-kdump.conf.patch
+
+# 740155
+Patch4: 0004-Change-window-type-from-error-message-to-info-messag.patch
+
+# 754059
+Patch5: 0005-Correctly-set-nfs-target.patch
+Patch12: 0011-Consider-all-changes-when-clicking-apply.patch
+
+# 653450
+Patch6: 0006-Fix-some-typos.patch
+
+# 676777
+Patch7: 0007-Handle-Extended-crashkernel-syntax.patch
+Patch8: 0008-another-patch-for-extended-syntax.patch
+
+# 632999
+Patch9: 0009-Regenerated-pot-file-and-po-file-for-translations.patch
+
+# 796308
+Patch10: system-config-kdump-2.0.5-s390x.patch
+
+# 622870
+Patch11: 0010-Show-error-message-when-D-Bus-isn-t-running.patch
+
+# 816009, threshold for auto lowered
+Patch13: 0001-Update-thresh-values-for-auto-2GB-on-x86-4GB-on-ppc-.patch
+
+# 813337, manage zipl.conf
+Patch14: 0001-Learn-backend-about-zipl-for-s390x.patch
+Patch15: 0002-Call-zipl-binary-when-configuring-zipl.patch
+
+# 740155, Change failed to unable
+Patch16: system-config-kdump-2.0.5-change_failed.patch
+
+# 821410, Fixed typo
+Patch17: system-config-kdump-2.0.5-typo.patch
+Patch18: system-config-kdump-2.0.5-typo2.patch
+
+# 819814, translations
+Patch19: system-config-kdump-2.0.5-translations1.patch
+Patch20: system-config-kdump-2.0.5-translations2.patch
 
 %description
 system-config-kdump is a graphical tool for configuring kernel crash
@@ -29,7 +75,26 @@ dumping via kdump and kexec.
 
 %prep
 %setup -q
-%patch1 -p1 -b .memory
+%patch1 -p1 -b .0001
+%patch2 -p1 -b .0002
+%patch3 -p1 -b .0003
+%patch4 -p1 -b .0004
+%patch5 -p1 -b .0005
+%patch6 -p1 -b .0006
+%patch7 -p1 -b .0007
+%patch8 -p1 -b .0008
+%patch9 -p1 -b .0009
+%patch10 -p1 -b .s390x
+%patch11 -p1 -b .0010
+%patch12 -p1 -b .0012
+%patch13 -p1 -b .threshold
+%patch14 -p1 -b .zipl_conf
+%patch15 -p1 -b .zipl_call
+%patch16 -p1 -b .change_failed
+%patch17 -p1 -b .typo
+%patch18 -p1 -b .typo2
+%patch19 -p1 -b .translations1
+%patch20 -p1 -b .translations2
 
 %build
 make
@@ -72,6 +137,9 @@ fi
 %{_bindir}/system-config-kdump
 %{_datadir}/system-config-kdump
 %{_datadir}/applications/*
+%{python_sitelib}/*egg*
+%{python_sitelib}/sckdump/
+
 %config(noreplace) %{_sysconfdir}/security/console.apps/system-config-kdump
 %config(noreplace) %{_sysconfdir}/pam.d/system-config-kdump
 
@@ -86,6 +154,58 @@ fi
 %doc %{_datadir}/omf/system-config-kdump
 
 %changelog
+* Tue May 29 2012 Roman Rakus <rrakus@redhat.com> - 2.0.5-11
+- Translations
+  Resolves: #819814
+
+* Wed May 16 2012 Roman Rakus <rrakus@redhat.com> - 2.0.5-10
+- Fix for #821410 wasn't complete. Now it is.
+  Resolves: #821410
+
+* Wed May 16 2012 Roman Rakus <rrakus@redhat.com> - 2.0.5-9
+- I didn't apply the previous patch, so applying now
+  Resolves: #821410
+
+* Wed May 16 2012 Roman Rakus <rrakus@redhat.com> - 2.0.5-8
+- Fixed typo
+  Resolves: #821410
+
+* Mon May 14 2012 Roman Rakus <rrakus@redhat.com> - 2.0.5-7
+- Change `Failed' to `Unable'
+  Resolves: #740155
+
+* Wed May 02 2012 Roman Rakus <rrakus@redhat.com> - 2.0.5-6
+- Configure zipl.conf and properly call zipl on s390x
+  Resolves: #813337
+
+* Mon Apr 30 2012 Roman Rakus <rrakus@redhat.com> - 2.0.5-5
+- Lower threshold for auto option
+  Resolves: #816009
+
+* Fri Mar 16 2012 Roman Rakus <rrakus@redhat.com> - 2.0.5-4
+- Show proper error message when D-Bus isn't running
+- Consider-all-changes-when-clicking-apply
+  Resolves: #622870, #754059
+
+* Fri Feb 24 2012 Roman Rakus <rrakus@redhat.com> - 2.0.5-3
+- Enable on s390x
+  Resolves: #796308
+
+* Tue Feb 14 2012 Roman Rakus <rrakus@redhat.com> - 2.0.5-2
+- Support for extended crash kernel syntax
+- Don't show misleading filechooser
+- Correctly set nfs target
+- Change window type from error message to info message
+- Check the core_collector in kdump.conf
+- Fix some typos
+- Pot files update
+  Resolves: #676777, #626787, #754059, #740155, #642751, #653450, #629483,
+  Resolves: #632999
+
+* Thu Feb 09 2012 Roman Rakus <rrakus@redhat.com> - 2.0.5-1
+- Rebase to 2.0.5
+  Resolves: #622870, #609487, #590057
+
 * Tue Aug 10 2010 Roman Rakus <rrakus@redhat.com> - 2.0.2.2-2
 - Add fallback to get total mem from /proc/meminfo
   Resolves: #622868
