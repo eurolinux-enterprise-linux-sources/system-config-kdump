@@ -1,0 +1,134 @@
+commit 78c9277deaf19ba2c5ee2384ea8ebbd56a159ae8
+Author: Martin Milata <mmilata@redhat.com>
+Date:   Wed Apr 10 17:54:12 2013 +0200
+
+    Allow updating kdump memory without hitting enter
+    
+    system-config-kdump performs validation of certain input fields and when
+    this validation succeeds it saves it into its configuration object and
+    updates other input fields that may depend on it.
+    
+    The validation is triggered by events such as the input field losing the
+    input focus or enter key being pressed. For reasons unclear to me, the
+    events are not run sometimes. For this reason, commit
+    24d642b4eafde9dc84820177dccd1ccab5956e0b introduced manual invocation of
+    the validation routines. The kdump memory spin button was not validated
+    though, and further, the validation routine cannot just be run manually
+    as it would interfere with the routine for kernel command line.
+    
+    This change works this around by selectively running the validation
+    routines for widgets on the current tab when
+    - the tab is changed,
+    - apply button/menu entry is pressed.
+    This way, the widgets on the other tabs are updated based on the current
+    tab widgets, which were edited the last.
+    
+    Fixes #877004
+    
+    Signed-off-by: Martin Milata <mmilata@redhat.com>
+
+diff --git a/src/system-config-kdump.glade b/src/system-config-kdump.glade
+index e6d3dc0..c1088e3 100644
+--- a/src/system-config-kdump.glade
++++ b/src/system-config-kdump.glade
+@@ -470,7 +470,7 @@
+               </packing>
+             </child>
+             <child>
+-              <widget class="GtkScrolledWindow" id="scrolledwindow3">
++              <widget class="GtkScrolledWindow" id="targetPage">
+                 <property name="visible">True</property>
+                 <property name="can_focus">True</property>
+                 <property name="hscrollbar_policy">automatic</property>
+@@ -842,7 +842,7 @@
+               </packing>
+             </child>
+             <child>
+-              <widget class="GtkScrolledWindow" id="scrolledwindow2">
++              <widget class="GtkScrolledWindow" id="filteringPage">
+                 <property name="visible">True</property>
+                 <property name="can_focus">True</property>
+                 <property name="hscrollbar_policy">automatic</property>
+@@ -1090,7 +1090,7 @@
+               </packing>
+             </child>
+             <child>
+-              <widget class="GtkScrolledWindow" id="scrolledwindow1">
++              <widget class="GtkScrolledWindow" id="expertPage">
+                 <property name="visible">True</property>
+                 <property name="can_focus">True</property>
+                 <property name="hscrollbar_policy">automatic</property>
+diff --git a/src/system-config-kdump.py b/src/system-config-kdump.py
+index 12a08e0..cff0383 100755
+--- a/src/system-config-kdump.py
++++ b/src/system-config-kdump.py
+@@ -430,6 +430,7 @@ class MainWindow:
+         self.radio_fadump            = self.xml.get_widget("radioFadump")
+ 
+         # tab 1
++        self.target_page              = self.xml.get_widget("targetPage")
+         self.localfs_radiobutton      = self.xml.get_widget("localfsRadiobutton")
+         self.partition_combobox       = self.xml.get_widget("partitionCombobox")
+         self.location_entry           = self.xml.get_widget("locationEntry")
+@@ -448,6 +449,7 @@ class MainWindow:
+         self.servername_entry         = self.xml.get_widget("servernameEntry")
+ 
+         # tab 2
++        self.filter_page              = self.xml.get_widget("filteringPage")
+         for x in range(NUM_FILTERS):
+             self.filter_check_button[x]      = self.xml.get_widget("filterCheckbutton%d" % x)
+         self.filter_level_label              = self.xml.get_widget("filterLevelLabel")
+@@ -456,6 +458,7 @@ class MainWindow:
+ 
+ 
+         # tab 3
++        self.expert_page                 = self.xml.get_widget("expertPage")
+ #        self.default_initrd_radio_button = self.xml.get_widget("defaultInitrdRadiobutton")
+         self.custom_initrd_radio_button  = self.xml.get_widget("customInitrdRadiobutton")
+         self.initrd_file_chooser_button  = self.xml.get_widget("initrdFilechooserbutton")
+@@ -479,6 +482,9 @@ class MainWindow:
+         # widgets setup and signals connect
+         self.toplevel.connect("destroy", self.destroy)
+ 
++        # notebook
++        self.kdump_notebook.connect("switch-page", self.page_changed)
++
+         # menu
+         self.menu_enable.connect("activate", self.kdump_enable_toggled)
+         self.menu_disable.connect("activate", self.kdump_enable_toggled)
+@@ -769,9 +775,10 @@ class MainWindow:
+         """
+         When user clicked apply. Do checks. Save settings.
+         """
++        # Workaround gtk/pygtk issue that doesn't exist anymore on fedora?
++        self.kdump_mem_spin_button.update()
+         # For some entry widgets we need to make sure all settings are applied
+-        self.cmdline_changed(self.command_line_entry)
+-        self.collector_entry_changed(self.core_collector_entry)
++        self.page_changed(self.kdump_notebook)
+ 
+         if self.my_settings.target_type not in (TYPE_RAW, TYPE_LOCAL) and not self.my_settings.path:
+             retc = dialogs.yes_no_dialog(_("Path cannot be empty for '%s'"
+@@ -1156,6 +1163,22 @@ class MainWindow:
+ 
+         return True, None, None, None
+ 
++    def page_changed(self, notebook, *args):
++        """
++        Update configuration and widgets on other pages based on current page
++        contents
++
++        This method is called on notebook page changes and when the apply
++        button is clicked to ensure that the internal configuration as well as
++        all the widgets are consistent with each other.
++        """
++        current_page = notebook.get_nth_page(notebook.get_current_page())
++        if current_page == self.basic_settings:
++            self.update_usable_mem(self.kdump_mem_spin_button)
++        elif current_page == self.expert_page:
++            self.cmdline_changed(self.command_line_entry)
++            self.collector_entry_changed(self.core_collector_entry)
++
+     def update_usable_mem(self, spin_button, *args):
+         """
+         Update Usable mem label whenever you change ammount of kdump mem

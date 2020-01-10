@@ -3,7 +3,7 @@
 Summary: A graphical interface for configuring kernel crash dumping
 Name: system-config-kdump
 Version: 2.0.5
-Release: 15%{?dist}
+Release: 18%{?dist}
 URL: http://fedorahosted.org/system-config-kdump/
 License: GPLv2+
 Group: System Environment/Base
@@ -82,6 +82,27 @@ Patch23: system-config-kdump-2.0.5-fadump.patch
 # and don't (re)start service when setting auto option
 Patch24: system-config-kdump-2.0.5-timeout.patch
 
+# 1017611, do not list mounted/used partitions in the raw device combobox
+Patch25: system-config-kdump-2.0.5-unused_raw_devices.patch
+
+# 828667, fix inconsistent behaviour when raw device from kdump.conf does not exist
+Patch26: system-config-kdump-2.0.5-nonexistent_raw_device.patch
+
+# 877004, fix updating kdump memory spin button without hitting enter
+Patch27: system-config-kdump-2.0.5-update_memory_without_enter.patch
+
+# 962724, dont't start kdump service if there's no reserved memory
+Patch28: system-config-kdump-2.0.5-dont_start_service_without_memory.patch
+
+# 1030533, correct the Automated kdump memory settings threshold
+Patch29: system-config-kdump-2.0.5-auto_threshold.patch
+
+# 977981, add support for EFI with grub
+Patch30: system-config-kdump-2.0.5-efi.patch
+
+# 987681, fix handling of quoted strings in kernel command line
+Patch31: system-config-kdump-2.0.5-quoted_cmdline_fix.patch
+
 %description
 system-config-kdump is a graphical tool for configuring kernel crash
 dumping via kdump and kexec.
@@ -112,6 +133,13 @@ dumping via kdump and kexec.
 %patch22 -p1 -b .multiple_values
 %patch23 -p1 -b .fadump
 %patch24 -p1 -b .timeout
+%patch25 -p1 -b .unused_raw_devices
+%patch26 -p1 -b .nonexistent_raw_device
+%patch27 -p1 -b .update_memory_without_enter
+%patch28 -p1 -b .dont_start_service_without_memory
+%patch29 -p1 -b .auto_threshold
+%patch30 -p1 -b .efi
+%patch31 -p1 -b .quoted_cmdline
 
 %build
 make
@@ -171,6 +199,28 @@ fi
 %doc %{_datadir}/omf/system-config-kdump
 
 %changelog
+* Fri Jul 11 2014 Martin Milata <mmilata@redhat.com> - 2.0.5-18
+- Fix handling of quoted strings in kernel command line
+  Resolves: #987681
+
+* Wed Jun 11 2014 Martin Milata <mmilata@redhat.com> - 2.0.5-17
+- d-bus: require authentication for getting list of unused partitions (in
+  non-interactive sessions)
+
+* Mon Jun 09 2014 Martin Milata <mmilata@redhat.com> - 2.0.5-16
+- Only list unused partitions as raw devices
+  Resolves: #1017611
+- Fix loading nonexistent raw device
+  Resolves: #828667
+- Allow updating kdump memory without hitting enter
+  Resolves: #877004
+- Don't start kdump if there's no reserved memory
+  Resolves: #962724
+- Correct the "auto" memory threshold
+  Resolves: #1030533
+- Add support for grub on EFI systems
+  Resolves: #977981
+
 * Thu Sep 20 2012 Roman Rakus <rrakus@redhat.com> - 2.0.5-15
 - Set timout for dbus calls to 5 minutes
 - Don't (re)start service when setting auto option

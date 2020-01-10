@@ -1,0 +1,79 @@
+commit e02c807cbe204726641a8ce3f9e2f899be94977a
+Author: Martin Milata <mmilata@redhat.com>
+Date:   Fri Jul 11 13:09:23 2014 +0200
+
+    Fix handling of quoted strings in kernel cmdline
+    
+    Resolves: #987681
+    
+    Signed-off-by: Martin Milata <mmilata@redhat.com>
+
+diff --git a/src/system-config-kdump-backend.py b/src/system-config-kdump-backend.py
+index 290486a..e9ec77b 100755
+--- a/src/system-config-kdump-backend.py
++++ b/src/system-config-kdump-backend.py
+@@ -51,7 +51,7 @@ class SystemConfigKdumpObject(slip.dbus.service.Object):
+             for line in std.splitlines():
+                 (name, value) = line.strip().split("=", 1)
+                 if name == "args":
+-                    return (cmd, retcode, value.strip('"'), err)
++                    return (cmd, retcode, self.unquote_grubby_line(value), err)
+ 
+     @slip.dbus.polkit.require_auth ("org.fedoraproject.systemconfig.kdump.getxencmdline")
+     @dbus.service.method ("org.fedoraproject.systemconfig.kdump.mechanism",
+@@ -65,7 +65,7 @@ class SystemConfigKdumpObject(slip.dbus.service.Object):
+             for line in std.splitlines:
+                 (name, value) = line.strip().split("=", 1)
+                 if name == "module":
+-                    return (cmd, retcode, value.strip('"'), err)
++                    return (cmd, retcode, self.unquote_grubby_line(value), err)
+ 
+     @slip.dbus.polkit.require_auth ("org.fedoraproject.systemconfig.kdump.getallkernels")
+     @dbus.service.method ("org.fedoraproject.systemconfig.kdump.mechanism",
+@@ -198,6 +198,13 @@ class SystemConfigKdumpObject(slip.dbus.service.Object):
+         return ("".join(str(a) + " " for a in args),
+             the_call.returncode, stdout or "", stderr or "")
+ 
++    # it is important to remove only one quote from the end of the string
++    @staticmethod
++    def unquote_grubby_line(line):
++        if line[0]=='"' and line[-1]=='"':
++            return line[1:-1]
++        return line
++
+ if __name__ == '__main__':
+     dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
+ 
+diff --git a/src/system-config-kdump.py b/src/system-config-kdump.py
+index a29578c..154dde4 100755
+--- a/src/system-config-kdump.py
++++ b/src/system-config-kdump.py
+@@ -1092,6 +1092,10 @@ class MainWindow:
+             return False, written
+         return True, None
+ 
++    @staticmethod
++    def quote_commandline(args):
++        return args.replace('"', r'\"')
++
+     def write_bootloader_config(self):
+         """
+         Write settings to bootloader config file.
+@@ -1118,7 +1122,7 @@ class MainWindow:
+                 config_string += "--update-kernel=" + \
+                     self.my_settings.kernel + ";"
+                 config_string += "--remove-args=" + \
+-                    self.my_settings.orig_commandline
++                    self.quote_commandline(self.my_settings.orig_commandline)
+                 if DEBUG:
+                     print "  Removing original args '%s'" \
+                         % (self.my_settings.orig_commandline)
+@@ -1135,7 +1139,7 @@ class MainWindow:
+             if DEBUG:
+                 print "  Updating kernel '%s'" % (self.my_settings.kernel)
+ 
+-            config_string += "--args=" + self.my_settings.commandline
++            config_string += "--args=" + self.quote_commandline(self.my_settings.commandline)
+             if DEBUG:
+                 print "  Setting args to '%s'" % (self.my_settings.commandline)
+ 

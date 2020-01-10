@@ -1,0 +1,24 @@
+commit 36fda9de9dcdabb44875608b10101cdd1db23de4
+Author: Martin Milata <mmilata@redhat.com>
+Date:   Wed Jul 3 20:00:34 2013 +0200
+
+    Don't start kdump if there's no reserved memory
+    
+    Resolves: #971228, #962724.
+    
+    Signed-off-by: Martin Milata <mmilata@redhat.com>
+
+diff --git a/src/system-config-kdump.py b/src/system-config-kdump.py
+index cff0383..4f37d6c 100755
+--- a/src/system-config-kdump.py
++++ b/src/system-config-kdump.py
+@@ -1941,6 +1941,9 @@ class MainWindow:
+                 chkconfig_status = "on"
+                 if service_status in SERVICE_STATUS_ON:
+                     service_op = "restart"
++                # do not start kdump service if there's no reserved memory
++                elif self.orig_settings.kdump_mem == 0:
++                    service_op = ""
+                 else:
+                     service_op = "start"
+             else:

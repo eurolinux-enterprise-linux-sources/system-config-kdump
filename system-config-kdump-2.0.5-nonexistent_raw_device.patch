@@ -1,0 +1,58 @@
+commit e588bbd0d7bf72d16dc0bfc78adad032470c445b
+Author: Martin Milata <mmilata@redhat.com>
+Date:   Wed Jul 3 15:53:31 2013 +0200
+
+    Fix loading nonexistent raw device
+    
+    When nonexistent raw device was specified in kdump.conf,
+    system-config-kdump behaved inconsitently and did not allow user to
+    write the configuration file without some additional actions. This
+    commit fixes it.
+    
+    Resolves: #828667
+    
+    Signed-off-by: Martin Milata <mmilata@redhat.com>
+
+diff --git a/src/system-config-kdump.py b/src/system-config-kdump.py
+index ba30ef1..12a08e0 100755
+--- a/src/system-config-kdump.py
++++ b/src/system-config-kdump.py
+@@ -917,6 +917,8 @@ class MainWindow:
+         if DEBUG:
+             print "set_location " + location_type  + " " + path
+ 
++        success = True
++
+         # SSH or NFS
+         if location_type == TYPE_NET:
+             self.network_radiobutton.set_active(True)
+@@ -944,6 +946,8 @@ class MainWindow:
+         elif location_type == TYPE_RAW:
+             if self.set_active_raw_device(path):
+                 self.raw_device_radiobutton.set_active(True)
++            else:
++                success = False
+ 
+         elif location_type == TYPE_LOCAL:
+             self.my_settings.path = path
+@@ -953,6 +957,8 @@ class MainWindow:
+             self.set_active_partition(location_type, path)
+         self.localfs_radiobutton.toggled()
+ 
++        return success
++
+     def load_dump_config(self):
+         """
+         Load kdump configuration from /etc/kdump.conf
+@@ -1003,8 +1009,9 @@ class MainWindow:
+                     self.orig_settings.filter_level = location[idx:].split(" ")[1]
+                 self.set_core_collector(location)
+             elif loc_type in (TYPE_RAW, TYPE_NET) or loc_type in SUPPORTEDFSTYPES:
+-                self.orig_settings.set_location(loc_type, location)
+-                self.set_location(loc_type, location)
++                # if the location is bogus, do not save it into orig_settings
++                if self.set_location(loc_type, location):
++                    self.orig_settings.set_location(loc_type, location)
+             else:
+                 self.misc_config.append(" ".join((loc_type, location)))
+         self.orig_settings.kernel = self.default_kernel

@@ -1,0 +1,208 @@
+commit ad9e5509392edbce5fd64f31494d1aa37dbc447d
+Author: Martin Milata <mmilata@redhat.com>
+Date:   Tue Jun 3 16:16:57 2014 +0200
+
+    Only list unused partitions as raw devices
+    
+    This is to prevent the user from accidentally overwriting a filesystem
+    they use.
+    
+    Resolves: #1017611
+    
+    Signed-off-by: Martin Milata <mmilata@redhat.com>
+
+diff --git a/org.fedoraproject.systemconfig.kdump.policy b/org.fedoraproject.systemconfig.kdump.policy
+index c4e3b64..d1b34ae 100644
+--- a/org.fedoraproject.systemconfig.kdump.policy
++++ b/org.fedoraproject.systemconfig.kdump.policy
+@@ -38,8 +38,6 @@
+     </defaults>
+   </action>
+ 
+-
+-
+   <action id="org.fedoraproject.systemconfig.kdump.getallkernels">
+     <description>Get all kernel names on system</description>
+     <message>System policy prevents getting all kernel names on system</message>
+@@ -50,6 +48,16 @@
+     </defaults>
+   </action>
+ 
++  <action id="org.fedoraproject.systemconfig.kdump.getunusedpartitions">
++    <description>Get list of partitions currently not used by the system</description>
++    <message>System policy prevents getting list of unused partitions</message>
++    <defaults>
++      <allow_any>auth_admin_keep</allow_any>
++      <allow_inactive>yes</allow_inactive>
++      <allow_active>yes</allow_active>
++    </defaults>
++  </action>
++
+   <action id="org.fedoraproject.systemconfig.kdump.writedumpconfig">
+     <description>Write kdump configuration</description>
+     <message>System policy prevents write access to /etc/kdump.conf</message>
+diff --git a/src/sckdump/dbus_proxy.py b/src/sckdump/dbus_proxy.py
+index 47b186d..b25ebbe 100644
+--- a/src/sckdump/dbus_proxy.py
++++ b/src/sckdump/dbus_proxy.py
+@@ -65,6 +65,11 @@ class DBusProxy (gobject.GObject):
+         self.loop.quit()
+         self.progress_window.hide()
+ 
++    def handle_reply_partitions(self, partitions):
++        self.partitions = partitions
++        self.loop.quit()
++        self.progress_window.hide()
++
+     def handle_error(self, exception):
+         self.loop.quit()
+         self.progress_window.hide()
+@@ -197,3 +202,16 @@ class DBusProxy (gobject.GObject):
+         self.loop.run()
+         return self.cmd, self.retcode, self.std, self.err
+ 
++    @polkit.enable_proxy
++    def getunusedpartitions(self):
++        """
++        Get list of partitions that are not mounted or otherwise used
++        """
++        self.progress_window.set_label(_("Getting unused partitions"))
++        self.progress_window.show()
++        self.dbus_object.getunusedpartitions(
++            dbus_interface = "org.fedoraproject.systemconfig.kdump.mechanism",
++            reply_handler = self.handle_reply_partitions,
++            error_handler = self.handle_error, timeout=TIMEOUT)
++        self.loop.run()
++        return self.partitions
+diff --git a/src/system-config-kdump-backend.py b/src/system-config-kdump-backend.py
+index 520da50..290486a 100755
+--- a/src/system-config-kdump-backend.py
++++ b/src/system-config-kdump-backend.py
+@@ -7,6 +7,7 @@ import dbus.service
+ import dbus.mainloop.glib
+ 
+ import os
++import errno
+ import slip.dbus.service
+ import subprocess
+ 
+@@ -149,6 +150,37 @@ class SystemConfigKdumpObject(slip.dbus.service.Object):
+         """ Get current status of the kdump service """
+         return self.gtkcall("/sbin/service", "kdump", "status")
+ 
++    @slip.dbus.polkit.require_auth ("org.fedoraproject.systemconfig.kdump.getunusedpartitions")
++    @dbus.service.method ("org.fedoraproject.systemconfig.kdump.mechanism",
++                          in_signature = '', out_signature = 'a(sii)')
++    def getunusedpartitions (self):
++        partitions = []
++        try:
++            with open('/proc/partitions') as fh:
++                lines = fh.readlines()[2:]
++        except IOError:
++            return []
++
++        for line in lines:
++            items = line.strip().split()
++            major = int(items[0])
++            minor = int(items[1])
++            dev = '/dev/%s' % items[3]
++
++            # check if the device is used
++            try:
++                fd = os.open(dev, os.O_RDONLY|os.O_EXCL)
++                os.close(fd)
++            except OSError as e:
++                if e.errno == errno.EBUSY:
++                    continue
++                else:
++                    raise
++
++            partitions.append((dev, major, minor))
++
++        return partitions
++
+     def gtkcall (self, *args):
+         """
+         Call command args[0] with args arguments
+diff --git a/src/system-config-kdump.py b/src/system-config-kdump.py
+index 12a9fc8..ba30ef1 100755
+--- a/src/system-config-kdump.py
++++ b/src/system-config-kdump.py
+@@ -78,18 +78,15 @@ ACTION_POWEROFF = "poweroff"
+ ACTION_DEFAULT = _("mount rootfs and run /sbin/init")
+ 
+ FSTAB_FILE = "/etc/fstab"
+-PROC_PARTITIONS = "/proc/partitions"
+ 
+ TAG_CURRENT = _("(c)")
+ TAG_DEFAULT = _("(d)")
+ 
+ # got from kernel/Documentation/devices.txt
+-SUPPORTED_MAJOR = [ '2', '3', '8', '9', '13', '14', '19', '21', '22', '28',
+-                    '31', '33', '34', '36', '40', '44', '45', '47', '48', '49',
+-                    '50', '51', '52', '53', '54', '55', '56', '57', '65', '66',
+-                    '67', '68', '69', '70', '71', '88', '89', '90', '91', '94',
+-                    '99', '128', '129', '130', '131', '132', '133', '134',
+-                    '135', '147', '180' ]
++SUPPORTED_MAJOR = [ 2, 3, 8, 9, 13, 14, 19, 21, 22, 28, 31, 33, 34, 36, 40,
++                    44, 45, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 65,
++                    66, 67, 68, 69, 70, 71, 88, 89, 90, 91, 94, 99, 128, 129,
++                    130, 131, 132, 133, 134, 135, 147, 180 ]
+ 
+ PATH_DEFAULT = "/var/crash"
+ CORE_COLLECTOR_DEFAULT = "makedumpfile -d 17 -c"
+@@ -180,7 +177,6 @@ class Settings(object):
+         self.core_collector = CORE_COLLECTOR_DEFAULT# core collector settings
+         self.use_fadump = "off"             # Use fadump?
+ 
+-
+     # set location type, path, raw device, partition and so on
+     def set_location(self, location_type, path):
+         """
+@@ -1365,22 +1361,24 @@ class MainWindow:
+         """
+         fill raw devices combo box with all partitions listed in /proc/partitions
+         uses only valid major numbers
++        partitions that are mounted or used by LVM are not listed
+         """
+-        try:
+-            lines = open(PROC_PARTITIONS).readlines()
+-            for line in lines:
+-                major = line.strip().split(" ")[0]
+-                if major in SUPPORTED_MAJOR:
+-                    dev = "/dev/%s" % line.strip().rsplit(" ", 1)[1]
+-                    self.raw_devices.append(dev)
+-                    if DEBUG:
+-                        print "added '%s' to raw devices" % dev
+-        except IOError:
+-            pass
++        self.raw_devices = []
++
++        partitions = self.dbus_object.getunusedpartitions()
++        for (dev, major, minor) in partitions:
++            if major in SUPPORTED_MAJOR:
++                self.raw_devices.append(dev)
++                if DEBUG:
++                    print "added '%s' to raw devices" % dev
++
+         for dev in self.raw_devices:
+             combobox.append_text(dev)
+         combobox.set_active(0)
+-        return
++
++        if len(self.raw_devices) > 0:
++            self.my_settings.raw_device = self.raw_devices[0]
++            self.orig_settings.raw_device = self.raw_devices[0]
+ 
+     def location_changed(self, widget, *args):
+         """
+@@ -1608,7 +1606,8 @@ class MainWindow:
+             return True
+         else:
+             dialogs.show_error_message(
+-                _("Raw device %s wasn't found on this machine" % device_name),
++                _("Raw device %s wasn't found on this machine."
++                  " Please make sure it's not mounted or used by LVM." % device_name),
+                 _("system-config-kdump: Raw device error"),
+                 parent = self.toplevel)
+             self.device_combobox.set_active(-1)

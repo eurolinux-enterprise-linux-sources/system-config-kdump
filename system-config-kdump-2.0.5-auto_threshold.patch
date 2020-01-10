@@ -1,0 +1,34 @@
+commit e1062fcb9cdc9405ce1a109e100e18b5d1ff94a1
+Author: Martin Milata <mmilata@redhat.com>
+Date:   Fri Jun 6 14:52:15 2014 +0200
+
+    Correct the "auto" memory threshold
+    
+    Resolves: #1030533
+    
+    Signed-off-by: Martin Milata <mmilata@redhat.com>
+
+diff --git a/src/system-config-kdump.py b/src/system-config-kdump.py
+index 4f37d6c..a29578c 100755
+--- a/src/system-config-kdump.py
++++ b/src/system-config-kdump.py
+@@ -659,11 +659,15 @@ class MainWindow:
+         lower_bound = 128
+         min_usable = 512
+         step = 64
+-        auto_thresh = 2048 # thresh for x86 machines is 2GB
+ 
+-
+-        if resource.getpagesize() > 4096:
+-            auto_thresh = auto_thresh * 2 # thresh for ppc and s390 is 4GB
++        # see https://bugzilla.redhat.com/show_bug.cgi?id=1024886#c3
++        if self.arch == 'ppc64' and resource.getpagesize() > 4096:
++            auto_thresh = 8192
++        elif self.arch == 's390x':
++            auto_thresh = 4096
++        else:
++            # i386, x86_64 and ppc64 with 4K pages
++            auto_thresh = 2048
+ 
+         if self.arch == 'ia64':
+             # ia64 needs at least 256M, page-aligned
