@@ -3,7 +3,7 @@
 Summary: A graphical interface for configuring kernel crash dumping
 Name: system-config-kdump
 Version: 2.0.5
-Release: 18%{?dist}
+Release: 19%{?dist}
 URL: http://fedorahosted.org/system-config-kdump/
 License: GPLv2+
 Group: System Environment/Base
@@ -103,6 +103,9 @@ Patch30: system-config-kdump-2.0.5-efi.patch
 # 987681, fix handling of quoted strings in kernel command line
 Patch31: system-config-kdump-2.0.5-quoted_cmdline_fix.patch
 
+# 1333635, translations
+Patch32: system-config-kdump-2.0.5-translations3.patch
+
 %description
 system-config-kdump is a graphical tool for configuring kernel crash
 dumping via kdump and kexec.
@@ -140,6 +143,7 @@ dumping via kdump and kexec.
 %patch29 -p1 -b .auto_threshold
 %patch30 -p1 -b .efi
 %patch31 -p1 -b .quoted_cmdline
+%patch32 -p1 -b .translations3
 
 %build
 make
@@ -199,6 +203,10 @@ fi
 %doc %{_datadir}/omf/system-config-kdump
 
 %changelog
+* Thu Jan 19 2017 Martin Milata <mmilata@redhat.com> - 2.0.5-19
+- Update translations
+  Resolves: #1333635
+
 * Fri Jul 11 2014 Martin Milata <mmilata@redhat.com> - 2.0.5-18
 - Fix handling of quoted strings in kernel command line
   Resolves: #987681
