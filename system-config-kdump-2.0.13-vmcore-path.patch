@@ -1,0 +1,1480 @@
+diff -up system-config-kdump-2.0.13/po/af.po.vmcore-path system-config-kdump-2.0.13/po/af.po
+--- system-config-kdump-2.0.13/po/af.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/af.po	2018-06-04 21:30:09.456033009 +0200
+@@ -309,12 +309,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/am.po.vmcore-path system-config-kdump-2.0.13/po/am.po
+--- system-config-kdump-2.0.13/po/am.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/am.po	2018-06-04 21:30:09.456033009 +0200
+@@ -309,12 +309,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/ar.po.vmcore-path system-config-kdump-2.0.13/po/ar.po
+--- system-config-kdump-2.0.13/po/ar.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/ar.po	2018-06-04 21:30:09.456033009 +0200
+@@ -332,12 +332,12 @@ msgid " and type %s wasn't found"
+ msgstr "ولم يتم العثور على نوع %s"
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/as.po.vmcore-path system-config-kdump-2.0.13/po/as.po
+--- system-config-kdump-2.0.13/po/as.po.vmcore-path	2018-06-04 21:30:09.447032977 +0200
++++ system-config-kdump-2.0.13/po/as.po	2018-06-04 21:30:09.456033009 +0200
+@@ -344,13 +344,13 @@ msgid " and type %s wasn't found"
+ msgstr " আৰু %s ধৰণ পোৱা নাযায়"
+ 
+ #: ../src/system-config-kdump.py:1819
+-msgid "core will be in %s/%%DATE on rootfs"
+-msgstr "কেন্দ্ৰ rootfs ত %s/%%DATE ত থাকিব"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
++msgstr "কেন্দ্ৰ rootfs ত %s/%%HOST_IP-%%DATE ত থাকিব"
+ 
+ #: ../src/system-config-kdump.py:1822
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
+-msgstr "কেন্দ্ৰ %s ত %s/%%DATE ত থাকিব"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
++msgstr "কেন্দ্ৰ %s ত %s/%%HOST_IP-%%DATE ত থাকিব"
+ 
+ #: ../src/system-config-kdump.py:1915
+ msgid ""
+diff -up system-config-kdump-2.0.13/po/ast.po.vmcore-path system-config-kdump-2.0.13/po/ast.po
+--- system-config-kdump-2.0.13/po/ast.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/ast.po	2018-06-04 21:30:09.457033013 +0200
+@@ -325,12 +325,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/be.po.vmcore-path system-config-kdump-2.0.13/po/be.po
+--- system-config-kdump-2.0.13/po/be.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/be.po	2018-06-04 21:30:09.457033013 +0200
+@@ -309,12 +309,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/bg.po.vmcore-path system-config-kdump-2.0.13/po/bg.po
+--- system-config-kdump-2.0.13/po/bg.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/bg.po	2018-06-04 21:30:09.457033013 +0200
+@@ -353,13 +353,13 @@ msgid " and type %s wasn't found"
+ msgstr " и тип %s не беше намерен"
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr "записаният файл ще е в /var/crash/%DATE в rootfs"
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
+-msgstr "записаният файл ще е в %s/%%DATE в %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
++msgstr "записаният файл ще е в %s/%%HOST_IP-%%DATE в %s"
+ 
+ #: ../src/system-config-kdump.py:1896
+ msgid ""
+diff -up system-config-kdump-2.0.13/po/bn_IN.po.vmcore-path system-config-kdump-2.0.13/po/bn_IN.po
+--- system-config-kdump-2.0.13/po/bn_IN.po.vmcore-path	2018-06-04 21:30:09.403032817 +0200
++++ system-config-kdump-2.0.13/po/bn_IN.po	2018-06-04 21:30:09.457033013 +0200
+@@ -340,13 +340,13 @@ msgid " and type %s wasn't found"
+ msgstr " এবং %s ধরন পাওয়া যায়নি"
+ 
+ #: ../src/system-config-kdump.py:1819
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr "rootfs-এ  /var/crash/%DATE-র মধ্যে core উপস্থিত থাকবে"
+ 
+ #: ../src/system-config-kdump.py:1822
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
+-msgstr "%s/%%DATE-র মধ্যে core উপস্থিত থাকবে, এটি %s-এ রয়েছে"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
++msgstr "%s/%%HOST_IP-%%DATE-র মধ্যে core উপস্থিত থাকবে, এটি %s-এ রয়েছে"
+ 
+ #: ../src/system-config-kdump.py:1915
+ msgid ""
+diff -up system-config-kdump-2.0.13/po/bn.po.vmcore-path system-config-kdump-2.0.13/po/bn.po
+--- system-config-kdump-2.0.13/po/bn.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/bn.po	2018-06-04 21:30:09.457033013 +0200
+@@ -352,13 +352,13 @@ msgid " and type %s wasn't found"
+ msgstr " এবং %s ধরন পাওয়া যায়নি"
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr "rootfs-এ  /var/crash/%DATE-র মধ্যে core উপস্থিত থাকবে"
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
+-msgstr "%s/%%DATE-র মধ্যে core উপস্থিত থাকবে, এটি %s-এ রয়েছে"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
++msgstr "%s/%%HOST_IP-%%DATE-র মধ্যে core উপস্থিত থাকবে, এটি %s-এ রয়েছে"
+ 
+ #: ../src/system-config-kdump.py:1896
+ msgid ""
+diff -up system-config-kdump-2.0.13/po/bs.po.vmcore-path system-config-kdump-2.0.13/po/bs.po
+--- system-config-kdump-2.0.13/po/bs.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/bs.po	2018-06-04 21:30:09.457033013 +0200
+@@ -325,12 +325,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/ca.po.vmcore-path system-config-kdump-2.0.13/po/ca.po
+--- system-config-kdump-2.0.13/po/ca.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/ca.po	2018-06-04 21:30:09.458033017 +0200
+@@ -343,12 +343,12 @@ msgid " and type %s wasn't found"
+ msgstr " i de tipus %s no ha estat trobada"
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/cs.po.vmcore-path system-config-kdump-2.0.13/po/cs.po
+--- system-config-kdump-2.0.13/po/cs.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/cs.po	2018-06-04 21:30:09.458033017 +0200
+@@ -323,12 +323,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/cy.po.vmcore-path system-config-kdump-2.0.13/po/cy.po
+--- system-config-kdump-2.0.13/po/cy.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/cy.po	2018-06-04 21:30:09.458033017 +0200
+@@ -309,12 +309,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/da.po.vmcore-path system-config-kdump-2.0.13/po/da.po
+--- system-config-kdump-2.0.13/po/da.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/da.po	2018-06-04 21:30:09.458033017 +0200
+@@ -325,12 +325,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/de.po.vmcore-path system-config-kdump-2.0.13/po/de.po
+--- system-config-kdump-2.0.13/po/de.po.vmcore-path	2018-06-04 21:30:09.447032977 +0200
++++ system-config-kdump-2.0.13/po/de.po	2018-06-04 21:30:09.458033017 +0200
+@@ -368,13 +368,13 @@ msgid " and type %s wasn't found"
+ msgstr "und der Typ %s wurde nicht gefunden"
+ 
+ #: ../src/system-config-kdump.py:1866
+-msgid "core will be in %s/%%DATE on rootfs"
+-msgstr "Core wird in %s/%%DATE auf rootfs abgelegt"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
++msgstr "Core wird in %s/%%HOST_IP-%%DATE auf rootfs abgelegt"
+ 
+ #: ../src/system-config-kdump.py:1869
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
+-msgstr "Core wird in %s/%%DATE auf %s abgelegt"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
++msgstr "Core wird in %s/%%HOST_IP-%%DATE auf %s abgelegt"
+ 
+ #: ../src/system-config-kdump.py:1969
+ msgid ""
+diff -up system-config-kdump-2.0.13/po/el.po.vmcore-path system-config-kdump-2.0.13/po/el.po
+--- system-config-kdump-2.0.13/po/el.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/el.po	2018-06-04 21:30:09.459033020 +0200
+@@ -342,12 +342,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/en_GB.po.vmcore-path system-config-kdump-2.0.13/po/en_GB.po
+--- system-config-kdump-2.0.13/po/en_GB.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/en_GB.po	2018-06-04 21:30:09.459033020 +0200
+@@ -324,12 +324,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/es.po.vmcore-path system-config-kdump-2.0.13/po/es.po
+--- system-config-kdump-2.0.13/po/es.po.vmcore-path	2018-06-04 21:30:09.448032980 +0200
++++ system-config-kdump-2.0.13/po/es.po	2018-06-04 21:30:09.459033020 +0200
+@@ -371,13 +371,13 @@ msgid " and type %s wasn't found"
+ msgstr " y no fue hallado el tipo %s"
+ 
+ #: ../src/system-config-kdump.py:1866
+-msgid "core will be in %s/%%DATE on rootfs"
+-msgstr "núcleo estará en %s/%%DATE en rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
++msgstr "núcleo estará en %s/%%HOST_IP-%%DATE en rootfs"
+ 
+ #: ../src/system-config-kdump.py:1869
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
+-msgstr "core estará en %s/%%DATE en %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
++msgstr "core estará en %s/%%HOST_IP-%%DATE en %s"
+ 
+ #: ../src/system-config-kdump.py:1969
+ msgid ""
+diff -up system-config-kdump-2.0.13/po/et.po.vmcore-path system-config-kdump-2.0.13/po/et.po
+--- system-config-kdump-2.0.13/po/et.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/et.po	2018-06-04 21:30:09.459033020 +0200
+@@ -309,12 +309,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/eu_ES.po.vmcore-path system-config-kdump-2.0.13/po/eu_ES.po
+--- system-config-kdump-2.0.13/po/eu_ES.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/eu_ES.po	2018-06-04 21:30:09.459033020 +0200
+@@ -309,12 +309,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/fa.po.vmcore-path system-config-kdump-2.0.13/po/fa.po
+--- system-config-kdump-2.0.13/po/fa.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/fa.po	2018-06-04 21:30:09.459033020 +0200
+@@ -310,12 +310,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/fi.po.vmcore-path system-config-kdump-2.0.13/po/fi.po
+--- system-config-kdump-2.0.13/po/fi.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/fi.po	2018-06-04 21:30:09.460033024 +0200
+@@ -347,12 +347,12 @@ msgid " and type %s wasn't found"
+ msgstr " ja tyyppi on %s ei löytynyt."
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/fr.po.vmcore-path system-config-kdump-2.0.13/po/fr.po
+--- system-config-kdump-2.0.13/po/fr.po.vmcore-path	2018-06-04 21:30:09.448032980 +0200
++++ system-config-kdump-2.0.13/po/fr.po	2018-06-04 21:30:09.460033024 +0200
+@@ -377,14 +377,14 @@ msgid " and type %s wasn't found"
+ msgstr " et le type %s n'a pas été trouvé"
+ 
+ #: ../src/system-config-kdump.py:1866
+-msgid "core will be in %s/%%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+-"le contenu sera sur le système de fichier racine dans %s/%%DATE"
++"le contenu sera sur le système de fichier racine dans %s/%%HOST_IP-%%DATE"
+ 
+ #: ../src/system-config-kdump.py:1869
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
+-msgstr "le contenu sera dans %s/%%DATE sur %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
++msgstr "le contenu sera dans %s/%%HOST_IP-%%DATE sur %s"
+ 
+ #: ../src/system-config-kdump.py:1969
+ msgid ""
+diff -up system-config-kdump-2.0.13/po/gl.po.vmcore-path system-config-kdump-2.0.13/po/gl.po
+--- system-config-kdump-2.0.13/po/gl.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/gl.po	2018-06-04 21:30:09.460033024 +0200
+@@ -310,12 +310,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/gu.po.vmcore-path system-config-kdump-2.0.13/po/gu.po
+--- system-config-kdump-2.0.13/po/gu.po.vmcore-path	2018-06-04 21:30:09.448032980 +0200
++++ system-config-kdump-2.0.13/po/gu.po	2018-06-04 21:30:09.460033024 +0200
+@@ -340,13 +340,13 @@ msgid " and type %s wasn't found"
+ msgstr " અને પ્રકાર %s મળ્યુ ન હતુ"
+ 
+ #: ../src/system-config-kdump.py:1819
+-msgid "core will be in %s/%%DATE on rootfs"
+-msgstr "કોર rootfs પર %s/%%DATE માં હશે"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
++msgstr "કોર rootfs પર %s/%%HOST_IP-%%DATE માં હશે"
+ 
+ #: ../src/system-config-kdump.py:1822
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
+-msgstr "કોર એ %s પર %s/%%DATE માં હશે"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
++msgstr "કોર એ %s પર %s/%%HOST_IP-%%DATE માં હશે"
+ 
+ #: ../src/system-config-kdump.py:1915
+ msgid ""
+diff -up system-config-kdump-2.0.13/po/he.po.vmcore-path system-config-kdump-2.0.13/po/he.po
+--- system-config-kdump-2.0.13/po/he.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/he.po	2018-06-04 21:30:09.460033024 +0200
+@@ -309,12 +309,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/hi.po.vmcore-path system-config-kdump-2.0.13/po/hi.po
+--- system-config-kdump-2.0.13/po/hi.po.vmcore-path	2018-06-04 21:30:09.448032980 +0200
++++ system-config-kdump-2.0.13/po/hi.po	2018-06-04 21:30:09.460033024 +0200
+@@ -341,13 +341,13 @@ msgid " and type %s wasn't found"
+ msgstr " और %s प्रकार नहीं मिला था"
+ 
+ #: ../src/system-config-kdump.py:1819
+-msgid "core will be in %s/%%DATE on rootfs"
+-msgstr "कोर %s/%%DATE में rootfs पर रहेगा"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
++msgstr "कोर %s/%%HOST_IP-%%DATE में rootfs पर रहेगा"
+ 
+ #: ../src/system-config-kdump.py:1822
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
+-msgstr "%s/%%DATE में %s पर कोर रहेगा"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
++msgstr "%s/%%HOST_IP-%%DATE में %s पर कोर रहेगा"
+ 
+ #: ../src/system-config-kdump.py:1915
+ msgid ""
+diff -up system-config-kdump-2.0.13/po/hr.po.vmcore-path system-config-kdump-2.0.13/po/hr.po
+--- system-config-kdump-2.0.13/po/hr.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/hr.po	2018-06-04 21:30:09.461033028 +0200
+@@ -323,12 +323,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/hu.po.vmcore-path system-config-kdump-2.0.13/po/hu.po
+--- system-config-kdump-2.0.13/po/hu.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/hu.po	2018-06-04 21:30:09.461033028 +0200
+@@ -354,13 +354,13 @@ msgid " and type %s wasn't found"
+ msgstr " és a(z) %s típus nem található"
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr "core itt lesz elérhető: /var/crash/%DATE a rootfs-ben"
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
+-msgstr "core itt lesz elérhető: %s/%%DATE - %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
++msgstr "core itt lesz elérhető: %s/%%HOST_IP-%%DATE - %s"
+ 
+ #: ../src/system-config-kdump.py:1896
+ msgid ""
+diff -up system-config-kdump-2.0.13/po/hy.po.vmcore-path system-config-kdump-2.0.13/po/hy.po
+--- system-config-kdump-2.0.13/po/hy.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/hy.po	2018-06-04 21:30:09.461033028 +0200
+@@ -309,12 +309,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/id.po.vmcore-path system-config-kdump-2.0.13/po/id.po
+--- system-config-kdump-2.0.13/po/id.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/id.po	2018-06-04 21:30:09.461033028 +0200
+@@ -322,12 +322,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/is.po.vmcore-path system-config-kdump-2.0.13/po/is.po
+--- system-config-kdump-2.0.13/po/is.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/is.po	2018-06-04 21:30:09.461033028 +0200
+@@ -311,12 +311,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/it.po.vmcore-path system-config-kdump-2.0.13/po/it.po
+--- system-config-kdump-2.0.13/po/it.po.vmcore-path	2018-06-04 21:30:09.448032980 +0200
++++ system-config-kdump-2.0.13/po/it.po	2018-06-04 21:30:09.461033028 +0200
+@@ -370,13 +370,13 @@ msgid " and type %s wasn't found"
+ msgstr " e tipo %s non trovata"
+ 
+ #: ../src/system-config-kdump.py:1866
+-msgid "core will be in %s/%%DATE on rootfs"
+-msgstr "il core si trova su %s/%%DATE su rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
++msgstr "il core si trova su %s/%%HOST_IP-%%DATE su rootfs"
+ 
+ #: ../src/system-config-kdump.py:1869
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
+-msgstr "il core si trova su %s/%%DATE su %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
++msgstr "il core si trova su %s/%%HOST_IP-%%DATE su %s"
+ 
+ #: ../src/system-config-kdump.py:1969
+ msgid ""
+diff -up system-config-kdump-2.0.13/po/ja.po.vmcore-path system-config-kdump-2.0.13/po/ja.po
+--- system-config-kdump-2.0.13/po/ja.po.vmcore-path	2018-06-04 21:30:09.449032984 +0200
++++ system-config-kdump-2.0.13/po/ja.po	2018-06-04 21:30:09.462033031 +0200
+@@ -353,13 +353,13 @@ msgstr "そしてタイプ %s は見つ�
+ 
+ #: ../src/system-config-kdump.py:1864
+ #, python-format
+-msgid "core will be in %s/%%DATE on rootfs"
+-msgstr "core は rootfs の %s/%%DATE にあります"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
++msgstr "core は rootfs の %s/%%HOST_IP-%%DATE にあります"
+ 
+ #: ../src/system-config-kdump.py:1867
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
+-msgstr "core は %s/%%DATE (%s において) にあります"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
++msgstr "core は %s/%%HOST_IP-%%DATE (%s において) にあります"
+ 
+ #: ../src/system-config-kdump.py:1967
+ msgid ""
+diff -up system-config-kdump-2.0.13/po/ka.po.vmcore-path system-config-kdump-2.0.13/po/ka.po
+--- system-config-kdump-2.0.13/po/ka.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/ka.po	2018-06-04 21:30:09.462033031 +0200
+@@ -310,12 +310,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/kn.po.vmcore-path system-config-kdump-2.0.13/po/kn.po
+--- system-config-kdump-2.0.13/po/kn.po.vmcore-path	2018-06-04 21:30:09.449032984 +0200
++++ system-config-kdump-2.0.13/po/kn.po	2018-06-04 21:30:09.462033031 +0200
+@@ -343,13 +343,13 @@ msgid " and type %s wasn't found"
+ msgstr " ಹಾಗು %s ಎಂಬ ಬಗೆಯು ಕಂಡುಬಂದಿಲ್ಲ"
+ 
+ #: ../src/system-config-kdump.py:1819
+-msgid "core will be in %s/%%DATE on rootfs"
+-msgstr "rootfs ನಲ್ಲಿನ %s/%%DATE ನಲ್ಲಿ ಕೋರ್ ಇರುತ್ತದೆ"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
++msgstr "rootfs ನಲ್ಲಿನ %s/%%HOST_IP-%%DATE ನಲ್ಲಿ ಕೋರ್ ಇರುತ್ತದೆ"
+ 
+ #: ../src/system-config-kdump.py:1822
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
+-msgstr "%s/%%DATE ನಲ್ಲಿ (%s ನಲ್ಲಿನ) ಕೋರ್ ಇರುತ್ತದೆ"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
++msgstr "%s/%%HOST_IP-%%DATE ನಲ್ಲಿ (%s ನಲ್ಲಿನ) ಕೋರ್ ಇರುತ್ತದೆ"
+ 
+ #: ../src/system-config-kdump.py:1915
+ msgid ""
+diff -up system-config-kdump-2.0.13/po/ko.po.vmcore-path system-config-kdump-2.0.13/po/ko.po
+--- system-config-kdump-2.0.13/po/ko.po.vmcore-path	2018-06-04 21:30:09.449032984 +0200
++++ system-config-kdump-2.0.13/po/ko.po	2018-06-04 21:30:09.462033031 +0200
+@@ -353,13 +353,13 @@ msgid " and type %s wasn't found"
+ msgstr "-유형%s-를 찾을 수 없습니다"
+ 
+ #: ../src/system-config-kdump.py:1866
+-msgid "core will be in %s/%%DATE on rootfs"
+-msgstr "코어는 rootfs 상의 %s/%%DATE에 있음 "
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
++msgstr "코어는 rootfs 상의 %s/%%HOST_IP-%%DATE에 있음 "
+ 
+ #: ../src/system-config-kdump.py:1869
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
+-msgstr "코어는 %s 상의 %s/%%DATE에 있음"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
++msgstr "코어는 %s 상의 %s/%%HOST_IP-%%DATE에 있음"
+ 
+ #: ../src/system-config-kdump.py:1969
+ msgid ""
+diff -up system-config-kdump-2.0.13/po/ku.po.vmcore-path system-config-kdump-2.0.13/po/ku.po
+--- system-config-kdump-2.0.13/po/ku.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/ku.po	2018-06-04 21:30:09.462033031 +0200
+@@ -309,12 +309,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/lo.po.vmcore-path system-config-kdump-2.0.13/po/lo.po
+--- system-config-kdump-2.0.13/po/lo.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/lo.po	2018-06-04 21:30:09.463033035 +0200
+@@ -309,12 +309,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/lt.po.vmcore-path system-config-kdump-2.0.13/po/lt.po
+--- system-config-kdump-2.0.13/po/lt.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/lt.po	2018-06-04 21:30:09.463033035 +0200
+@@ -309,12 +309,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/lv.po.vmcore-path system-config-kdump-2.0.13/po/lv.po
+--- system-config-kdump-2.0.13/po/lv.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/lv.po	2018-06-04 21:30:09.463033035 +0200
+@@ -325,12 +325,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/mai.po.vmcore-path system-config-kdump-2.0.13/po/mai.po
+--- system-config-kdump-2.0.13/po/mai.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/mai.po	2018-06-04 21:30:09.463033035 +0200
+@@ -321,12 +321,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/mk.po.vmcore-path system-config-kdump-2.0.13/po/mk.po
+--- system-config-kdump-2.0.13/po/mk.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/mk.po	2018-06-04 21:30:09.463033035 +0200
+@@ -317,12 +317,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/ml.po.vmcore-path system-config-kdump-2.0.13/po/ml.po
+--- system-config-kdump-2.0.13/po/ml.po.vmcore-path	2018-06-04 21:30:09.449032984 +0200
++++ system-config-kdump-2.0.13/po/ml.po	2018-06-04 21:30:09.463033035 +0200
+@@ -344,13 +344,13 @@ msgid " and type %s wasn't found"
+ msgstr ", %s എന്ന രീതിയും ലഭ്യമല്ല"
+ 
+ #: ../src/system-config-kdump.py:1819
+-msgid "core will be in %s/%%DATE on rootfs"
+-msgstr "rootfs-ല്‍ കോര്‍ %s/%%DATE-ല്‍ ആയിരിയ്ക്കും"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
++msgstr "rootfs-ല്‍ കോര്‍ %s/%%HOST_IP-%%DATE-ല്‍ ആയിരിയ്ക്കും"
+ 
+ #: ../src/system-config-kdump.py:1822
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
+-msgstr "%s-ല്‍ കോര്‍ %s/%%DATE-ല്‍ ആയിരിയ്ക്കും"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
++msgstr "%s-ല്‍ കോര്‍ %s/%%HOST_IP-%%DATE-ല്‍ ആയിരിയ്ക്കും"
+ 
+ #: ../src/system-config-kdump.py:1915
+ msgid ""
+diff -up system-config-kdump-2.0.13/po/mr.po.vmcore-path system-config-kdump-2.0.13/po/mr.po
+--- system-config-kdump-2.0.13/po/mr.po.vmcore-path	2018-06-04 21:30:09.449032984 +0200
++++ system-config-kdump-2.0.13/po/mr.po	2018-06-04 21:30:09.464033038 +0200
+@@ -344,13 +344,13 @@ msgid " and type %s wasn't found"
+ msgstr " व प्रकार %s आढळले नाही"
+ 
+ #: ../src/system-config-kdump.py:1819
+-msgid "core will be in %s/%%DATE on rootfs"
+-msgstr "rootfs वर कोर %s/%%DATE येथे आढळेल"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
++msgstr "rootfs वर कोर %s/%%HOST_IP-%%DATE येथे आढळेल"
+ 
+ #: ../src/system-config-kdump.py:1822
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
+-msgstr "कोर %s/%%DATE येथे आढळेल, %s वर"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
++msgstr "कोर %s/%%HOST_IP-%%DATE येथे आढळेल, %s वर"
+ 
+ #: ../src/system-config-kdump.py:1915
+ msgid ""
+diff -up system-config-kdump-2.0.13/po/ms.po.vmcore-path system-config-kdump-2.0.13/po/ms.po
+--- system-config-kdump-2.0.13/po/ms.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/ms.po	2018-06-04 21:30:09.464033038 +0200
+@@ -323,12 +323,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/my.po.vmcore-path system-config-kdump-2.0.13/po/my.po
+--- system-config-kdump-2.0.13/po/my.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/my.po	2018-06-04 21:30:09.464033038 +0200
+@@ -309,12 +309,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/nb.po.vmcore-path system-config-kdump-2.0.13/po/nb.po
+--- system-config-kdump-2.0.13/po/nb.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/nb.po	2018-06-04 21:30:09.464033038 +0200
+@@ -310,12 +310,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/nds.po.vmcore-path system-config-kdump-2.0.13/po/nds.po
+--- system-config-kdump-2.0.13/po/nds.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/nds.po	2018-06-04 21:30:09.464033038 +0200
+@@ -310,12 +310,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/nl.po.vmcore-path system-config-kdump-2.0.13/po/nl.po
+--- system-config-kdump-2.0.13/po/nl.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/nl.po	2018-06-04 21:30:09.465033042 +0200
+@@ -359,13 +359,13 @@ msgid " and type %s wasn't found"
+ msgstr " en type %s werd niet gevonden"
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr "kern zal zich bevinden in /var/crash/%DATE op rootfs"
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
+-msgstr "kern zal zich bevinden in %s/%%DATE op %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
++msgstr "kern zal zich bevinden in %s/%%HOST_IP-%%DATE op %s"
+ 
+ #: ../src/system-config-kdump.py:1896
+ msgid ""
+diff -up system-config-kdump-2.0.13/po/nn.po.vmcore-path system-config-kdump-2.0.13/po/nn.po
+--- system-config-kdump-2.0.13/po/nn.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/nn.po	2018-06-04 21:30:09.465033042 +0200
+@@ -309,12 +309,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/nso.po.vmcore-path system-config-kdump-2.0.13/po/nso.po
+--- system-config-kdump-2.0.13/po/nso.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/nso.po	2018-06-04 21:30:09.465033042 +0200
+@@ -309,12 +309,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/or.po.vmcore-path system-config-kdump-2.0.13/po/or.po
+--- system-config-kdump-2.0.13/po/or.po.vmcore-path	2018-06-04 21:30:09.450032988 +0200
++++ system-config-kdump-2.0.13/po/or.po	2018-06-04 21:30:09.465033042 +0200
+@@ -344,13 +344,13 @@ msgid " and type %s wasn't found"
+ msgstr "ଏବଂ ପ୍ରକାର %s ମିଳିନଥିଲା"
+ 
+ #: ../src/system-config-kdump.py:1819
+-msgid "core will be in %s/%%DATE on rootfs"
+-msgstr "କୋରଟି  rootfs ରେ %s/%%DATE ରେ ରହିବ"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
++msgstr "କୋରଟି  rootfs ରେ %s/%%HOST_IP-%%DATE ରେ ରହିବ"
+ 
+ #: ../src/system-config-kdump.py:1822
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
+-msgstr "କୋରଟି %s/%%DATE ରେ %s ଉପରେ ରହିବ"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
++msgstr "କୋରଟି %s/%%HOST_IP-%%DATE ରେ %s ଉପରେ ରହିବ"
+ 
+ #: ../src/system-config-kdump.py:1915
+ msgid ""
+diff -up system-config-kdump-2.0.13/po/pa.po.vmcore-path system-config-kdump-2.0.13/po/pa.po
+--- system-config-kdump-2.0.13/po/pa.po.vmcore-path	2018-06-04 21:30:09.450032988 +0200
++++ system-config-kdump-2.0.13/po/pa.po	2018-06-04 21:30:09.465033042 +0200
+@@ -335,13 +335,13 @@ msgid " and type %s wasn't found"
+ msgstr "ਅਤੇ ਕਿਸਮ %s ਨਹੀਂ ਲੱਭੀ"
+ 
+ #: ../src/system-config-kdump.py:1819
+-msgid "core will be in %s/%%DATE on rootfs"
+-msgstr "ਕੋਰ %s/%%DATE ਵਿੱਚ rootfs ਉੱਪਰ ਹੋਵੇਗੀ"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
++msgstr "ਕੋਰ %s/%%HOST_IP-%%DATE ਵਿੱਚ rootfs ਉੱਪਰ ਹੋਵੇਗੀ"
+ 
+ #: ../src/system-config-kdump.py:1822
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
+-msgstr "ਕੋਰ %s/%%DATE ਵਿੱਚ %s ਉੱਪਰ ਹੋਵੇਗੀ"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
++msgstr "ਕੋਰ %s/%%HOST_IP-%%DATE ਵਿੱਚ %s ਉੱਪਰ ਹੋਵੇਗੀ"
+ 
+ #: ../src/system-config-kdump.py:1915
+ msgid ""
+diff -up system-config-kdump-2.0.13/po/pl.po.vmcore-path system-config-kdump-2.0.13/po/pl.po
+--- system-config-kdump-2.0.13/po/pl.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/pl.po	2018-06-04 21:30:09.465033042 +0200
+@@ -359,14 +359,14 @@ msgid " and type %s wasn't found"
+ msgstr " i typie %s nie została odnaleziona"
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ "plik core zostanie zapisany w /var/crash/%DATE na głównym systemie plików"
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
+-msgstr "plik core zostanie zapisany w %s/%%DATE w %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
++msgstr "plik core zostanie zapisany w %s/%%HOST_IP-%%DATE w %s"
+ 
+ #: ../src/system-config-kdump.py:1896
+ msgid ""
+diff -up system-config-kdump-2.0.13/po/pt_BR.po.vmcore-path system-config-kdump-2.0.13/po/pt_BR.po
+--- system-config-kdump-2.0.13/po/pt_BR.po.vmcore-path	2018-06-04 21:30:09.450032988 +0200
++++ system-config-kdump-2.0.13/po/pt_BR.po	2018-06-04 21:30:09.466033045 +0200
+@@ -372,13 +372,13 @@ msgid " and type %s wasn't found"
+ msgstr "e o tipo %s não foi encontrada"
+ 
+ #: ../src/system-config-kdump.py:1866
+-msgid "core will be in %s/%%DATE on rootfs"
+-msgstr "core estará em %s/%%DATE em rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
++msgstr "core estará em %s/%%HOST_IP-%%DATE em rootfs"
+ 
+ #: ../src/system-config-kdump.py:1869
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
+-msgstr "core estará em %s/%%DATE em %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
++msgstr "core estará em %s/%%HOST_IP-%%DATE em %s"
+ 
+ #: ../src/system-config-kdump.py:1969
+ msgid ""
+diff -up system-config-kdump-2.0.13/po/pt.po.vmcore-path system-config-kdump-2.0.13/po/pt.po
+--- system-config-kdump-2.0.13/po/pt.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/pt.po	2018-06-04 21:30:09.466033045 +0200
+@@ -343,12 +343,12 @@ msgid " and type %s wasn't found"
+ msgstr " e o tipo %s não foi encontrado"
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/ro.po.vmcore-path system-config-kdump-2.0.13/po/ro.po
+--- system-config-kdump-2.0.13/po/ro.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/ro.po	2018-06-04 21:30:09.466033045 +0200
+@@ -324,12 +324,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/ru.po.vmcore-path system-config-kdump-2.0.13/po/ru.po
+--- system-config-kdump-2.0.13/po/ru.po.vmcore-path	2018-06-04 21:30:09.450032988 +0200
++++ system-config-kdump-2.0.13/po/ru.po	2018-06-04 21:30:09.466033045 +0200
+@@ -363,13 +363,13 @@ msgid " and type %s wasn't found"
+ msgstr "  (тип %s) не найден"
+ 
+ #: ../src/system-config-kdump.py:1866
+-msgid "core will be in %s/%%DATE on rootfs"
+-msgstr "данные будут сохранены в %s/%%DATE в rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
++msgstr "данные будут сохранены в %s/%%HOST_IP-%%DATE в rootfs"
+ 
+ #: ../src/system-config-kdump.py:1869
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
+-msgstr "данные будут сохранены в  %s/%%DATE в %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
++msgstr "данные будут сохранены в  %s/%%HOST_IP-%%DATE в %s"
+ 
+ #: ../src/system-config-kdump.py:1969
+ msgid ""
+diff -up system-config-kdump-2.0.13/po/si.po.vmcore-path system-config-kdump-2.0.13/po/si.po
+--- system-config-kdump-2.0.13/po/si.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/si.po	2018-06-04 21:30:09.466033045 +0200
+@@ -310,12 +310,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/sk.po.vmcore-path system-config-kdump-2.0.13/po/sk.po
+--- system-config-kdump-2.0.13/po/sk.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/sk.po	2018-06-04 21:30:09.467033049 +0200
+@@ -324,12 +324,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/sl.po.vmcore-path system-config-kdump-2.0.13/po/sl.po
+--- system-config-kdump-2.0.13/po/sl.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/sl.po	2018-06-04 21:30:09.467033049 +0200
+@@ -320,12 +320,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/sq.po.vmcore-path system-config-kdump-2.0.13/po/sq.po
+--- system-config-kdump-2.0.13/po/sq.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/sq.po	2018-06-04 21:30:09.467033049 +0200
+@@ -310,12 +310,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/sr@latin.po.vmcore-path system-config-kdump-2.0.13/po/sr@latin.po
+--- system-config-kdump-2.0.13/po/sr@latin.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/sr@latin.po	2018-06-04 21:30:09.467033049 +0200
+@@ -324,12 +324,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/sr.po.vmcore-path system-config-kdump-2.0.13/po/sr.po
+--- system-config-kdump-2.0.13/po/sr.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/sr.po	2018-06-04 21:30:09.467033049 +0200
+@@ -324,12 +324,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/sv.po.vmcore-path system-config-kdump-2.0.13/po/sv.po
+--- system-config-kdump-2.0.13/po/sv.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/sv.po	2018-06-04 21:30:09.468033053 +0200
+@@ -357,13 +357,13 @@ msgid " and type %s wasn't found"
+ msgstr " och typen %s finns inte"
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr "core kommer finnas i /var/crash/%DATE på rotfilsystemet"
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
+-msgstr "core kommer finnas i %s/%%DATE på %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
++msgstr "core kommer finnas i %s/%%HOST_IP-%%DATE på %s"
+ 
+ #: ../src/system-config-kdump.py:1896
+ msgid ""
+diff -up system-config-kdump-2.0.13/po/system-config-kdump.pot.vmcore-path system-config-kdump-2.0.13/po/system-config-kdump.pot
+--- system-config-kdump-2.0.13/po/system-config-kdump.pot.vmcore-path	2018-06-04 21:32:50.054615418 +0200
++++ system-config-kdump-2.0.13/po/system-config-kdump.pot	2018-06-04 21:40:36.769307375 +0200
+@@ -304,12 +304,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1834
+-msgid "core will be in %s/%%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1837
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1930
+diff -up system-config-kdump-2.0.13/po/ta.po.vmcore-path system-config-kdump-2.0.13/po/ta.po
+--- system-config-kdump-2.0.13/po/ta.po.vmcore-path	2018-06-04 21:30:09.451032991 +0200
++++ system-config-kdump-2.0.13/po/ta.po	2018-06-04 21:30:09.468033053 +0200
+@@ -340,13 +340,13 @@ msgid " and type %s wasn't found"
+ msgstr "வகை %s காணப்படவில்லை"
+ 
+ #: ../src/system-config-kdump.py:1819
+-msgid "core will be in %s/%%DATE on rootfs"
+-msgstr "கோரானது rootfs இல் %s/%%DATE இல் இருக்கும்"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
++msgstr "கோரானது rootfs இல் %s/%%HOST_IP-%%DATE இல் இருக்கும்"
+ 
+ #: ../src/system-config-kdump.py:1822
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
+-msgstr "கோரானது %s இல் %s/%%DATE இல் இருக்கும்"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
++msgstr "கோரானது %s இல் %s/%%HOST_IP-%%DATE இல் இருக்கும்"
+ 
+ #: ../src/system-config-kdump.py:1915
+ msgid ""
+diff -up system-config-kdump-2.0.13/po/te.po.vmcore-path system-config-kdump-2.0.13/po/te.po
+--- system-config-kdump-2.0.13/po/te.po.vmcore-path	2018-06-04 21:30:09.451032991 +0200
++++ system-config-kdump-2.0.13/po/te.po	2018-06-04 21:30:09.468033053 +0200
+@@ -338,13 +338,13 @@ msgid " and type %s wasn't found"
+ msgstr " మరియు రకము %s కనుగొనబడలేదు"
+ 
+ #: ../src/system-config-kdump.py:1819
+-msgid "core will be in %s/%%DATE on rootfs"
+-msgstr "rootfs పైన కోర్ అనునది %s/%%DATE నందు వుండును"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
++msgstr "rootfs పైన కోర్ అనునది %s/%%HOST_IP-%%DATE నందు వుండును"
+ 
+ #: ../src/system-config-kdump.py:1822
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
+-msgstr "%s పైన కోర్ అనునది %s/%%DATE నందు వుండును"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
++msgstr "%s పైన కోర్ అనునది %s/%%HOST_IP-%%DATE నందు వుండును"
+ 
+ #: ../src/system-config-kdump.py:1915
+ msgid ""
+diff -up system-config-kdump-2.0.13/po/th.po.vmcore-path system-config-kdump-2.0.13/po/th.po
+--- system-config-kdump-2.0.13/po/th.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/th.po	2018-06-04 21:30:09.468033053 +0200
+@@ -309,12 +309,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/tr.po.vmcore-path system-config-kdump-2.0.13/po/tr.po
+--- system-config-kdump-2.0.13/po/tr.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/tr.po	2018-06-04 21:30:09.468033053 +0200
+@@ -310,12 +310,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/uk.po.vmcore-path system-config-kdump-2.0.13/po/uk.po
+--- system-config-kdump-2.0.13/po/uk.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/uk.po	2018-06-04 21:30:09.469033057 +0200
+@@ -353,13 +353,13 @@ msgid " and type %s wasn't found"
+ msgstr " та типом %s не знайдено"
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr "дані ядра буде збережено до /var/crash/%DATE у rootfs"
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
+-msgstr "дані ядра буде збережено до %s/%%DATE у %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
++msgstr "дані ядра буде збережено до %s/%%HOST_IP-%%DATE у %s"
+ 
+ #: ../src/system-config-kdump.py:1896
+ msgid ""
+diff -up system-config-kdump-2.0.13/po/ur.po.vmcore-path system-config-kdump-2.0.13/po/ur.po
+--- system-config-kdump-2.0.13/po/ur.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/ur.po	2018-06-04 21:30:09.469033057 +0200
+@@ -309,12 +309,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/vi.po.vmcore-path system-config-kdump-2.0.13/po/vi.po
+--- system-config-kdump-2.0.13/po/vi.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/vi.po	2018-06-04 21:30:09.469033057 +0200
+@@ -310,12 +310,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/po/zh_CN.po.vmcore-path system-config-kdump-2.0.13/po/zh_CN.po
+--- system-config-kdump-2.0.13/po/zh_CN.po.vmcore-path	2018-06-04 21:30:09.451032991 +0200
++++ system-config-kdump-2.0.13/po/zh_CN.po	2018-06-04 21:30:09.469033057 +0200
+@@ -348,13 +348,13 @@ msgid " and type %s wasn't found"
+ msgstr "和类型 %s 没有找到"
+ 
+ #: ../src/system-config-kdump.py:1866
+-msgid "core will be in %s/%%DATE on rootfs"
+-msgstr "core 将位于 rootfs 的 %s/%%DATE 中"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
++msgstr "core 将位于 rootfs 的 %s/%%HOST_IP-%%DATE 中"
+ 
+ #: ../src/system-config-kdump.py:1869
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
+-msgstr "core 将位于 %s 的 %s/%%DATE 中"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
++msgstr "core 将位于 %s 的 %s/%%HOST_IP-%%DATE 中"
+ 
+ #: ../src/system-config-kdump.py:1969
+ msgid ""
+diff -up system-config-kdump-2.0.13/po/zh_TW.po.vmcore-path system-config-kdump-2.0.13/po/zh_TW.po
+--- system-config-kdump-2.0.13/po/zh_TW.po.vmcore-path	2018-06-04 21:30:09.451032991 +0200
++++ system-config-kdump-2.0.13/po/zh_TW.po	2018-06-04 21:30:09.469033057 +0200
+@@ -343,13 +343,13 @@ msgid " and type %s wasn't found"
+ msgstr "而其類型為 %s"
+ 
+ #: ../src/system-config-kdump.py:1866
+-msgid "core will be in %s/%%DATE on rootfs"
+-msgstr "核心會在 %s/%%DATE，檔案系統為 rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
++msgstr "核心會在 %s/%%HOST_IP-%%DATE，檔案系統為 rootfs"
+ 
+ #: ../src/system-config-kdump.py:1869
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
+-msgstr "核心會在 %s/%%DATE，檔案系統為 %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
++msgstr "核心會在 %s/%%HOST_IP-%%DATE，檔案系統為 %s"
+ 
+ #: ../src/system-config-kdump.py:1969
+ msgid ""
+diff -up system-config-kdump-2.0.13/po/zu.po.vmcore-path system-config-kdump-2.0.13/po/zu.po
+--- system-config-kdump-2.0.13/po/zu.po.vmcore-path	2013-07-23 13:56:22.000000000 +0200
++++ system-config-kdump-2.0.13/po/zu.po	2018-06-04 21:30:09.469033057 +0200
+@@ -309,12 +309,12 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1793
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%HOST_IP-%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1796
+ #, python-format
+-msgid "core will be in %s/%%DATE on %s"
++msgid "core will be in %s/%%HOST_IP-%%DATE on %s"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1896
+diff -up system-config-kdump-2.0.13/src/system-config-kdump.py.vmcore-path system-config-kdump-2.0.13/src/system-config-kdump.py
+--- system-config-kdump-2.0.13/src/system-config-kdump.py.vmcore-path	2018-06-04 21:30:09.454033002 +0200
++++ system-config-kdump-2.0.13/src/system-config-kdump.py	2018-06-04 21:30:09.470033060 +0200
+@@ -1893,10 +1893,10 @@ class MainWindow:
+         """
+         if partition == "":
+             self.local_hint_label.set_text(
+-                _("core will be in %s/%%DATE on rootfs") % path)
++                _("core will be in %s/%%HOST_IP-%%DATE on rootfs") % path)
+         else:
+             self.local_hint_label.set_text(
+-                _("core will be in %s/%%DATE on %s") %(path, partition))
++                _("core will be in %s/%%HOST_IP-%%DATE on %s") %(path, partition))
+ 
+     def update_nfs_hint_label(self):
+         if (self.my_settings.target_type == TYPE_NFS

@@ -3,7 +3,7 @@
 Summary: A graphical interface for configuring kernel crash dumping
 Name: system-config-kdump
 Version: 2.0.13
-Release: 20%{?dist}
+Release: 21%{?dist}
 URL: https://than.fedorapeople.org/system-config-kdump/
 License: GPLv2+
 Group: System Environment/Base
@@ -121,6 +121,9 @@ Patch25: system-config-kdump-2.0.13-make-manual-menu-insensitiv.patch
 # bz#1404780 - this patch fixes the case 512M-2G:64M,2G-:128M
 Patch26: system-config-kdump-2.0.13-support_crashkernel_extended_options-additional.patch
 
+# bz#1561840 - fix vmcore path, it should be /var/crash/%%HOST_IP-%%DATE
+Patch27: system-config-kdump-2.0.13-vmcore-path.patch
+
 %description
 system-config-kdump is a graphical tool for configuring kernel crash
 dumping via kdump and kexec.
@@ -153,6 +156,7 @@ dumping via kdump and kexec.
 %patch24 -p1 -b .bz#1370143-fuzzy-translations
 %patch25 -p1 -b .make-manuall-menu-insensitiv
 %patch26 -p1 -b .bz#1404780-support_crashkernel_extended_options-additional
+%patch27 -p1 -b .vmcore-path
 
 %build
 make
@@ -207,6 +211,9 @@ fi
 %doc %{_datadir}/omf/system-config-kdump
 
 %changelog
+* Mon Jun 04 2018 Than Ngo <than@redhat.com> - 2.0.13-21
+- Resolves: bz#1561840 - fix vmcore path
+
 * Tue Jan 09 2018 Than Ngo <than@redhat.com> - 2.0.13-20
 - Related: bz#1404780 - support crashkernel=<range1>:<size1>,<range2>:<size2>
 
