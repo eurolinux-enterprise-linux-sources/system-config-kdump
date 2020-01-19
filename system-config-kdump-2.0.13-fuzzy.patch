@@ -1,0 +1,482 @@
+diff -up system-config-kdump-2.0.13/po/as.po.bz#1370143-fuzzy-translations system-config-kdump-2.0.13/po/as.po
+--- system-config-kdump-2.0.13/po/as.po.bz#1370143-fuzzy-translations	2017-11-07 23:10:24.943346711 +0100
++++ system-config-kdump-2.0.13/po/as.po	2017-11-07 23:11:20.917746969 +0100
+@@ -285,6 +285,10 @@ msgstr "মূল সংগ্ৰাহ�
+ msgid "system-config-kdump: Bad core collector"
+ msgstr "system-config-kdump: ত্ৰুটিপূৰ্ণ কোৰ সংগ্ৰহক"
+ 
++#: ../src/system-config-kdump.py:1372
++msgid "Root file system"
++msgstr "স্থানীয় ফাইলচিস্টেম"
++
+ #: ../src/system-config-kdump.py:1410
+ #, python-format
+ msgid "Unable to get command line arguments for %s"
+@@ -340,8 +344,8 @@ msgid " and type %s wasn't found"
+ msgstr " আৰু %s ধৰণ পোৱা নাযায়"
+ 
+ #: ../src/system-config-kdump.py:1819
+-msgid "core will be in /var/crash/%DATE on rootfs"
+-msgstr "কেন্দ্ৰ rootfs ত /var/crash/%DATE ত থাকিব"
++msgid "core will be in %s/%%DATE on rootfs"
++msgstr "কেন্দ্ৰ rootfs ত %s/%%DATE ত থাকিব"
+ 
+ #: ../src/system-config-kdump.py:1822
+ #, python-format
+@@ -503,7 +507,7 @@ msgid "(MB)"
+ msgstr "(MB)"
+ 
+ #: ../src/system-config-kdump.glade:618
+-msgid "Basic Settings"
++msgid "Basic settings"
+ msgstr "মৌলিক বৈশিষ্ট্য"
+ 
+ #: ../src/system-config-kdump.glade:654
+diff -up system-config-kdump-2.0.13/po/de.po.bz#1370143-fuzzy-translations system-config-kdump-2.0.13/po/de.po
+--- system-config-kdump-2.0.13/po/de.po.bz#1370143-fuzzy-translations	2017-11-07 23:10:24.972345883 +0100
++++ system-config-kdump-2.0.13/po/de.po	2017-11-07 23:10:25.000345084 +0100
+@@ -368,8 +368,8 @@ msgid " and type %s wasn't found"
+ msgstr "und der Typ %s wurde nicht gefunden"
+ 
+ #: ../src/system-config-kdump.py:1866
+-msgid "core will be in /var/crash/%DATE on rootfs"
+-msgstr "Core wird in /var/crash/%DATE auf rootfs abgelegt"
++msgid "core will be in %s/%%DATE on rootfs"
++msgstr "Core wird in %s/%%DATE auf rootfs abgelegt"
+ 
+ #: ../src/system-config-kdump.py:1869
+ #, python-format
+@@ -532,7 +532,7 @@ msgid "(MB)"
+ msgstr "(MB)"
+ 
+ #: ../src/system-config-kdump.glade:594
+-msgid "Basic Settings"
++msgid "Basic settings"
+ msgstr "Grundeinstellungen"
+ 
+ #: ../src/system-config-kdump.glade:630
+diff -up system-config-kdump-2.0.13/po/es.po.bz#1370143-fuzzy-translations system-config-kdump-2.0.13/po/es.po
+--- system-config-kdump-2.0.13/po/es.po.bz#1370143-fuzzy-translations	2017-11-07 23:10:24.972345883 +0100
++++ system-config-kdump-2.0.13/po/es.po	2017-11-07 23:10:25.000345084 +0100
+@@ -371,8 +371,8 @@ msgid " and type %s wasn't found"
+ msgstr " y no fue hallado el tipo %s"
+ 
+ #: ../src/system-config-kdump.py:1866
+-msgid "core will be in /var/crash/%DATE on rootfs"
+-msgstr "núcleo estará en /var/crash/%DATE en rootfs"
++msgid "core will be in %s/%%DATE on rootfs"
++msgstr "núcleo estará en %s/%%DATE en rootfs"
+ 
+ #: ../src/system-config-kdump.py:1869
+ #, python-format
+@@ -535,7 +535,7 @@ msgid "(MB)"
+ msgstr "(MB)"
+ 
+ #: ../src/system-config-kdump.glade:594
+-msgid "Basic Settings"
++msgid "Basic settings"
+ msgstr "Configuraciones básicas"
+ 
+ #: ../src/system-config-kdump.glade:630
+diff -up system-config-kdump-2.0.13/po/fr.po.bz#1370143-fuzzy-translations system-config-kdump-2.0.13/po/fr.po
+--- system-config-kdump-2.0.13/po/fr.po.bz#1370143-fuzzy-translations	2017-11-07 23:10:24.973345855 +0100
++++ system-config-kdump-2.0.13/po/fr.po	2017-11-07 23:10:25.000345084 +0100
+@@ -377,9 +377,9 @@ msgid " and type %s wasn't found"
+ msgstr " et le type %s n'a pas été trouvé"
+ 
+ #: ../src/system-config-kdump.py:1866
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%DATE on rootfs"
+ msgstr ""
+-"le contenu sera sur le système de fichier racine dans /var/crash/%DATE"
++"le contenu sera sur le système de fichier racine dans %s/%%DATE"
+ 
+ #: ../src/system-config-kdump.py:1869
+ #, python-format
+@@ -542,7 +542,7 @@ msgid "(MB)"
+ msgstr "(Mio)"
+ 
+ #: ../src/system-config-kdump.glade:594
+-msgid "Basic Settings"
++msgid "Basic settings"
+ msgstr "Paramètres de base"
+ 
+ #: ../src/system-config-kdump.glade:630
+diff -up system-config-kdump-2.0.13/po/gu.po.bz#1370143-fuzzy-translations system-config-kdump-2.0.13/po/gu.po
+--- system-config-kdump-2.0.13/po/gu.po.bz#1370143-fuzzy-translations	2017-11-07 23:13:36.482877344 +0100
++++ system-config-kdump-2.0.13/po/gu.po	2017-11-07 23:15:04.746356826 +0100
+@@ -340,8 +340,8 @@ msgid " and type %s wasn't found"
+ msgstr " અને પ્રકાર %s મળ્યુ ન હતુ"
+ 
+ #: ../src/system-config-kdump.py:1819
+-msgid "core will be in /var/crash/%DATE on rootfs"
+-msgstr "કોર rootfs પર /var/crash/%DATE માં હશે"
++msgid "core will be in %s/%%DATE on rootfs"
++msgstr "કોર rootfs પર %s/%%DATE માં હશે"
+ 
+ #: ../src/system-config-kdump.py:1822
+ #, python-format
+@@ -504,7 +504,7 @@ msgid "(MB)"
+ msgstr "(MB)"
+ 
+ #: ../src/system-config-kdump.glade:618
+-msgid "Basic Settings"
++msgid "Basic settings"
+ msgstr "મૂળભૂત સુયોજનો"
+ 
+ #: ../src/system-config-kdump.glade:654
+diff -up system-config-kdump-2.0.13/po/hi.po.bz#1370143-fuzzy-translations system-config-kdump-2.0.13/po/hi.po
+--- system-config-kdump-2.0.13/po/hi.po.bz#1370143-fuzzy-translations	2017-11-07 23:15:26.619728585 +0100
++++ system-config-kdump-2.0.13/po/hi.po	2017-11-07 23:16:01.041749190 +0100
+@@ -341,8 +341,8 @@ msgid " and type %s wasn't found"
+ msgstr " और %s प्रकार नहीं मिला था"
+ 
+ #: ../src/system-config-kdump.py:1819
+-msgid "core will be in /var/crash/%DATE on rootfs"
+-msgstr "कोर /var/crash/%DATE में rootfs पर रहेगा"
++msgid "core will be in %s/%%DATE on rootfs"
++msgstr "कोर %s/%%DATE में rootfs पर रहेगा"
+ 
+ #: ../src/system-config-kdump.py:1822
+ #, python-format
+@@ -504,7 +504,7 @@ msgid "(MB)"
+ msgstr "(मे.बा.)"
+ 
+ #: ../src/system-config-kdump.glade:618
+-msgid "Basic Settings"
++msgid "Basic settings"
+ msgstr "मूल सेटिंग्स"
+ 
+ #: ../src/system-config-kdump.glade:654
+diff -up system-config-kdump-2.0.13/po/it.po.bz#1370143-fuzzy-translations system-config-kdump-2.0.13/po/it.po
+--- system-config-kdump-2.0.13/po/it.po.bz#1370143-fuzzy-translations	2017-11-07 23:10:24.974345826 +0100
++++ system-config-kdump-2.0.13/po/it.po	2017-11-07 23:10:25.001345055 +0100
+@@ -370,8 +370,8 @@ msgid " and type %s wasn't found"
+ msgstr " e tipo %s non trovata"
+ 
+ #: ../src/system-config-kdump.py:1866
+-msgid "core will be in /var/crash/%DATE on rootfs"
+-msgstr "il core si trova su /var/crash/%DATE su rootfs"
++msgid "core will be in %s/%%DATE on rootfs"
++msgstr "il core si trova su %s/%%DATE su rootfs"
+ 
+ #: ../src/system-config-kdump.py:1869
+ #, python-format
+@@ -534,7 +534,7 @@ msgid "(MB)"
+ msgstr "(MB)"
+ 
+ #: ../src/system-config-kdump.glade:594
+-msgid "Basic Settings"
++msgid "Basic settings"
+ msgstr "Impostazioni Basic"
+ 
+ #: ../src/system-config-kdump.glade:630
+diff -up system-config-kdump-2.0.13/po/ja.po.bz#1370143-fuzzy-translations system-config-kdump-2.0.13/po/ja.po
+--- system-config-kdump-2.0.13/po/ja.po.bz#1370143-fuzzy-translations	2017-11-07 23:10:24.985345512 +0100
++++ system-config-kdump-2.0.13/po/ja.po	2017-11-07 23:10:25.001345055 +0100
+@@ -512,7 +512,7 @@ msgid "(MB)"
+ msgstr "(MB)"
+ 
+ #: ../src/system-config-kdump.glade:618
+-msgid "Basic Settings"
++msgid "Basic settings"
+ msgstr "基本設定"
+ 
+ #: ../src/system-config-kdump.glade:654
+diff -up system-config-kdump-2.0.13/po/kn.po.bz#1370143-fuzzy-translations system-config-kdump-2.0.13/po/kn.po
+--- system-config-kdump-2.0.13/po/kn.po.bz#1370143-fuzzy-translations	2017-11-07 23:16:22.427140869 +0100
++++ system-config-kdump-2.0.13/po/kn.po	2017-11-07 23:16:57.425139211 +0100
+@@ -343,8 +343,8 @@ msgid " and type %s wasn't found"
+ msgstr " ಹಾಗು %s ಎಂಬ ಬಗೆಯು ಕಂಡುಬಂದಿಲ್ಲ"
+ 
+ #: ../src/system-config-kdump.py:1819
+-msgid "core will be in /var/crash/%DATE on rootfs"
+-msgstr "rootfs ನಲ್ಲಿನ /var/crash/%DATE ನಲ್ಲಿ ಕೋರ್ ಇರುತ್ತದೆ"
++msgid "core will be in %s/%%DATE on rootfs"
++msgstr "rootfs ನಲ್ಲಿನ %s/%%DATE ನಲ್ಲಿ ಕೋರ್ ಇರುತ್ತದೆ"
+ 
+ #: ../src/system-config-kdump.py:1822
+ #, python-format
+@@ -507,7 +507,7 @@ msgid "(MB)"
+ msgstr "(MB)"
+ 
+ #: ../src/system-config-kdump.glade:618
+-msgid "Basic Settings"
++msgid "Basic settings"
+ msgstr "ಮೂಲ ಸಿದ್ಧತೆಗಳು"
+ 
+ #: ../src/system-config-kdump.glade:654
+diff -up system-config-kdump-2.0.13/po/ko.po.bz#1370143-fuzzy-translations system-config-kdump-2.0.13/po/ko.po
+--- system-config-kdump-2.0.13/po/ko.po.bz#1370143-fuzzy-translations	2017-11-07 23:10:24.975345798 +0100
++++ system-config-kdump-2.0.13/po/ko.po	2017-11-07 23:10:25.001345055 +0100
+@@ -353,8 +353,8 @@ msgid " and type %s wasn't found"
+ msgstr "-유형%s-를 찾을 수 없습니다"
+ 
+ #: ../src/system-config-kdump.py:1866
+-msgid "core will be in /var/crash/%DATE on rootfs"
+-msgstr "코어는 rootfs 상의 /var/crash/%DATE에 있음 "
++msgid "core will be in %s/%%DATE on rootfs"
++msgstr "코어는 rootfs 상의 %s/%%DATE에 있음 "
+ 
+ #: ../src/system-config-kdump.py:1869
+ #, python-format
+@@ -512,7 +512,7 @@ msgid "(MB)"
+ msgstr "(MB)"
+ 
+ #: ../src/system-config-kdump.glade:594
+-msgid "Basic Settings"
++msgid "Basic settings"
+ msgstr "기본 설정"
+ 
+ #: ../src/system-config-kdump.glade:630
+diff -up system-config-kdump-2.0.13/po/ml.po.bz#1370143-fuzzy-translations system-config-kdump-2.0.13/po/ml.po
+--- system-config-kdump-2.0.13/po/ml.po.bz#1370143-fuzzy-translations	2017-11-07 23:17:14.445667437 +0100
++++ system-config-kdump-2.0.13/po/ml.po	2017-11-07 23:17:38.880947711 +0100
+@@ -344,8 +344,8 @@ msgid " and type %s wasn't found"
+ msgstr ", %s എന്ന രീതിയും ലഭ്യമല്ല"
+ 
+ #: ../src/system-config-kdump.py:1819
+-msgid "core will be in /var/crash/%DATE on rootfs"
+-msgstr "rootfs-ല്‍ കോര്‍ /var/crash/%DATE-ല്‍ ആയിരിയ്ക്കും"
++msgid "core will be in %s/%%DATE on rootfs"
++msgstr "rootfs-ല്‍ കോര്‍ %s/%%DATE-ല്‍ ആയിരിയ്ക്കും"
+ 
+ #: ../src/system-config-kdump.py:1822
+ #, python-format
+@@ -509,7 +509,7 @@ msgid "(MB)"
+ msgstr "(MB)"
+ 
+ #: ../src/system-config-kdump.glade:618
+-msgid "Basic Settings"
++msgid "Basic settings"
+ msgstr "അടിസ്ഥാന സജ്ജീകരണങ്ങള്‍"
+ 
+ #: ../src/system-config-kdump.glade:654
+diff -up system-config-kdump-2.0.13/po/mr.po.bz#1370143-fuzzy-translations system-config-kdump-2.0.13/po/mr.po
+--- system-config-kdump-2.0.13/po/mr.po.bz#1370143-fuzzy-translations	2017-11-07 23:17:48.245688681 +0100
++++ system-config-kdump-2.0.13/po/mr.po	2017-11-07 23:18:05.416199222 +0100
+@@ -344,8 +344,8 @@ msgid " and type %s wasn't found"
+ msgstr " व प्रकार %s आढळले नाही"
+ 
+ #: ../src/system-config-kdump.py:1819
+-msgid "core will be in /var/crash/%DATE on rootfs"
+-msgstr "rootfs वर कोर /var/crash/%DATE येथे आढळेल"
++msgid "core will be in %s/%%DATE on rootfs"
++msgstr "rootfs वर कोर %s/%%DATE येथे आढळेल"
+ 
+ #: ../src/system-config-kdump.py:1822
+ #, python-format
+@@ -506,7 +506,7 @@ msgid "(MB)"
+ msgstr "(MB)"
+ 
+ #: ../src/system-config-kdump.glade:618
+-msgid "Basic Settings"
++msgid "Basic settings"
+ msgstr "मूळ सेटिंग्स्"
+ 
+ #: ../src/system-config-kdump.glade:654
+diff -up system-config-kdump-2.0.13/po/or.po.bz#1370143-fuzzy-translations system-config-kdump-2.0.13/po/or.po
+--- system-config-kdump-2.0.13/po/or.po.bz#1370143-fuzzy-translations	2017-11-07 23:18:19.914786679 +0100
++++ system-config-kdump-2.0.13/po/or.po	2017-11-07 23:18:32.817418154 +0100
+@@ -344,8 +344,8 @@ msgid " and type %s wasn't found"
+ msgstr "ଏବଂ ପ୍ରକାର %s ମିଳିନଥିଲା"
+ 
+ #: ../src/system-config-kdump.py:1819
+-msgid "core will be in /var/crash/%DATE on rootfs"
+-msgstr "କୋରଟି  rootfs ରେ /var/crash/%DATE ରେ ରହିବ"
++msgid "core will be in %s/%%DATE on rootfs"
++msgstr "କୋରଟି  rootfs ରେ %s/%%DATE ରେ ରହିବ"
+ 
+ #: ../src/system-config-kdump.py:1822
+ #, python-format
+@@ -507,7 +507,7 @@ msgid "(MB)"
+ msgstr "(MB)"
+ 
+ #: ../src/system-config-kdump.glade:618
+-msgid "Basic Settings"
++msgid "Basic settings"
+ msgstr "ମୌଳିକ ବିନ୍ୟାସ"
+ 
+ #: ../src/system-config-kdump.glade:654
+diff -up system-config-kdump-2.0.13/po/pa.po.bz#1370143-fuzzy-translations system-config-kdump-2.0.13/po/pa.po
+--- system-config-kdump-2.0.13/po/pa.po.bz#1370143-fuzzy-translations	2017-11-07 23:18:46.881016188 +0100
++++ system-config-kdump-2.0.13/po/pa.po	2017-11-07 23:19:09.369374206 +0100
+@@ -335,8 +335,8 @@ msgid " and type %s wasn't found"
+ msgstr "ਅਤੇ ਕਿਸਮ %s ਨਹੀਂ ਲੱਭੀ"
+ 
+ #: ../src/system-config-kdump.py:1819
+-msgid "core will be in /var/crash/%DATE on rootfs"
+-msgstr "ਕੋਰ /var/crash/%DATE ਵਿੱਚ rootfs ਉੱਪਰ ਹੋਵੇਗੀ"
++msgid "core will be in %s/%%DATE on rootfs"
++msgstr "ਕੋਰ %s/%%DATE ਵਿੱਚ rootfs ਉੱਪਰ ਹੋਵੇਗੀ"
+ 
+ #: ../src/system-config-kdump.py:1822
+ #, python-format
+@@ -497,7 +497,7 @@ msgid "(MB)"
+ msgstr "(MB)"
+ 
+ #: ../src/system-config-kdump.glade:618
+-msgid "Basic Settings"
++msgid "Basic settings"
+ msgstr "ਮੁਢਲੀ ਸੈਟਿੰਗ"
+ 
+ #: ../src/system-config-kdump.glade:654
+diff -up system-config-kdump-2.0.13/po/pt_BR.po.bz#1370143-fuzzy-translations system-config-kdump-2.0.13/po/pt_BR.po
+--- system-config-kdump-2.0.13/po/pt_BR.po.bz#1370143-fuzzy-translations	2017-11-07 23:10:24.976345769 +0100
++++ system-config-kdump-2.0.13/po/pt_BR.po	2017-11-07 23:10:25.002345027 +0100
+@@ -372,8 +372,8 @@ msgid " and type %s wasn't found"
+ msgstr "e o tipo %s não foi encontrada"
+ 
+ #: ../src/system-config-kdump.py:1866
+-msgid "core will be in /var/crash/%DATE on rootfs"
+-msgstr "core estará em /var/crash/%DATE em rootfs"
++msgid "core will be in %s/%%DATE on rootfs"
++msgstr "core estará em %s/%%DATE em rootfs"
+ 
+ #: ../src/system-config-kdump.py:1869
+ #, python-format
+@@ -536,7 +536,7 @@ msgid "(MB)"
+ msgstr "(MB)"
+ 
+ #: ../src/system-config-kdump.glade:594
+-msgid "Basic Settings"
++msgid "Basic settings"
+ msgstr "Configurações básicas"
+ 
+ #: ../src/system-config-kdump.glade:630
+diff -up system-config-kdump-2.0.13/po/ru.po.bz#1370143-fuzzy-translations system-config-kdump-2.0.13/po/ru.po
+--- system-config-kdump-2.0.13/po/ru.po.bz#1370143-fuzzy-translations	2017-11-07 23:10:24.977345741 +0100
++++ system-config-kdump-2.0.13/po/ru.po	2017-11-07 23:10:25.002345027 +0100
+@@ -363,8 +363,8 @@ msgid " and type %s wasn't found"
+ msgstr "  (тип %s) не найден"
+ 
+ #: ../src/system-config-kdump.py:1866
+-msgid "core will be in /var/crash/%DATE on rootfs"
+-msgstr "данные будут сохранены в /var/crash/%DATE в rootfs"
++msgid "core will be in %s/%%DATE on rootfs"
++msgstr "данные будут сохранены в %s/%%DATE в rootfs"
+ 
+ #: ../src/system-config-kdump.py:1869
+ #, python-format
+@@ -524,7 +524,7 @@ msgid "(MB)"
+ msgstr "(МБ)"
+ 
+ #: ../src/system-config-kdump.glade:594
+-msgid "Basic Settings"
++msgid "Basic settings"
+ msgstr "Основные"
+ 
+ #: ../src/system-config-kdump.glade:630
+diff -up system-config-kdump-2.0.13/po/system-config-kdump.pot.bz#1370143-fuzzy-translations system-config-kdump-2.0.13/po/system-config-kdump.pot
+--- system-config-kdump-2.0.13/po/system-config-kdump.pot.bz#1370143-fuzzy-translations	2017-11-07 23:10:24.977345741 +0100
++++ system-config-kdump-2.0.13/po/system-config-kdump.pot	2017-11-07 23:10:25.002345027 +0100
+@@ -304,7 +304,7 @@ msgid " and type %s wasn't found"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1834
+-msgid "core will be in /var/crash/%DATE on rootfs"
++msgid "core will be in %s/%%DATE on rootfs"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.py:1837
+@@ -463,7 +463,7 @@ msgid "(MB)"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.glade:594
+-msgid "Basic Settings"
++msgid "Basic settings"
+ msgstr ""
+ 
+ #: ../src/system-config-kdump.glade:630
+diff -up system-config-kdump-2.0.13/po/ta.po.bz#1370143-fuzzy-translations system-config-kdump-2.0.13/po/ta.po
+--- system-config-kdump-2.0.13/po/ta.po.bz#1370143-fuzzy-translations	2017-11-07 23:20:04.723793036 +0100
++++ system-config-kdump-2.0.13/po/ta.po	2017-11-07 23:20:22.552283698 +0100
+@@ -340,8 +340,8 @@ msgid " and type %s wasn't found"
+ msgstr "வகை %s காணப்படவில்லை"
+ 
+ #: ../src/system-config-kdump.py:1819
+-msgid "core will be in /var/crash/%DATE on rootfs"
+-msgstr "கோரானது rootfs இல் /var/crash/%DATE இல் இருக்கும்"
++msgid "core will be in %s/%%DATE on rootfs"
++msgstr "கோரானது rootfs இல் %s/%%DATE இல் இருக்கும்"
+ 
+ #: ../src/system-config-kdump.py:1822
+ #, python-format
+@@ -504,7 +504,7 @@ msgid "(MB)"
+ msgstr "(MB)"
+ 
+ #: ../src/system-config-kdump.glade:618
+-msgid "Basic Settings"
++msgid "Basic settings"
+ msgstr "அடிப்படை அமைவுகள்"
+ 
+ #: ../src/system-config-kdump.glade:654
+diff -up system-config-kdump-2.0.13/po/te.po.bz#1370143-fuzzy-translations system-config-kdump-2.0.13/po/te.po
+--- system-config-kdump-2.0.13/po/te.po.bz#1370143-fuzzy-translations	2017-11-07 23:20:31.001043819 +0100
++++ system-config-kdump-2.0.13/po/te.po	2017-11-07 23:20:43.383688045 +0100
+@@ -338,8 +338,8 @@ msgid " and type %s wasn't found"
+ msgstr " మరియు రకము %s కనుగొనబడలేదు"
+ 
+ #: ../src/system-config-kdump.py:1819
+-msgid "core will be in /var/crash/%DATE on rootfs"
+-msgstr "rootfs పైన కోర్ అనునది /var/crash/%DATE నందు వుండును"
++msgid "core will be in %s/%%DATE on rootfs"
++msgstr "rootfs పైన కోర్ అనునది %s/%%DATE నందు వుండును"
+ 
+ #: ../src/system-config-kdump.py:1822
+ #, python-format
+@@ -501,7 +501,7 @@ msgid "(MB)"
+ msgstr "(MB)"
+ 
+ #: ../src/system-config-kdump.glade:618
+-msgid "Basic Settings"
++msgid "Basic settings"
+ msgstr "ప్రాధమిక(బేసిక్) అమరికలు"
+ 
+ #: ../src/system-config-kdump.glade:654
+diff -up system-config-kdump-2.0.13/po/zh_CN.po.bz#1370143-fuzzy-translations system-config-kdump-2.0.13/po/zh_CN.po
+--- system-config-kdump-2.0.13/po/zh_CN.po.bz#1370143-fuzzy-translations	2017-11-07 23:10:24.978345712 +0100
++++ system-config-kdump-2.0.13/po/zh_CN.po	2017-11-07 23:10:25.002345027 +0100
+@@ -348,8 +348,8 @@ msgid " and type %s wasn't found"
+ msgstr "和类型 %s 没有找到"
+ 
+ #: ../src/system-config-kdump.py:1866
+-msgid "core will be in /var/crash/%DATE on rootfs"
+-msgstr "core 将位于 rootfs 的 /var/crash/%DATE 中"
++msgid "core will be in %s/%%DATE on rootfs"
++msgstr "core 将位于 rootfs 的 %s/%%DATE 中"
+ 
+ #: ../src/system-config-kdump.py:1869
+ #, python-format
+@@ -507,7 +507,7 @@ msgid "(MB)"
+ msgstr "(MB)"
+ 
+ #: ../src/system-config-kdump.glade:594
+-msgid "Basic Settings"
++msgid "Basic settings"
+ msgstr "基本设置"
+ 
+ #: ../src/system-config-kdump.glade:630
+diff -up system-config-kdump-2.0.13/po/zh_TW.po.bz#1370143-fuzzy-translations system-config-kdump-2.0.13/po/zh_TW.po
+--- system-config-kdump-2.0.13/po/zh_TW.po.bz#1370143-fuzzy-translations	2017-11-07 23:10:24.978345712 +0100
++++ system-config-kdump-2.0.13/po/zh_TW.po	2017-11-07 23:10:25.003344998 +0100
+@@ -343,8 +343,8 @@ msgid " and type %s wasn't found"
+ msgstr "而其類型為 %s"
+ 
+ #: ../src/system-config-kdump.py:1866
+-msgid "core will be in /var/crash/%DATE on rootfs"
+-msgstr "核心會在 /var/crash/%DATE，檔案系統為 rootfs"
++msgid "core will be in %s/%%DATE on rootfs"
++msgstr "核心會在 %s/%%DATE，檔案系統為 rootfs"
+ 
+ #: ../src/system-config-kdump.py:1869
+ #, python-format
+@@ -502,7 +502,7 @@ msgid "(MB)"
+ msgstr "(MB)"
+ 
+ #: ../src/system-config-kdump.glade:594
+-msgid "Basic Settings"
++msgid "Basic settings"
+ msgstr "基本設定項目"
+ 
+ #: ../src/system-config-kdump.glade:630

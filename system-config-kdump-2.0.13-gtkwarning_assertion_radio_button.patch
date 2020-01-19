@@ -1,0 +1,61 @@
+diff -up system-config-kdump-2.0.13/src/system-config-kdump.glade.than system-config-kdump-2.0.13/src/system-config-kdump.glade
+--- system-config-kdump-2.0.13/src/system-config-kdump.glade.than	2017-05-16 12:04:58.822886137 +0200
++++ system-config-kdump-2.0.13/src/system-config-kdump.glade	2017-05-16 12:06:44.129914495 +0200
+@@ -396,7 +396,6 @@
+                                     <property name="xalign">0</property>
+                                     <property name="active">False</property>
+                                     <property name="draw_indicator">True</property>
+-                                    <property name="group">autoRadiobutton</property>
+                                   </object>
+                                   <packing>
+                                     <property name="expand">False</property>
+@@ -415,7 +414,7 @@
+                                     <property name="active">True</property>
+                                     <property name="xalign">0</property>
+                                     <property name="draw_indicator">True</property>
+-                                    <property name="group">autoRadiobutton</property>
++                                    <property name="group">fadumpRadiobutton</property>
+                                   </object>
+                                   <packing>
+                                     <property name="expand">False</property>
+@@ -434,7 +433,7 @@
+                                     <property name="xalign">0</property>
+                                     <property name="active">False</property>
+                                     <property name="draw_indicator">True</property>
+-                                    <property name="group">autoRadiobutton</property>
++                                    <property name="group">fadumpRadiobutton</property>
+                                   </object>
+                                   <packing>
+                                     <property name="expand">False</property>
+@@ -661,7 +660,6 @@
+                                     <property name="xalign">0.5</property>
+                                     <property name="active">True</property>
+                                     <property name="draw_indicator">True</property>
+-                                    <property name="group">rawDeviceRadiobutton</property>
+                                   </object>
+                                   <packing>
+                                     <property name="expand">False</property>
+@@ -877,7 +875,6 @@
+                                         <property name="xalign">0.5</property>
+                                         <property name="active">True</property>
+                                         <property name="draw_indicator">True</property>
+-                                        <property name="group">sshRadiobutton</property>
+                                       </object>
+                                       <packing>
+                                         <property name="expand">True</property>
+@@ -1317,7 +1314,6 @@
+                                             <property name="xalign">0.5</property>
+                                             <property name="active">True</property>
+                                             <property name="draw_indicator">True</property>
+-                                            <property name="group">customInitrdRadiobutton</property>
+                                           </object>
+                                           <packing>
+                                             <property name="expand">False</property>
+@@ -1413,7 +1409,6 @@
+                                             <property name="xalign">0.5</property>
+                                             <property name="active">True</property>
+                                             <property name="draw_indicator">True</property>
+-                                            <property name="group">customKernelRadiobutton</property>
+                                           </object>
+                                           <packing>
+                                             <property name="expand">False</property>

@@ -1,0 +1,12 @@
+diff -up system-config-kdump-2.0.13/src/system-config-kdump.py.than system-config-kdump-2.0.13/src/system-config-kdump.py
+--- system-config-kdump-2.0.13/src/system-config-kdump.py.than 2017-07-31 14:53:44.362991847 +0200
++++ system-config-kdump-2.0.13/src/system-config-kdump.py   2017-07-31 14:54:11.281982345 +0200
+@@ -84,7 +88,7 @@
+                     '50', '51', '52', '53', '54', '55', '56', '57', '65', '66',
+                     '67', '68', '69', '70', '71', '88', '89', '90', '91', '94',
+                     '99', '128', '129', '130', '131', '132', '133', '134',
+-                    '135', '147', '180' ]
++                    '135', '147', '180', '252' ]
+ 
+ PATH_DEFAULT = "/var/crash"
+ CORE_COLLECTOR_DEFAULT = "makedumpfile -l"

@@ -1,0 +1,21 @@
+diff -up system-config-kdump-2.0.13/src/system-config-kdump.py.than system-config-kdump-2.0.13/src/system-config-kdump.py
+--- system-config-kdump-2.0.13/src/system-config-kdump.py.than	2017-07-31 14:53:44.362991847 +0200
++++ system-config-kdump-2.0.13/src/system-config-kdump.py	2017-07-31 14:54:11.281982345 +0200
+@@ -4,6 +4,7 @@
+ # Authors: Dave Lehman <dlehman@redhat.com>
+ #          Jarod Wilson <jwilson@redhat.com>
+ #          Roman Rakus <rrakus@redhat.com>
++#          Than Ngo <than@redhat.com>
+ #
+ # This program is free software; you can redistribute it and/or modify
+ # it under the terms of the GNU General Public License as published by
+@@ -19,6 +20,9 @@
+ # along with this program; if not, write to the Free Software
+ # Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ 
++import signal
++signal.signal(signal.SIGINT, signal.SIG_DFL)
++
+ import resource
+ import gtk
+ from gtk.gdk import keyval_name

@@ -1,0 +1,210 @@
+diff -up system-config-kdump/src/system-config-kdump-backend.py.than system-config-kdump/src/system-config-kdump-backend.py
+diff -up system-config-kdump/src/system-config-kdump.glade.than system-config-kdump/src/system-config-kdump.glade
+--- system-config-kdump/src/system-config-kdump.glade.than	2017-09-12 12:34:05.052507844 -0400
++++ system-config-kdump/src/system-config-kdump.glade	2017-09-13 09:37:57.493401901 -0400
+@@ -381,29 +381,29 @@
+                             <property name="visible">True</property>
+                             <property name="can_focus">False</property>
+                             <child>
++                              <object class="GtkCheckButton" id="fadumpCheckbutton">
++                                <property name="label" translatable="yes">Firmware assisted dump</property>
++                                <property name="use_action_appearance">False</property>
++                                <property name="visible">True</property>
++                                <property name="can_focus">True</property>
++                                <property name="receives_default">False</property>
++                                <property name="use_action_appearance">False</property>
++                                <property name="xalign">0</property>
++                                <property name="active">False</property>
++                                <property name="draw_indicator">True</property>
++                              </object>
++                              <packing>
++                                <property name="expand">False</property>
++                                <property name="fill">True</property>
++                                <property name="position">0</property>
++                              </packing>
++                            </child>
++                            <child>
+                               <object class="GtkVBox" id="box2">
+                                 <property name="visible">True</property>
+                                 <property name="can_focus">False</property>
+                                 <property name="spacing">12</property>
+                                 <child>
+-                                  <object class="GtkRadioButton" id="fadumpRadiobutton">
+-                                    <property name="label" translatable="yes">Firmware assisted dump</property>
+-                                    <property name="use_action_appearance">False</property>
+-                                    <property name="visible">True</property>
+-                                    <property name="can_focus">True</property>
+-                                    <property name="receives_default">False</property>
+-                                    <property name="use_action_appearance">False</property>
+-                                    <property name="xalign">0</property>
+-                                    <property name="active">False</property>
+-                                    <property name="draw_indicator">True</property>
+-                                  </object>
+-                                  <packing>
+-                                    <property name="expand">False</property>
+-                                    <property name="fill">True</property>
+-                                    <property name="position">0</property>
+-                                  </packing>
+-                                </child>
+-                                <child>
+                                   <object class="GtkRadioButton" id="autoRadiobutton">
+                                     <property name="label" translatable="yes">Automated kdump memory settings</property>
+                                     <property name="use_action_appearance">False</property>
+@@ -414,7 +414,6 @@
+                                     <property name="active">True</property>
+                                     <property name="xalign">0</property>
+                                     <property name="draw_indicator">True</property>
+-                                    <property name="group">fadumpRadiobutton</property>
+                                   </object>
+                                   <packing>
+                                     <property name="expand">False</property>
+@@ -433,7 +432,7 @@
+                                     <property name="xalign">0</property>
+                                     <property name="active">False</property>
+                                     <property name="draw_indicator">True</property>
+-                                    <property name="group">fadumpRadiobutton</property>
++                                    <property name="group">autoRadiobutton</property>
+                                   </object>
+                                   <packing>
+                                     <property name="expand">False</property>
+@@ -614,7 +613,7 @@
+               <object class="GtkLabel" id="label1">
+                 <property name="visible">True</property>
+                 <property name="can_focus">False</property>
+-                <property name="label" translatable="yes">Basic Settings</property>
++                <property name="label" translatable="yes">Basic settings</property>
+               </object>
+               <packing>
+                 <property name="tab_fill">False</property>
+diff -up system-config-kdump/src/system-config-kdump.py.than system-config-kdump/src/system-config-kdump.py
+--- system-config-kdump/src/system-config-kdump.py.than	2017-09-12 12:09:25.762491811 -0400
++++ system-config-kdump/src/system-config-kdump.py	2017-09-13 13:26:28.293779772 -0400
+@@ -418,7 +418,7 @@ class MainWindow:
+         self.kdump_mem_spin_button   = builder.get_object("kdumpMemSpinButton")
+         self.usable_mem_label        = builder.get_object("usableMem")
+         self.memory_table            = builder.get_object("memoryTable")
+-        self.fadump_radiobutton      = builder.get_object("fadumpRadiobutton")
++        self.fadump_checkbutton      = builder.get_object("fadumpCheckbutton")
+         self.manualdump_radiobutton  = builder.get_object("ManualdumpRadiobutton")
+         self.auto_radiobutton        = builder.get_object("autoRadiobutton")
+ 
+@@ -507,7 +507,7 @@ class MainWindow:
+         # tab 0
+         self.kdump_mem_spin_button.connect("value_changed",
+             self.update_usable_mem)
+-        self.fadump_radiobutton.connect("toggled", self.kdump_auto_toggled)
++        self.fadump_checkbutton.connect("toggled", self.kdump_auto_toggled)
+         self.manualdump_radiobutton.connect("toggled", self.kdump_auto_toggled)
+         self.auto_radiobutton.connect("toggled", self.kdump_auto_toggled)
+ 
+@@ -659,7 +659,7 @@ class MainWindow:
+             lower_bound = 256
+             min_usable = 2048
+ 
+-        self.fadump_radiobutton.set_sensitive(self.fadump_possible)
++        self.fadump_checkbutton.set_sensitive(self.fadump_possible)
+         current_fadump = self.grubby_fadump()
+         if DEBUG:
+             print "fadump in grubby = ", current_fadump
+@@ -668,8 +668,8 @@ class MainWindow:
+             self.auto_radiobutton.set_active(True)
+         elif kdump_mem_grubby > 0:
+             self.manualdump_radiobutton.set_active(True)
+-        elif current_fadump == "on":
+-            self.fadump_radiobutton.set_active(True)
++        if current_fadump == "on":
++            self.fadump_checkbutton.set_active(True)
+         self.kdump_auto_toggled(None)
+ 
+         self.orig_settings.use_auto = self.my_settings.use_auto
+@@ -681,16 +681,15 @@ class MainWindow:
+             self.kdump_enable_toggled(self.enable_button)
+             self.orig_settings.kdump_offset = kdump_offset
+             self.orig_settings.kdump_mem = kdump_mem_grubby
+-
+-        elif self.my_settings.use_fadump == "on":
+-            self.orig_settings.kdump_enabled = True
+-            self.kdump_enable_toggled(self.enable_button)
+-
+         else:
+             kdump_mem_grubby = lower_bound
+             self.orig_settings.kdump_enabled = False
+             self.kdump_enable_toggled(self.disable_button)
+ 
++        if self.my_settings.use_fadump == "on":
++            self.orig_settings.kdump_enabled = True
++            self.kdump_enable_toggled(self.enable_button)
++
+         self.total_mem_label.set_text("%s (MB)" % (total_mem,))
+ 
+         # Do some sanity-checking and try to present only sane options.
+@@ -1173,7 +1172,7 @@ class MainWindow:
+         """
+         Update Usable mem label whenever you change ammount of kdump mem
+         """
+-        if self.my_settings.kdump_enabled and self.my_settings.use_fadump != "on":
++        if self.my_settings.kdump_enabled:
+             self.my_settings.kdump_mem = int(spin_button.get_value())
+             self.usable_mem = self.total_mem - self.my_settings.kdump_mem
+             self.usable_mem_label.set_text("%s (MB)" % (self.usable_mem,))
+@@ -1181,7 +1180,6 @@ class MainWindow:
+                 print "setting usable_mem to", self.usable_mem
+             self.set_crashkernel(self.command_line_entry,
+                 self.my_settings.kdump_mem, self.my_settings.use_auto)
+-            self.set_fadump(self.command_line_entry, "off")
+             if DEBUG:
+                 print "Crashkernel set. self.command_line_entry.text = %s, self.my_settings.kdump_mem = %s, self.my_settings.use_auto = %s" %(self.command_line_entry.get_text(), self.my_settings.kdump_mem, self.my_settings.use_auto)
+         else:
+@@ -1582,15 +1580,15 @@ class MainWindow:
+         """
+         Called when you change command line.
+         """
+-        value = self.get_fadump(gtk_entry.get_text())
+-        if value == "on":
+-            self.fadump_radiobutton.set_active(True)
+-            self.kdump_auto_toggled(self.fadump_radiobutton)
+-            if DEBUG:
+-                print "Updated cmdline. fadump set to " + value
+-            self.my_settings.commandline = gtk_entry.get_text()
+-            self.check_settings()
+-            return True
++        if self.get_fadump(gtk_entry.get_text()) == "on":
++            value = True
++        else:
++            value = False
++        self.fadump_checkbutton.set_active(value)
++        if DEBUG:
++            print "Updated cmdline. fadump set to " + value
++        self.my_settings.commandline = gtk_entry.get_text()
++        self.check_settings()
+ 
+         value = self.get_crashkernel(gtk_entry.get_text())
+         if value == "":
+@@ -1821,7 +1819,7 @@ class MainWindow:
+         if self.my_settings.use_auto:
+             self.auto_radiobutton.set_active(True)
+         elif self.my_settings.use_fadump == "on":
+-            self.fadump_radiobutton.set_active(True)
++            self.fadump_checkbutton.set_active(True)
+         elif self.my_settings.kdump_mem > 0:
+             self.manualdump_radiobutton.set_active(True)
+ 
+@@ -2047,15 +2045,14 @@ class MainWindow:
+ 
+     def kdump_auto_toggled(self, unused):
+         is_auto = self.auto_radiobutton.get_active()
+-        is_fadump = self.fadump_radiobutton.get_active()
+-        self.memory_table.set_sensitive(not is_auto and not is_fadump)
++        is_fadump = self.fadump_checkbutton.get_active()
++        self.memory_table.set_sensitive(not is_auto)
+         self.my_settings.use_auto = is_auto
+         if is_fadump:
+             self.set_fadump(self.command_line_entry, "on")
+-            self.set_crashkernel(self.command_line_entry, 0, False)
+         else:
+             self.set_fadump(self.command_line_entry, "off")
+-            self.update_usable_mem(self.kdump_mem_spin_button)
++        self.update_usable_mem(self.kdump_mem_spin_button)
+         if DEBUG:
+             print "kdump auto toggled; using auto? %s, using fadump? %s" \
+                 % (is_auto, is_fadump)

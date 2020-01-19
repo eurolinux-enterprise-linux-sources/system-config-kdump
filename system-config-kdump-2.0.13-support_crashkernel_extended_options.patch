@@ -1,0 +1,81 @@
+diff -up system-config-kdump-2.0.13/src/system-config-kdump.py.support_crashkernel_extended_options system-config-kdump-2.0.13/src/system-config-kdump.py
+--- system-config-kdump-2.0.13/src/system-config-kdump.py.support_crashkernel_extended_options	2017-09-25 16:46:24.653213434 +0200
++++ system-config-kdump-2.0.13/src/system-config-kdump.py	2017-09-25 16:54:46.416394396 +0200
+@@ -100,6 +100,7 @@ AUTHORS = [
+     "Dave Lehman <dlehman@redhat.com>",
+     "Jarod Wilson <jwilson@redhat.com>",
+     "Roman Rakus <rrakus@redhat.com>",
++    "Than Ngo <than@redhat.com>",
+     ]
+ 
+ LICENSE = _(
+@@ -1292,6 +1293,30 @@ class MainWindow:
+             self.menu_disable.set_sensitive(False)
+         self.check_settings()
+ 
++    def crashkernel_use_offset(self, state):
++        """
++        It's called whenever the crashkernel option has offset like 128@16M or 512M-2G:64M,2G-:128@16M
++        Set up sensitive of widgets. If offset is used the Manual radion button will be disable and 
++        only expert settings allows the user to enter the extended options.
++        """
++        self.manualdump_radiobutton.set_sensitive(state)
++        self.manualdump_radiobutton.set_active(not state)
++        self.total_mem_label.set_sensitive(state)
++        self.kdump_mem_current_label.set_sensitive(state)
++        self.kdump_mem_spin_button.set_sensitive(state)
++        self.usable_mem_label.set_sensitive(state)
++        self.memory_table.set_sensitive(state)
++
++    def check_crashkernel_use_offset(self):
++        """"
++        It's called when you want to check whether crashkernel uses offset like
++        128@16M or 512M-2G:64M,2G-:128@16M
++        """
++        if self.get_crashkernel(self.my_settings.commandline).find("@") != -1:
++           return True
++        else:
++           return False
++
+     def target_type_changed(self, button):
+         """
+         It's callled whenever you choose one of target type.
+@@ -1548,12 +1573,13 @@ class MainWindow:
+             if use_auto:
+                 gtk_entry.set_text(old_text.replace(old_value,"auto"))
+             else:
+-                if size != 0:
+-                    gtk_entry.set_text(old_text.replace(old_value,
+-                        "%dM" % size))
+-                else:
+-                    gtk_entry.set_text(old_text.replace(" crashkernel=%s" \
+-                        %old_value, ""))
++                if not self.check_crashkernel_use_offset():
++                    if size != 0:
++                        gtk_entry.set_text(old_text.replace(old_value,
++                            "%dM" % size))
++                    else:
++                        gtk_entry.set_text(old_text.replace(" crashkernel=%s" \
++                            %old_value, ""))
+         self.my_settings.commandline = gtk_entry.get_text()
+         self.my_settings.kdump_mem = size
+ 
+@@ -1597,6 +1623,8 @@ class MainWindow:
+             if value == "auto":
+                 self.auto_radiobutton.set_active(True)
+                 self.kdump_auto_toggled(self.auto_radiobutton)
++            elif value.find("@") != -1:
++                self.crashkernel_use_offset(False)
+             else:
+                 size = None
+                 offset = None
+@@ -2056,6 +2084,9 @@ class MainWindow:
+         if DEBUG:
+             print "kdump auto toggled; using auto? %s, using fadump? %s" \
+                 % (is_auto, is_fadump)
++
++        self.crashkernel_use_offset(not self.check_crashkernel_use_offset()) 
++
+         self.check_settings()
+ 
+ if __name__ == "__main__":

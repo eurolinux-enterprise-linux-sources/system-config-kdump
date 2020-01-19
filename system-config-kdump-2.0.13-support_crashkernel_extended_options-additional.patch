@@ -1,0 +1,36 @@
+--- system-config-kdump-2.0.13/src/system-config-kdump.py.than	2018-01-09 10:20:36.671165411 -0500
++++ system-config-kdump-2.0.13/src/system-config-kdump.py	2018-01-09 10:17:12.801156087 -0500
+@@ -1295,8 +1295,9 @@
+ 
+     def crashkernel_use_offset(self, state):
+         """
+-        It's called whenever the crashkernel option has offset like 128@16M or 512M-2G:64M,2G-:128@16M
+-        Set up sensitive of widgets. If offset is used the Manual radion button will be disable and 
++        It's called whenever the crashkernel option has offset like 128M@16M or 512M-2G:64M,2G-:128@16M
++        or 512M-2G:64M,2G-:128M
++        Set up sensitive of widgets. Set Manual radion button to insensitive if offset is used.
+         only expert settings allows the user to enter the extended options.
+         """
+         self.manualdump_radiobutton.set_sensitive(state)
+@@ -1312,9 +1313,10 @@
+     def check_crashkernel_use_offset(self):
+         """"
+         It's called when you want to check whether crashkernel uses offset like
+-        128@16M or 512M-2G:64M,2G-:128@16M
++        128M@16M or 512M-2G:64M,2G-:128@16M or 512M-2G:64M,2G-:128M
+         """
+-        if self.get_crashkernel(self.my_settings.commandline).find("@") != -1:
++        cmdline = self.my_settings.commandline
++        if self.get_crashkernel(cmdline).find(":") != -1 or self.get_crashkernel(cmdline).find("@") != -1:
+            return True
+         else:
+            return False
+@@ -1625,7 +1627,7 @@
+             if value == "auto":
+                 self.auto_radiobutton.set_active(True)
+                 self.kdump_auto_toggled(self.auto_radiobutton)
+-            elif value.find("@") != -1:
++            elif value.find(":") != -1 or value.find("@") != -1:
+                 self.crashkernel_use_offset(False)
+             else:
+                 size = None

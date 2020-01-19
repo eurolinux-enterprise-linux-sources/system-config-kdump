@@ -3,13 +3,13 @@
 Summary: A graphical interface for configuring kernel crash dumping
 Name: system-config-kdump
 Version: 2.0.13
-Release: 16%{?dist}
-URL: http://fedorahosted.org/system-config-kdump/
+Release: 20%{?dist}
+URL: https://than.fedorapeople.org/system-config-kdump/
 License: GPLv2+
 Group: System Environment/Base
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch: noarch
-Source0: http://fedorahosted.org/released/system-config-kdump/%{name}-%{version}.tar.bz2
+Source0: https://than.fedorapeople.org/system-config-kdump/system-config-kdump/%{name}-%{version}.tar.bz2
 BuildRequires: desktop-file-utils
 BuildRequires: intltool, gettext, gnome-doc-utils, docbook-dtds, rarian-compat, scrollkeeper
 Requires: pygtk2 >= 2.8.6
@@ -88,6 +88,39 @@ Patch15: system-config-kdump-2.0.13-check_nfs4.patch
 # rhbz#1449670
 Patch16: system-config-kdump-2.0.13-translation_updates-4.patch
 
+# Fix the gtk-warning, GtkWarning: IA__gtk_radio_button_set_group: assertion '!g_slist_find (group, radio_button)' failed
+# bz#1258363
+Patch17: system-config-kdump-2.0.13-gtkwarning_assertion_radio_button.patch
+
+# bz#1279298 - system-config-kdump throws traceback on keyboard interruption
+Patch18: system-config-kdump-2.0.13-bz#1279298.patch
+
+# bz#1082420 - Error display Basic Settings option "Current kdkump Memory" value
+Patch19: system-config-kdump-bz#1082420.patch
+
+# bz#1077470 - Target settings option "Raw device" does not list VirtIO devices
+Patch20: system-config-kdump-bz#1077470-virtio-device.patch
+
+# bz#1384943 - allow select "Automated kdump memory settings" or "Manual settings"
+# when fadump is enabled
+Patch21: system-config-kdump-2.0.13-allow_select_auto_or_manual_when_fadump_enable
+
+# bz#1404780 - system-config-kdump dialog does not accept variable amount of memory as crashkernel value
+Patch22: system-config-kdump-2.0.13-support_crashkernel_extended_options.patch
+
+# bz#1370143 - make labels translatable
+Patch23: system-config-kdump-2.0.13-translate.patch
+
+# bz#1370143 - fix fuzzy translations
+Patch24: system-config-kdump-2.0.13-fuzzy.patch
+
+# set the submenu of "Manual Settings" insensitive if
+# "Automated kdump memory settings" is enabled
+Patch25: system-config-kdump-2.0.13-make-manual-menu-insensitiv.patch
+
+# bz#1404780 - this patch fixes the case 512M-2G:64M,2G-:128M
+Patch26: system-config-kdump-2.0.13-support_crashkernel_extended_options-additional.patch
+
 %description
 system-config-kdump is a graphical tool for configuring kernel crash
 dumping via kdump and kexec.
@@ -110,6 +143,16 @@ dumping via kdump and kexec.
 %patch14 -p1 -b .root_partition_path
 %patch15 -p1 -b .check_nfs4
 %patch16 -p1 -b .translation_updates-4
+%patch17 -p1 -b .gtkwarning_assertion_radio_button
+%patch18 -p1 -b .keyboard_interruption
+%patch19 -p1 -b .bz#1082420
+%patch20 -p1 -b .bz#1077470
+%patch21 -p1 -b .bz#1384943
+%patch22 -p1 -b .bz#1404780
+%patch23 -p1 -b .bz#1370143-make-lable-translateable
+%patch24 -p1 -b .bz#1370143-fuzzy-translations
+%patch25 -p1 -b .make-manuall-menu-insensitiv
+%patch26 -p1 -b .bz#1404780-support_crashkernel_extended_options-additional
 
 %build
 make
@@ -164,6 +207,25 @@ fi
 %doc %{_datadir}/omf/system-config-kdump
 
 %changelog
+* Tue Jan 09 2018 Than Ngo <than@redhat.com> - 2.0.13-20
+- Related: bz#1404780 - support crashkernel=<range1>:<size1>,<range2>:<size2>
+
+* Tue Nov 07 2017 Than Ngo <than@redhat.com> - 2.0.13-19
+- Resolves: bz#1370143
+- make labels translatable
+- fix fuzzy translations
+
+* Wed Oct 18 2017 Than Ngo <than@redhat.com> - 2.0.13-18
+- Resolves: bz#1502435 - add correct url
+
+* Fri Aug 25 2017 Than Ngo <than@redhat.com> - 2.0.13-17
+- Resolves: bz#1258363 - gtkWarning showing in terminal while launch kdump
+- Resolves: bz#1279298 - system-config-kdump throws traceback on keyboard interruption
+- Resolves: bz#1082420 - error display Basic Settings option "Current kdkump Memory" value
+- Resolves: bz#1077470 - target settings option "Raw device" does not list VirtIO devices
+- Resolves: bz#1384943 - add fadump memory reservation support in system-config-kdump (fadump)
+- Resolves: bz#1404780 - add support variable amount of memory as crashkernel value 
+
 * Tue May 23 2017 Than Ngo <than@redhat.com> - 2.0.13-16
 - Resolves: bz#1449670, Translation updates
 

@@ -1,0 +1,21 @@
+diff -up system-config-kdump-2.0.13/src/system-config-kdump.glade.translate system-config-kdump-2.0.13/src/system-config-kdump.glade
+--- system-config-kdump-2.0.13/src/system-config-kdump.glade.translate	2017-11-07 18:38:20.134659078 +0100
++++ system-config-kdump-2.0.13/src/system-config-kdump.glade	2017-11-07 18:39:55.458935401 +0100
+@@ -157,7 +157,7 @@
+                     <property name="can_focus">False</property>
+                     <child>
+                       <object class="GtkImageMenuItem" id="menuitemEnable">
+-                        <property name="label">Enable kdump</property>
++                        <property name="label" translatable="yes">Enable kdump</property>
+                         <property name="use_action_appearance">False</property>
+                         <property name="visible">True</property>
+                         <property name="can_focus">False</property>
+@@ -168,7 +168,7 @@
+                     </child>
+                     <child>
+                       <object class="GtkImageMenuItem" id="menuitemDisable">
+-                        <property name="label">Disable kdump</property>
++                        <property name="label" translatable="yes">Disable kdump</property>
+                         <property name="use_action_appearance">False</property>
+                         <property name="visible">True</property>
+                         <property name="can_focus">False</property>
