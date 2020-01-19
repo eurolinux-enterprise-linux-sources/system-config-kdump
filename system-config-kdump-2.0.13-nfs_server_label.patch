@@ -1,0 +1,56 @@
+diff --git a/src/system-config-kdump.glade b/src/system-config-kdump.glade
+index a51691f..66a53dd 100644
+--- a/src/system-config-kdump.glade
++++ b/src/system-config-kdump.glade
+@@ -955,11 +955,11 @@
+                                       </packing>
+                                     </child>
+                                     <child>
+-                                      <object class="GtkLabel" id="label18">
++                                      <object class="GtkLabel" id="networkServerLabel">
+                                         <property name="visible">True</property>
+                                         <property name="can_focus">False</property>
+                                         <property name="xalign">0</property>
+-                                        <property name="label" translatable="yes">Server name:</property>
++                                        <property name="label" translatable="yes">Export (host:path):</property>
+                                         <property name="single_line_mode">True</property>
+                                       </object>
+                                       <packing>
+diff --git a/src/system-config-kdump.py b/src/system-config-kdump.py
+index e3ed474..ddb542e 100755
+--- a/src/system-config-kdump.py
++++ b/src/system-config-kdump.py
+@@ -436,6 +436,7 @@ class MainWindow:
+         self.username_entry           = builder.get_object("usernameEntry")
+         self.path_entry               = builder.get_object("pathEntry")
+         self.servername_entry         = builder.get_object("servernameEntry")
++        self.servername_label         = builder.get_object("networkServerLabel")
+ 
+         # tab 2
+         self.filter_page              = builder.get_object("filteringPage")
+@@ -777,6 +778,13 @@ class MainWindow:
+                 parent = self.toplevel)
+             return
+ 
++        if self.my_settings.target_type == TYPE_NFS \
++        and ":" not in self.my_settings.server_name:
++            dialogs.show_error_message(_("You must specify exported directory as well as server (in the <host>:<path> format)."),
++                _("system-config-kdump: NFS directory not set"),
++                parent = self.toplevel)
++            return
++
+         if self.my_settings.target_type in (TYPE_SSH) \
+         and not self.my_settings.user_name:
+             dialogs.show_error_message(_("You must specify user name. "),
+@@ -1314,9 +1322,11 @@ class MainWindow:
+         if (nfs_radio_button.get_active()):
+             self.username_entry.set_sensitive(False)
+             self.my_settings.target_type = TYPE_NFS
++            self.servername_label.set_text(_("Export (host:path):"))
+         else:
+             self.username_entry.set_sensitive(True)
+             self.my_settings.target_type = TYPE_SSH
++            self.servername_label.set_text(_("Server name:"))
+         self.check_settings()
+ 
+     def custom_kernel_changed(self, button):

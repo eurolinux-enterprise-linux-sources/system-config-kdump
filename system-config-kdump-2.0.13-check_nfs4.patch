@@ -1,0 +1,11 @@
+--- system-config-kdump-2.0.13/src/system-config-kdump.py.check_nfs4	2016-09-14 11:17:33.098656254 +0200
++++ system-config-kdump-2.0.13/src/system-config-kdump.py	2016-09-14 11:18:26.447623879 +0200
+@@ -1850,7 +1850,7 @@
+             mntpoint = line[1]
+             fstype = line[2]
+ 
+-            if fstype == "nfs":
++            if fstype == "nfs" or fstype == "nfs4":
+                 mounts.append(dev)
+ 
+         return mounts

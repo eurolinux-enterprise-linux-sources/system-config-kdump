@@ -3,7 +3,7 @@
 Summary: A graphical interface for configuring kernel crash dumping
 Name: system-config-kdump
 Version: 2.0.13
-Release: 10%{?dist}
+Release: 15%{?dist}
 URL: http://fedorahosted.org/system-config-kdump/
 License: GPLv2+
 Group: System Environment/Base
@@ -63,6 +63,27 @@ Patch9: system-config-kdump-2.0.13-backend_set_path.patch
 # rhbz#1078743
 Patch10: system-config-kdump-2.0.13-desktop_category_system.patch
 
+# Clarify NFS server input box
+# rhbz#1208191
+Patch11: system-config-kdump-2.0.13-nfs_server_label.patch
+
+# Warn when NFS export target is not mounted
+# rhbz#1121590
+Patch12: system-config-kdump-2.0.13-nfs_warn_not_mounted.patch
+
+# Translation updates 3
+# rhbz#1294036
+# rhbz#1303014
+Patch13: system-config-kdump-2.0.13-translation_updates-3.patch
+
+# Allow setting path even if no partition chosen
+# rhbz#1131820
+Patch14: system-config-kdump-2.0.13-root_partition_allow_path.patch
+
+# Add check for nfs4 filesystem
+# rhbz#1121590
+Patch15: system-config-kdump-2.0.13-check_nfs4.patch
+
 %description
 system-config-kdump is a graphical tool for configuring kernel crash
 dumping via kdump and kexec.
@@ -79,6 +100,11 @@ dumping via kdump and kexec.
 %patch8 -p1 -b .fadump
 %patch9 -p1 -b .backend_set_path
 %patch10 -p1 -b .desktop_category_system
+%patch11 -p1 -b .nfs_server_label
+%patch12 -p1 -b .nfs_warn_not_mounted
+%patch13 -p1 -b .translation_updates-3
+%patch14 -p1 -b .root_partition_path
+%patch15 -p1 -b .check_nfs4
 
 %build
 make
@@ -133,6 +159,26 @@ fi
 %doc %{_datadir}/omf/system-config-kdump
 
 %changelog
+* Tue Sep 13 2016 Than Ngo <than@redhat.com> - 2.0.13-15
+- Warn when NFS export target is not mounted, check nfs4 file system
+- Resolves: #1121590
+
+* Wed Jun 29 2016 Martin Milata <mmilata@redhat.com> - 2.0.13-14
+- Allow setting path even if no partition chosen
+- Resolves: #1131820
+
+* Wed Jun 29 2016 Martin Milata <mmilata@redhat.com> - 2.0.13-13
+- Translation updates
+- Resolves: #1294036, #1303014
+
+* Wed Jun 29 2016 Martin Milata <mmilata@redhat.com> - 2.0.13-12
+- Warn when NFS export target is not mounted
+- Resolves: #1121590
+
+* Wed Jun 29 2016 Martin Milata <mmilata@redhat.com> - 2.0.13-11
+- Clarify the meaning of the NFS server input box
+- Resolves: #1208191
+
 * Thu Mar 20 2014 Martin Milata <mmilata@redhat.com> - 2.0.13-10
 - Move the application to System category in the desktop file
 - Resolves: #1078743
