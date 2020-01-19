@@ -1,0 +1,421 @@
+diff --git a/src/system-config-kdump.glade b/src/system-config-kdump.glade
+index 718387f..083d220 100644
+--- a/src/system-config-kdump.glade
++++ b/src/system-config-kdump.glade
+@@ -394,8 +394,9 @@
+                                     <property name="receives_default">False</property>
+                                     <property name="use_action_appearance">False</property>
+                                     <property name="xalign">0</property>
++                                    <property name="active">False</property>
+                                     <property name="draw_indicator">True</property>
+-                                    <property name="group">ManualdumpRadiobutton</property>
++                                    <property name="group">autoRadiobutton</property>
+                                   </object>
+                                   <packing>
+                                     <property name="expand">False</property>
+@@ -404,6 +405,25 @@
+                                   </packing>
+                                 </child>
+                                 <child>
++                                  <object class="GtkRadioButton" id="autoRadiobutton">
++                                    <property name="label" translatable="yes">Automated kdump memory settings</property>
++                                    <property name="use_action_appearance">False</property>
++                                    <property name="visible">True</property>
++                                    <property name="can_focus">True</property>
++                                    <property name="receives_default">False</property>
++                                    <property name="use_action_appearance">False</property>
++                                    <property name="active">True</property>
++                                    <property name="xalign">0</property>
++                                    <property name="draw_indicator">True</property>
++                                    <property name="group">autoRadiobutton</property>
++                                  </object>
++                                  <packing>
++                                    <property name="expand">False</property>
++                                    <property name="fill">True</property>
++                                    <property name="position">1</property>
++                                  </packing>
++                                </child>
++                                <child>
+                                   <object class="GtkRadioButton" id="ManualdumpRadiobutton">
+                                     <property name="label" translatable="yes">Manual settings</property>
+                                     <property name="use_action_appearance">False</property>
+@@ -412,14 +432,14 @@
+                                     <property name="receives_default">False</property>
+                                     <property name="use_action_appearance">False</property>
+                                     <property name="xalign">0</property>
+-                                    <property name="active">True</property>
++                                    <property name="active">False</property>
+                                     <property name="draw_indicator">True</property>
+-                                    <property name="group">fadumpRadiobutton</property>
++                                    <property name="group">autoRadiobutton</property>
+                                   </object>
+                                   <packing>
+                                     <property name="expand">False</property>
+                                     <property name="fill">True</property>
+-                                    <property name="position">1</property>
++                                    <property name="position">2</property>
+                                   </packing>
+                                 </child>
+                               </object>
+diff --git a/src/system-config-kdump.py b/src/system-config-kdump.py
+index 8c9fe31..54b9adc 100755
+--- a/src/system-config-kdump.py
++++ b/src/system-config-kdump.py
+@@ -19,6 +19,7 @@
+ # along with this program; if not, write to the Free Software
+ # Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ 
++import resource
+ import gtk
+ from gtk.gdk import keyval_name
+ 
+@@ -153,6 +154,7 @@ class Settings:
+     """
+     def __init__(self):
+         self.kdump_enabled = False          # whether kdump is enabled
++        self.use_auto = True                # Use auto or manual kdump settings
+         self.kdump_mem = 0                  # amount of kdump memory
+         self.kdump_offset = 0               # kdump mem offset
+         self.target_type = TYPE_DEFAULT     # crash dump target type
+@@ -203,6 +205,7 @@ class Settings:
+         copy settings from self to dest_settings
+         """
+         dest_settings.kdump_enabled = self.kdump_enabled
++        dest_settings.use_auto = self.use_auto
+         dest_settings.kdump_mem = self.kdump_mem
+         dest_settings.kdump_offset = self.kdump_offset
+         dest_settings.target_type = self.target_type
+@@ -228,6 +231,10 @@ class Settings:
+             if DEBUG:
+                 print "differ on kdump_enabled"
+             return 0
++        if ref_settings.use_auto != self.use_auto:
++            if DEBUG:
++                print "differ on use_auto"
++            return 0
+ 
+         if ref_settings.kdump_mem != self.kdump_mem:
+             if DEBUG:
+@@ -407,6 +414,7 @@ class MainWindow:
+         self.memory_table            = builder.get_object("memoryTable")
+         self.fadump_radiobutton      = builder.get_object("fadumpRadiobutton")
+         self.manualdump_radiobutton  = builder.get_object("ManualdumpRadiobutton")
++        self.auto_radiobutton        = builder.get_object("autoRadiobutton")
+ 
+ 
+         # tab 1
+@@ -491,8 +499,9 @@ class MainWindow:
+         # tab 0
+         self.kdump_mem_spin_button.connect("value_changed",
+             self.update_usable_mem)
+-        self.fadump_radiobutton.connect("toggled", self.fadump_toggled)
+-        self.manualdump_radiobutton.connect("toggled", self.fadump_toggled)
++        self.fadump_radiobutton.connect("toggled", self.kdump_auto_toggled)
++        self.manualdump_radiobutton.connect("toggled", self.kdump_auto_toggled)
++        self.auto_radiobutton.connect("toggled", self.kdump_auto_toggled)
+ 
+         # tab 1
+         self.localfs_radiobutton.connect("toggled", self.target_type_changed)
+@@ -600,7 +609,10 @@ class MainWindow:
+                 for rng in tokens[0].split(","):
+                     va = rng.split(":")
+                     if len(va) == 1: # old syntax
+-                        kdump_mem = ws2mb(va[0])
++                        if va[0] == "auto":
++                            kdump_mem = 4096 # auto value
++                        else:
++                            kdump_mem = ws2mb(va[0])
+                         break
+                     else:
+                         rmin, rmax = va[0].split("-")
+@@ -631,7 +643,6 @@ class MainWindow:
+         min_usable = 512
+         step = 64
+ 
+-
+         if self.arch == 'ia64':
+             # ia64 needs at least 256M, page-aligned
+             lower_bound = 256
+@@ -640,12 +651,20 @@ class MainWindow:
+             lower_bound = 256
+             min_usable = 2048
+ 
++        if kdump_mem_grubby == -1:
++            self.auto_radiobutton.set_active(True)
++            self.kdump_auto_toggled(self.auto_radiobutton)
++        elif kdump_mem_grubby > 0:
++            self.manualdump_radiobutton.set_active(True)
++            self.kdump_auto_toggled(self.manualdump_radiobutton)
++
++        self.orig_settings.use_auto = self.my_settings.use_auto
++
+         self.fadump_radiobutton.set_sensitive(self.fadump_possible)
+         current_fadump = self.grubby_fadump()
+         if DEBUG:
+             print "fadump in grubby = ", current_fadump
+-        self.manualdump_radiobutton.set_active(current_fadump != "on")
+-        self.fadump_toggled(self.fadump_radiobutton)
++        self.kdump_auto_toggled(self.auto_radiobutton)
+         self.orig_settings.use_fadump = self.my_settings.use_fadump
+ 
+         # Fix up memory calculations, if need be
+@@ -710,7 +729,8 @@ class MainWindow:
+         self.orig_settings.copy_settings(self.my_settings)
+         self.check_settings()
+ 
+-
++        # XXX bz #581433
++        self.update_usable_mem(self.kdump_mem_spin_button)
+ 
+     def run(self):
+         """
+@@ -1142,8 +1162,10 @@ class MainWindow:
+             if DEBUG:
+                 print "setting usable_mem to", self.usable_mem
+             self.set_crashkernel(self.command_line_entry,
+-                self.my_settings.kdump_mem)
++                self.my_settings.kdump_mem, self.my_settings.use_auto)
+             self.set_fadump(self.command_line_entry, "off")
++            if DEBUG:
++                print "Crashkernel set. self.command_line_entry.text = %s, self.my_settings.kdump_mem = %s, self.my_settings.use_auto = %s" %(self.command_line_entry.get_text(), self.my_settings.kdump_mem, self.my_settings.use_auto)
+         else:
+             self.my_settings.kdump_mem = 0
+         self.check_settings()
+@@ -1486,21 +1508,31 @@ class MainWindow:
+         return ""
+ 
+ 
+-    def set_crashkernel(self, gtk_entry, size):
++    def set_crashkernel(self, gtk_entry, size, use_auto):
+         """
+-        Set command line from gtk_entry crashkernel amount to size.
++        Set command line from gtk_entry crashkernel amount to size. Or to auto
++        when using automated set.
+         """
++        if DEBUG:
++            print "setting crashkernel to %d; Using auto? %s" %(size, use_auto)
+         old_value = self.get_crashkernel(gtk_entry.get_text())
+         old_text = gtk_entry.get_text()
+         if old_value == "":
+-            if size != 0:
+-                gtk_entry.set_text(old_text + " crashkernel=%dM" % size)
++            if use_auto:
++                gtk_entry.set_text(old_text + " crashkernel=auto")
++            else:
++                if size != 0:
++                    gtk_entry.set_text(old_text + " crashkernel=%dM" % size)
+         else:
+-            if size != 0:
+-                gtk_entry.set_text(old_text.replace(old_value,"%dM" % size))
++            if use_auto:
++                gtk_entry.set_text(old_text.replace(old_value,"auto"))
+             else:
+-                gtk_entry.set_text(old_text.replace(" crashkernel=%s" \
+-                    %old_value, ""))
++                if size != 0:
++                    gtk_entry.set_text(old_text.replace(old_value,
++                        "%dM" % size))
++                else:
++                    gtk_entry.set_text(old_text.replace(" crashkernel=%s" \
++                        %old_value, ""))
+         self.my_settings.commandline = gtk_entry.get_text()
+         self.my_settings.kdump_mem = size
+ 
+@@ -1530,7 +1562,7 @@ class MainWindow:
+         value = self.get_fadump(gtk_entry.get_text())
+         if value == "on":
+             self.fadump_radiobutton.set_active(True)
+-            self.fadump_toggled(self.fadump_radiobutton)
++            self.kdump_auto_toggled(self.fadump_radiobutton)
+             if DEBUG:
+                 print "Updated cmdline. fadump set to " + value
+             self.my_settings.commandline = gtk_entry.get_text()
+@@ -1541,27 +1573,31 @@ class MainWindow:
+         if value == "":
+             self.kdump_enable_toggled(self.disable_button)
+         else:
+-            size = None
+-            offset = None
+-            try:
++            if value == "auto":
++                self.auto_radiobutton.set_active(True)
++                self.kdump_auto_toggled(self.auto_radiobutton)
++            else:
++                size = None
++                offset = None
+                 try:
+-                    size, offset = value.split("@", 1)
+-                except:
+-                    size = value
+-                if offset:
+-                    if offset[-1] == "M":
+-                        offset = offset[:-1]
+-                    self.my_settings.kdump_offset = float(offset)
+-                if size[-1] == "M":
+-                    size = size[:-1]
+-                self.kdump_mem_spin_button.set_value(float(size))
+-                self.update_usable_mem(self.kdump_mem_spin_button)
+-            except ValueError, reason:
+-                dialogs.show_error_message(_("Invalid crashkernel value: %s."
+-                    "\nPossible values are:\n\tX\n\tX@Y\n\n%s")
+-                    %(value,reason),
+-                    _("Bad crashkernel value"))
+-                return False
++                    try:
++                        size, offset = value.split("@", 1)
++                    except:
++                        size=value
++                    if offset:
++                        if offset[-1] == "M": offset=offset[:-1]
++                        self.my_settings.kdump_offset = float(offset)
++                    if size[-1] == "M": size=size[:-1]
++                    self.kdump_mem_spin_button.set_value(float(size))
++                    self.update_usable_mem(self.kdump_mem_spin_button)
++                except ValueError, reason:
++                    dialogs.show_error_message(_("Invalid crashkernel value: %s."
++                        "\nPossible values are:\n\tauto\n\tX\n\tX@Y\n\n%s")
++                        %(value,reason),
++                        _("Bad crashkernel value"))
++                    return False
++                self.manualdump_radiobutton.set_active(True)
++                self.kdump_auto_toggled(self.manualdump_radiobutton)
+ 
+         if DEBUG:
+             print "Updated cmdline. Crashkernel set to " + value
+@@ -1730,8 +1766,12 @@ class MainWindow:
+         Move original settings to my settings. This will revert any changes.
+         """
+         self.load_dump_config()
+-        (self.orig_settings.kdump_mem, self.orig_settings.kdump_offset) = \
+-            self.grubby_crashkernel()
++        (a,b) = self.grubby_crashkernel()
++        if a is -1:
++            self.orig_settings.use_auto = True
++        else:
++            self.orig_settings.use_auto = False
++            (self.orig_settings.kdump_mem, self.orig_settings.kdump_offset) = (a,b)
+         self.orig_settings.use_fadump = self.grubby_fadump()
+         self.orig_settings.copy_settings(self.my_settings)
+         if DEBUG:
+@@ -1805,7 +1845,9 @@ class MainWindow:
+ 
+     def grubby_crashkernel(self):
+         """
+-        Read actual crashkernel from bootloader settings for default kernel
++        Read actual crashkernel from bootloader settings for default kernel.
++        Will return tuple (mem,offset). If crashkernel is `auto'
++        then return (-1,-1)
+         """
+         kdump_mem_grubby = 0
+         kdump_offset_grubby = 0
+@@ -1816,48 +1858,39 @@ class MainWindow:
+             crash_string = filter(lambda t: t.startswith("crashkernel="),
+                                           line.split())[0].split("=")[1]
+             tokens = crash_string.split("@")
+-            # Handle also Extended crashkernel syntax
+-            def ws2mb(s):
+-                if s == "":
+-                    return Decimal("Infinity")
+-                mult = 1
+-                if s[-1:] == "G":
+-                    mult = 1024
+-                return int(s[:-1]) * mult
+-
+-            for rng in tokens[0].split(","):
+-                va = rng.split(":")
+-                if len(va) == 1: # old syntax
+-                    kdump_mem_grubby = ws2mb(va[0])
+-                    break
+-                else:
+-                    rmin, rmax = va[0].split("-")
+-                    rmin = ws2mb(rmin)
+-                    rmax = ws2mb(rmax)
+-                    if self.total_mem >= rmin and self.total_mem < rmax:
+-                        kdump_mem_grubby = ws2mb(va[1])
++            if tokens[0].startswith("auto"):
++                kdump_mem_grubby = -1
++                kdump_offset_grubby = -1
++            else:
++                # Handle also Extended crashkernel syntax
++                def ws2mb(s):
++                    if s == "":
++                        return Decimal("Infinity")
++                    mult = 1
++                    if s[-1:] == "G":
++                        mult = 1024
++                    return int(s[:-1]) * mult
++
++                for rng in tokens[0].split(","):
++                    va = rng.split(":")
++                    if len(va) == 1: # old syntax
++                        kdump_mem_grubby = ws2mb(va[0])
+                         break
++                    else:
++                        rmin, rmax = va[0].split("-")
++                        rmin = ws2mb(rmin)
++                        rmax = ws2mb(rmax)
++                        if self.total_mem >= rmin and self.total_mem < rmax:
++                            kdump_mem_grubby = ws2mb(va[1])
++                            break
+ 
+-                if len(tokens) == 2:
+-                    kdump_offset_grubby = int(tokens[1][:-1])
++                    if len(tokens) == 2:
++                        kdump_offset_grubby = int(tokens[1][:-1])
+             if DEBUG:
+                 print "grubby --info: crashkernel=%iM@%iM" \
+                        % (kdump_mem_grubby, kdump_offset_grubby)
+         return (kdump_mem_grubby, kdump_offset_grubby)
+ 
+-    def fadump_toggled(self, button):
+-        fadump_active = self.fadump_radiobutton.get_active()
+-        self.memory_table.set_sensitive(not fadump_active)
+-        self.my_settings.use_fadump = fadump_active
+-        if fadump_active:
+-            self.set_fadump(self.command_line_entry, "on")
+-            self.set_crashkernel(self.command_line_entry, 0)
+-        else:
+-            self.set_fadump(self.command_line_entry, "off")
+-        if DEBUG:
+-            print "fakdump toggled; using fadump? %s" % fadump_active
+-        self.check_settings()
+-
+     def catch_enter(self, widget, event_key, ap_func):
+         """
+         Filter every key pressed under widget.
+@@ -1921,6 +1954,11 @@ class MainWindow:
+                 else:
+                     service_op = ""
+ 
++            # If we use auto option, don't do anything with current service
++            # don't stop neither start it
++            if self.my_settings.use_auto:
++                service_op = ""
++
+             cmd, status, std, err = self.dbus_object.handlekdumpservice(
+                 chkconfig_status, service_op)
+             if status:
+@@ -1953,6 +1991,23 @@ class MainWindow:
+                 _("System config kdump: dbus error"),
+                 parent = self.toplevel)
+ 
++    def kdump_auto_toggled(self, button):
++        is_auto = self.auto_radiobutton.get_active()
++        is_fadump = self.fadump_radiobutton.get_active()
++        self.memory_table.set_sensitive(not is_auto and not is_fadump)
++        self.my_settings.use_auto = is_auto
++        self.my_settings.use_fadump = is_fadump
++        if is_fadump:
++            self.set_fadump(self.command_line_entry, "on")
++            self.set_crashkernel(self.command_line_entry, 0, False)
++        else:
++            self.set_fadump(self.command_line_entry, "off")
++            self.update_usable_mem(self.kdump_mem_spin_button)
++        if DEBUG:
++            print "kdump auto toggled; using auto? %s, using fadump? %s" \
++                % (is_auto, is_fadump)
++        self.check_settings()
++
+ if __name__ == "__main__":
+     import getopt
+     try:

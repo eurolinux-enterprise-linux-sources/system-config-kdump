@@ -1,0 +1,3308 @@
+commit 6f11221bee85931b8b6d8e9d61a344b49a443904
+Author: Martin Milata <mmilata@redhat.com>
+Date:   Tue Jul 23 13:56:22 2013 +0200
+
+    Version 2.0.13
+    
+    Signed-off-by: Martin Milata <mmilata@redhat.com>
+
+commit 86b23f5aac5603441e1d92323decee0c9adfe687
+Author: Martin Milata <mmilata@redhat.com>
+Date:   Tue Jul 16 20:31:07 2013 +0200
+
+    Fix total memory computation
+    
+    Previous commit changed the source of total available memory to be the
+    number found in /proc/meminfo. The crash kernel reserved memory was
+    added to that, resulting in higher number than actual total available
+    memory.
+    
+    Signed-off-by: Martin Milata <mmilata@redhat.com>
+
+commit 4d2314ebff43d914726fae064021364e674bcf70
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Nov 28 15:26:50 2012 +0100
+
+    Always read memory info from /proc/meminfo
+    
+    Resolves: #859096
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 2b622ba0aa3d4ff04c248a02013523a9d1eca79d
+Author: Martin Milata <mmilata@redhat.com>
+Date:   Wed Jul 10 17:03:31 2013 +0200
+
+    Version 2.0.12
+    
+    Signed-off-by: Martin Milata <mmilata@redhat.com>
+
+commit ddeb49da6c28b770c8bfe96438433e578d03527d
+Author: Martin Milata <mmilata@redhat.com>
+Date:   Wed Jul 10 17:00:27 2013 +0200
+
+    Add grub EFI support
+    
+    Fixes #983017
+    Related to #977981
+    
+    Signed-off-by: Martin Milata <mmilata@redhat.com>
+
+commit b550de9f57c7bb32332fe2c5a9fb1be7fc0efb75
+Author: Martin Milata <mmilata@redhat.com>
+Date:   Thu Jul 4 15:44:26 2013 +0200
+
+    Update .pot file
+    
+    As well as the .po files so they are not recreated every time make is
+    run.
+    
+    Signed-off-by: Martin Milata <mmilata@redhat.com>
+
+commit 8978f148559dc27e6648fde0c90ead4ab89da624
+Author: Martin Milata <mmilata@redhat.com>
+Date:   Wed Jul 3 20:00:34 2013 +0200
+
+    Don't start kdump if there's no reserved memory
+    
+    Resolves: #971228
+    
+    Signed-off-by: Martin Milata <mmilata@redhat.com>
+
+commit b8762921dce983361d83f3baf2d8c5a144b08731
+Author: Martin Milata <mmilata@redhat.com>
+Date:   Wed Jul 3 16:46:44 2013 +0200
+
+    Fix apply button sensitivity
+    
+    The apply button was set as sensitive after a page switch even though
+    nothing has changed (due to added whitespace in kernel command line).
+    
+    Signed-off-by: Martin Milata <mmilata@redhat.com>
+
+commit 2166b311319508149d9fc09052a6e6f668630b5e
+Author: Martin Milata <mmilata@redhat.com>
+Date:   Wed Jul 3 15:53:31 2013 +0200
+
+    Fix loading nonexistent raw device
+    
+    When nonexistent raw device was specified in kdump.conf,
+    system-config-kdump behaved inconsitently and did not allow user to
+    write the configuration file without some additional actions. This
+    commit fixes it.
+    
+    Resolves: #828667
+    
+    Signed-off-by: Martin Milata <mmilata@redhat.com>
+
+commit d94f213e78d920d0bbb81d996b4c38d2d8c0ee3d
+Author: Martin Milata <mmilata@redhat.com>
+Date:   Wed Jul 3 11:40:57 2013 +0200
+
+    Use 'reboot' as the default action
+    
+    - reboot is now the default action, to be consistent with the behaviour
+      of kdump when there's no "default" directive in kdump.conf
+    - the actions in combobox now have translatable labels
+    - the caption above the combobox was changed to be more descriptive
+      ("Action if dumping fails")
+    
+    Resolves: #951764
+    
+    Signed-off-by: Martin Milata <mmilata@redhat.com>
+
+commit 470fcf23da2843cd96ab6c07967698ab7f445192
+Author: Martin Milata <mmilata@redhat.com>
+Date:   Tue Jul 2 20:04:06 2013 +0200
+
+    Make 31 the default filter level
+    
+    Resolves: #951769
+    
+    Signed-off-by: Martin Milata <mmilata@redhat.com>
+
+commit 580a3f91c784109e09605044027b2a5415d2a54c
+Author: Martin Milata <mmilata@redhat.com>
+Date:   Wed Jun 12 12:27:17 2013 +0200
+
+    Drop s390x from unsupported architectures
+    
+    Resolves: #902698
+    
+    Signed-off-by: Martin Milata <mmilata@redhat.com>
+
+commit d00c7582057b13cbadb433ac54f931a854776d7e
+Author: Martin Milata <mmilata@redhat.com>
+Date:   Fri Apr 19 13:40:19 2013 +0200
+
+    Version 2.0.11
+    
+    Signed-off-by: Martin Milata <mmilata@redhat.com>
+
+commit 0499e4ae3cd6acfd5bc17d0afdf11b1832fc0825
+Author: Martin Milata <mmilata@redhat.com>
+Date:   Fri Apr 19 13:37:56 2013 +0200
+
+    Update translation
+    
+    Signed-off-by: Martin Milata <mmilata@redhat.com>
+
+commit e020fa209521f77d433e32627176397e129202f0
+Author: Martin Milata <mmilata@redhat.com>
+Date:   Wed Apr 10 17:54:12 2013 +0200
+
+    Allow updating kdump memory without hitting enter
+    
+    system-config-kdump performs validation of certain input fields and when
+    this validation succeeds it saves it into its configuration object and
+    updates other input fields that may depend on it.
+    
+    The validation is triggered by events such as the input field losing the
+    input focus or enter key being pressed. For reasons unclear to me, the
+    events are not run sometimes. For this reason, commit
+    24d642b4eafde9dc84820177dccd1ccab5956e0b introduced manual invocation of
+    the validation routines. The kdump memory spin button was not validated
+    though, and further, the validation routine cannot just be run manually
+    as it would interfere with the routine for kernel command line.
+    
+    This change works this around by selectively running the validation
+    routines for widgets on the current tab when
+    - the tab is changed,
+    - apply button/menu entry is pressed.
+    This way, the widgets on the other tabs are updated based on the current
+    tab widgets, which were edited the last.
+    
+    Fixes #877004
+    
+    Signed-off-by: Martin Milata <mmilata@redhat.com>
+
+commit 828828bc64f82cdc2b3c6293bfd5e3aa9992fa60
+Author: Martin Milata <mmilata@redhat.com>
+Date:   Wed Apr 3 15:09:15 2013 +0200
+
+    Update translation
+    
+    Signed-off-by: Martin Milata <mmilata@redhat.com>
+
+commit 492f15225beb6047ef28834740e4ae9203dcf815
+Author: Martin Milata <mmilata@redhat.com>
+Date:   Wed Apr 3 15:04:42 2013 +0200
+
+    Add transifex config file
+    
+    The translations have to be updated manually using the transifex-client.
+    This change adds configuration file for this tool.
+    
+    See http://help.transifex.com/features/client/ for transifex-client help
+    and http://help.transifex.com/intro/one-dot-zero.html for information
+    about the manual update mode of operation.
+    
+    Signed-off-by: Martin Milata <mmilata@redhat.com>
+
+commit daaae2ba46e416e02ef0c4cc8ab98911ff327f0c
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Mon Dec 17 13:15:06 2012 +0100
+
+    use nfs/ssh instead of net for remote dump target
+    
+    Resolves: 883638
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit d5e358d41f64e19f5908d3ea9a3cabc217d558c3
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Dec 13 16:36:58 2012 +0100
+
+    Use kdumpctl (and systemctl) instead of service
+    
+    Since we have systemd it's better to use native binary to control service.
+    kdumpctl also provides pretty error messages
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit d5a0a3456dd7a4db4f44b59033dcae80a236b1e4
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Dec 13 16:35:13 2012 +0100
+
+    Default action message change
+    
+    Default action changed so accordingly change also our message
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 92a11a8f0bde6e7aa7b4436249bd0deef18d0682
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Nov 28 16:59:13 2012 +0100
+
+    Version 2.0.10
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit a02667a01a642ec1db9e0eaa02f09c2a06f894c1
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Tue Nov 27 15:27:55 2012 +0100
+
+    Minor fix in comment
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit de5948fb53aac59a84f43c8f3f11c2a27408f75b
+Author: Roman Rakus <rrakus@roman-desktop.(none)>
+Date:   Mon Feb 13 17:22:43 2012 +0100
+
+    Correctly set nfs target
+    
+    bug #754059
+    
+    Signed-off-by: Roman Rakus <rrakus@roman-desktop.(none)>
+
+commit 73714c4ac89f77536639bfb3b5b674d3b487d4bf
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Sep 20 15:15:23 2012 +0200
+
+    Increase dbus timeout to 5 minutes
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 55cd53232af0b2e413ecf46a0ba3e43ff0e821a6
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Tue Sep 11 14:06:03 2012 +0200
+
+    Verion bump to 2.0.9
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit fb93831b98e78d1590e746b69ce36cc18860cc04
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Tue Sep 11 14:03:55 2012 +0200
+
+    fadump enablement
+    
+    Allow to use fadump, firmware assisted dump.
+    Resolves: #852767
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 14dee6782e3457cf2345084e567d26612757c8d7
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Aug 22 15:51:54 2012 +0200
+
+    Version bump
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 3a6c742f646454e186bb15822849966d536a8c4f
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Aug 22 15:47:28 2012 +0200
+
+    Use last value
+    
+    On ppc machines, when cmdline contains more values for crashkernel,
+    use only the last mentioned.
+    
+    Resolves: #829386
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 45622034e5dca61a6b662bafe348a4c66a766658
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Aug 22 13:38:28 2012 +0200
+
+    Correctly handle prefix for s390/zipl
+    
+    Zipl stores full path for kernel on s390x machines, so don't set prefix.
+    
+    Resolves: #811104
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit a12e725bcfc2c5742a991de1c9b44ad0d3c1afc6
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Jun 14 10:54:38 2012 +0200
+
+    Increase timeout in progress bar
+    
+    100 ms was so low timeout that it eat too much cpu time.
+    Changed it to 500.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 211d099fea79323553be41d117134c8f6eeb0fcb
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Jun 13 14:45:51 2012 +0200
+
+    Version bump
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 75e8301e0774430f394c210528cdfcb1d604e93d
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Jun 13 14:39:25 2012 +0200
+
+    Deiconify progress window only once
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 55fd22fde80d4fced1175e8731ff508291e51cb0
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Jun 13 14:34:19 2012 +0200
+
+    Use only 2 policies
+    
+    Only one policy for non-requiring password and one for requring. Making
+    authentication appear only once and it will be less annoying.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit c5aae5b1f8603ad690aaaeaa7059d069e9c87e10
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Jun 13 14:05:04 2012 +0200
+
+    Make s-c-kdump usable with grub2
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 74c84805f566e1dca456758a9a62a67bd2a114a6
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Mon May 14 12:58:01 2012 +0200
+
+    Change `Failed' to `Unable'.
+    
+    Failed word make you feel that something went in error, but this failed
+    was meant as warning message. Therefor changing failed to unable.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit ef7ff0e31bf98c79603881d6dc2ec570accf6a84
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed May 2 15:07:27 2012 +0200
+
+    Call zipl binary when configuring zipl.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 564127dd1f5baf37dec0c1dd53ec06a341422a61
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed May 2 15:02:48 2012 +0200
+
+    Learn backend about zipl (for s390x)
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 24d642b4eafde9dc84820177dccd1ccab5956e0b
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Fri Mar 16 16:30:36 2012 +0100
+
+    Consider all changes when clicking apply
+    
+    focus-out-event isn't fired when we click on apply button,
+    so call appropriate handlers in apply handler.
+    Also few entries can easily catch changed event.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+    
+    Conflicts:
+    
+    	src/system-config-kdump.py
+
+commit 786747e70d46d896d1c483f4202358e1517a9527
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Fri Mar 16 15:03:51 2012 +0100
+
+    Show error message when D-Bus isn't running
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 6a7b4660fab28893b6fb535ae41f5212cf408fee
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Tue Feb 14 17:51:52 2012 +0100
+
+    another patch for extended syntax
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+    
+    Conflicts:
+    
+    	src/system-config-kdump.py
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit a582c577d43a349c55f062564d60c2f67d98a621
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Tue Feb 14 16:54:53 2012 +0100
+
+    Handle Extended crashkernel syntax
+    
+    see kernel/Documentation/kdump/kdump.txt
+    Correctly parse Extended crashkernel syntax - if the system has memory
+    in some range, use value from that range. Afterward save value
+    in basic crashkernel syntax
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 2b96beb08c139d309b3a35b8bba314c4d88f4553
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Sat Feb 11 15:46:42 2012 +0100
+
+    Change window type from error message to info message
+    
+    bug #740155
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 58d5943b64bc00ba36268a98225be48ae2f65585
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Mon Oct 24 15:01:52 2011 +0200
+
+    Version bump
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 45a801af905442162cbadafe64ba282768dcf283
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Mon Oct 24 15:00:05 2011 +0200
+
+    Makefile: archive rule is now usable
+    
+    Now able to use Makefile's`archive' rule to generate tarball ready to
+    publish.
+    Also removed `local' rule, `archive' replaces it.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit d4bdea1eb2edf4c996fa3f45612d78ed9256ffb7
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Sep 22 16:28:52 2011 +0200
+
+    Generated new pot file for translations
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 2af7080dbc3149acba013f47deca6608b0219aac
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Sep 14 15:58:28 2011 +0200
+
+    More cleanup
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit e084c98acee8d9a542e96575833ba0f4dc7d0586
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Sep 14 15:44:01 2011 +0200
+
+    Makefile: Not necessary to create mo files in install
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit e9323bec53715508f01368ecde2cafa5c9b4bc65
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Sep 14 14:58:45 2011 +0200
+
+    Renamed UI file from .ui to .glade for translations
+    
+    Looks like xgettext doesn't understand .ui, so rename it to .glade
+    and added textdomain for builder.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 212505f37ae56a1c1f72ae0eb89642bd27c3bd75
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Fri Sep 9 16:46:57 2011 +0200
+
+    Additional cleanup
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit e736248df26c7244e60f0a2017c082c307748f0f
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Sep 7 15:56:24 2011 +0200
+
+    Some cleanup
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 15387f52d88f410dc0cebd7c9f4803e26b53dff4
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Sep 7 15:42:04 2011 +0200
+
+    Additional fixes in hint text
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 658fab6a33f3796e06eeb624fb468931b974e3b6
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Sep 7 15:37:13 2011 +0200
+
+    Control sensitivity of path entry and use better hint text
+    
+    Path entry is sensitive only when we use non rootfs.
+    Hint text, where the core file will be stored, is updated so it better
+    reflect the reality
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit aae35f11533cb1bb73678c652c3d9387a7049f66
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Sep 7 15:28:27 2011 +0200
+
+    Remove every remains of file chooser button
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 529bd26d128a384f656f99cf255071727997a3db
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Tue Sep 6 15:47:02 2011 +0200
+
+    Use builder instead of glade
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 81fb5cca01e90aa2ffbef97bba9fd1752b6f87f7
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Fri Aug 26 16:12:03 2011 +0200
+
+    Hint message where the dump file will be copied
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 50d95b78240568596919e91818e4316c80375bb2
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Mon Aug 22 15:45:25 2011 +0200
+
+    Be more liberal in setting dump path
+    
+    Don't set filechooser button's path when setting path in text box input.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 2ddf31070dba960487c786ecfdcd5e052ad01072
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Mon Aug 22 13:48:23 2011 +0200
+
+    Correctly set Combobox's active index
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit e3168cf50bc970f14aa6ac8647ee7fea542b1f95
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Oct 6 17:52:33 2010 +0200
+
+    Take in count mount point of each partition in fstab
+    
+    Remember also mount point for every entry in /etc/fstab. It will be
+    useful for fixing the bug #626787.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 5e4d8679ae400448b7d99c9e4e4bdb10e8f276b6
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Fri Aug 26 09:18:25 2011 +0200
+
+    Created .gitignore file
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit af60777ecce52494bf8728b690febdf389a52385
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Aug 25 16:31:17 2011 +0200
+
+    Fixed typo
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 3b5062ba989af002fa4f44d8b2f087918599c319
+Author: goeran <goeran@fedoraproject.org>
+Date:   Mon Feb 21 08:32:55 2011 +0000
+
+    l10n: Updates to Swedish (sv) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 3cac190036bd43652778f7f8a61a2c90edbbb68c
+Author: logan <logan@fedoraproject.org>
+Date:   Tue Feb 15 12:14:55 2011 +0000
+
+    l10n: Updates to Spanish (Castilian) (es) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 06628d2b0010320f7a666e2b960456e31e54ea09
+Author: ifelix <ifelix@fedoraproject.org>
+Date:   Tue Feb 15 10:49:17 2011 +0000
+
+    l10n: Updates to Tamil (ta) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 6f1eafec6612bdce3466ec0090f1bdb57a426437
+Author: ypoyarko <ypoyarko@fedoraproject.org>
+Date:   Tue Feb 15 00:59:26 2011 +0000
+
+    l10n: Updates to Russian (ru) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 6cb83f05f3f95b4c10ea80ce1c51cb7f1ac4baba
+Author: ypoyarko <ypoyarko@fedoraproject.org>
+Date:   Mon Feb 14 01:41:29 2011 +0000
+
+    l10n: Updates to Russian (ru) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 6ef7e9a90b0ceb1d6426c9cea53c74b416ecfcfc
+Author: ypoyarko <ypoyarko@fedoraproject.org>
+Date:   Mon Feb 14 01:35:31 2011 +0000
+
+    l10n: Updates to Russian (ru) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit c404bce00626f6b3c1ae8483b3f9d1a67db438e4
+Author: yurchor <yurchor@fedoraproject.org>
+Date:   Sun Feb 13 09:39:20 2011 +0000
+
+    l10n: Updates to Ukrainian (uk) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 9d08a8261927afcf7703b17e5a85dba29548eddc
+Author: shanky <shanky@fedoraproject.org>
+Date:   Thu Jan 20 11:04:14 2011 +0000
+
+    l10n: Updates to Kannada (kn) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit b4ca5489e051e572cb9e2f8639c2a070285a39af
+Author: htaira <htaira@fedoraproject.org>
+Date:   Tue Jan 18 08:58:18 2011 +0000
+
+    l10n: Updates to Japanese (ja) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 1c246f2de7014c648d80e6f7864b7c84de8cb5c1
+Author: htaira <htaira@fedoraproject.org>
+Date:   Tue Jan 18 05:44:58 2011 +0000
+
+    l10n: Updates to Japanese (ja) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 129a754e3b5ebb85ee56ec16971e068538a1ef4c
+Author: jassy <jassy@fedoraproject.org>
+Date:   Wed Jan 12 09:51:20 2011 +0000
+
+    l10n: Updates to Panjabi (Punjabi) (pa) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 67723b65373da16763d8cfd44b1fc3eaeccc95da
+Author: sandeeps <sandeeps@fedoraproject.org>
+Date:   Tue Jan 11 09:30:08 2011 +0000
+
+    l10n: Updates to Marathi (mr) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 1fb100421902b171ef0a5aa02a17072ea3ca2f51
+Author: anipeter <anipeter@fedoraproject.org>
+Date:   Mon Jan 10 16:23:46 2011 +0000
+
+    l10n: Updates to Malayalam (ml) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 4b91d93177ed4d5d98eca20a8be246566241e8c1
+Author: mgiri <mgiri@fedoraproject.org>
+Date:   Fri Jan 7 10:52:36 2011 +0000
+
+    l10n: Updates to Oriya (or) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 7f8617f158dafe3cb05ac457e2c9658cd2b0954c
+Author: runab <runab@fedoraproject.org>
+Date:   Tue Jan 4 04:42:08 2011 +0000
+
+    l10n: Updates to Bengali (India) (bn_IN) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 7010ba231f9f5ba97108f63c3bb20b67a2afe715
+Author: swkothar <swkothar@fedoraproject.org>
+Date:   Mon Jan 3 10:24:25 2011 +0000
+
+    l10n: Updates to Gujarati (gu) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit ef14d157b4cb46828b21ecddb0f0c5c9d69a4acd
+Author: nahareport <nahareport@fedoraproject.org>
+Date:   Tue Dec 21 13:00:44 2010 +0000
+
+    l10n: Updates to Japanese (ja) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 451f0efabf8655051fdcfce2f9dddc5097d9ce37
+Author: chiachen <chiachen@fedoraproject.org>
+Date:   Tue Dec 7 16:22:30 2010 +0000
+
+    l10n: Updates to Chinese (China) (zh_CN) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 7915a558422e41a810a11e1427c9ea6e7a132248
+Author: chiachen <chiachen@fedoraproject.org>
+Date:   Tue Dec 7 15:37:26 2010 +0000
+
+    l10n: Updates to Chinese (China) (zh_CN) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit ca4ce623470ce1c23991009be7e6abef4c688162
+Author: chiachen <chiachen@fedoraproject.org>
+Date:   Mon Dec 6 17:54:19 2010 +0000
+
+    l10n: Updates to Chinese (China) (zh_CN) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 7be4d48ae0e160066371b8aa8d66dadb78557910
+Author: ncfiedler <ncfiedler@fedoraproject.org>
+Date:   Sun Dec 5 19:49:49 2010 +0000
+
+    l10n: Added Low German translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 97078ddc28655f6d3c5584d9f62683c0df29651a
+Author: ufa <ufa@fedoraproject.org>
+Date:   Mon Nov 29 12:21:48 2010 +0000
+
+    l10n: Updates to Portuguese (Brazilian) (pt_BR) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 7e6eeaec9f10aa7f4f107be081e3468aa5ea63fd
+Author: dennistobar <dennistobar@fedoraproject.org>
+Date:   Tue Nov 16 13:56:23 2010 +0000
+
+    l10n: Updates to Spanish (Castilian) (es) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit ea15639e940878f039b09688a77bd276bfe986b9
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Mon Nov 15 16:32:17 2010 +0100
+
+    Check the core_collector in kdump.conf
+    
+    When core_collector entry in kdump.conf did not begin with makedumpfile
+    s-c-kdump ended in endless loop. Now there is only one error message
+    and core collector is set to default value.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 169746217d43f5dcdbcc761276f2b02f6595e6f7
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Mon Nov 15 14:37:13 2010 +0100
+
+    Fix some typos
+    
+    Patch from Yuri Chornoivan <yurchor@ukr.net>
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 66891fb0ee3fff771c81c390411d3c3cbf4e3e8e
+Author: warrink <warrink@fedoraproject.org>
+Date:   Fri Nov 12 14:56:02 2010 +0000
+
+    l10n: Updates to Dutch (Flemish) (nl) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit be413b85a0ec766496a367553edbee11402d5b90
+Author: yurchor <yurchor@fedoraproject.org>
+Date:   Wed Nov 3 09:40:26 2010 +0000
+
+    l10n: Updates to Ukrainian (uk) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 4ff38ace3fbf60350241b5a36b602228edd72aae
+Author: raven <raven@fedoraproject.org>
+Date:   Wed Nov 3 01:01:13 2010 +0000
+
+    l10n: Updates to Polish (pl) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit d1a2f2fb57ec8f9a7c6b988f966637011f064805
+Author: kmaraas <kmaraas@fedoraproject.org>
+Date:   Sat Oct 30 14:49:22 2010 +0000
+
+    l10n: Updates to Norwegian Bokmål (nb) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit d08ab6ae55d5d53315a2da581fbed5f0675ee6a8
+Author: jassy <jassy@fedoraproject.org>
+Date:   Fri Oct 15 06:30:09 2010 +0000
+
+    l10n: Updates to Panjabi (Punjabi) (pa) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit ec73f29538218655258a49b09272491bb6cd6adb
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Fri Oct 1 16:20:05 2010 +0200
+
+    Better parsing of /etc/fstab
+    
+    Split all fields in fstab. It should be usefull in the future.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 42d5a8af0d15731a33870110d2764c772e025450
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Fri Oct 1 13:08:32 2010 +0200
+
+    New icon
+    
+    Used new icon from fedora design team:
+    https://fedorahosted.org/design-team/ticket/107
+    Also display this icon in main window.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 465c3eb76b0268cdca77ffaa142b32473095fc1a
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Sep 30 15:56:53 2010 +0200
+
+    Release 2.0.5
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit fd0e7768a415dc4ba559628038cc6101a4c99bb4
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Sep 30 15:48:57 2010 +0200
+
+    Improved clean rules
+    
+    Remove generated config file. Also remove pyc files in sckdump subdir.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit a73cfe122057a0ab69d8c3161372e28cd9393fc6
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Sep 30 14:50:08 2010 +0200
+
+    Display correct version in About dialog
+    
+    Generate version in new module sckdump.config and use it
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit f16c5dc898496479a1bfa31de9872781535481cd
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Sep 29 18:51:33 2010 +0200
+
+    Fix an issue when the command name is not known
+    
+    When the command is unknown we try to show failed command, the s-c-kdump
+    crashes. Instead of None use "" (empty string) and
+    in show_call_error_message() check whether all tree view fields are empty.
+    If they are, call only show_error_message() - without tree views.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 20e1c7d4e9bf0a1e733e76d41a02e7f2b43b10d1
+Author: rbuj <rbuj@fedoraproject.org>
+Date:   Mon Sep 27 14:08:35 2010 +0000
+
+    l10n: Updates to Catalan (Valencian) (ca) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 94a2c416c26e709b02ec25fe3a4b213a31fe53c2
+Author: rbuj <rbuj@fedoraproject.org>
+Date:   Mon Sep 27 13:16:13 2010 +0000
+
+    l10n: Updates to Catalan (Valencian) (ca) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit a12d55cfc68b45439457f510fec4679daff5090d
+Author: rbuj <rbuj@fedoraproject.org>
+Date:   Mon Sep 27 12:53:52 2010 +0000
+
+    l10n: Updates to Catalan (Valencian) (ca) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 496b889a51fc171f4f3a09943f949c64548219e0
+Author: bluebat <bluebat@fedoraproject.org>
+Date:   Sun Sep 26 15:45:14 2010 +0000
+
+    l10n: Updates to Chinese (Taiwan) (zh_TW) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit ba5d5d281c57c3b9f0766383b5b1334d9d70b95a
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Sep 16 17:00:40 2010 +0200
+
+    Install glade files properly
+    
+    There is added other glade file. Makefile changed to install all glade
+    files from src/ directory.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 3dd456052a660b4d90bd62c673dfa46ca057e920
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Sep 16 15:50:55 2010 +0200
+
+    Catch exceptions
+    
+    When trying to communicate with backend, some exception can be raised.
+    Handle them. Not authorized exception from polkit is only passed.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 4f5ca310c38e2b1cac9e3f83e8a3201da150e875
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Tue Sep 14 16:02:27 2010 +0200
+
+    Rebuild pot file
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 79445ec5d9207c9be387b926efd1f1291f646765
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Tue Sep 14 15:59:12 2010 +0200
+
+    Mark texts for translation
+    
+    Add missing texts for translation
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit f778febf3e18d745edcf734f0c2804dd4f333151
+Author: taylon <taylon@fedoraproject.org>
+Date:   Wed Sep 8 12:39:14 2010 +0000
+
+    l10n: Updates to Portuguese (Brazilian) (pt_BR) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit f620d65b25d987e882c08011e7c296e9f8aab624
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Aug 25 17:14:28 2010 +0200
+
+    New dialog for call errors
+    
+    When some call of system command failed, show dialog with more information.
+    Such as called command, stdout returned, stderr returned.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit e56ffb7ec8eb09850ed07f871dd2c98f3d228580
+Author: mrtom <mrtom@fedoraproject.org>
+Date:   Wed Aug 25 15:13:43 2010 +0000
+
+    l10n: Updates to French (fr) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit d10f64e0dc2ee7db294494954c744549e16391e7
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Tue Aug 24 13:27:32 2010 +0200
+
+    Correct return values
+    
+    When handling kdump services it was possible to fall in error, but
+    the gui shows succesfull note. Now it shows only error and then nothing.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 371d8b33ff51bad7b3a177ba935443f6d70195a5
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Tue Aug 24 10:52:41 2010 +0200
+
+    Keep progress window visible
+    
+    Call deiconify on every progress update, so the user will see progress bar
+    everytime.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit aed6a4f1c08d26b560b83a50955e49aec8ad7bb2
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Aug 18 16:37:05 2010 +0200
+
+    dbus exceptions handling
+    
+    Catch dbus exceptions and show appropriate message
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 5e13f7ee1edf6023a714202fdc2aad4562176ca5
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Mon Aug 16 16:28:51 2010 +0200
+
+    Async dbus calls
+    
+    Do dbus calls async, during call show progress bar
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit dde27e84f0dc73afdc56258c2cafcfd66fa81865
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Mon Aug 16 13:45:20 2010 +0200
+
+    dbus proxy in separate module
+    
+    DBusProxy class moved to sckdump/dbus_proxy module
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit efa081a69e66424c50e805c368342f49a6045968
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Mon Aug 16 12:32:45 2010 +0200
+
+    Add fallback from getting mem from /proc/iomem to /proc/meminfo
+    
+    There is some bug that there is empty /proc/iomem on some machines -
+    especially ppc64. Adding fallback to previous method of getting
+    total system memory. If we don't get total mem from /proc/iomem,
+    inform the user about that and read total mem from /proc/iomem.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit b514b0ea8a2ba8d8ef0fc7b0baee85cb5f6eb6fd
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Mon Aug 16 12:23:05 2010 +0200
+
+    Check the current kdump service status
+    
+    Check the status, turn on when needed, turn off when needed. Also, ist is
+    necessary to restart service if it is already running.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 06c631f631f7c3982ed3bbe7e96c4eff093abb89
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Aug 12 15:39:27 2010 +0200
+
+    Corrected service handling
+    
+    It was possible to do "nothing" with service. For example backend tried
+    to call `chkconfig kdump ', what leads into printing usage of chkconfig.
+    Now we will say chkconfig to `on' or `off' the kdump service.
+    And `service' command now is called with start or stop.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit dcc50b4fb9c57d4c926db400e17ad9612803156c
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Tue Aug 10 16:48:53 2010 +0200
+
+    Fixed issue when removing free kernel options
+    
+    If there is not any kernel option s-c-kdump tried to remove them,
+    what ended in grubby error. Remove kernel options only if there are any.
+    
+    Moreover, removed unused EXCEPTION_MARK
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 43379aa998010abb79ffc711f290d2ed3a70a2ec
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Jul 29 16:57:37 2010 +0200
+
+    Use / as default INSTROOT
+    
+    If not set INSTROOT use default /
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 4a7b3ad9490860688bab4d8b387938f47b4817a2
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Jul 29 16:49:54 2010 +0200
+
+    Second part of better dbus signatures
+    
+    Dbus signatures changed from simple strings (for example) to tuples where
+    applicable.
+    
+    Show error messages when return code is not 0.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 527d58b8e5e567e89ef7be6efa2775c7692a0f20
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Fri Jul 2 14:16:56 2010 +0200
+
+    Handle return code of subprocess calls and better dbus signatures
+    
+    Handle subprocess calls. All return codes are checked. Send from backaned
+    return code and data (or stdout and stderr).
+    So far done only in backend
+    
+    Dbus signatures changed from simple strings (for example) to tuples where
+    applicable.
+    So far done only in backend
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 9b2e6c4718c63a708248e0f45983a21d7e96f933
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Jul 1 16:57:52 2010 +0200
+
+    Cleanup
+    
+    cleanup in backend; removed comments
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 6bb40dbb156d3fa82eb25b7154d7b54737f309aa
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Jul 1 16:55:16 2010 +0200
+
+    ext4 support
+    
+    Added support for etx4 filesystem type. As it is read from /etc/fstab as the others (ext2, ext3)
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 18416d47f91236925cb12b607dee5311c3c9cdc3
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Jul 1 16:53:45 2010 +0200
+
+    poweroff support
+    
+    Support poweroff as other default action.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 5cccc645672385af1008b9c71eb306c5567dbe6c
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Mon Jun 7 15:43:30 2010 +0200
+
+    Calculation of total memory
+    
+    Do not read the total memory from /proc/meminfo, but rather read
+    the /proc/iomem. Count all lines containing RAM or MMCONFIG.
+    
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit dfcb2eabae45c294d521dabdadeb5e9c03e12972
+Author: munzirtaha <munzirtaha@fedoraproject.org>
+Date:   Mon Jul 12 06:26:56 2010 +0000
+
+    l10n: Updates to Arabic (ar) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit c1d12db5f8bdfba6f68ddc9fb4d92e7a73c2598a
+Author: warrink <warrink@fedoraproject.org>
+Date:   Wed Jul 7 19:57:15 2010 +0000
+
+    l10n: Updates to Dutch (Flemish) (nl) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 3e25193f98ad0e48cf929f8b9446d8c0368bca7e
+Author: goeran <goeran@fedoraproject.org>
+Date:   Mon Jun 28 13:40:26 2010 +0000
+
+    l10n: Updates to Swedish (sv) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 6787b17386d3300cd9cb40df7757aba7359ecc8a
+Author: Lubomir Rintel <lkundrak@v3.sk>
+Date:   Sun May 9 11:56:12 2010 -0400
+
+    Properly deal with unsupported bootloader
+    
+    Backend would crash in case it couldn't determine the boot loader type,
+    which is the case for the live media with syslinux (due to use of
+    uninitialized value). This adds an assignent of None to it.
+    
+    In case backend would not crash, frontend would happily attempt to
+    cofigure the boot loader, despite the fact that there's none (and in
+    turn, backend would call grubby with incorrect command line). This patch
+    adds check for it (well, if we don't have a default kernel, we can be
+    positive that attempt to modify its command line would not succeed).
+    
+    Furthermore, one unused variable is removed.
+    
+    Also, this adds a new untranslated string, PO files need to be updated
+    accordingly.
+
+commit 69b2d3c8836abc978b44d9a1f1a97e1e23e61c0f
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed May 19 19:54:23 2010 +0200
+
+    Additional checks for valid crashkernel value
+    
+    Do the check for valid value (X, X@Y) and print the error message if not valid.
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 016d9ee73720ea005008b00c082ba6a0fc9138a3
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed May 19 19:44:51 2010 +0200
+
+    Show help in the right category
+    
+    Show the help in the 'System' category instead of the 'Settings'
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit fd08ff2ab50225352ef22009716d19ee738e6c49
+Author: amitakhya <amitakhya@fedoraproject.org>
+Date:   Wed Apr 28 06:42:06 2010 +0000
+
+    l10n: Updates to Assamese (as) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 454db40e716b4cb57e4b745bd1ca1e87c63a835b
+Author: leahliu <leahliu@fedoraproject.org>
+Date:   Tue Apr 27 23:52:13 2010 +0000
+
+    l10n: Updates to Chinese (China) (zh_CN) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 7760686c43872466460f2074589366badac8d2f9
+Author: shanky <shanky@fedoraproject.org>
+Date:   Fri Apr 23 09:26:40 2010 +0000
+
+    l10n: Updates to Kannada (kn) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 065b168b2a93a14389b82c5ebccc59f167d8d8ca
+Author: khasida <khasida@fedoraproject.org>
+Date:   Fri Apr 23 08:43:59 2010 +0000
+
+    l10n: Updates to Japanese (ja) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 3a19c458496305d4b79c64acc25a3364599a7cd4
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Apr 22 15:22:01 2010 +0200
+
+    Better policy
+    
+    Do better policy for policykit. There were sometime not authorized exceptions
+    due to bad policy.
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit dfae099c8cee0670c82873d8edf04108925a6c3d
+Author: runab <runab@fedoraproject.org>
+Date:   Fri Apr 16 11:04:49 2010 +0000
+
+    l10n: Updates to Bengali (India) (bn_IN) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit e17f408ba296a17d742dcd948df59b9234fdf45b
+Author: kkrothap <kkrothap@fedoraproject.org>
+Date:   Fri Apr 16 08:46:54 2010 +0000
+
+    l10n: Updates to Telugu (te) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit dd724523d407f8953096a30b4a0cfa7a5dd47ae7
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Apr 15 18:01:25 2010 +0200
+
+    Remove deprecated text
+    
+    There's no more any arch with no relocatable kernel. Therefor removed
+    deprecated text.
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit f642e59ba001575101503331bd5360fb3a949e5c
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Apr 15 13:16:47 2010 +0200
+
+    Do not depend on font package
+    
+    Removed dependency on bitmap-fonts package. This is ugly hack.
+    People should install @fonts comps.
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 4191385b3f01a9c4837012b701ef15fcb32a66f9
+Author: mvdz <mvdz@fedoraproject.org>
+Date:   Sun Apr 11 22:37:44 2010 +0000
+
+    l10n: Updates to Ukrainian (uk) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 1c32b3da83a864cd75539b0368746ca6d5ec895a
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Apr 7 14:11:24 2010 +0200
+
+    Better name in gnome menu
+    
+    Use `Kernel crash dumps' in Gnome menu.
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 5fdb4ac13d7aff0c32a92372783f5cca60d21abe
+Author: ttrinks <ttrinks@fedoraproject.org>
+Date:   Mon Apr 5 23:41:05 2010 +0000
+
+    l10n: Updates to German (de) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 9d0649b6764a5248c7962ac6fb7e67059b571dc1
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Fri Apr 2 13:15:43 2010 +0200
+
+    Use python sitelib macro in spec file
+    
+    Using python_sitelib macro in spec file as suggested in fedora guideline
+
+commit 2081989736d155750f0a63db7e4b85b73f4095d3
+Author: kkrothap <kkrothap@fedoraproject.org>
+Date:   Tue Mar 30 11:44:53 2010 +0000
+
+    l10n: Updates to Telugu (te) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 8d3c92b7b2f96505d2193ee89e51db936229785f
+Author: kkrothap <kkrothap@fedoraproject.org>
+Date:   Tue Mar 30 11:32:07 2010 +0000
+
+    l10n: Updates to Telugu (te) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 850f08c5f0a47ab477428aef2c3a3ccd60932ddd
+Author: kkrothap <kkrothap@fedoraproject.org>
+Date:   Tue Mar 30 11:23:03 2010 +0000
+
+    l10n: Updates to Telugu (te) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 5790915aa0befaa7f1fec89b845ef1f9dd89a903
+Author: snicore <snicore@fedoraproject.org>
+Date:   Mon Mar 29 19:40:32 2010 +0000
+
+    l10n: updates to hungarian translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit beb1490f604efc166f8b7cb8df39f590e123396e
+Author: gkoenig <gkoenig@fedoraproject.org>
+Date:   Mon Mar 29 13:10:57 2010 +0000
+
+    l10n: Updates to German (de) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit f63ad4cc30d7593a75dd5dfe0f4454d2a97cb5d7
+Author: ruigo <ruigo@fedoraproject.org>
+Date:   Sun Mar 28 03:25:15 2010 +0000
+
+    l10n: Updates to Portuguese (pt) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 73e48c26127a905b54f60265d20fa0ece6c00de1
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Fri Mar 26 12:14:52 2010 +0100
+
+    Spec file cleanup for release
+    
+    Few spec file cleanup. Don't ship conf files as noreplace.
+    Ship s-c-kdump.py with execution bit.
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 0fff861dc5bd47413aefd6c5e333649caaa3f4f3
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Tue Mar 23 18:20:42 2010 +0100
+
+    Better building and installing
+    
+    Build py modules in non-root env. Allow install of py modules in other root
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit 3f21e5b65bacd49a49864c3368f6a8544e739305
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Tue Mar 23 18:16:56 2010 +0100
+
+    Import modules from the right place
+    
+    Previous change made importing modules non working. Added missing sckdump.
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit c2ba580a8f998be83026d42af55cd92307d00e7a
+Author: snicore <snicore@fedoraproject.org>
+Date:   Thu Mar 25 13:05:35 2010 +0000
+
+    l10n: updates to Hungarian translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit be917fb0f41fcd79573e0f1d4f5c820e812b110a
+Author: elsupergomez <elsupergomez@fedoraproject.org>
+Date:   Thu Mar 25 12:15:14 2010 +0000
+
+    l10n: Updates to Spanish (Castilian) (es) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit e995844a469dc525ab576bbffa8640cb9203d69f
+Author: jassy <jassy@fedoraproject.org>
+Date:   Thu Mar 25 07:39:53 2010 +0000
+
+    l10n: Updates to Panjabi (Punjabi) (pa) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 4967c473819234add764b0d9d1d3d97c4b5c7e32
+Author: vpv <vpv@fedoraproject.org>
+Date:   Wed Mar 24 15:25:02 2010 +0000
+
+    l10n: Updates to Finnish (fi) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 1da76a7570288c4818031867214e185c3e8ef422
+Author: runab <runab@fedoraproject.org>
+Date:   Wed Mar 24 11:43:23 2010 +0000
+
+    l10n: Updates to Bengali (India) (bn_IN) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 48a464b135be323b5d7d33e4b0cef8f879f38d18
+Author: ypoyarko <ypoyarko@fedoraproject.org>
+Date:   Wed Mar 24 02:11:21 2010 +0000
+
+    l10n: Updates to Russian (ru) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit bc823fe046d14efe05c8368a3334aec75aed2d0e
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Tue Mar 23 17:51:52 2010 +0100
+
+    Properly handle modules
+    
+    From now we will use distutils from python for installing modules
+    Signed-off-by: Roman Rakus <rrakus@redhat.com>
+
+commit c0c2d17384b40d934a7d7b2a7ca3d396859bc709
+Author: sandeeps <sandeeps@fedoraproject.org>
+Date:   Tue Mar 23 10:10:12 2010 +0000
+
+    l10n: Updates to Marathi (mr) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit b81a7a38502f670a3304ce122da20692bc167363
+Author: mgiri <mgiri@fedoraproject.org>
+Date:   Tue Mar 23 09:19:01 2010 +0000
+
+    l10n: Updates to Oriya (or) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 57ddb3a4c93dda2465edd1c5b7df9b8c7cf65c3e
+Author: anipeter <anipeter@fedoraproject.org>
+Date:   Tue Mar 23 06:20:07 2010 +0000
+
+    l10n: Updates to Malayalam (ml) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 359f2b3ed8b0fa99beb6227cd9d96f801bb80625
+Author: swkothar <swkothar@fedoraproject.org>
+Date:   Tue Mar 23 05:46:18 2010 +0000
+
+    l10n: Updates to Gujarati (gu) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 9b1b2c2b82d864ae65292ae288a733e129b57e0b
+Author: ypoyarko <ypoyarko@fedoraproject.org>
+Date:   Tue Mar 23 02:02:29 2010 +0000
+
+    l10n: Updates to Russian (ru) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 009c0f505b11110f46bd8b4509e02ef85fbfc2f2
+Author: ypoyarko <ypoyarko@fedoraproject.org>
+Date:   Tue Mar 23 01:54:39 2010 +0000
+
+    l10n: Updates to Russian (ru) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 7030c77a7c7757fab1ec0bb79a783c0dd988e338
+Author: logan <logan@fedoraproject.org>
+Date:   Mon Mar 22 17:30:57 2010 +0000
+
+    l10n: Updates to Spanish (Castilian) (es) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit b5fc8e2183f343376e5df32fb0324079275441e1
+Author: beckerde <beckerde@fedoraproject.org>
+Date:   Mon Mar 22 15:46:50 2010 +0000
+
+    l10n: Updates to Spanish (Castilian) (es) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 52f1492edc902883343d629f8b3f3302c922ba49
+Author: ypoyarko <ypoyarko@fedoraproject.org>
+Date:   Sun Mar 21 23:08:13 2010 +0000
+
+    l10n: Updates to Russian (ru) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 59cb752aa7ffe734a5d78c34f75363a8caea156f
+Author: ypoyarko <ypoyarko@fedoraproject.org>
+Date:   Sun Mar 21 22:42:22 2010 +0000
+
+    l10n: Updates to Russian (ru) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 0302278993fb79d44529e682c8d17a6c32b8e7f6
+Author: ypoyarko <ypoyarko@fedoraproject.org>
+Date:   Sun Mar 21 21:40:36 2010 +0000
+
+    l10n: Updates to Russian (ru) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit 047b5a056342abd9e70cc779135bc763674bd2c9
+Author: warrink <warrink@fedoraproject.org>
+Date:   Sun Mar 21 19:54:54 2010 +0000
+
+    l10n: Updates to Dutch (Flemish) (nl) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit ec8db60a7f42f503ea2618b30c2718b919ee2c44
+Author: raven <raven@fedoraproject.org>
+Date:   Fri Mar 19 16:01:49 2010 +0000
+
+    l10n: Updates to Polish (pl) translation
+    
+    Transmitted-via: Transifex (translate.fedoraproject.org)
+
+commit e665bfec084aa54b1bb084601e18ff5a7269d3b3
+Author: Roman Rakus <rrakus@dhcp-lab-184.englab.brq.redhat.com>
+Date:   Fri Mar 19 10:35:06 2010 +0100
+
+    Update translations
+    
+    po/Makefile now takes care of all src/*.glade files
+    po/$name.pot regenerated
+    po/*po regenerated
+    
+    Signed-off-by: Roman Rakus <rrakus@dhcp-lab-184.englab.brq.redhat.com>
+
+commit b4a40b88e0ad30994cb5326c31cf4b8076d1e734
+Merge: d71c03b 51339dc
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Mar 17 18:42:37 2010 +0100
+
+    Merging with new
+    
+    Merge branch 'new'
+
+commit 51339dca797ee4c9b0a57257c1bd340fa846b0a5
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Mon Mar 1 12:54:59 2010 +0100
+
+    Name of the fonts rpm changed; use bitmap-fixed-fonts
+    
+    There is no more bitmap-fonts in Fedora. Use bitmap-fixed-fonts. However;
+    is fonts really necessary?
+
+commit 175a2bd2175a9cf8c4175998c4e34984c0ccbd79
+Author: bruce89 <bruce89@fedoraproject.org>
+Date:   Sun Feb 28 19:06:02 2010 +0000
+
+    Sending translation for British English
+
+commit dbd4361d6dfea46c15de53ad73912c28dd646cda
+Author: jobo <jobo@fedoraproject.org>
+Date:   Mon Feb 22 19:39:19 2010 +0000
+
+    Sending translation for Greek
+
+commit 5c91c7c161f81a0d78079de689011d041b80278b
+Author: Roman Rakus <rrakus@dhcp-lab-184.englab.brq.redhat.com>
+Date:   Wed Dec 16 16:00:41 2009 +0100
+
+    Cleaned dialogs separation. Progress window separated.
+    
+    In dialogs.py corrected `self' arguments. Call dialogs with named argument. Progress window is now in progress.py.
+
+commit 58cc62cf6950a542d3774990c8a399b2f84d0aa3
+Author: Roman Rakus <rrakus@dhcp-lab-184.englab.brq.redhat.com>
+Date:   Wed Dec 16 15:37:47 2009 +0100
+
+    Moved dialogs to new dialogs.py file
+    
+    Dialogs are now accessable from dialogs module. Also changed all dialogs calling as necessary.
+
+commit b1a23668f30cdda69a200675bb424bc2bdf12d91
+Author: Roman Rakus <rrakus@dhcp-lab-184.englab.brq.redhat.com>
+Date:   Tue Dec 15 16:06:56 2009 +0100
+
+    No more import obsolete rhpl
+    
+    Die rhpl! Die die die!
+
+commit 9a5b16d5915fa662b62c7049756559ae2aece580
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Dec 9 16:14:23 2009 +0100
+
+    Fixed typo in help. Removed generated help files.
+    
+    There was one minor typo. To have generated files in git is nonsense
+
+commit 2a408df631234b40ae0ab8ebc0ff35ec411657cf
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Mon Dec 7 16:11:58 2009 +0100
+
+    Remove .git directory from release tarball
+    
+    Don't release git informations in release tarball.
+
+commit 98e4e1afcaba479777e9731e1ffa4f71e727fb69
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Mon Dec 7 15:59:23 2009 +0100
+
+    Don't be interested in non linux entries in bootloaders conf.
+    
+    When bootloader contains some non linux entries, parser was confused and traceback follows
+    e. g. grub sequence:
+    title Other
+            rootnoverify (hd0,1)
+            chainloader +1
+
+commit ab49481ea364b371f2d0e9f79076d1df457b6784
+Author: astur <astur@fedoraproject.org>
+Date:   Sun Nov 1 16:38:44 2009 +0000
+
+    Sending translation for po/ast.po
+
+commit 84e369277f186e43830950d36173138ad3f685c3
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Sep 30 13:29:12 2009 +0200
+
+    Specfile updated. Cleanup in .py. Makefile update
+    Updated specfile now drops requires for rhpl and added requires python-slip
+    Cleanup importing python-slip
+    Makefile local generates ChangeLog
+
+commit 4dcdb6ebdef71bd8eec3e6bb3a08ac17b5c33b52
+Author: kristho <kristho@fedoraproject.org>
+Date:   Mon Sep 28 22:25:02 2009 +0000
+
+    Sending translation for Danish
+
+commit d71c03bd4cf5963526619d638def6b96076cb00f
+Author: raven <raven@fedoraproject.org>
+Date:   Tue Sep 22 21:18:10 2009 +0000
+
+    Sending translation for Polish
+
+commit 005c3d6c506d7aeb88cb2a0351dca7f54e63efc5
+Author: raven <raven@fedoraproject.org>
+Date:   Tue Sep 22 21:17:46 2009 +0000
+
+    Sending translation for Polish
+
+commit 5d7533d8d97a11fee08efe063c6cea2bb2aef495
+Author: raven <raven@fedoraproject.org>
+Date:   Tue Sep 22 21:17:17 2009 +0000
+
+    Sending translation for Polish
+
+commit bd14bbbba135861ca775e680abe23fe66c9348a1
+Author: rajesh <rajesh@fedoraproject.org>
+Date:   Tue Sep 22 18:30:23 2009 +0000
+
+    Sending translation for Maithili
+
+commit 35fa9bf8e2a42a8aba688885e9bdf3d9cfe62342
+Author: mvdz <mvdz@fedoraproject.org>
+Date:   Tue Sep 22 18:14:37 2009 +0000
+
+    Sending translation for Ukrainian
+
+commit af3f857be960689b803d51f3d87e90b09556682f
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Tue Sep 22 15:46:21 2009 +0200
+
+    Deleted Changelog, Removed rhpl, Use polkit-1
+    ChangeLog deleted, should be generated on every release.
+    Rhpl is no more used. Used gettext and subprocess.
+    Makefile changed to use polkit-1.
+
+commit ad7740b0cf0c79d9686eb2dabbb5d8b7e2cc669e
+Author: anipeter <anipeter@fedoraproject.org>
+Date:   Tue Sep 22 10:40:45 2009 +0000
+
+    Sending translation for Malayalam
+
+commit c36dab6c3de20423825469bd624f69580ef8393b
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Jun 4 16:49:15 2009 +0200
+
+    Catch SystemExit exception.
+    
+    It is invoked only if there is any error. And error message is also printed.
+
+commit 59e6427399fa459462a76d731d1998c96d1e3a39
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Jun 4 16:25:42 2009 +0200
+
+    Added missing requires python-slip-dbus
+
+commit 913c628258cef193f4deefd8814b53fc7ed4ed74
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Jun 4 15:07:33 2009 +0200
+
+    Removed obsolete translation no.po. Replaced by nb.no
+
+commit eb98f811d2a84821a3ea636d7fecc8811f752356
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Tue May 5 16:21:36 2009 +0200
+
+    Makefile and specfile edited for right instalation
+
+commit 90bd8d19b060904ad29d97911afd478e021abc15
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Tue May 5 13:40:40 2009 +0200
+
+    Finaly working with Policy Kit and DBUS
+    Ask for root password for needed actions.
+
+commit bcd3d25000f9e23e97baf03268eb42ede61f73ce
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Fri Mar 27 15:30:39 2009 +0100
+
+    Add help maked files
+    If anyone want to rebuild help, can do it. But prefer already maked one
+
+commit 719ef953345115df1b749e6c80ac74b8f01c9cd4
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Fri Mar 27 14:31:21 2009 +0100
+
+    Completed help
+    Help pages are now complete. Is anyone reading it?
+
+commit 1bbc8ef7a52a1c643253114fcb9394ef0f3d199e
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Tue Mar 24 17:26:32 2009 +0100
+
+    Generated seriesid. Added policy. Use rhpl. Added handling of service kdump.
+    Cleart generated seriesid in help/system-config-kdump.omf.in.
+    New policy in org.fedoraproject.systemconfig.kdump.policy for handlekdumpservice.
+    Used rhpl.executil execWithCaptureStatus for catching return codes and so on.
+    Handle service kdump according to settings.
+    Added progress window.
+    Maybe something else...
+
+commit 146c495bd155c924442f0f7db7c3e3238082728e
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Mar 19 14:13:05 2009 +0100
+
+    Fix off-by-one error in kernel cmdline parsing
+    This fixes an off-by-one error in kernel cmdline parsing
+    code, (third hunk) which prevented from system-config-kdump from running
+    successfully on systems with crash kernel offset already being in effect.
+
+commit 9f945abaca1058e1fb1b4f42d78ec37abe9f46f4
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Mar 18 16:28:32 2009 +0100
+
+    Added help
+    Added help buttons, and basic structure of help contents. But needs to be completely written.
+
+commit 6e4dfa8ac4e6b5e1762bea98db3eff04f62a205d
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Thu Mar 12 16:57:51 2009 +0100
+
+    Catch enter somewhere. Cleanup. Changelog. Some improvements.
+    Catch enter on some Gtk Entries.
+    Some cleanup.
+    Add changelog.
+    Better initial loading and reloading.
+
+commit 154547d3fd195d056d225bcc715a21f4dce30bec
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Mon Mar 9 17:48:45 2009 +0100
+
+    Great changes.
+    Now we have menu, toolbar and much more.
+
+commit 8144bf625bfa2176727103683c9da57e512828bc
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Jan 28 14:28:52 2009 +0100
+
+    modified:   src/system-config-kdump.glade
+    Tabs are now positioned on left side.
+    
+    modified:   src/system-config-kdump.py
+    Units (MB) are now on the right side of labels/widgets.
+    Changing command line arguments now works - at first remove old args and then add new args.
+
+commit b0be8f4808c611fe90767d9b37088654b464cf89
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Wed Nov 26 19:00:35 2008 +0100
+
+    Correctly handle XEN arguments updating. But needs grubby bug fix.
+
+commit 7bcbc3199218ab513f6d3ac5e0e24c12972d996d
+Author: Roman Rakus <rrakus@redhat.com>
+Date:   Mon Nov 24 13:42:07 2008 +0100
+
+    Some cleanup
+
+commit c69e51ce8c474278eed0666140ee10d5f497dbb0
+Author: Roman Rakus <rrakus@dhcp-lab-179.englab.brq.redhat.com>
+Date:   Tue Nov 11 15:07:21 2008 +0100
+
+    Some reformatings. Show specific error message while writting kdump.conf fails
+
+commit adcddc4fef3b906cd3eabe88d1f3ff01b47ce265
+Author: Roman Rakus <rrakus@dhcp-lab-179.englab.brq.redhat.com>
+Date:   Tue Nov 11 15:03:48 2008 +0100
+
+    Catch exceptions in writting kdump.conf. Don't do backup for simplier selinux policies.
+
+commit 8842d7d86e1a8a7f58a7fb94c7d4a421844a0e92
+Author: Roman Rakus <rrakus@dhcp-lab-179.englab.brq.redhat.com>
+Date:   Tue Nov 11 15:01:23 2008 +0100
+
+    No we can generate SElinux modul in Makefile with using policy written in new file local.system-config.te
+
+commit b0a50f4b7e78e3eb18a0a09bccdd4a229558e0cf
+Author: Roman Rakus <rrakus@dhcp-lab-179.englab.brq.redhat.com>
+Date:   Wed Nov 5 17:05:07 2008 +0100
+
+    Reworked
+
+commit 83a4dca879b72368cb794e18d7591b395e82ab27
+Author: Roman Rakus <rrakus@dhcp-lab-179.englab.brq.redhat.com>
+Date:   Wed Nov 5 12:47:19 2008 +0100
+
+    Added comment
+
+commit fbf13074c37234231001dbdd0cd1598773834159
+Author: kristho <kristho@fedoraproject.org>
+Date:   Thu May 21 21:32:49 2009 +0000
+
+    Sending translation for Danish
+
+commit 4a2de15588a7483126abee29bc057179f08a0784
+Author: transif <transif>
+Date:   Tue Oct 21 10:39:31 2008 +0000
+
+        2008-10-21  Shankar Prasad <svenkate@redhat.com> (via
+    shanky@fedoraproject.org)
+    
+          * po/kn.po: Updated few changes to kn.po
+
+commit 15d1b485abc933148fe7d41052f5a4ed0899d9b6
+Author: transif <transif>
+Date:   Sat Oct 11 18:56:39 2008 +0000
+
+        2008-10-11  Vladimir Melo <vladimirmelo.psi@gmail.com> (via
+    vladimirmelo@fedoraproject.org)
+    
+          * po/pt_BR.po: Brazilian portuguese translation updated.
+
+commit 5bccb0f56085d671558fec14b6c2c12ee4f98005
+Author: transif <transif>
+Date:   Sat Sep 27 20:47:13 2008 +0000
+
+        2008-09-27  Xavier Conde <xavi.conde@gmail.com> (via
+    xconde@fedoraproject.org)
+    
+          * po/ca.po: Updated catalan po
+
+commit 7e5049be0e2bfbf7409765c8649d33f5bea5385f
+Author: transif <transif>
+Date:   Mon Sep 22 06:45:41 2008 +0000
+
+        2008-09-22  Terry Chuang <tchuang@redhat.com> (via
+    tchuang@fedoraproject.org)
+    
+          * po/zh_TW.po: Translation completed.
+
+commit 1acb157a4eb33dc47a26175a88d1001d91c43aee
+Author: transif <transif>
+Date:   Sat Apr 26 05:22:16 2008 +0000
+
+    2008-04-26  Peter Sulyok <peti@sulyok.hu> (via peti@fedoraproject.org)
+    
+      * po/hu.po: Updated Hungarian translation
+
+commit 8e1d3d38f6dee4239d6854fb3c7ee946f5287ae7
+Author: transif <transif>
+Date:   Thu Apr 10 13:57:08 2008 +0000
+
+    2008-04-10  Anatoliy Guskov <anatoliy.guskov@gmail.com> (via
+    aguskov@fedoraproject.org)
+    
+      * po/ru.po: Finish Russina translation
+
+commit 24e4cc48c96ffa8cd438fa72a70e6899149c5e98
+Author: transif <transif>
+Date:   Fri Apr 4 04:43:49 2008 +0000
+
+    2008-04-04  Dapid Candra <dapidc@gmail.com> (via dapidc@fedoraproject.org)
+    
+      * po/id.po:
+
+commit c8ae61b4fe5a0e2512163358bbb37120eca0e347
+Author: transif <transif>
+Date:   Mon Mar 24 07:02:16 2008 +0000
+
+    2008-03-24  Jaswinder Singh Phulewala <j.phulewala@gmail.com> (via
+    jassy@fedoraproject.org)
+    
+      * po/pa.po: completed.
+
+commit 0faca5ab7dfcf1f37fefed5314b173647d3ef47c
+Author: transif <transif>
+Date:   Sun Mar 23 12:56:15 2008 +0000
+
+    2008-03-23  Marek Mahut <mmahut@redhat.com> (via mmahut@fedoraproject.org)
+    
+      * po/sk.po: Updated Slovak translation to 100%.
+
+commit 53b9a4874dc9366ffedc6b63b63e600e5b6e93e3
+Author: dlehman <dlehman>
+Date:   Thu Mar 20 15:44:28 2008 +0000
+
+    bump version to 1.0.14
+
+commit 7b185887781c7361f4f6064231482482f0f49158
+Author: dlehman <dlehman>
+Date:   Thu Mar 20 15:40:48 2008 +0000
+
+    	* system-config-kdump.spec: require bitmap-fonts (#433858)
+    
+    	* src/system-config-kdump.py: translate strings before resolving
+    	format specifiers so the translations get found (#314341)
+
+commit a7f0941f0e3f5c9eb8c72cb4af4a160e93a70820
+Author: transif <transif>
+Date:   Fri Feb 29 07:45:53 2008 +0000
+
+    2008-02-29  Rajesh Ranjan <rajesh672@gmail.com> (via rajesh@fedoraproject.org)
+    
+      * po/mai.po: adding for maithili
+
+commit 8ad881d14b9cb71880a9df371aab34aed66cc379
+Author: dlehman <dlehman>
+Date:   Fri Feb 8 17:51:20 2008 +0000
+
+    	* src/system-config-kdump.py: fix typo
+
+commit bedf4ce4058349bceb83c5972f68b0966d9eb707
+Author: dlehman <dlehman>
+Date:   Sat Feb 2 04:56:04 2008 +0000
+
+    Fix desktop file categories (remove SystemSetup, add Settings)
+
+commit 9cb8bd5429998d18cdf53188d7719907518f2ab9
+Author: dlehman <dlehman>
+Date:   Fri Jan 18 19:19:36 2008 +0000
+
+    Make sure %{dist} is not defined when querying versions with rpm
+
+commit 612d44472403e2befcddd87a8740c4b838de66f0
+Author: dlehman <dlehman>
+Date:   Fri Jan 18 19:13:04 2008 +0000
+
+    update version to 1.0.13
+
+commit 1c90775e6ce9a5a60721f58f050804002b49d9f1
+Author: dlehman <dlehman>
+Date:   Fri Jan 18 19:07:30 2008 +0000
+
+    	* src/system-config-kdump.py: add 'halt' default action and passthrough
+    	handling of unknown configuration items (#253603)
+    
+    	* src/system-config-kdump.py: handle kdump service stop/start and only
+    	prompt to reboot if memory reservation changed (#239324)
+
+commit 1f6ca59ff90341203c2851a78aeda7241dd27558
+Author: apeter <apeter>
+Date:   Wed Dec 12 05:28:31 2007 +0000
+
+    Updated Malayalam Translation
+
+commit 30365e90f7d107ba937228b463e2926da7a7ec23
+Author: vise <vise>
+Date:   Mon Dec 10 22:15:33 2007 +0000
+
+    *** empty log message ***
+
+commit 9260b790aead785fa129f7fec6c6cfca3317a2a1
+Author: gauthier <gauthier>
+Date:   Fri Oct 26 12:28:16 2007 +0000
+
+    updated french translation
+
+commit 0b41dcad58f6b452b407d45a222889bba6ca0a69
+Author: kmilos <kmilos>
+Date:   Thu Oct 25 19:31:12 2007 +0000
+
+    removed sr@Latn translation
+
+commit b4b7b302dbbef94cd2157e5ffc2e7ab900a29a58
+Author: dlehman <dlehman>
+Date:   Thu Oct 18 23:40:36 2007 +0000
+
+    Change License to GPL2+
+
+commit 8069fa8b19ca83bdee844a25350f42ef0a28d9f8
+Author: dlehman <dlehman>
+Date:   Thu Oct 18 20:44:12 2007 +0000
+
+    Fix tag naming
+
+commit d1a7ee56a85c54947e219fc743559a6c3e4842c6
+Author: kmilos <kmilos>
+Date:   Tue Oct 9 09:22:13 2007 +0000
+
+    updated sr@latin translation
+
+commit 8b27a55f40b2fbebd667f874d02f6fab20c1ef76
+Author: kmaraas <kmaraas>
+Date:   Thu Oct 4 13:28:17 2007 +0000
+
+    Update
+
+commit 68d3a857d1986bed3abe18d9eb670ec0deb587ef
+Author: renato <renato>
+Date:   Mon Oct 1 07:09:13 2007 +0000
+
+    *** empty log message ***
+
+commit a1a5e84d5b47855934dce19f2a48c409ce023f97
+Author: vpv <vpv>
+Date:   Tue Sep 25 19:54:18 2007 +0000
+
+    Updated Finnish translation
+
+commit 689385eb4983d86e9168d39a12eed160a121256b
+Author: kkrothap <kkrothap>
+Date:   Tue Sep 25 18:21:19 2007 +0000
+
+    Updating changes to file te.po
+
+commit bb374a8602d9b9a9bc0e886c4518db7c00d612e1
+Author: arclynx <arclynx>
+Date:   Tue Sep 25 16:56:17 2007 +0000
+
+    Updated Malay translation
+
+commit f3d648a3c22f05f287f75fc412992382fff509fe
+Author: sbehera <sbehera>
+Date:   Tue Sep 25 06:33:57 2007 +0000
+
+    Updated Oriya Translation
+
+commit 8af56b0bfbf1824ac03af72ec4bc0cafb4f10fcb
+Author: ifelix <ifelix>
+Date:   Mon Sep 24 07:49:17 2007 +0000
+
+    Tamil translation updateded
+
+commit 2ea233a607e7065e3d2431ff198e101b675e788d
+Author: fvalen <fvalen>
+Date:   Mon Sep 24 06:35:14 2007 +0000
+
+    Updated
+
+commit 96ddba262769219d9956e67f323f414d48b30398
+Author: sandeep <sandeep>
+Date:   Mon Sep 24 04:40:26 2007 +0000
+
+    Updating translations
+
+commit a863b55fc1f2e369ae978cfd8d341e63d9b7251e
+Author: doncho <doncho>
+Date:   Sun Sep 23 23:09:33 2007 +0000
+
+    Update
+
+commit 751c5c6cc72a14fa411c4e9868136ebbfb563dfb
+Author: raada <raada>
+Date:   Sun Sep 23 02:53:38 2007 +0000
+
+    *** empty log message ***
+
+commit 93834fab03d827e137b41ef80ef80c25a27f3b7c
+Author: bbbush <bbbush>
+Date:   Sat Sep 22 06:40:35 2007 +0000
+
+    35t: fix 1 fuzzy before f8 translation freeze
+
+commit 66a9908fe55b8e0b494dc1026b8fc1ae090a95bb
+Author: rranjan <rranjan>
+Date:   Fri Sep 21 08:29:02 2007 +0000
+
+    hindi fedora update
+
+commit e9693b712cdc638c620be33d3e7610a084170bad
+Author: sbehera <sbehera>
+Date:   Thu Sep 20 18:49:38 2007 +0000
+
+    Updated Oriya Translation
+
+commit d2c2497827313fae28bdb41780a3f0dbb645d4bc
+Author: svenkate <svenkate>
+Date:   Thu Sep 20 06:13:36 2007 +0000
+
+    kannada translation updationkn.po
+
+commit c14c6a98be36cefd88ced070211c37cdc64ca66b
+Author: zepires <zepires>
+Date:   Thu Sep 20 00:27:21 2007 +0000
+
+    Removed spelling errors
+
+commit 4dbda3b1107002098fba91e5742560d90880287f
+Author: amit <amit>
+Date:   Wed Sep 19 11:10:17 2007 +0000
+
+    Updated assamese translations
+
+commit 4f22841e5035587e2a75f0f5fa7c593fde50c1cd
+Author: covex <covex>
+Date:   Wed Sep 19 06:23:50 2007 +0000
+
+    fix one fuzzy string
+
+commit 65d30eeba032822c8ccff213505ca97741cdbca6
+Author: pve-nl <pve-nl>
+Date:   Mon Sep 17 20:13:16 2007 +0000
+
+    Some fixes for system-config-kdump nl.po
+
+commit a77cc8c31875126c0753ed1f124bfaa4e78fffb2
+Author: runab <runab>
+Date:   Mon Sep 17 06:28:36 2007 +0000
+
+    Updated Bengali India Translation
+
+commit e6814bbbfdadf81e3d46eef7c099335c47608dd7
+Author: hyuuga <hyuuga>
+Date:   Sun Sep 16 09:02:34 2007 +0000
+
+    translation completed. 35
+
+commit d25a6463fc7ae18a0963aecfb7fce4752a5a111f
+Author: kmilos <kmilos>
+Date:   Fri Sep 14 19:51:55 2007 +0000
+
+    updated sr@Latn translation
+
+commit 58daa0b0745a4c5a5a5aeb765b1c6606dce8fae3
+Author: kmilos <kmilos>
+Date:   Fri Sep 14 19:50:59 2007 +0000
+
+    updated sr translation
+
+commit ce20e599ad60ca7b7cb091e9975734b9d24a2025
+Author: beckerde <beckerde>
+Date:   Fri Sep 14 16:21:57 2007 +0000
+
+    *** empty log message ***
+
+commit dcfeede953b913d4d383399ba1f1d53db439449e
+Author: eukim <eukim>
+Date:   Fri Sep 14 05:33:33 2007 +0000
+
+    Updated
+
+commit 283caea1d87062098cbe7cab96c87ee5b6810b8a
+Author: ankitp <ankitp>
+Date:   Fri Sep 14 05:20:01 2007 +0000
+
+    Updated Gujarati Translations
+
+commit c5b0274611668a6955b199a869c49f1ea2057efd
+Author: trinks <trinks>
+Date:   Fri Sep 14 04:35:07 2007 +0000
+
+    *** empty log message ***
+
+commit e04b20158d2c51496ad6b1c63302473796db97d3
+Author: raven <raven>
+Date:   Fri Sep 14 01:30:20 2007 +0000
+
+    Updated Polish translation
+
+commit 36bc7e72122e8e63da4c69294142c8334fa65ee4
+Author: igor <igor>
+Date:   Thu Sep 13 14:46:13 2007 +0000
+
+    Translation update
+
+commit ca130ddda4de82b913a636bbe1c96c5ff1fcd450
+Author: dlehman <dlehman>
+Date:   Thu Sep 13 14:26:38 2007 +0000
+
+    Update strings.
+
+commit 25ecf5f439ea9ad79de1b07d266e6a34301a9222
+Author: dlehman <dlehman>
+Date:   Tue Sep 11 23:32:04 2007 +0000
+
+    new version
+
+commit 915013e5d070a3215b650f44d96a0494adc04140
+Author: dlehman <dlehman>
+Date:   Tue Sep 11 23:27:02 2007 +0000
+
+    	* src/system-config-kdump.py: warn users that a PAE kernel is required
+    	for 32-bit xen w/ >4G memory (#284851, patch from Jarod Wilson)
+
+commit 93e868ccaab1ba3cb252e0ac426a788f29863aaf
+Author: ltenn <ltenn>
+Date:   Mon Sep 10 22:09:07 2007 +0000
+
+    Routine merge by l10n
+
+commit cc523bc31f9895e3a0a6d792a0ab4593de2aa0cf
+Author: pve-nl <pve-nl>
+Date:   Mon Sep 10 21:50:53 2007 +0000
+
+    Some fixes for system-config-kdump nl.po
+
+commit d4310d41e19735972294371bd5ea6cd59d920955
+Author: xconde <xconde>
+Date:   Fri Sep 7 22:28:32 2007 +0000
+
+    Updated by XC
+
+commit 63b72f07bc19da187673385478cbe4e2b03e9aa1
+Author: doncho <doncho>
+Date:   Wed Sep 5 05:30:10 2007 +0000
+
+    Update
+
+commit c4970ff7c29189b3e43264f66fa445102812c033
+Author: leah <leah>
+Date:   Wed Sep 5 00:51:34 2007 +0000
+
+    modified some files
+
+commit 969f6bb3f4645ca771be069ff05400e6099cc387
+Author: covex <covex>
+Date:   Tue Sep 4 20:33:57 2007 +0000
+
+    czech update
+
+commit 5db8e01bff5c451b3876d23311e04da1ba34ae01
+Author: ifelix <ifelix>
+Date:   Mon Sep 3 08:59:13 2007 +0000
+
+    ta translation updated
+
+commit 1b7b9144ad5e37571a495fcfead269174797a466
+Author: eukim <eukim>
+Date:   Mon Sep 3 02:50:52 2007 +0000
+
+    Updated
+
+commit 0890cf72626a163c94a99a06bbe6f3afbd6201ea
+Author: zepires <zepires>
+Date:   Sun Sep 2 13:08:03 2007 +0000
+
+    Finished changes on RH translations and some docs
+
+commit eb80810f7a9e20dc15aae865be64bd1c49b9fd2b
+Author: eukim <eukim>
+Date:   Sun Sep 2 05:22:09 2007 +0000
+
+    Updated
+
+commit 535c87965833579492e461194f2530d840bb160e
+Author: zepires <zepires>
+Date:   Sat Sep 1 02:21:19 2007 +0000
+
+    Finished changes on RH translations and docs
+
+commit fad559e2ecdef841ed8f8a95c691f7ac0ee24dc8
+Author: mrtom <mrtom>
+Date:   Thu Aug 30 22:08:04 2007 +0000
+
+    translation updated
+
+commit d8951d8797a623647a3f1f529c37434b7f1df638
+Author: fvalen <fvalen>
+Date:   Thu Aug 30 04:39:31 2007 +0000
+
+    Updated
+
+commit 9a780acac6c1a75b88a2b471dd7e670dd1c4df16
+Author: kmilos <kmilos>
+Date:   Wed Aug 29 22:39:41 2007 +0000
+
+    updated sr@Latn translation
+
+commit 4e393cbd143d1de9f5b849b66fdb017fe7d5da51
+Author: kmilos <kmilos>
+Date:   Wed Aug 29 22:38:35 2007 +0000
+
+    updated sr translation
+
+commit 8f6b67d2701a3b26a56cc284ad9e8526ccb98215
+Author: hyuuga <hyuuga>
+Date:   Wed Aug 29 21:01:30 2007 +0000
+
+    translation completed. 35
+
+commit 4555e2bbde58d8dc4998029ff51ea170d15c600b
+Author: dlehman <dlehman>
+Date:   Wed Aug 29 15:31:19 2007 +0000
+
+    bump version
+
+commit 1c9048202134e991030768b88caf0364ade3c5ce
+Author: beckerde <beckerde>
+Date:   Wed Aug 29 12:43:03 2007 +0000
+
+    *** empty log message ***
+
+commit 51dca3086c4ad4e828eb55aec622e37eae29204f
+Author: apeter <apeter>
+Date:   Wed Aug 29 11:54:02 2007 +0000
+
+    Updated Malayalam Translation
+
+commit 70d8e3d415fe564b101f06d899f7354cc1f82f98
+Author: raven <raven>
+Date:   Wed Aug 29 10:26:11 2007 +0000
+
+    Updated Polish translation
+
+commit 463a92676876da1812287794209c4f9b400364f3
+Author: ankitp <ankitp>
+Date:   Wed Aug 29 06:54:16 2007 +0000
+
+    Updated Gujarati Translations
+
+commit b42a6bcb0ea9a6828a2866000daa435a03ae185a
+Author: runab <runab>
+Date:   Wed Aug 29 05:26:39 2007 +0000
+
+    Updated Bengali India Translation
+
+commit c7dab4296842c0d5fb47853c0317508a857a22e2
+Author: trinks <trinks>
+Date:   Tue Aug 28 23:29:26 2007 +0000
+
+    total:35 fuzzy:0 untranslated:0
+
+commit 1fd12f569bd57e11c050233cc11ba2e5add5e84c
+Author: igor <igor>
+Date:   Tue Aug 28 18:10:28 2007 +0000
+
+    Translation update
+
+commit d673577da97b66324eea705fb57cccf23c986bc9
+Author: dlehman <dlehman>
+Date:   Tue Aug 28 16:44:35 2007 +0000
+
+    	* src/system-config-kdump.py: Add support for enabling and configuring
+    	kdump under Xen (Jarod Wilson, #243191)
+
+commit 85eb66da917db36ccebb4b55cc87596dbc09f83c
+Author: dlehman <dlehman>
+Date:   Tue Aug 28 16:37:03 2007 +0000
+
+    Update strings
+
+commit 2e92803f292b6a88bf6e83db641bf914a3b0999f
+Author: arclynx <arclynx>
+Date:   Mon Aug 13 16:33:31 2007 +0000
+
+    Updated Malay translation
+
+commit ca60063bf5d3d225dcc4e3962f19abdb4694d19f
+Author: arclynx <arclynx>
+Date:   Sat Aug 4 17:41:31 2007 +0000
+
+    Updated Malay translation
+
+commit d54ecfb6798b5ecc4bc68d888da7c911ba89fb18
+Author: ra <ra>
+Date:   Wed Aug 1 01:37:23 2007 +0000
+
+    *** empty log message ***
+
+commit f66ab795a208b4f8badad4178b97766b769ca2a7
+Author: arclynx <arclynx>
+Date:   Sun Jul 29 05:55:03 2007 +0000
+
+    Updated Malay translation
+
+commit 2007f4f7f966934672d460c90896fc83abc95e4f
+Author: arangel <arangel>
+Date:   Mon Jul 16 06:08:53 2007 +0000
+
+    Updated Macedonian Translation, <arangel@linux.net.mk>
+
+commit 6776f1a8101c1e171ef97abaea4e3bf07444aaa4
+Author: arclynx <arclynx>
+Date:   Sun Jul 15 08:25:01 2007 +0000
+
+    Updated Malay translation
+
+commit 5943efc8b9e4a180f1cf38fef96f78e2ceb37c4f
+Author: dlehman <dlehman>
+Date:   Wed Jun 20 15:28:25 2007 +0000
+
+    	* system-config-kdump.spec: bump version, add changelog.
+
+commit 99455489c1afc5731a05f5b4a07a9c05c62be4a2
+Author: tombo <tombo>
+Date:   Sun Jun 17 14:57:01 2007 +0000
+
+    updated some entry with better translation
+
+commit aaef2b8a8148d6eb58705ff700d79e1823d28b6f
+Author: arclynx <arclynx>
+Date:   Fri May 18 16:43:23 2007 +0000
+
+    Updated Malay translation
+
+commit ded7417c0d0e3e29a1e104057fbd9579e0142157
+Author: arclynx <arclynx>
+Date:   Sun May 13 06:18:46 2007 +0000
+
+    Updated Malay translation
+
+commit 574e3ee9fbac5d2b54e7d98f6c6651b2631da748
+Author: keldsim <keldsim>
+Date:   Sun Apr 15 07:14:42 2007 +0000
+
+    updates
+    redhat-backgrounds/po/da.po system-config-kdump/po/da.po
+
+commit ea8a82dd5c79be81a4969f842d9a71e2bfd2c642
+Author: arclynx <arclynx>
+Date:   Sat Apr 14 15:54:46 2007 +0000
+
+    Updated Malay translation
+
+commit 44b475a487ffdb4ae40184f182b1ce0ed588853d
+Author: trinks <trinks>
+Date:   Mon Apr 9 22:05:03 2007 +0000
+
+    *** empty log message ***
+
+commit ec72e493636e18faeffbe6fe807befcda2d551bf
+Author: arclynx <arclynx>
+Date:   Sun Apr 8 15:34:52 2007 +0000
+
+    Updated Malay translation
+
+commit 747bc8a269205a9f5e5a2421dabdcb65f3b71f3f
+Author: dlehman <dlehman>
+Date:   Thu Apr 5 16:34:21 2007 +0000
+
+    	* src/system-config-kdump.py:
+    	only present ext2 and ext3 filesystem types as options (#220223)
+    
+    	* src/system-config-kdump.py:
+    	align memory requirements with documented system limits (#228711)
+    
+    	* system-config-kdump.spec: update changelog
+
+commit 4a91bc933046808df95d37ea8f9881d3dd627804
+Author: rokaaa <rokaaa>
+Date:   Sun Apr 1 21:33:15 2007 +0000
+
+    started translating
+
+commit bb2c9d66baae61a20fefc8e0fe5c5329c7caf206
+Author: igor <igor>
+Date:   Sun Apr 1 20:32:05 2007 +0000
+
+    Revision for F7
+
+commit 70bfc923e8d56f32ba73c3d908db43435d299be5
+Author: arclynx <arclynx>
+Date:   Sun Apr 1 10:33:41 2007 +0000
+
+    Updated Malay translation
+
+commit eb27c75949c2885dbffd573f5cb5e6aa90eb2fcd
+Author: doncho <doncho>
+Date:   Thu Mar 29 20:26:08 2007 +0000
+
+    Initial commit
+
+commit 8ba86d95f0f29b60b5ba9fd491e3a048c5ead81f
+Author: satyr <satyr>
+Date:   Wed Mar 28 12:01:48 2007 +0000
+
+    Update
+
+commit b29ad2a33f7aff59a204704c78531d7499ae9fee
+Author: tszanto <tszanto>
+Date:   Tue Mar 27 19:53:10 2007 +0000
+
+    *** empty log message ***
+
+commit 175b8e4c6ce7a5eff7ff815de50ccb3f1b006179
+Author: trinks <trinks>
+Date:   Mon Mar 26 05:33:30 2007 +0000
+
+    *** empty log message ***
+
+commit 15b9af9d2aed2a127a334b9f86da18e94414d809
+Author: amit <amit>
+Date:   Fri Mar 23 12:10:37 2007 +0000
+
+    Updated assamese system-config-kdump translation
+
+commit 437bce140d70801fb035caecf62d1da600578c6e
+Author: kmilos <kmilos>
+Date:   Sun Mar 11 01:03:00 2007 +0000
+
+    updated sr@Latn translation
+
+commit 68edf8c951dd5e09db1e64d606ccda58f25c3a0f
+Author: kmilos <kmilos>
+Date:   Sun Mar 11 01:02:29 2007 +0000
+
+    updated sr translation
+
+commit bc3a0cd3af41c87f601344feb724468312d0ff08
+Author: vpv <vpv>
+Date:   Fri Mar 9 23:13:25 2007 +0000
+
+    Initial Finnish translation
+
+commit c7bdbd5d2c9633f9c5fc6ae0c53e94560f1f131d
+Author: arclynx <arclynx>
+Date:   Sun Feb 11 14:42:07 2007 +0000
+
+    Updated Malay translation
+
+commit 415a0ac0a23401c511b818a0f94fd09b0513ae8b
+Author: libbe <libbe>
+Date:   Wed Jan 31 14:23:42 2007 +0000
+
+    Updated Norwegian Bokmaal translation
+
+commit 3d14bcc7b0ea67aa1c962aba337c6cf8f2137adb
+Author: kerslage <kerslage>
+Date:   Sat Jan 27 10:42:56 2007 +0000
+
+    Finished
+
+commit 24d450c6760bb09a29b8cd327f65163b68e840e3
+Author: zoliq <zoliq>
+Date:   Thu Jan 25 11:48:04 2007 +0000
+
+    Slovak translation added
+
+commit 907f7a9ce8a0a56b55727486d7b33fa0e5293dd7
+Author: absinthe <absinthe>
+Date:   Wed Jan 24 11:13:31 2007 +0000
+
+    tranlsated system-config-kdump to bosnian
+
+commit 5aefdc31f655f5590ddbaca4da4a6ba2e3f7db8b
+Author: maxik <maxik>
+Date:   Wed Jan 24 09:37:34 2007 +0000
+
+    Maxim Dziumanenko <dziumanenko@gmail.com>
+    
+    	* Update Ukrainian translation.
+
+commit ad8cdbf7fdf8cf6b51fc95ecdc2b0f795cca31b9
+Author: arclynx <arclynx>
+Date:   Sun Jan 21 18:15:11 2007 +0000
+
+    Updated Malay translation
+
+commit e0198ae8103d988482a6133f37f731fcd9700f4c
+Author: raada <raada>
+Date:   Fri Jan 19 00:57:32 2007 +0000
+
+    *** empty log message ***
+
+commit e60874f67ca94e95fe044cdd497afc3817353638
+Author: dlehman <dlehman>
+Date:   Tue Jan 16 20:53:03 2007 +0000
+
+    bump release
+
+commit 78a25f78dbc6e87083710f6803a8d76147211d27
+Author: kmaraas <kmaraas>
+Date:   Wed Dec 27 16:15:00 2006 +0000
+
+    Updated
+
+commit 31d7ecf3b64b58015b9e9818a5a7801a19d854de
+Author: dlehman <dlehman>
+Date:   Wed Dec 20 19:49:39 2006 +0000
+
+            * src/system-config-kdump.py:
+            include kernel path in bootloader info list so bootloader
+            config is modified correctly on ia64 (#220231)
+    
+            * src/system-config-kdump.glade:
+            make locationEditButton ("Edit Location") translatable (#216596)
+
+commit e09eb70893bbf68c99b77b9dfbc5858ba9bc52d4
+Author: dlehman <dlehman>
+Date:   Tue Dec 19 05:10:06 2006 +0000
+
+            * src/system-config-kdump.py:
+            use file: URIs instead of local: (#218878)
+    
+            * system-config-kdump.spec:
+            bump version
+
+commit e84b08034c6763c83686484105371d9ffa8ed0e7
+Author: pve-nl <pve-nl>
+Date:   Mon Dec 18 08:57:40 2006 +0000
+
+    Some fixes for system-config-kdump nl.po
+
+commit f1eef783d4044cee48a459f7d659d140809631ab
+Author: kmilos <kmilos>
+Date:   Sun Dec 17 12:56:16 2006 +0000
+
+    Updated sr@Latn translation
+
+commit 51660d545f8bc4ef75d2e00cb8c0621bf6072223
+Author: kmilos <kmilos>
+Date:   Sun Dec 17 12:55:17 2006 +0000
+
+    Updated sr translation
+
+commit 2f4bf781076c0b2e06c2949e056881096d834efc
+Author: vise <vise>
+Date:   Sat Dec 16 15:26:26 2006 +0000
+
+    *** empty log message ***
+
+commit 74b928f89deeaa5cb138eddbc719bc2bf7bcf99f
+Author: amit <amit>
+Date:   Fri Dec 15 11:57:30 2006 +0000
+
+    updated assamese system-config-kdump translation
+
+commit a5c60cd32a4132615dfbc09a87e50e50892a60ab
+Author: xconde <xconde>
+Date:   Sat Dec 9 15:11:21 2006 +0000
+
+    Updated by Xavier Conde
+
+commit d42b6ff9b887cfa7fd3f9c280ad6d2f253c65bc2
+Author: dlehman <dlehman>
+Date:   Tue Dec 5 19:01:44 2006 +0000
+
+    update spec file
+
+commit cdb84ce2f0e3ba9a284446fe6def8f080f976cd5
+Author: svenkate <svenkate>
+Date:   Fri Dec 1 07:04:17 2006 +0000
+
+    kannada translation updation
+
+commit 8aa2c210b921d4cd30502cba03695adc28d4bef3
+Author: jsingh <jsingh>
+Date:   Fri Dec 1 05:43:07 2006 +0000
+
+    fuzzy removed
+
+commit ce167fedadddcae37f166b0e1327801a231db259
+Author: ltenn <ltenn>
+Date:   Thu Nov 30 13:44:23 2006 +0000
+
+    Routine merge by l10n
+
+commit 2df77d43d44f753c7c897b20ea6e8c5d74d0e427
+Author: rranjan <rranjan>
+Date:   Thu Nov 30 11:46:30 2006 +0000
+
+    hindi quick proof chk
+
+commit 089d797ff38a0ed99a2a093e594b3af231ad06e7
+Author: xhuang <xhuang>
+Date:   Thu Nov 30 07:51:02 2006 +0000
+
+    Update
+
+commit 92bbb714e647f454dc017ee8ece2e159495cfc36
+Author: mrtom <mrtom>
+Date:   Wed Nov 29 21:58:21 2006 +0000
+
+    translation updated
+
+commit 1a9ec5f3cf9a6214343a5df8842445b4e194f48d
+Author: dlehman <dlehman>
+Date:   Wed Nov 29 16:26:37 2006 +0000
+
+    update specfile to 1.0.7
+
+commit 3e265a199c51a9f680e0e58e49bd3e70492be14c
+Author: dlehman <dlehman>
+Date:   Wed Nov 29 16:22:38 2006 +0000
+
+    * src/system-config-kdump.py:
+    rework memory constraints for increased flexibility (#215990)
+
+commit e06fedb00d81fbb9e244872b505b839b80cfd61d
+Author: apeter <apeter>
+Date:   Wed Nov 29 07:12:00 2006 +0000
+
+    Updated Malaylam file
+
+commit 37852915173624ef6e1c003de8ee40ef767fbc47
+Author: ifelix <ifelix>
+Date:   Tue Nov 28 11:50:12 2006 +0000
+
+    Fedora ta translation updated
+
+commit aa6eb87b9ba15f0eeb70044cf05101c199ff63fb
+Author: rbhalera <rbhalera>
+Date:   Tue Nov 28 11:30:03 2006 +0000
+
+    Updated Marathi Translation
+
+commit 5822838f73ab2d1f78866e178eee599c9570dbc3
+Author: ccheng <ccheng>
+Date:   Tue Nov 28 00:47:07 2006 +0000
+
+    Routine merge
+
+commit 4d09cd489fbc773a6bfa7dc0658cab934b21afca
+Author: noriko <noriko>
+Date:   Mon Nov 27 22:53:59 2006 +0000
+
+    corrected translation of *stat* which was mistranslated as *start*
+
+commit 59082b958aa679855aae64e9da21ab7295e42d0d
+Author: ccheng <ccheng>
+Date:   Mon Nov 27 10:56:15 2006 +0000
+
+    Translation done
+
+commit 840a71ff8e3fcbe7d0002ef2e9c0cab2be6f6b4b
+Author: noriko <noriko>
+Date:   Mon Nov 27 07:02:11 2006 +0000
+
+    update transated
+
+commit 6a5400113b9973031d1dda4482a732bede9af882
+Author: fdecroux <fdecroux>
+Date:   Mon Nov 27 02:49:05 2006 +0000
+
+    Updated
+
+commit e6ffe302fe5e62cc4d27bae6909896e3bb32b0f2
+Author: gatons <gatons>
+Date:   Sun Nov 26 06:54:29 2006 +0000
+
+    *** empty log message ***
+
+commit 788aa6d668b3a13a2860b7818827abad010df977
+Author: renato <renato>
+Date:   Sat Nov 25 21:12:29 2006 +0000
+
+    new lines
+
+commit e2bf6aef4df9e1d860532b42d5130de8ea08f965
+Author: ccheng <ccheng>
+Date:   Fri Nov 24 12:32:51 2006 +0000
+
+    *** empty log message ***
+
+commit dcc8a50cedb5349d14d09f4abea6ad094addb87d
+Author: fdecroux <fdecroux>
+Date:   Fri Nov 24 07:00:16 2006 +0000
+
+    Updated
+
+commit 6eb03564586d33a86152c2e930f938c16f4e7734
+Author: fdecroux <fdecroux>
+Date:   Fri Nov 24 06:56:22 2006 +0000
+
+    Updated
+
+commit 28b8d08616144980e13826b4533c69e93bc2cdec
+Author: sbehera <sbehera>
+Date:   Fri Nov 24 06:13:42 2006 +0000
+
+    Updated Oriya Translation
+
+commit d2cd5bd93d46055bd3c86769f3b7752210f6d9d5
+Author: xhuang <xhuang>
+Date:   Fri Nov 24 01:33:02 2006 +0000
+
+    Update
+
+commit ee0a9f6f313d95f6957b947f8bb3a81a330fff5c
+Author: rranjan <rranjan>
+Date:   Thu Nov 23 08:18:19 2006 +0000
+
+    hindi fedora update
+
+commit 5741cbe56b118a16cac6de3c70f8fa8b1bc4a938
+Author: yulia <yulia>
+Date:   Thu Nov 23 07:46:03 2006 +0000
+
+    fix for rhel5
+
+commit 6c2693323ad621eb272cde560948513d65260f03
+Author: eukim <eukim>
+Date:   Thu Nov 23 05:05:27 2006 +0000
+
+    Updated
+
+commit 81b5f7a5aa2d2b51788fec460a27aacef263bb40
+Author: ccheng <ccheng>
+Date:   Wed Nov 22 15:13:12 2006 +0000
+
+    Done some translation
+
+commit 9f446223d5cd3590297e8eb97af7ca1a3ce16e5c
+Author: ifelix <ifelix>
+Date:   Wed Nov 22 06:48:03 2006 +0000
+
+    Fedora ta translation updated
+
+commit 47976c240d66abad888d01735cfb18a6333e9e1c
+Author: rranjan <rranjan>
+Date:   Wed Nov 22 05:50:04 2006 +0000
+
+    Updated Hindi Translations
+
+commit 7e589937281eed7cb243a17c08d65a9dc4669ca1
+Author: sbehera <sbehera>
+Date:   Wed Nov 22 05:22:25 2006 +0000
+
+    Update Oriya Translation
+
+commit a0ca78ded26d0bcd957423bcc1f63c9eadacb5c0
+Author: vferreir <vferreir>
+Date:   Wed Nov 22 04:20:21 2006 +0000
+
+    minor changes
+
+commit bf86e853ebc675dac616054e5e18f544d04a7efa
+Author: fvalen <fvalen>
+Date:   Wed Nov 22 03:41:28 2006 +0000
+
+    Updated
+
+commit 0b7c8156caeb594d8145b6cf947d0de0ee95c6f3
+Author: trinks <trinks>
+Date:   Wed Nov 22 01:29:27 2006 +0000
+
+    total:35 fuzzy:0 untranslated:0
+
+commit dfd52dc882864da990d18d8c03436cba9758315b
+Author: raven <raven>
+Date:   Tue Nov 21 15:26:10 2006 +0000
+
+    Updated Polish translation
+
+commit ebf0bfbb4090992beb1f96ce6538b922f44c609e
+Author: sbehera <sbehera>
+Date:   Tue Nov 21 13:15:28 2006 +0000
+
+    Updated Oriya Translation
+
+commit 05c55aa542b5b30a2818815fd1f51f0466b1a126
+Author: ifelix <ifelix>
+Date:   Tue Nov 21 12:13:46 2006 +0000
+
+    ta translation for fedora updated
+
+commit 0d24f32b6f054203c00a7b6aed4355c9baae135b
+Author: ankitp <ankitp>
+Date:   Tue Nov 21 10:52:37 2006 +0000
+
+    Updated Gujarati Translations
+
+commit cad46ed907f2e9d0ec72aa1cc16f34631be0f105
+Author: sganesh <sganesh>
+Date:   Tue Nov 21 09:21:54 2006 +0000
+
+    Telugu translation commited
+
+commit 2024c5b92283806b766cda657c43787596bd59d4
+Author: sganesh <sganesh>
+Date:   Tue Nov 21 09:18:42 2006 +0000
+
+    Telugu translation commited
+
+commit a74148449782478c878b6c8c06f68b69e536b8ff
+Author: apeter <apeter>
+Date:   Tue Nov 21 08:28:46 2006 +0000
+
+    Updated Malayalam file
+
+commit b9f473f8636b96fb1d26e6749f828237894bf34c
+Author: runab <runab>
+Date:   Tue Nov 21 06:57:14 2006 +0000
+
+    Updated Bengali India Translation:21/11
+
+commit 96a7ebad9a93dce4a93220965f46c28f82bc98b6
+Author: mospina <mospina>
+Date:   Mon Nov 20 22:58:02 2006 +0000
+
+    updated
+
+commit 290271720b5b64a0a680dbb0ef20586b32cd7894
+Author: zepires <zepires>
+Date:   Mon Nov 20 19:03:33 2006 +0000
+
+    Finished system-config-kdump changes
+
+commit ebed90451e81ad233a93ba7c109fa2a7c85e66e0
+Author: dlehman <dlehman>
+Date:   Mon Nov 20 17:37:03 2006 +0000
+
+    * src/system-config-kdump.py:
+    improve consistency WRT freezing/thawing of widgets (#215991)
+
+commit 926ebe6773ea12111d08ba643c544f954618415a
+Author: dlehman <dlehman>
+Date:   Mon Nov 20 17:35:34 2006 +0000
+
+    Update strings for translation
+
+commit 09afbf8a0142b6e6d5dd3a101f805550e2eb27d3
+Author: ltenn <ltenn>
+Date:   Mon Nov 20 04:46:00 2006 +0000
+
+    Routine merge by l10n
+
+commit e8c0b65e65cff83d627b441b7a6a88effb70869e
+Author: pve-nl <pve-nl>
+Date:   Wed Nov 15 22:44:46 2006 +0000
+
+    Some fixes for system-config-kdump nl.po
+
+commit d342d632f28cff76e34e15db5eca0bc30b15c574
+Author: arclynx <arclynx>
+Date:   Tue Nov 14 16:10:03 2006 +0000
+
+    Updated Malay translation
+
+commit ae49159f67f64fdded994b4f522c80b62ccda684
+Author: andrmart <andrmart>
+Date:   Fri Nov 10 10:18:18 2006 +0000
+
+    Initial translation
+
+commit 9b8ff2e201f70f680bd033c93670a3e5d259182a
+Author: amit <amit>
+Date:   Thu Nov 9 14:34:58 2006 +0000
+
+    updated assamese kdump translation
+
+commit 97c5b27bb94f1e61f426fc1d36b0deb6885df754
+Author: fvalen <fvalen>
+Date:   Thu Nov 9 01:22:15 2006 +0000
+
+    Updated
+
+commit 13aff2adedc1ccb90666765a6ff09c4c1c5441ac
+Author: sganesh <sganesh>
+Date:   Mon Nov 6 09:52:43 2006 +0000
+
+    Telugu translation commited
+
+commit 5cf6cd3f42814a64a95cf362b153067370aae1e6
+Author: raven <raven>
+Date:   Thu Nov 2 17:01:34 2006 +0000
+
+    Updated Polish translation
+
+commit cf9b276293aa18a1a012169889637be8cda8f910
+Author: eukim <eukim>
+Date:   Wed Nov 1 06:45:29 2006 +0000
+
+    Updated
+
+commit 93145a1e02916427e0bff1d5cd851532195ff7dd
+Author: fvalen <fvalen>
+Date:   Wed Nov 1 06:42:47 2006 +0000
+
+    Updated
+
+commit 5ffcdab67811824dbce03a4018b2575b7b747d14
+Author: noriko <noriko>
+Date:   Wed Nov 1 04:09:28 2006 +0000
+
+    translation completed
+
+commit a8b7d956bf8b0d373709be10fec0cef11d71aa2c
+Author: aalam <aalam>
+Date:   Tue Oct 31 02:47:13 2006 +0000
+
+    update for Punjabi
+
+commit 6ffa92d1c44082cc4381d89f37eadf027f2d840e
+Author: dlehman <dlehman>
+Date:   Fri Oct 27 16:41:30 2006 +0000
+
+    * src/system-config-kdump.py:
+    remove #!/usr/bin/python
+    * COPYING:
+    add license
+    * system-config-kdump.spec:
+    package ChangeLog and COPYING
+
+commit 70313e8ccd32572ff479de336547387d63345427
+Author: dlehman <dlehman>
+Date:   Thu Oct 26 23:20:16 2006 +0000
+
+    * Makefile:
+    fix modes on installed files
+    * system-config-kdump.spec:
+    remove unnecessary %preun
+    various minor tweaks to appease rpmlint
+
+commit 68aa013c89df4396450536bb22dec8d07e6c0558
+Author: dlehman <dlehman>
+Date:   Thu Oct 26 16:28:19 2006 +0000
+
+    * src/system-config-kdump.glade:
+    fix path to icon
+    remove reference to stock weather icon (placeholder)
+
+commit e8d8a4b22b11671827c25f75a52c64953ea159e1
+Author: dlehman <dlehman>
+Date:   Thu Oct 26 00:00:27 2006 +0000
+
+    * src/system-config-kdump.py:
+    move all location types into combo box
+    scan /sbin/fsck.* for available fs types
+    get rid of kdump config header; preserve kdump config comments instead
+    create a set/get method for the "quiet" attribute
+    * pixmaps
+    add pixmaps dir
+    * pixmaps/system-config-kdump.png:
+    add 48x48 hicolor icon made by Diana Fong
+
+commit cfc13e54f9e63669d5688139c0d97bd111762b36
+Author: xconde <xconde>
+Date:   Sun Oct 22 15:04:33 2006 +0000
+
+    Updated by Xavier Conde
+
+commit 753d7eff7e99b26d292500bc1cb312bcd39aeed0
+Author: dlehman <dlehman>
+Date:   Thu Oct 19 23:51:55 2006 +0000
+
+    * src/system-config-kdump.py:
+    rearrange UI to allow only one location
+    declare global variables for the type, action string constants
+    check for a usable bootloader early on
+    * system-config-kdump.spec:
+    remove BuildRoot before %install
+    add gettext BuildRequires
+    remove ExclusiveOS tag
+    remove explicit python2 Requires
+
+commit a94384cfab89619a93637defc6a4a3251f3ab95c
+Author: dlehman <dlehman>
+Date:   Wed Oct 18 21:40:21 2006 +0000
+
+    add support for "core_collector" and "path" handlers
+    give choices of "ssh" and "nfs" instead of "net"
+    add validation of edit location dialog results
+    add choice of "none" to default actions
+    remove "ifc" support since it's gone from kexec-tools
+    update kdump config file header
+    fix a couple of strings that weren't getting translated
+
+commit d1a68bb99e250df9378d64a5f44bb227d853f21d
+Author: tszanto <tszanto>
+Date:   Wed Oct 18 20:48:51 2006 +0000
+
+    *** empty log message ***
+
+commit 860ba410d043cd9b0a42aa155731a4c66ddebfa4
+Author: dlehman <dlehman>
+Date:   Mon Oct 16 17:13:23 2006 +0000
+
+    Update spec file, bump release
+
+commit dd36a22fcc7b01c85d98fdfaf6c61649e0aaa8b7
+Author: dlehman <dlehman>
+Date:   Mon Oct 16 16:55:22 2006 +0000
+
+    Fix parsing of crashkernel arg from /proc/cmdline on startup
+
+commit 07d4f376fa990cd001e3d411587da55d0808dcf1
+Author: ifelix <ifelix>
+Date:   Mon Oct 16 11:48:47 2006 +0000
+
+    Fedora tamil translation updated
+
+commit 029f8564aa7f903661aae21792f7dc88b448cf10
+Author: raada <raada>
+Date:   Mon Oct 16 02:24:13 2006 +0000
+
+    *** empty log message ***
+
+commit 2efacdab1e18561cdcc112b5b71f1e7f63181f6d
+Author: keldsim <keldsim>
+Date:   Sun Oct 15 01:05:09 2006 +0000
+
+    updates
+    release-notes/po/da.po system-config-kdump/po/da.po
+
+commit d3722c0b328a316f2e856964e81141e7fb88da2b
+Author: arclynx <arclynx>
+Date:   Sat Oct 14 00:46:13 2006 +0000
+
+    Updated Malay translation
+
+commit aa65100593a25d0c73b7dd548d3791b90d206e84
+Author: notting <notting>
+Date:   Fri Oct 13 22:29:58 2006 +0000
+
+    Fix broken charset definitions
+
+commit 00b7143259b6526a21c0f51b51e29bc39cb79a37
+Author: zyang <zyang>
+Date:   Fri Oct 13 18:27:41 2006 +0000
+
+    *** empty log message ***
+
+commit a9436b42bd99211f521b79265d7639f0415eb9e5
+Author: runab <runab>
+Date:   Fri Oct 13 18:11:57 2006 +0000
+
+    Updated Bengali India Translation
+
+commit 7ae02caf38d48bb8e25722d47778dcf5ab636c6b
+Author: zyang <zyang>
+Date:   Fri Oct 13 16:57:51 2006 +0000
+
+    *** empty log message ***
+
+commit 6399c0665d6a8398d150f3f35d425ad5d12de9cd
+Author: renato <renato>
+Date:   Fri Oct 13 15:07:19 2006 +0000
+
+    *** empty log message ***
+
+commit af00de64720b9f037851c7b207cf54a0a5455117
+Author: ankitp <ankitp>
+Date:   Fri Oct 13 11:11:06 2006 +0000
+
+    Updated Gujarati Translations
+
+commit 175a70821357b2d83775159f0029c90fa28a5bb7
+Author: rranjan <rranjan>
+Date:   Fri Oct 13 09:35:02 2006 +0000
+
+    kdump hindi translation
+
+commit 15c6cb22b8e73a74377df48cb5692206f0e5d4d4
+Author: apeter <apeter>
+Date:   Fri Oct 13 08:35:18 2006 +0000
+
+    Updated Malayalam file
+
+commit ed610e1256f4b98233c3827bdab9633c0703d70c
+Author: fdecroux <fdecroux>
+Date:   Fri Oct 13 07:12:50 2006 +0000
+
+    Updated
+
+commit a27b7539c969d70867ff1d9283ae99c59a25ee11
+Author: sbehera <sbehera>
+Date:   Fri Oct 13 05:51:25 2006 +0000
+
+    Updated Oriya Translation
+
+commit 7e6951a74fef32811c0c2cc63c423b6f1574222c
+Author: vferreir <vferreir>
+Date:   Fri Oct 13 05:19:24 2006 +0000
+
+    *** empty log message ***
+
+commit 46509b6c345e60f767336ed157f8273a012c263a
+Author: ccheng <ccheng>
+Date:   Fri Oct 13 03:44:16 2006 +0000
+
+    File creation
+
+commit c2cdc7fc76a7c3df416a13f8cd591fd09609cc8e
+Author: trinks <trinks>
+Date:   Thu Oct 12 22:59:26 2006 +0000
+
+    total:24 fuzzy:0 untranslated:0
+
+commit 32937dd8ee1007b79ae4b2029de7132be73ed382
+Author: kmilos <kmilos>
+Date:   Thu Oct 12 17:38:58 2006 +0000
+
+    *** empty log message ***
+
+commit 0e57f08aa475ad2534cf6e72004e8f42c4592ee7
+Author: beckerde <beckerde>
+Date:   Thu Oct 12 17:35:23 2006 +0000
+
+    listo
+
+commit 7adf59fbcfb13af5d8ce21fa2046c48a71942791
+Author: zepires <zepires>
+Date:   Thu Oct 12 09:58:19 2006 +0000
+
+    Updates on new translation files
+
+commit c16870f83eecc69e5240b54f129efc9253c88797
+Author: zepires <zepires>
+Date:   Thu Oct 12 09:50:19 2006 +0000
+
+    Finished system-config-kdump
+
+commit f41579ad83eabdd7a4c076a0649f21350e24a97f
+Author: dlehman <dlehman>
+Date:   Wed Oct 11 15:10:48 2006 +0000
+
+    Initial revision

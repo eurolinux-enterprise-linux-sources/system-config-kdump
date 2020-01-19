@@ -1,0 +1,67 @@
+diff --git a/src/system-config-kdump.py b/src/system-config-kdump.py
+index 3cd09e1..e3ed474 100755
+--- a/src/system-config-kdump.py
++++ b/src/system-config-kdump.py
+@@ -653,20 +653,20 @@ class MainWindow:
+             lower_bound = 256
+             min_usable = 2048
+ 
++        self.fadump_radiobutton.set_sensitive(self.fadump_possible)
++        current_fadump = self.grubby_fadump()
++        if DEBUG:
++            print "fadump in grubby = ", current_fadump
++
+         if kdump_mem_grubby == -1:
+             self.auto_radiobutton.set_active(True)
+-            self.kdump_auto_toggled(self.auto_radiobutton)
+         elif kdump_mem_grubby > 0:
+             self.manualdump_radiobutton.set_active(True)
+-            self.kdump_auto_toggled(self.manualdump_radiobutton)
++        elif current_fadump == "on":
++            self.fadump_radiobutton.set_active(True)
++        self.kdump_auto_toggled(None)
+ 
+         self.orig_settings.use_auto = self.my_settings.use_auto
+-
+-        self.fadump_radiobutton.set_sensitive(self.fadump_possible)
+-        current_fadump = self.grubby_fadump()
+-        if DEBUG:
+-            print "fadump in grubby = ", current_fadump
+-        self.kdump_auto_toggled(self.auto_radiobutton)
+         self.orig_settings.use_fadump = self.my_settings.use_fadump
+ 
+         # Fix up memory calculations, if need be
+@@ -676,6 +676,10 @@ class MainWindow:
+             self.orig_settings.kdump_offset = kdump_offset
+             self.orig_settings.kdump_mem = kdump_mem_grubby
+ 
++        elif self.my_settings.use_fadump == "on":
++            self.orig_settings.kdump_enabled = True
++            self.kdump_enable_toggled(self.enable_button)
++
+         else:
+             kdump_mem_grubby = lower_bound
+             self.orig_settings.kdump_enabled = False
+@@ -1157,7 +1161,7 @@ class MainWindow:
+         """
+         Update Usable mem label whenever you change ammount of kdump mem
+         """
+-        if self.my_settings.kdump_enabled:
++        if self.my_settings.kdump_enabled and self.my_settings.use_fadump != "on":
+             self.my_settings.kdump_mem = int(spin_button.get_value())
+             self.usable_mem = self.total_mem - self.my_settings.kdump_mem
+             self.usable_mem_label.set_text("%s (MB)" % (self.usable_mem,))
+@@ -2002,12 +2006,11 @@ class MainWindow:
+                 _("System config kdump: dbus error"),
+                 parent = self.toplevel)
+ 
+-    def kdump_auto_toggled(self, button):
++    def kdump_auto_toggled(self, unused):
+         is_auto = self.auto_radiobutton.get_active()
+         is_fadump = self.fadump_radiobutton.get_active()
+         self.memory_table.set_sensitive(not is_auto and not is_fadump)
+         self.my_settings.use_auto = is_auto
+-        self.my_settings.use_fadump = is_fadump
+         if is_fadump:
+             self.set_fadump(self.command_line_entry, "on")
+             self.set_crashkernel(self.command_line_entry, 0, False)
