@@ -1,0 +1,557 @@
+diff -up system-config-kdump-2.0.13/po/ja.po.than system-config-kdump-2.0.13/po/ja.po
+--- system-config-kdump-2.0.13/po/ja.po.than	2017-05-23 14:05:20.171110245 +0200
++++ system-config-kdump-2.0.13/po/ja.po	2017-05-23 14:05:40.048353663 +0200
+@@ -7,22 +7,21 @@
+ # Kiyoto Hashida <khashida@redhat.com>, 2010
+ # Noriko Mizumoto <noriko@redhat.com>, 2006
+ # Tomoyuki KATO <tomo@dream.daynight.jp>, 2012-2013
+-# Hajime Taira <htaira@fedoraproject.org>, 2015. #zanata
+-# Kenzo Moriguchi <kmoriguc@redhat.com>, 2016. #zanata
++# ljanda <ljanda@redhat.com>, 2017. #zanata
+ msgid ""
+ msgstr ""
+ "Project-Id-Version: PACKAGE VERSION\n"
+ "Report-Msgid-Bugs-To: \n"
+-"POT-Creation-Date: 2016-02-16 17:50+0100\n"
++"POT-Creation-Date: 2017-05-11 16:51+0200\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+-"PO-Revision-Date: 2016-03-15 09:13-0400\n"
+-"Last-Translator: Kenzo Moriguchi <kmoriguc@redhat.com>\n"
++"PO-Revision-Date: 2017-05-15 10:26+0000\n"
++"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
+ "Language-Team: Japanese <trans-ja@lists.fedoraproject.org>\n"
+ "Language: ja\n"
+ "Plural-Forms: nplurals=1; plural=0;\n"
+-"X-Generator: Zanata 3.8.4\n"
++"X-Generator: Zanata 4.1.1\n"
+ 
+ #: ../src/system-config-kdump.py:78
+ msgid "(c)"
+@@ -159,11 +158,11 @@ msgstr "system-config-kdump: サーバ�
+ msgid ""
+ "You must specify exported directory as well as server (in the <host>:<path> "
+ "format)."
+-msgstr "サーバーのほかにエクスポートされたディレクトリーを指定する必要があります (<host>:<path> 形式で)。"
++msgstr "サーバーのほかにエクスポートされるディレクトリーも指定する必要があります (<host>:<path> の形式で)。"
+ 
+ #: ../src/system-config-kdump.py:785
+ msgid "system-config-kdump: NFS directory not set"
+-msgstr "system-config-kdump: NFS ディレクトリーが設定されていません"
++msgstr "system-config-kdump: NFS ディレクトリーが設定されていません。"
+ 
+ #: ../src/system-config-kdump.py:791
+ msgid "You must specify user name. "
+@@ -286,9 +285,9 @@ msgstr "コアコレクターは 'makedu
+ msgid "system-config-kdump: Bad core collector"
+ msgstr "system-config-kdump: 不正なコアコレクター"
+ 
+-#: ../src/system-config-kdump.py:1327 ../src/system-config-kdump.glade:962
++#: ../src/system-config-kdump.py:1327 ../src/system-config-kdump.glade:996
+ msgid "Export (host:path):"
+-msgstr "エクスポート (ホスト:パス):"
++msgstr "エクスポート (host:path):"
+ 
+ #: ../src/system-config-kdump.py:1331
+ msgid "Server name:"
+@@ -320,16 +319,16 @@ msgstr "すべてのカーネルの名�
+ #, python-format
+ msgid "Invalid crashkernel value: %s.\n"
+ "Possible values are:\n"
+-"\tauto\n"
+-"\tX\n"
+-"\tX@Y\n"
++"	auto\n"
++"	X\n"
++"	X@Y\n"
+ "\n"
+ "%s"
+ msgstr "無効な crashkernel 値: %s。\n"
+-"利用可能な値は:\n"
+-"\tauto\n"
+-"\tX\n"
+-"\tX@Y\n"
++"使用できる値は次の値です。\n"
++"	auto\n"
++"	X\n"
++"	X@Y\n"
+ "\n"
+ "%s"
+ 
+@@ -352,51 +351,52 @@ msgstr "%s の名前を持つローカ�
+ msgid " and type %s wasn't found"
+ msgstr "そしてタイプ %s は見つかりません。"
+ 
+-#: ../src/system-config-kdump.py:1866
+-msgid "core will be in /var/crash/%DATE on rootfs"
+-msgstr "core は rootfs の /var/crash/%DATE にあります"
++#: ../src/system-config-kdump.py:1864
++#, python-format
++msgid "core will be in %s/%%DATE on rootfs"
++msgstr "core は rootfs の %s/%%DATE にあります"
+ 
+-#: ../src/system-config-kdump.py:1869
++#: ../src/system-config-kdump.py:1867
+ #, python-format
+ msgid "core will be in %s/%%DATE on %s"
+ msgstr "core は %s/%%DATE (%s において) にあります"
+ 
+-#: ../src/system-config-kdump.py:1969
++#: ../src/system-config-kdump.py:1967
+ msgid ""
+ "The help viewer could not be found. To be able to view help, the 'yelp' "
+ "package needs to be installed."
+ msgstr "ヘルプビューアーが見つかりませんでした。ヘルプを表示するには、'yelp' パッケージをインストールする必要があります。"
+ 
+-#: ../src/system-config-kdump.py:1989
++#: ../src/system-config-kdump.py:1987
+ msgid "Unable to get kdump service status"
+ msgstr "kdump サービス状態を取得できません。"
+ 
+-#: ../src/system-config-kdump.py:1990 ../src/system-config-kdump.py:2021
++#: ../src/system-config-kdump.py:1988 ../src/system-config-kdump.py:2019
+ msgid "system-config-kdump: Handling services error"
+ msgstr "system-config-kdump: サービスの処理中にエラー発生"
+ 
+-#: ../src/system-config-kdump.py:2020
++#: ../src/system-config-kdump.py:2018
+ msgid "Unable to handle kdump services"
+ msgstr "kdump サービスの処理ができません。"
+ 
+-#: ../src/system-config-kdump.py:2044
++#: ../src/system-config-kdump.py:2042
+ #, python-format
+ msgid "Unable to communicate with backend.\n"
+ "%s"
+ msgstr "バックエンドサービスと通信できません。\n"
+ "%s"
+ 
+-#: ../src/system-config-kdump.py:2045 ../src/system-config-kdump.py:2087
++#: ../src/system-config-kdump.py:2043 ../src/system-config-kdump.py:2085
+ msgid "System config kdump: dbus error"
+ msgstr "system-config-kdump: dbus エラー"
+ 
+-#: ../src/system-config-kdump.py:2085
++#: ../src/system-config-kdump.py:2083
+ msgid "D-Bus server is not running.\n"
+ "Please make sure D-Bus is running.\n"
+ msgstr "D-Bus サーバーが稼働していません。\n"
+ "D-Bus が実行していることを確認してください。\n"
+ 
+-#: ../src/system-config-kdump.py:2098
++#: ../src/system-config-kdump.py:2096
+ msgid "Error executing system-config-kdump"
+ msgstr "system-config-kdump 起動中にエラー"
+ 
+@@ -425,326 +425,327 @@ msgstr "system-config-kdump について
+ msgid "Kernel Dump Configuration"
+ msgstr "カーネルダンプの設定"
+ 
+-#: ../src/system-config-kdump.glade:91
++#: ../src/system-config-kdump.glade:92
+ msgid "_File"
+ msgstr "ファイル(_F)"
+ 
+-#: ../src/system-config-kdump.glade:102 ../src/system-config-kdump.glade:232
++#: ../src/system-config-kdump.glade:104 ../src/system-config-kdump.glade:243
+ msgid ""
+ "Apply changes, save booloader config file and save kexec/kdump config file"
+ msgstr "変更を適用してブートローダーの設定ファイルを保存し、kexec/kdump 設定ファイルを保存します。"
+ 
+-#: ../src/system-config-kdump.glade:114 ../src/system-config-kdump.glade:245
++#: ../src/system-config-kdump.glade:117 ../src/system-config-kdump.glade:258
+ msgid "Reload original settings from config files"
+ msgstr "設定ファイルからオリジナルの設定を再ロードします、"
+ 
+-#: ../src/system-config-kdump.glade:132
++#: ../src/system-config-kdump.glade:136
+ msgid "Exit and discard not saved changes"
+ msgstr "終了して保存していない変更を破棄します。"
+ 
+-#: ../src/system-config-kdump.glade:147
++#: ../src/system-config-kdump.glade:152
+ msgid "_Options"
+ msgstr "オプション(_O)"
+ 
+-#: ../src/system-config-kdump.glade:181
++#: ../src/system-config-kdump.glade:189
+ msgid "_Help"
+ msgstr "ヘルプ(_H)"
+ 
+-#: ../src/system-config-kdump.glade:233
++#: ../src/system-config-kdump.glade:245
+ msgid "Apply"
+ msgstr "適用"
+ 
+-#: ../src/system-config-kdump.glade:246
++#: ../src/system-config-kdump.glade:260
+ msgid "Reload"
+ msgstr "再読み込み"
+ 
+-#: ../src/system-config-kdump.glade:267
++#: ../src/system-config-kdump.glade:282
+ msgid "Enable kdump"
+ msgstr "kdump を有効化します。"
+ 
+-#: ../src/system-config-kdump.glade:268
++#: ../src/system-config-kdump.glade:284
+ msgid "Enable"
+ msgstr "有効化"
+ 
+-#: ../src/system-config-kdump.glade:280
++#: ../src/system-config-kdump.glade:297
+ msgid "Disable kdump"
+ msgstr "kdump を無効化します。"
+ 
+-#: ../src/system-config-kdump.glade:281
++#: ../src/system-config-kdump.glade:299
+ msgid "Disable"
+ msgstr "無効化"
+ 
+-#: ../src/system-config-kdump.glade:370
++#: ../src/system-config-kdump.glade:390
+ msgid "Firmware assisted dump"
+ msgstr "ファームウェアにより支援されたダンプ"
+ 
+-#: ../src/system-config-kdump.glade:387
++#: ../src/system-config-kdump.glade:409
+ msgid "Automated kdump memory settings"
+-msgstr "自動 kdump メモリー設定"
++msgstr "自動化された kdump メモリーのセッティング"
+ 
+-#: ../src/system-config-kdump.glade:406
++#: ../src/system-config-kdump.glade:428
+ msgid "Manual settings"
+ msgstr "手動セッティング"
+ 
+-#: ../src/system-config-kdump.glade:442
++#: ../src/system-config-kdump.glade:466
+ msgid "Total System Memory:"
+ msgstr "システムメモリーの合計:"
+ 
+-#: ../src/system-config-kdump.glade:454
++#: ../src/system-config-kdump.glade:478
+ msgid "Current kdump Memory:"
+ msgstr "現在の kdump メモリー:"
+ 
+-#: ../src/system-config-kdump.glade:468
++#: ../src/system-config-kdump.glade:492
+ msgid "New kdump Memory:"
+ msgstr "新規の kdump メモリー:"
+ 
+-#: ../src/system-config-kdump.glade:482
++#: ../src/system-config-kdump.glade:506
+ msgid "Usable Memory:"
+ msgstr "使用可能なメモリー:"
+ 
+-#: ../src/system-config-kdump.glade:496 ../src/system-config-kdump.glade:510
+-#: ../src/system-config-kdump.glade:545 ../src/system-config-kdump.glade:1162
++#: ../src/system-config-kdump.glade:520 ../src/system-config-kdump.glade:534
++#: ../src/system-config-kdump.glade:569 ../src/system-config-kdump.glade:1206
+ msgid "N/A"
+ msgstr "N/A"
+ 
+-#: ../src/system-config-kdump.glade:561
++#: ../src/system-config-kdump.glade:585
+ msgid "(MB)"
+ msgstr "(MB)"
+ 
+-#: ../src/system-config-kdump.glade:594
++#: ../src/system-config-kdump.glade:618
+ msgid "Basic Settings"
+ msgstr "基本設定"
+ 
+-#: ../src/system-config-kdump.glade:630
++#: ../src/system-config-kdump.glade:654
+ msgid "Local filesystem"
+ msgstr "ローカルファイルシステム"
+ 
+-#: ../src/system-config-kdump.glade:634
++#: ../src/system-config-kdump.glade:659
+ msgid "Save kdump file in local filesystem"
+ msgstr "ローカルファイルシステムに kdump ファイルを保存"
+ 
+-#: ../src/system-config-kdump.glade:657
++#: ../src/system-config-kdump.glade:683
+ msgid "Choose partition where you want to save your kdump"
+ msgstr "kdump の保存先となるパーティションを選択します。"
+ 
+-#: ../src/system-config-kdump.glade:678
++#: ../src/system-config-kdump.glade:704
+ msgid "Partition:"
+ msgstr "パーティション:"
+ 
+-#: ../src/system-config-kdump.glade:691
++#: ../src/system-config-kdump.glade:717
+ msgid "Path:"
+ msgstr "パス:"
+ 
+-#: ../src/system-config-kdump.glade:701
++#: ../src/system-config-kdump.glade:727
+ msgid "Target directory on local file system"
+ msgstr "ローカルファイルシステム上のターゲットディレクトリー"
+ 
+-#: ../src/system-config-kdump.glade:713
++#: ../src/system-config-kdump.glade:739
+ msgid "localDumpHintLabel"
+ msgstr "localDumpHintLabel"
+ 
+-#: ../src/system-config-kdump.glade:754
++#: ../src/system-config-kdump.glade:780
+ msgid "Raw device"
+ msgstr "raw デバイス"
+ 
+-#: ../src/system-config-kdump.glade:758
++#: ../src/system-config-kdump.glade:785
+ msgid "Save kdump file in raw device"
+ msgstr "raw デバイスに kdump ファイルを保存する。"
+ 
+-#: ../src/system-config-kdump.glade:775
++#: ../src/system-config-kdump.glade:803
+ msgid "Select raw device"
+ msgstr "raw デバイスを選択"
+ 
+-#: ../src/system-config-kdump.glade:816
++#: ../src/system-config-kdump.glade:844
+ msgid "Network"
+ msgstr "ネットワーク"
+ 
+-#: ../src/system-config-kdump.glade:820
++#: ../src/system-config-kdump.glade:849
+ msgid "Save kdump file via network"
+ msgstr "ネットワーク経由で kdump ファイルを保存します。"
+ 
+-#: ../src/system-config-kdump.glade:840
++#: ../src/system-config-kdump.glade:870
+ msgid "NFS"
+ msgstr "NFS"
+ 
+-#: ../src/system-config-kdump.glade:844
++#: ../src/system-config-kdump.glade:875
+ msgid "Save kdump file via NFS"
+ msgstr "NFS 経由で kdump ファイルを保存"
+ 
+-#: ../src/system-config-kdump.glade:858
++#: ../src/system-config-kdump.glade:890
+ msgid "SSH"
+ msgstr "SSH"
+ 
+-#: ../src/system-config-kdump.glade:862
++#: ../src/system-config-kdump.glade:895
+ msgid "Save kdump file via SSH"
+ msgstr "SSH 経由で kdump ファイルを保存"
+ 
+-#: ../src/system-config-kdump.glade:894
++#: ../src/system-config-kdump.glade:928
+ msgid "User must have necessary write permissions on the server"
+ msgstr "サーバー上で必要な書き込み権限を持っている必要があります。"
+ 
+-#: ../src/system-config-kdump.glade:907
++#: ../src/system-config-kdump.glade:941
+ msgid "Path to directory to save kdump file on server"
+ msgstr "サーバー上に kdump ファイルを保存するためのディレクトリーへのパス"
+ 
+-#: ../src/system-config-kdump.glade:920
++#: ../src/system-config-kdump.glade:954
+ msgid "Network server name"
+ msgstr "ネットワークサービス名"
+ 
+-#: ../src/system-config-kdump.glade:933
++#: ../src/system-config-kdump.glade:967
+ msgid "User name:"
+ msgstr "ユーザー名:"
+ 
+-#: ../src/system-config-kdump.glade:948
++#: ../src/system-config-kdump.glade:982
+ msgid "Path to directory:"
+ msgstr "ディレクトリーへのパス:"
+ 
+-#: ../src/system-config-kdump.glade:973
++#: ../src/system-config-kdump.glade:1007
+ msgid ""
+ "The NFS export is currently not mounted. It has to be mounted for kdump to "
+ "work."
+ msgstr "NFS エクスポートは現在マウントされていません。kdump が機能するには、これをマウントする必要があります。"
+ 
+-#: ../src/system-config-kdump.glade:1012
++#: ../src/system-config-kdump.glade:1046
+ msgid "Target settings"
+ msgstr "出力先"
+ 
+-#: ../src/system-config-kdump.glade:1060
++#: ../src/system-config-kdump.glade:1094
+ msgid "zero page"
+ msgstr "ゼロページ"
+ 
+-#: ../src/system-config-kdump.glade:1064
++#: ../src/system-config-kdump.glade:1099
+ msgid "Exclude zero page"
+ msgstr "ゼロページを除外します。"
+ 
+-#: ../src/system-config-kdump.glade:1076
++#: ../src/system-config-kdump.glade:1112
+ msgid "cache page"
+ msgstr "キャッシュページ"
+ 
+-#: ../src/system-config-kdump.glade:1080
++#: ../src/system-config-kdump.glade:1117
+ msgid "Exclude cache page"
+ msgstr "キャッシュページを除外します。"
+ 
+-#: ../src/system-config-kdump.glade:1092
++#: ../src/system-config-kdump.glade:1130
+ msgid "cache private"
+ msgstr "キャッシュプライベート"
+ 
+-#: ../src/system-config-kdump.glade:1096
++#: ../src/system-config-kdump.glade:1135
+ msgid "Exclude cache private"
+ msgstr "キャッシュプライベートを除外します。"
+ 
+-#: ../src/system-config-kdump.glade:1108
++#: ../src/system-config-kdump.glade:1148
+ msgid "user data"
+ msgstr "ユーザーデータ"
+ 
+-#: ../src/system-config-kdump.glade:1112
++#: ../src/system-config-kdump.glade:1153
+ msgid "Exclude user data"
+ msgstr "ユーザーデータを除外します。"
+ 
+-#: ../src/system-config-kdump.glade:1124
++#: ../src/system-config-kdump.glade:1166
+ msgid "free page"
+ msgstr "フリーページ"
+ 
+-#: ../src/system-config-kdump.glade:1128
++#: ../src/system-config-kdump.glade:1171
+ msgid "Exclude free page"
+ msgstr "フリーページを除外します。"
+ 
+-#: ../src/system-config-kdump.glade:1148
++#: ../src/system-config-kdump.glade:1192
+ msgid "Actual filter level:"
+ msgstr "実際のフィルターレベル:"
+ 
+-#: ../src/system-config-kdump.glade:1186
++#: ../src/system-config-kdump.glade:1230
+ msgid "<b>Filtering level </b>"
+ msgstr "<b>フィルターレベル</b>"
+ 
+-#: ../src/system-config-kdump.glade:1216
++#: ../src/system-config-kdump.glade:1260
+ msgid "Filtering settings"
+ msgstr "フィルタリング"
+ 
+-#: ../src/system-config-kdump.glade:1266
++#: ../src/system-config-kdump.glade:1310
+ msgid "Default initrd"
+ msgstr "デフォルトの initrd"
+ 
+-#: ../src/system-config-kdump.glade:1270
++#: ../src/system-config-kdump.glade:1315
+ msgid "Use default initrd"
+ msgstr "デフォルトの initrd を使用します。"
+ 
+-#: ../src/system-config-kdump.glade:1285
++#: ../src/system-config-kdump.glade:1331
+ msgid "Custom initrd"
+ msgstr "カスタム initrd"
+ 
+-#: ../src/system-config-kdump.glade:1289
++#: ../src/system-config-kdump.glade:1336
+ msgid "Use custom initrd"
+ msgstr "カスタム initrd を使用します。"
+ 
+-#: ../src/system-config-kdump.glade:1307
++#: ../src/system-config-kdump.glade:1355
+ msgid "Choose custom initrd file"
+ msgstr "カスタム initrd ファイルの選択してください。"
+ 
+-#: ../src/system-config-kdump.glade:1308
++#: ../src/system-config-kdump.glade:1356
+ msgid "Select An initrd File"
+ msgstr "initrd ファイルを１つ選択してください。"
+ 
+-#: ../src/system-config-kdump.glade:1327
++#: ../src/system-config-kdump.glade:1375
+ msgid "<b>initrd selection</b>"
+ msgstr "<b>initrd の選択</b>"
+ 
+-#: ../src/system-config-kdump.glade:1358
++#: ../src/system-config-kdump.glade:1406
+ msgid "Default kernel"
+ msgstr "デフォルトのカーネル"
+ 
+-#: ../src/system-config-kdump.glade:1362
++#: ../src/system-config-kdump.glade:1411
+ msgid "Use default kernel image"
+ msgstr "デフォルトカーネルイメージを使用します。"
+ 
+-#: ../src/system-config-kdump.glade:1377
++#: ../src/system-config-kdump.glade:1427
+ msgid "Custom kernel"
+ msgstr "カスタムカーネル"
+ 
+-#: ../src/system-config-kdump.glade:1381
++#: ../src/system-config-kdump.glade:1432
+ msgid "Use custom kernel image"
+ msgstr "カスタムカーネルイメージを使用します。"
+ 
+-#: ../src/system-config-kdump.glade:1399
++#: ../src/system-config-kdump.glade:1451
+ msgid "Choose your custom kernel"
+ msgstr "カスタムカーネルを選択してください。"
+ 
+-#: ../src/system-config-kdump.glade:1424
++#: ../src/system-config-kdump.glade:1476
+ msgid "<b>Capture kernel selection</b>"
+ msgstr "<b>カーネル選択をキャプチャ</b>"
+ 
+-#: ../src/system-config-kdump.glade:1475
++#: ../src/system-config-kdump.glade:1529
+ msgid "Kernel command line options"
+ msgstr "カーネルオプション"
+ 
+-#: ../src/system-config-kdump.glade:1492
++#: ../src/system-config-kdump.glade:1546
+ msgid "Original kernel command line options"
+ msgstr "オリジナルのカーネルオプション"
+ 
+-#: ../src/system-config-kdump.glade:1509
++#: ../src/system-config-kdump.glade:1563
+ msgid "Original:"
+ msgstr "オリジナル:"
+ 
+-#: ../src/system-config-kdump.glade:1522
++#: ../src/system-config-kdump.glade:1576
+ msgid "Edited:"
+ msgstr "編集済み:"
+ 
+-#: ../src/system-config-kdump.glade:1540
++#: ../src/system-config-kdump.glade:1594
+ msgid "<b>Command line options</b>"
+ msgstr "<b>コマンドラインオプション</b>"
+ 
+-#: ../src/system-config-kdump.glade:1573
++#: ../src/system-config-kdump.glade:1627
+ msgid "Choose default action"
+ msgstr "デフォルト動作の選択してください。"
+ 
+-#: ../src/system-config-kdump.glade:1597
++#: ../src/system-config-kdump.glade:1651
+ msgid "<b>Action if dumping fails</b>"
+-msgstr "<b>ダンプ中に失敗した場合の挙動</b>"
++msgstr "<b>ダンプに失敗した場合の動作</b>"
+ 
+-#: ../src/system-config-kdump.glade:1646
++#: ../src/system-config-kdump.glade:1700
+ msgid "<b>Core collector</b>"
+ msgstr "<b>コアコレクター</b>"
+ 
+-#: ../src/system-config-kdump.glade:1672
++#: ../src/system-config-kdump.glade:1726
+ msgid "Expert settings"
+ msgstr "上級者設定"
++

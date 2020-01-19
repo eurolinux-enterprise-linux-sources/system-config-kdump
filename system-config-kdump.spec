@@ -3,7 +3,7 @@
 Summary: A graphical interface for configuring kernel crash dumping
 Name: system-config-kdump
 Version: 2.0.13
-Release: 15%{?dist}
+Release: 16%{?dist}
 URL: http://fedorahosted.org/system-config-kdump/
 License: GPLv2+
 Group: System Environment/Base
@@ -84,6 +84,10 @@ Patch14: system-config-kdump-2.0.13-root_partition_allow_path.patch
 # rhbz#1121590
 Patch15: system-config-kdump-2.0.13-check_nfs4.patch
 
+# Translations updates 4
+# rhbz#1449670
+Patch16: system-config-kdump-2.0.13-translation_updates-4.patch
+
 %description
 system-config-kdump is a graphical tool for configuring kernel crash
 dumping via kdump and kexec.
@@ -105,6 +109,7 @@ dumping via kdump and kexec.
 %patch13 -p1 -b .translation_updates-3
 %patch14 -p1 -b .root_partition_path
 %patch15 -p1 -b .check_nfs4
+%patch16 -p1 -b .translation_updates-4
 
 %build
 make
@@ -159,6 +164,9 @@ fi
 %doc %{_datadir}/omf/system-config-kdump
 
 %changelog
+* Tue May 23 2017 Than Ngo <than@redhat.com> - 2.0.13-16
+- Resolves: bz#1449670, Translation updates
+
 * Tue Sep 13 2016 Than Ngo <than@redhat.com> - 2.0.13-15
 - Warn when NFS export target is not mounted, check nfs4 file system
 - Resolves: #1121590
